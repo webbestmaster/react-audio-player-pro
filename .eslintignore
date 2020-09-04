@@ -1,0 +1,26 @@
+# dist
+/dist
+
+# report
+/flow-coverage
+
+# npm
+node_modules
+
+# flow
+flow-typed/npm
+dev/backstop-js/data/
+
+
+# example
+
+# /* eslint consistent-this: ["error", "unit", "aggressor"] */
+
+# /* eslint-disable no-unused-vars */
+# var React = require('react');
+# /* eslint-enable no-unused-vars */
+
+# // eslint-disable-next-line no-unused-vars
+# var React = require('react');
+
+# var React = require('react'); // eslint-disable-line no-unused-vars

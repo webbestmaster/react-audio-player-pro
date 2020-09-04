@@ -1,0 +1,38 @@
+#IDE
+/.idea
+
+# keys
+/server/key/file
+
+# user's files
+/upload-file-cache
+/upload-file-temp
+/db-dump
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# npm
+node_modules
+package-lock.json
+
+# dist
+/dist
+
+# flow css
+*.css.flow
+*.scss.flow
+
+# report
+/flow-coverage
+/dev/backstop-js/data/
+
+# data base
+/db
+
+# other
+.DS_Store
+__delete_and_no_commit__
+
