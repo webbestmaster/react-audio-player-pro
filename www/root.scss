@@ -25,50 +25,6 @@ body {
         padding: 16px;
     }
 
-    .top-content {
-        display: block;
-        flex-shrink: 0;
-
-        .main-header {
-            margin-right: 110px;
-        }
-    }
-
-    .text-area-list {
-        align-items: stretch;
-        display: flex;
-        flex-direction: row;
-        flex-grow: 1;
-        justify-content: space-between;
-        overflow: auto;
-        width: 100%;
-    }
-
-    .text-area {
-        border: 1px solid #666;
-        box-sizing: border-box;
-        display: block;
-        font-family: 'Lucida Grande', Helvetica, sans-serif;
-        font-size: 16px;
-        line-height: 1.4;
-        margin: 0;
-        min-height: 50vh;
-        overflow: auto;
-        padding: 8px;
-        resize: none;
-        width: calc(100% / 2 - 8px);
-    }
-
-    .text-area-input {
-        font-family: $main-font-family-monospace;
-    }
-
-    .setting-label {
-        cursor: pointer;
-        margin: 0;
-        padding: 5px 0;
-    }
-
     .github-badge {
         background-color: #c00;
         border-bottom: 1px solid #c00;
