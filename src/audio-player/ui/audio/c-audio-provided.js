@@ -1,6 +1,7 @@
 // @flow
 
 import React, {type Node} from 'react';
+import classNames from 'classnames';
 
 import serviceStyle from '../../../css/service.scss';
 import {playerPlayingStateTypeMap} from '../../audio-player-const';
@@ -202,10 +203,13 @@ export class AudioProvided extends AudioPlayerControl {
     }
 
     render(): Node {
+        const {props} = this;
+        const {className} = props;
+
         return (
             <>
                 {this.renderAudioTag()}
-                <div className={audioPlayerControlStyle.audio_player_control__wrapper__single}>
+                <div className={classNames(audioPlayerControlStyle.audio_player_control__wrapper__single, className)}>
                     {this.renderBottomBarList()}
                 </div>
             </>

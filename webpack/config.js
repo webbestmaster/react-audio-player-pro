@@ -21,7 +21,7 @@ module.exports.isBuildSite = buildType === buildTypeSite;
 
 module.exports.cwd = process.cwd();
 
-module.exports.fileRegExp = /\.(webp|png|jpg|jpeg|gif|svg|otf|ttf|woff2?)$/;
+module.exports.fileRegExp = /\.(webp|png|jpg|jpeg|gif|svg|otf|ttf|woff2?|mp3)$/;
 
 module.exports.pathToDist = '/dist';
 

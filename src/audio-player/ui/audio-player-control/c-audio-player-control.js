@@ -24,6 +24,7 @@ export type PropsType = {|
     +src?: string,
     +onDidMount?: () => mixed,
     +downloadFileName?: string,
+    +className?: string,
 |};
 
 export type StateType = {|
@@ -438,10 +439,13 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
     }
 
     render(): Node {
+        const {props} = this;
+        const {className} = props;
+
         return (
             <>
                 {this.renderAudioTag()}
-                <div className={audioPlayerControlStyle.audio_player_control__wrapper}>
+                <div className={classNames(audioPlayerControlStyle.audio_player_control__wrapper, className)}>
                     {this.renderMainButtonList()}
                     {this.renderBottomBarList()}
                 </div>

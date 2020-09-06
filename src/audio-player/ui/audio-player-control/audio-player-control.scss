@@ -53,6 +53,9 @@ $wrapper-font-family: verdana, geneva, sans-serif;
     }
 
     .audio_player_control__button {
+        border: 0;
+        background-color: transparent;
+        margin: 0;
         border-radius: $border-radius;
         box-sizing: border-box;
         display: block;
@@ -124,6 +127,7 @@ $wrapper-font-family: verdana, geneva, sans-serif;
     }
 
     .audio_player_control__input_range {
+        background-color: transparent;
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
@@ -133,6 +137,9 @@ $wrapper-font-family: verdana, geneva, sans-serif;
         position: relative;
         width: 100%;
         z-index: 1;
+        vertical-align: middle;
+        margin: 0;
+        padding: 0;
 
         &:disabled {
             opacity: 1;
