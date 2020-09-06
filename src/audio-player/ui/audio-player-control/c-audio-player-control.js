@@ -19,12 +19,12 @@ export type PropsType = {|
     // native property
     +audioPlayerContext: AudioPlayerContextType,
     +systemContext: SystemContextType,
+    +className?: string,
+    +onDidMount?: () => mixed,
 
     // for extend property
     +src?: string,
-    +onDidMount?: () => mixed,
     +downloadFileName?: string,
-    +className?: string,
 |};
 
 export type StateType = {|
@@ -56,6 +56,15 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
         this.ref = {
             refAudio: React.createRef<HTMLAudioElement>(),
         };
+    }
+
+    componentDidMount() {
+        const {props} = this;
+        const {onDidMount} = props;
+
+        if (onDidMount) {
+            onDidMount();
+        }
     }
 
     componentDidUpdate(prevProps: PropsType, prevState: StateType) {

@@ -16,6 +16,8 @@ $list-item-button-size: 48px;
 .audio_player_play_list__list {
     background-color: $main-background-color;
     display: block;
+    padding: 0;
+    margin: 0;
 }
 
 /*
@@ -74,6 +76,11 @@ scrollbar-width: thin;
     height: $list-item-button-size;
     outline: none;
     width: $list-item-button-size;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .audio_player_play_list__info {

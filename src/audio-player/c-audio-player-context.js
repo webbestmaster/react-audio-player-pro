@@ -10,12 +10,14 @@ import type {
     PlayerPlayingStateType,
     PlayerRepeatingStateType,
 } from './audio-player-type';
+
 import {
     defaultAudioPlayerContextData,
     playerPlayingStateTypeMap,
     playerRepeatingStateTypeList,
     playerRepeatingStateTypeMap,
 } from './audio-player-const';
+
 import {AudioPlayerControlSprite} from './ui/audio-player-control/c-audio-player-control-sprite';
 
 type PropsType = {|

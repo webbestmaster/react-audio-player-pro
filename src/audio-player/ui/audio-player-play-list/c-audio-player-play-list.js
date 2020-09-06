@@ -4,7 +4,7 @@ import React, {Component, type Node} from 'react';
 import classNames from 'classnames';
 
 import type {AudioPlayerContextType, AudioPlayerListItemType} from '../../audio-player-type';
-import {playerPlayingStateTypeMap} from '../../audio-player-const';
+import {defaultAudioPlayerContextData, playerPlayingStateTypeMap} from '../../audio-player-const';
 import {audioPlayerIconIdPrefix} from '../audio-player-control/c-audio-player-control-sprite';
 import {SvgImage} from '../../../layout/svg-image/c-svg-image';
 
@@ -13,11 +13,21 @@ import audioPlayerPlayListStyle from './audio-player-play-list.scss';
 type PropsType = {|
     +audioPlayerContext: AudioPlayerContextType,
     +playList: Array<AudioPlayerListItemType>,
+    +className?: string,
 |};
 
 type StateType = null;
 
 export class AudioPlayerPlayList extends Component<PropsType, StateType> {
+    constructor(props: PropsType) {
+        super(props);
+
+        const {playList, audioPlayerContext} = props;
+
+        audioPlayerContext.setActiveIndex(defaultAudioPlayerContextData.activeIndex);
+        audioPlayerContext.setPlayList(playList);
+    }
+
     renderMainButtonImage(item: AudioPlayerListItemType, index: number): Node {
         const {props} = this;
         const {audioPlayerContext} = props;
@@ -102,7 +112,7 @@ export class AudioPlayerPlayList extends Component<PropsType, StateType> {
 
     render(): Node {
         const {props} = this;
-        const {audioPlayerContext, playList} = props;
+        const {audioPlayerContext, playList, className} = props;
         const {isPlayListOpen} = audioPlayerContext;
 
         if (!isPlayListOpen) {
@@ -110,7 +120,7 @@ export class AudioPlayerPlayList extends Component<PropsType, StateType> {
         }
 
         return (
-            <div className={audioPlayerPlayListStyle.audio_player_play_list__wrapper}>
+            <div className={classNames(audioPlayerPlayListStyle.audio_player_play_list__wrapper, className)}>
                 <ol className={audioPlayerPlayListStyle.audio_player_play_list__list}>
                     {playList.map(this.renderPlayListItem)}
                 </ol>
