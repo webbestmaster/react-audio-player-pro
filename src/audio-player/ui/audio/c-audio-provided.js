@@ -11,6 +11,7 @@ import type {PropsType, StateType} from '../audio-player-control/c-audio-player-
 import {AudioPlayerControl} from '../audio-player-control/c-audio-player-control';
 import {isNotFunction} from '../../../lib/is';
 import {noop} from '../../../lib/function';
+import {hasVolumeBar} from '../../../lib/system';
 
 export class AudioProvided extends AudioPlayerControl {
     constructor(props: PropsType) {
@@ -19,7 +20,7 @@ export class AudioProvided extends AudioPlayerControl {
         this.state = {
             trackCurrentTime: 0,
             trackFullTime: 0,
-            trackVolume: this.hasVolumeBar() ? 0.5 : 1,
+            trackVolume: hasVolumeBar ? 0.5 : 1,
             isMuted: false,
             isProgressBarActive: false,
             playingState: playerPlayingStateTypeMap.paused,
@@ -196,7 +197,7 @@ export class AudioProvided extends AudioPlayerControl {
                 <div className={audioPlayerControlStyle.audio_player_control__progress_bar_part_wrapper}>
                     {src ? this.renderProgressBar() : this.renderProgressBarInactive()}
                 </div>
-                {this.hasVolumeBar() ? this.renderVolumeBar() : null}
+                {hasVolumeBar ? this.renderVolumeBar() : null}
                 {this.renderDownloadButton()}
             </div>
         );

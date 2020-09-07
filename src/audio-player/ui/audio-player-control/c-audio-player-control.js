@@ -10,7 +10,7 @@ import {
     playerPlayingStateTypeMap,
     playerRepeatingStateTypeMap,
 } from '../../audio-player-const';
-import type {SystemContextType} from '../../../system/system-context-type';
+import {hasVolumeBar} from '../../../lib/system';
 
 import audioPlayerControlStyle from './audio-player-control.scss';
 import {AudioPlayerControlButton} from './c-audio-player-control-button';
@@ -18,7 +18,6 @@ import {AudioPlayerControlButton} from './c-audio-player-control-button';
 export type PropsType = {|
     // native property
     +audioPlayerContext: AudioPlayerContextType,
-    +systemContext: SystemContextType,
     +className?: string,
     +onDidMount?: () => mixed,
 
@@ -48,7 +47,7 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
         this.state = {
             trackCurrentTime: 0,
             trackFullTime: 0,
-            trackVolume: this.hasVolumeBar() ? 0.5 : 1,
+            trackVolume: hasVolumeBar ? 0.5 : 1,
             isMuted: false,
             isProgressBarActive: false,
         };
@@ -74,14 +73,6 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
         if (prevProps.audioPlayerContext.playingState !== audioPlayerContext.playingState) {
             this.updatePlayingState();
         }
-    }
-
-    hasVolumeBar(): boolean {
-        const {props} = this;
-        const {systemContext} = props;
-        const {isIOS, isAndroid, isScriptLoaded} = systemContext;
-
-        return !(isIOS || isAndroid || !isScriptLoaded);
     }
 
     // eslint-disable-next-line complexity, max-statements
@@ -442,7 +433,7 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
                 <div className={audioPlayerControlStyle.audio_player_control__progress_bar_part_wrapper}>
                     {activeItem ? this.renderProgressBar() : this.renderProgressBarInactive()}
                 </div>
-                {this.hasVolumeBar() ? this.renderVolumeBar() : null}
+                {hasVolumeBar ? this.renderVolumeBar() : null}
             </div>
         );
     }
