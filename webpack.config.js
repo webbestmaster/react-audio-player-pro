@@ -14,7 +14,7 @@ const {
 } = require('./webpack/config');
 
 const webpackConfig = {
-    entry: isBuildLib ? ['./src/markdown.scss', './src/markdown.js'] : ['./www/root.scss', './www/root.js'],
+    entry: isBuildLib ? ['./src/audio-player.scss', './src/audio-player.js'] : ['./www/root.scss', './www/root.js'],
     output: {
         path: path.join(cwd, pathToDist),
         // publicPath: `${isDevelopment || isBuildServer ? '' : pathToStaticFileFolder}/`,
