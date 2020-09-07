@@ -64,6 +64,7 @@ $wrapper-font-family: verdana, geneva, sans-serif;
         outline: none;
         padding: ($button-size - $button-image-size) / 2;
         width: $button-size;
+        cursor: pointer;
 
         &:active,
         &.audio_player_control__button__active {
@@ -83,6 +84,7 @@ $wrapper-font-family: verdana, geneva, sans-serif;
         height: $button-size;
         outline: 0;
         width: $button-size;
+        cursor: pointer;
     }
 
     .audio_player_control__bottom_bar_list_wrapper {
