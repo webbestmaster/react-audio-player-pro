@@ -4,7 +4,7 @@ import React, {Component, type Node} from 'react';
 import classNames from 'classnames';
 
 import serviceStyle from '../../../css/service.scss';
-import type {AudioPlayerContextType, PlayerPlayingStateType} from '../../audio-player-type';
+import type {AudioPlayerContextType, AudioPlayerListItemType, PlayerPlayingStateType} from '../../audio-player-type';
 import {
     defaultAudioPlayerContextData,
     playerPlayingStateTypeMap,
@@ -22,7 +22,7 @@ export type PropsType = {|
     +onDidMount?: () => mixed,
 
     // for extend property
-    +src?: string,
+    +data?: AudioPlayerListItemType,
     +downloadFileName?: string,
 |};
 

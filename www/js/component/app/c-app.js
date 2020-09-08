@@ -19,8 +19,14 @@ import the33korovi from '../../../file/audio/the-33-korovi.mp3';
 
 const audioDataList = [
     {
-        title: 'a mozhet bit vorona',
         src: aMozhetBitVorona,
+        title: 'a mozhet bit vorona',
+        artist: 'souz mult film',
+        album: 'the album name',
+        artwork: [
+            {src: 'https://dummyimage.com/96x96', sizes: '96x96', type: 'image/png'},
+            {src: 'https://dummyimage.com/128x128', sizes: '128x128', type: 'image/png'},
+        ],
     },
     {
         title: 'akuna matata',
@@ -54,7 +60,7 @@ export function App(): Node {
                 <br/>
                 <br/>
                 <br/>
-                <Audio src={the33korovi}/>
+                <Audio data={audioDataList[0]}/>
                 <br/>
                 <br/>
                 <br/>

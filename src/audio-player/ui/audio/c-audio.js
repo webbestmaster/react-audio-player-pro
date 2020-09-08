@@ -4,20 +4,20 @@
 
 import React, {type Node} from 'react';
 
-import type {AudioPlayerContextType} from '../../audio-player-type';
+import type {AudioPlayerContextType, AudioPlayerListItemType} from '../../audio-player-type';
 import {AudioPlayerContextConsumer} from '../../c-audio-player-context';
 
 import {AudioProvided} from './c-audio-provided';
 
 type PropsType = {|
-    +src: string,
+    +data: AudioPlayerListItemType,
     +onDidMount?: (audioNode: ?HTMLAudioElement) => mixed,
     +downloadFileName?: string,
     +className?: string,
 |};
 
 export function Audio(props: PropsType): Node {
-    const {src, onDidMount, downloadFileName, className} = props;
+    const {data, onDidMount, downloadFileName, className} = props;
 
     return (
         <AudioPlayerContextConsumer>
@@ -26,9 +26,9 @@ export function Audio(props: PropsType): Node {
                     <AudioProvided
                         audioPlayerContext={audioPlayerContext}
                         className={className}
+                        data={data}
                         downloadFileName={downloadFileName}
                         onDidMount={onDidMount}
-                        src={src}
                     />
                 );
             }}

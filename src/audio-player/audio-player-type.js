@@ -4,12 +4,19 @@ import {type Node} from 'react';
 
 export type AudioPlayerItemIdType = string | number;
 
+export type AudioPlayerListItemArtworkType = {|
+    +src: string, // 'https://dummyimage.com/96x96',
+    +sizes: string, // '96x96',
+    +type: string, // 'image/png',
+|};
+
 export type AudioPlayerListItemType = {|
-    +id?: AudioPlayerItemIdType,
+    // +id?: AudioPlayerItemIdType,
     +src: string,
-    +title: string | Node,
+    +title: string,
     +artist?: string,
     +album?: string,
+    +artwork?: Array<AudioPlayerListItemArtworkType>,
 |};
 
 export type PlayerPlayingStateType = 'playing' | 'paused' | 'stopped';
