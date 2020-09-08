@@ -7,6 +7,7 @@ import {getRandom} from '../lib/number';
 import type {
     AudioPlayerContextType,
     AudioPlayerListItemType,
+    MetadataType,
     PlayerPlayingStateType,
     PlayerRepeatingStateType,
 } from './audio-player-type';
@@ -181,6 +182,12 @@ export class AudioPlayerProvider extends Component<PropsType, StateType> {
         return null;
     };
 
+    setMetadata = (metadata: MetadataType): null => {
+        console.log('[not implemented]: setMetadata:', metadata);
+
+        return null;
+    };
+
     tryToPlayIndex(index: number) {
         const {state} = this;
         const {playList} = state;
@@ -296,11 +303,6 @@ export class AudioPlayerProvider extends Component<PropsType, StateType> {
     handlePlay = (evt: SyntheticEvent<HTMLAudioElement>): null => {
         this.play();
 
-        // const audioNode = evt.currentTarget;
-        //
-        // console.log(audioNode.duration);
-        // console.log(audioNode.currentTime);
-
         return null;
     };
 
@@ -358,6 +360,7 @@ export class AudioPlayerProvider extends Component<PropsType, StateType> {
             stop: this.stop,
             next: this.next,
             prev: this.prev,
+            setMetadata: this.setMetadata,
             setRepeatingState: this.setRepeatingState,
             toggleRepeatingState: this.toggleRepeatingState,
             setShuffleIsEnable: this.setShuffleIsEnable,

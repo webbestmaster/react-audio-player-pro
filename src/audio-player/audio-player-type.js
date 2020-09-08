@@ -1,10 +1,8 @@
 // @flow
 
-import {type Node} from 'react';
-
 export type AudioPlayerItemIdType = string | number;
 
-export type AudioPlayerListItemArtworkType = {|
+type AudioPlayerListItemArtworkType = {|
     +src: string, // 'https://dummyimage.com/96x96',
     +sizes: string, // '96x96',
     +type: string, // 'image/png',
@@ -13,6 +11,13 @@ export type AudioPlayerListItemArtworkType = {|
 export type AudioPlayerListItemType = {|
     // +id?: AudioPlayerItemIdType,
     +src: string,
+    +title: string,
+    +artist?: string,
+    +album?: string,
+    +artwork?: Array<AudioPlayerListItemArtworkType>,
+|};
+
+export type MetadataType = {|
     +title: string,
     +artist?: string,
     +album?: string,
@@ -38,6 +43,7 @@ export type AudioPlayerContextType = {|
     +stop: () => mixed,
     +next: () => mixed,
     +prev: () => mixed,
+    +setMetadata: (metadata: MetadataType) => mixed,
     +repeatingState: PlayerRepeatingStateType, // repeat from first item if play list is end, default none
     +setRepeatingState: (playerRepeatingState: PlayerRepeatingStateType) => mixed,
     +toggleRepeatingState: () => mixed,
