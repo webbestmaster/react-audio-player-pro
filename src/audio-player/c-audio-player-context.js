@@ -1,5 +1,7 @@
 // @flow
 
+/* global navigator, MediaMetadata */
+
 import React, {Component, type Node} from 'react';
 
 import {getRandom} from '../lib/number';
@@ -7,7 +9,7 @@ import {getRandom} from '../lib/number';
 import type {
     AudioPlayerContextType,
     AudioPlayerListItemType,
-    MetadataType,
+    MediaMetadataType,
     PlayerPlayingStateType,
     PlayerRepeatingStateType,
 } from './audio-player-type';
@@ -139,6 +141,8 @@ export class AudioPlayerProvider extends Component<PropsType, StateType> {
 
         this.setState({playingState: playerPlayingStateTypeMap.playing});
 
+        console.log('---- play ----');
+
         return null;
     };
 
@@ -182,8 +186,36 @@ export class AudioPlayerProvider extends Component<PropsType, StateType> {
         return null;
     };
 
-    setMetadata = (metadata: MetadataType): null => {
-        console.log('[not implemented]: setMetadata:', metadata);
+    setMediaMetadata = (metadata: MediaMetadataType): null => {
+        // $FlowFixMe
+        if (typeof navigator === 'undefined' || typeof MediaMetadata === 'undefined') {
+            return null;
+        }
+
+        const isMediaSessionSupport = Boolean('mediaSession' in navigator);
+
+        if (!isMediaSessionSupport) {
+            return null;
+        }
+
+        // $FlowFixMe
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: metadata.title,
+            artist: metadata.artist,
+            album: metadata.album,
+            artwork: metadata.artwork,
+        });
+
+        /*
+        navigator.mediaSession.setActionHandler('play', function () {});
+        navigator.mediaSession.setActionHandler('pause', function () {});
+        navigator.mediaSession.setActionHandler('seekbackward', function () {});
+        navigator.mediaSession.setActionHandler('seekforward', function () {});
+        navigator.mediaSession.setActionHandler('previoustrack', function () {});
+        navigator.mediaSession.setActionHandler('nexttrack', function () {});
+        */
+
+        console.log('[not implemented]: setMediaMetadata:', metadata);
 
         return null;
     };
@@ -360,7 +392,7 @@ export class AudioPlayerProvider extends Component<PropsType, StateType> {
             stop: this.stop,
             next: this.next,
             prev: this.prev,
-            setMetadata: this.setMetadata,
+            setMediaMetadata: this.setMediaMetadata,
             setRepeatingState: this.setRepeatingState,
             toggleRepeatingState: this.toggleRepeatingState,
             setShuffleIsEnable: this.setShuffleIsEnable,

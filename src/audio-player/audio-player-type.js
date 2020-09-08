@@ -17,7 +17,7 @@ export type AudioPlayerListItemType = {|
     +artwork?: Array<AudioPlayerListItemArtworkType>,
 |};
 
-export type MetadataType = {|
+export type MediaMetadataType = {|
     +title: string,
     +artist?: string,
     +album?: string,
@@ -43,7 +43,7 @@ export type AudioPlayerContextType = {|
     +stop: () => mixed,
     +next: () => mixed,
     +prev: () => mixed,
-    +setMetadata: (metadata: MetadataType) => mixed,
+    +setMediaMetadata: (metadata: MediaMetadataType) => mixed,
     +repeatingState: PlayerRepeatingStateType, // repeat from first item if play list is end, default none
     +setRepeatingState: (playerRepeatingState: PlayerRepeatingStateType) => mixed,
     +toggleRepeatingState: () => mixed,

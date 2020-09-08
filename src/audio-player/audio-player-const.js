@@ -3,7 +3,7 @@
 import type {
     AudioPlayerContextType,
     AudioPlayerListItemType,
-    MetadataType,
+    MediaMetadataType,
     PlayerRepeatingStateType,
 } from './audio-player-type';
 
@@ -63,7 +63,7 @@ export const defaultAudioPlayerContextData: AudioPlayerContextType = {
     prev(): null {
         return null;
     },
-    setMetadata(metadata: MetadataType): null {
+    setMediaMetadata(metadata: MediaMetadataType): null {
         return null;
     },
     repeatingState: playerRepeatingStateTypeMap.none,
