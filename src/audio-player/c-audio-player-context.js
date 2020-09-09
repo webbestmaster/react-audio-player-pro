@@ -199,12 +199,7 @@ export class AudioPlayerProvider extends Component<PropsType, StateType> {
         }
 
         // $FlowFixMe
-        navigator.mediaSession.metadata = new MediaMetadata({
-            title: metadata.title,
-            artist: metadata.artist,
-            album: metadata.album,
-            artwork: metadata.artwork,
-        });
+        navigator.mediaSession.metadata = new MediaMetadata(metadata);
 
         /*
         navigator.mediaSession.setActionHandler('play', function () {});
@@ -333,7 +328,18 @@ export class AudioPlayerProvider extends Component<PropsType, StateType> {
     };
 
     handlePlay = (evt: SyntheticEvent<HTMLAudioElement>): null => {
+        const {state} = this;
+        const {activeIndex, playList} = state;
+
         this.play();
+
+        const listItem = playList[activeIndex];
+
+        if (listItem) {
+            const {mediaMetadata} = listItem;
+
+            this.setMediaMetadata(mediaMetadata || {title: listItem.src});
+        }
 
         return null;
     };

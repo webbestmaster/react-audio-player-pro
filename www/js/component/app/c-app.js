@@ -20,29 +20,39 @@ import the33korovi from '../../../file/audio/the-33-korovi.mp3';
 const audioDataList = [
     {
         src: aMozhetBitVorona,
-        title: 'a mozhet bit vorona',
-        artist: 'souz mult film',
-        album: 'the album name',
-        artwork: [
-            {src: 'https://dummyimage.com/96x96', sizes: '96x96', type: 'image/png'},
-            {src: 'https://dummyimage.com/128x128', sizes: '128x128', type: 'image/png'},
-        ],
+        mediaMetadata: {
+            title: 'a mozhet bit vorona',
+            artist: 'souz mult film',
+            album: 'the album name',
+            artwork: [
+                {src: 'https://dummyimage.com/96x96', sizes: '96x96', type: 'image/png'},
+                {src: 'https://dummyimage.com/128x128', sizes: '128x128', type: 'image/png'},
+            ],
+        },
     },
     {
-        title: 'akuna matata',
         src: akunaMatata,
+        mediaMetadata: {
+            title: 'akuna matata',
+        },
     },
     {
-        title: 'antoshka',
         src: antoshka,
+        mediaMetadata: {
+            title: 'antoshka',
+        },
     },
     {
-        title: 'arabskaya noch',
         src: arabskayaNoch,
+        mediaMetadata: {
+            title: 'arabskaya noch',
+        },
     },
     {
-        title: 'the 33 korovi',
         src: the33korovi,
+        mediaMetadata: {
+            title: 'the 33 korovi',
+        },
     },
 ];
 

@@ -8,20 +8,17 @@ type AudioPlayerListItemArtworkType = {|
     +type: string, // 'image/png',
 |};
 
-export type AudioPlayerListItemType = {|
-    // +id?: AudioPlayerItemIdType,
-    +src: string,
+export type MediaMetadataType = {|
     +title: string,
     +artist?: string,
     +album?: string,
     +artwork?: Array<AudioPlayerListItemArtworkType>,
 |};
 
-export type MediaMetadataType = {|
-    +title: string,
-    +artist?: string,
-    +album?: string,
-    +artwork?: Array<AudioPlayerListItemArtworkType>,
+export type AudioPlayerListItemType = {|
+    // +id?: AudioPlayerItemIdType,
+    +src: string,
+    +mediaMetadata?: MediaMetadataType,
 |};
 
 export type PlayerPlayingStateType = 'playing' | 'paused' | 'stopped';

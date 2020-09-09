@@ -90,10 +90,11 @@ export class AudioPlayerPlayList extends Component<PropsType, StateType> {
     }
 
     renderPlayListItem = (item: AudioPlayerListItemType, index: number): Node => {
-        const {title, src} = item;
+        const {mediaMetadata, src} = item;
         const {props} = this;
         const {audioPlayerContext} = props;
         const {activeIndex} = audioPlayerContext;
+        const title = mediaMetadata ? mediaMetadata.title : src;
 
         return (
             <li
