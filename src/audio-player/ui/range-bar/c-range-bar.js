@@ -40,12 +40,34 @@ export class RangeBar extends Component<PropsType, StateType> {
         +input: {current: HTMLInputElement | null},
     |};
 
+    getCurrentValue(): number {
+        const {ref} = this;
+        const {input} = ref;
+        const {current} = input;
+
+        if (!current) {
+            return 0;
+        }
+
+        return Number.parseFloat(current.value);
+    }
+
     handleMouseDown = () => {
         this.setState({isMouseDown: true});
     };
 
     handleMouseUp = () => {
         this.setState({isMouseDown: false});
+    };
+
+    handleProgressBarChange = () => {
+        const {props} = this;
+        const {onChange} = props;
+        const value = this.getCurrentValue();
+
+        this.setState({value});
+
+        onChange(value);
     };
 
     renderProgressBarLine(): Node {
@@ -70,28 +92,6 @@ export class RangeBar extends Component<PropsType, StateType> {
         );
     }
 
-    getCurrentValue(): number {
-        const {ref} = this;
-        const {input} = ref;
-        const {current} = input;
-
-        if (!current) {
-            return 0;
-        }
-
-        return Number.parseFloat(current.value);
-    }
-
-    handleProgressBarChange = () => {
-        const {props} = this;
-        const {onChange} = props;
-        const value = this.getCurrentValue();
-
-        this.setState({value});
-
-        onChange(value);
-    };
-
     render(): Node {
         const {props, state, ref} = this;
         const {className, isDisable} = props;
@@ -103,29 +103,26 @@ export class RangeBar extends Component<PropsType, StateType> {
         });
 
         return (
-            <>
-                <div
-                    className={fullClassName}
-                    onMouseDown={this.handleMouseDown}
-                    onMouseUp={this.handleMouseUp}
-                    onTouchEnd={this.handleMouseUp}
-                    onTouchStart={this.handleMouseDown}
-                >
-                    {this.renderProgressBarLine()}
-                    {this.renderProgressPoint()}
-                    <input
-                        className={rangeBarStyle.input_range}
-                        defaultValue={inputData.defaultValue}
-                        max={inputData.max}
-                        min={inputData.min}
-                        onChange={this.handleProgressBarChange}
-                        ref={ref.input}
-                        step={inputData.step}
-                        type="range"
-                    />
-                </div>
-                <div>{JSON.stringify(state, null, 4)}</div>
-            </>
+            <div
+                className={fullClassName}
+                onMouseDown={this.handleMouseDown}
+                onMouseUp={this.handleMouseUp}
+                onTouchEnd={this.handleMouseUp}
+                onTouchStart={this.handleMouseDown}
+            >
+                {this.renderProgressBarLine()}
+                {this.renderProgressPoint()}
+                <input
+                    className={rangeBarStyle.input_range}
+                    defaultValue={inputData.defaultValue}
+                    max={inputData.max}
+                    min={inputData.min}
+                    onChange={this.handleProgressBarChange}
+                    ref={ref.input}
+                    step={inputData.step}
+                    type="range"
+                />
+            </div>
         );
     }
 }
