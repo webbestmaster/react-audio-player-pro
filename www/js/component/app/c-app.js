@@ -16,6 +16,7 @@ import akunaMatata from '../../../file/audio/akuna-matata.mp3';
 import antoshka from '../../../file/audio/antoshka.mp3';
 import arabskayaNoch from '../../../file/audio/arabskaya-noch.mp3';
 import the33korovi from '../../../file/audio/the-33-korovi.mp3';
+import {RangeBar} from '../../../../src/audio-player/ui/range-bar/c-range-bar';
 
 const audioDataList = [
     {
@@ -57,6 +58,8 @@ const audioDataList = [
 ];
 
 export function App(): Node {
+    const handleChange = console.log;
+
     return (
         <div>
             <AudioPlayerProvider>
@@ -66,6 +69,11 @@ export function App(): Node {
                 <br/>
                 <br/>
                 <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <RangeBar onChange={handleChange} progress={0.5}/>
                 <br/>
                 <br/>
                 <br/>

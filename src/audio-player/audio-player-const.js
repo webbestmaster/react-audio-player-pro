@@ -39,7 +39,7 @@ export const defaultAudioPlayerContextData: AudioPlayerContextType = {
     removeItemListFromPlayList(itemIndexList: Array<number>): null {
         return null;
     },
-    cleanPlayList(): null {
+    clearPlayList(): null {
         return null;
     },
     playList: [],

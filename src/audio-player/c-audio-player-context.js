@@ -98,7 +98,7 @@ export class AudioPlayerProvider extends Component<PropsType, StateType> {
         return null;
     };
 
-    cleanPlayList = (): null => {
+    clearPlayList = (): null => {
         this.setState({playList: []});
 
         return null;
@@ -391,7 +391,7 @@ export class AudioPlayerProvider extends Component<PropsType, StateType> {
             addItemListToPlayList: this.addItemListToPlayList,
             removeItemFromPlayList: this.removeItemFromPlayList,
             removeItemListFromPlayList: this.removeItemListFromPlayList,
-            cleanPlayList: this.cleanPlayList,
+            clearPlayList: this.clearPlayList,
             setActiveIndex: this.setActiveIndex,
             play: this.play,
             pause: this.pause,

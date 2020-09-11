@@ -30,7 +30,7 @@ export type AudioPlayerContextType = {|
     +addItemListToPlayList: (itemList: Array<AudioPlayerListItemType>) => mixed,
     +removeItemFromPlayList: (itemIndex: number) => mixed,
     +removeItemListFromPlayList: (itemIndexList: Array<number>) => mixed,
-    +cleanPlayList: () => mixed,
+    +clearPlayList: () => mixed,
     +playList: Array<AudioPlayerListItemType>,
     +playingState: PlayerPlayingStateType,
     +activeIndex: number,
