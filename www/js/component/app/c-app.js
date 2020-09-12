@@ -30,8 +30,9 @@ const audioDataList = [
             artist: 'souz mult film',
             album: 'the album name',
             artwork: [
-                {src: 'https://dummyimage.com/96x96', sizes: '96x96', type: 'image/png'},
-                {src: 'https://dummyimage.com/128x128', sizes: '128x128', type: 'image/png'},
+                {src: 'https://dummyimage.com/196x196'},
+                {src: 'http://webbestmaster.github.io/img/preview/audio-book.png'},
+                // {src: 'https://dummyimage.com/128x128', sizes: '128x128', type: 'image/png'},
             ],
         },
     },

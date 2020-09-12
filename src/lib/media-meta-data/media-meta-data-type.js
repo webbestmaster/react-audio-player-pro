@@ -25,8 +25,8 @@ export type MediaMetadataControlSettingType = {|
 
 type AudioPlayerListItemArtworkType = {|
     +src: string, // 'https://dummyimage.com/96x96',
-    +sizes: string, // '96x96',
-    +type: string, // 'image/png',
+    +sizes?: string, // '96x96',
+    +type?: string, // 'image/png',
 |};
 
 export type MediaMetadataType = {|
