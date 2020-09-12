@@ -3,12 +3,12 @@
 import React, {type Node, Component} from 'react';
 import classNames from 'classnames';
 
-import {playerPlayingStateTypeMap} from '../../audio-player-const';
-import {AudioPlayerControlButton} from '../../../layout/audio-player-control-button/c-audio-player-control-button';
-import {Time} from '../../../layout/time/c-time';
-import {hasVolumeBar} from '../../../lib/system';
-import {type MediaMetadataType, type PlayerPlayingStateType} from '../../audio-player-type';
-import {RangeBar} from '../../../layout/range-bar/c-range-bar';
+import {playerPlayingStateTypeMap} from '../audio-player-const';
+import {AudioPlayerControlButton} from '../../layout/audio-player-control-button/c-audio-player-control-button';
+import {Time} from '../../layout/time/c-time';
+import {hasVolumeBar} from '../../lib/system';
+import {type MediaMetadataType, type PlayerPlayingStateType} from '../audio-player-type';
+import {RangeBar} from '../../layout/range-bar/c-range-bar';
 
 import audioStyle from './audio.scss';
 

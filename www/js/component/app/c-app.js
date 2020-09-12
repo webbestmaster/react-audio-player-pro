@@ -20,7 +20,7 @@ import arabskayaNoch from '../../../file/audio/arabskaya-noch.mp3';
 import the33korovi from '../../../file/audio/the-33-korovi.mp3';
 import {RangeBar} from '../../../../src/layout/range-bar/c-range-bar';
 
-import {Audio} from '../../../../src/audio-player/ui/audio/c-audio';
+import {Audio} from '../../../../src/audio-player/audio/c-audio';
 import {AudioPlayerControlSprite} from '../../../../src/layout/audio-player-control-sprite/c-audio-player-control-sprite';
 
 const audioDataList = [

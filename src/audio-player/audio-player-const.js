@@ -15,11 +15,13 @@ export const playerPlayingStateTypeMap = {
     stopped: 'stopped',
 };
 
+/*
 export const playerRepeatingStateTypeMap = {
     none: 'none',
     all: 'all',
     one: 'one',
 };
+*/
 
 /*
 
