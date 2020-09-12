@@ -15,10 +15,10 @@ export function Time(props: PropsType): Node {
     const {currentTime, fullTime, className} = props;
 
     const trackCurrentTimeMinutes = Math.floor(currentTime / 60);
-    const trackCurrentTimeSeconds = String(Math.floor(currentTime % 60)).padStart(2, '0');
+    const trackCurrentTimeSeconds = String(Math.round(currentTime % 60)).padStart(2, '0');
 
     const trackFullTimeMinutes = Math.floor(fullTime / 60);
-    const trackFullTimeSeconds = String(Math.floor(fullTime % 60)).padStart(2, '0');
+    const trackFullTimeSeconds = String(Math.round(fullTime % 60)).padStart(2, '0');
 
     return (
         <p className={classNames(timeStyle.time, className)}>

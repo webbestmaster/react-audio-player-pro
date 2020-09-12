@@ -361,6 +361,9 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
     }
 
     renderAudioTag(): Node {
+        return null;
+
+        /*
         const {props, state, ref} = this;
         const {refAudio} = ref;
         const {src} = props;
@@ -383,6 +386,7 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
                 src={src}
             />
         );
+*/
     }
 
     render(): Node {

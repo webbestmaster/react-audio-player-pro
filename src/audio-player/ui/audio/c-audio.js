@@ -4,14 +4,10 @@ import React, {type Node, Component} from 'react';
 import classNames from 'classnames';
 
 import {playerPlayingStateTypeMap} from '../../audio-player-const';
-import audioPlayerControlStyle from '../audio-player-control/audio-player-control.scss';
 import {AudioPlayerControlButton} from '../../../layout/audio-player-control-button/c-audio-player-control-button';
-import {AudioPlayerControl} from '../audio-player-control/c-audio-player-control';
-import {isNotFunction} from '../../../lib/is';
-import {noop} from '../../../lib/function';
 import {Time} from '../../../layout/time/c-time';
 import {hasVolumeBar} from '../../../lib/system';
-import type {AudioPlayerListItemType, MediaMetadataType, PlayerPlayingStateType} from '../../audio-player-type';
+import {type MediaMetadataType, type PlayerPlayingStateType} from '../../audio-player-type';
 import {RangeBar} from '../../../layout/range-bar/c-range-bar';
 
 import audioStyle from './audio.scss';
@@ -49,21 +45,24 @@ export class Audio extends Component<PropsType, StateType> {
         };
     }
 
-    ref: {
-        refAudio: {
-            current: HTMLAudioElement | null,
-        },
-    };
-
     componentDidMount() {
-        const {props} = this;
+        const {props, state} = this;
+        const {trackVolume} = state;
         const {onDidMount} = props;
         const audioTag = this.getAudioTag();
+
+        if (audioTag) {
+            audioTag.volume = trackVolume;
+        }
 
         if (onDidMount && audioTag) {
             onDidMount(audioTag);
         }
     }
+
+    ref: {|
+        +refAudio: {current: HTMLAudioElement | null},
+    |};
 
     /*
 
@@ -272,6 +271,8 @@ export class Audio extends Component<PropsType, StateType> {
             return;
         }
 
+        console.log(audioTag.volume);
+
         this.setState({
             isMuted: audioTag.muted,
             trackVolume: audioTag.volume,
@@ -293,6 +294,12 @@ export class Audio extends Component<PropsType, StateType> {
 
     handleOnPlay = () => {
         this.setState({playingState: playerPlayingStateTypeMap.playing});
+    };
+
+    handleOnTrackError = (error: Error) => {
+        console.log('[handleOnTrackError]: Error!');
+
+        throw error;
     };
 
     handleOnTimeUpdate = () => {
@@ -321,6 +328,18 @@ export class Audio extends Component<PropsType, StateType> {
         this.setState({trackCurrentTime});
     };
 
+    handleOnChangeVolumeBar = (trackVolume: number) => {
+        const audioTag = this.getAudioTag();
+
+        if (!audioTag) {
+            return;
+        }
+
+        audioTag.volume = trackVolume;
+
+        this.setState({trackVolume});
+    };
+
     handleToggleMute = () => {
         const audioTag = this.getAudioTag();
 
@@ -347,7 +366,7 @@ export class Audio extends Component<PropsType, StateType> {
                 controls
                 key={src}
                 onEnded={this.handleOnEnded}
-                // onError={this.handleOnTrackError}
+                onError={this.handleOnTrackError}
                 onLoadedMetadata={this.handleOnLoadedMetadata}
                 onPause={this.handleOnPause}
                 onPlay={this.handleOnPlay}
@@ -364,10 +383,11 @@ export class Audio extends Component<PropsType, StateType> {
         const {state} = this;
         const {playingState} = state;
 
-        return playingState === playerPlayingStateTypeMap.playing
-            ? <AudioPlayerControlButton ariaLabel="pause" imageId="button-pause" onClick={this.handlePause}/>
-            : <AudioPlayerControlButton ariaLabel="play" imageId="button-play" onClick={this.handlePlay}/>
-        ;
+        if (playingState === playerPlayingStateTypeMap.playing) {
+            return <AudioPlayerControlButton ariaLabel="pause" imageId="button-pause" onClick={this.handlePause}/>;
+        }
+
+        return <AudioPlayerControlButton ariaLabel="play" imageId="button-play" onClick={this.handlePlay}/>;
     }
 
     renderTime(): Node {
@@ -399,6 +419,13 @@ export class Audio extends Component<PropsType, StateType> {
         );
     }
 
+    renderVolumeBar(): Node {
+        const {state} = this;
+        const {trackVolume} = state;
+
+        return <RangeBar onChange={this.handleOnChangeVolumeBar} progress={trackVolume}/>;
+    }
+
     render(): Node {
         const {props} = this;
         const {className} = props;
@@ -411,6 +438,7 @@ export class Audio extends Component<PropsType, StateType> {
                     {this.renderTime()}
                     {this.renderProgressBar()}
                     {this.renderSwitchSoundButton()}
+                    {this.renderVolumeBar()}
                     {/* {this.renderBottomBarList()}*/}
                 </div>
             </>
