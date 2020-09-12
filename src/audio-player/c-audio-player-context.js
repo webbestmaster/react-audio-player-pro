@@ -23,7 +23,6 @@ import {
     playerRepeatingStateTypeMap,
 } from './audio-player-const';
 
-
 type PropsType = {|
     +children: Node,
 |};

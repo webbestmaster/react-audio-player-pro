@@ -1,0 +1,14 @@
+$main-text-color: #333;
+$wrapper-font-family: Verdana, Geneva, sans-serif;
+
+.time {
+    color: $main-text-color;
+    display: block;
+    font-family: $wrapper-font-family;
+    font-size: 12px;
+    line-height: 1;
+    margin: 0;
+    min-width: 73px;
+    //padding-left: 6px;
+    pointer-events: none;
+}
