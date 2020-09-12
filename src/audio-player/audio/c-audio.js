@@ -3,12 +3,14 @@
 import React, {type Node, Component} from 'react';
 import classNames from 'classnames';
 
-import {playerPlayingStateTypeMap} from '../audio-player-const';
+import {playerPlayingStateTypeMap, seekStepSecond} from '../audio-player-const';
 import {AudioPlayerControlButton} from '../../layout/audio-player-control-button/c-audio-player-control-button';
 import {Time} from '../../layout/time/c-time';
 import {hasVolumeBar} from '../../lib/system';
-import {type MediaMetadataType, type PlayerPlayingStateType} from '../audio-player-type';
+import {type PlayerPlayingStateType} from '../audio-player-type';
+import {type MediaMetadataType} from '../../lib/media-meta-data/media-meta-data-type';
 import {RangeBar} from '../../layout/range-bar/c-range-bar';
+import {setMediaMetadata} from '../../lib/media-meta-data/media-meta-data';
 
 import audioStyle from './audio.scss';
 
@@ -141,7 +143,17 @@ export class Audio extends Component<PropsType, StateType> {
     };
 
     handleOnPlay = () => {
+        const {props} = this;
+        const {mediaMetadata} = props;
+
         this.setState({playingState: playerPlayingStateTypeMap.playing});
+
+        if (mediaMetadata) {
+            setMediaMetadata(mediaMetadata, {
+                seekforward: this.seekForward,
+                seekbackward: this.seekBackward,
+            });
+        }
     };
 
     handleOnTrackError = (error: Error) => {
@@ -200,6 +212,26 @@ export class Audio extends Component<PropsType, StateType> {
         audioTag.muted = isMuted;
 
         this.setState({isMuted});
+    };
+
+    seekForward = () => {
+        const audioTag = this.getAudioTag();
+
+        if (!audioTag) {
+            return;
+        }
+
+        audioTag.currentTime += seekStepSecond;
+    };
+
+    seekBackward = () => {
+        const audioTag = this.getAudioTag();
+
+        if (!audioTag) {
+            return;
+        }
+
+        audioTag.currentTime -= seekStepSecond;
     };
 
     renderAudioTag(): Node {

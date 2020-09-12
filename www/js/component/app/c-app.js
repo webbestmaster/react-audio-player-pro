@@ -18,7 +18,6 @@ import akunaMatata from '../../../file/audio/akuna-matata.mp3';
 import antoshka from '../../../file/audio/antoshka.mp3';
 import arabskayaNoch from '../../../file/audio/arabskaya-noch.mp3';
 import the33korovi from '../../../file/audio/the-33-korovi.mp3';
-import {RangeBar} from '../../../../src/layout/range-bar/c-range-bar';
 
 import {Audio} from '../../../../src/audio-player/audio/c-audio';
 import {AudioPlayerControlSprite} from '../../../../src/layout/audio-player-control-sprite/c-audio-player-control-sprite';
@@ -79,7 +78,7 @@ export function App(): Node {
             <br/>
             <br/>
             <br/>
-            <Audio src={audioDataList[0].src}/>
+            <Audio mediaMetadata={audioDataList[0].mediaMetadata} src={audioDataList[0].src}/>
 
             {/*
             <AudioPlayerProvider>

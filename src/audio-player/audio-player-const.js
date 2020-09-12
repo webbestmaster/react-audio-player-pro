@@ -1,5 +1,7 @@
 // @flow
 
+// import {type MediaMetadataControlNameType} from './audio-player-type'
+
 /*
 import type {
     AudioPlayerContextType,
@@ -8,6 +10,8 @@ import type {
     PlayerRepeatingStateType,
 } from './audio-player-type';
 */
+
+export const seekStepSecond = 10;
 
 export const playerPlayingStateTypeMap = {
     playing: 'playing',

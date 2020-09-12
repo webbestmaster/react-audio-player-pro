@@ -1,22 +1,10 @@
 // @flow
 
-export type AudioPlayerItemIdType = string | number;
+// export type AudioPlayerItemIdType = string | number;
 
-type AudioPlayerListItemArtworkType = {|
-    +src: string, // 'https://dummyimage.com/96x96',
-    +sizes: string, // '96x96',
-    +type: string, // 'image/png',
-|};
-
-export type MediaMetadataType = {|
-    +title: string,
-    +artist?: string,
-    +album?: string,
-    +artwork?: Array<AudioPlayerListItemArtworkType>,
-|};
+import type {MediaMetadataType} from '../lib/media-meta-data/media-meta-data-type';
 
 export type AudioPlayerListItemType = {|
-    // +id?: AudioPlayerItemIdType,
     +src: string,
     +mediaMetadata?: MediaMetadataType,
 |};

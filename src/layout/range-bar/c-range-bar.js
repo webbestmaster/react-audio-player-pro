@@ -2,8 +2,6 @@
 
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
-/* global navigator, MediaMetadata */
-
 import React, {Component, type Node} from 'react';
 import classNames from 'classnames';
 

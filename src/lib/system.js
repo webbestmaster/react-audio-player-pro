@@ -1,6 +1,6 @@
 // @flow
 
-/* global window, document, navigator */
+/* global window, navigator */
 
 function getIsIOS(): boolean {
     if (typeof navigator === 'undefined' || typeof window === 'undefined') {
