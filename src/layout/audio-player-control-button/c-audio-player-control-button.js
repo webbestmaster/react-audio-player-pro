@@ -13,18 +13,19 @@ const cssActive = audioPlayerControlStyle.audio_player_control__button__active;
 const cssImage = audioPlayerControlStyle.audio_player_control__button__image;
 
 type PropsType = {|
-    +onClick: () => mixed,
+    +className?: string,
+    +onClick?: () => mixed,
     +imageId: string,
     +ariaLabel: string,
     +isActive?: boolean,
 |};
 
 export function AudioPlayerControlButton(props: PropsType): Node {
-    const {onClick, imageId, isActive, ariaLabel} = props;
-    const className = classNames(cssButton, {[cssActive]: isActive});
+    const {onClick, imageId, isActive, ariaLabel, className} = props;
+    const fullClassName = classNames(cssButton, {[cssActive]: isActive}, className);
 
     return (
-        <button aria-label={ariaLabel} className={className} onClick={onClick} type="button">
+        <button aria-label={ariaLabel} className={fullClassName} onClick={onClick} type="button">
             <SvgImage className={cssImage} imageId={'#' + audioPlayerIconIdPrefix + imageId}/>
         </button>
     );

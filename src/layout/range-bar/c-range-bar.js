@@ -61,9 +61,6 @@ export class RangeBar extends Component<PropsType, StateType> {
     handleProgressBarChange = () => {
         const {props} = this;
         const {onChange} = props;
-        // const value = ;
-
-        // this.setState({value});
 
         onChange(this.getCurrentValue());
     };
@@ -74,7 +71,10 @@ export class RangeBar extends Component<PropsType, StateType> {
 
         return (
             <div className={rangeBarStyle.progress_bar__wrapper}>
-                <div className={rangeBarStyle.progress_bar} style={{transform: `translateZ(0) scaleX(${progress})`}}/>
+                <div
+                    className={rangeBarStyle.progress_bar}
+                    style={{transform: `translateZ(0) scaleX(${progress || 0})`}}
+                />
             </div>
         );
     }

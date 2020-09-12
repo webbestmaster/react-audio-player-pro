@@ -73,12 +73,6 @@ export function App(): Node {
             <br/>
             <br/>
             <br/>
-            <br/>
-            <RangeBar onChange={handleChange} progress={0.5}/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
             <Audio src={audioDataList[0].src}/>
 
             {/*

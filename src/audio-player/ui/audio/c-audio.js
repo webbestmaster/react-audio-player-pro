@@ -64,156 +64,6 @@ export class Audio extends Component<PropsType, StateType> {
         +refAudio: {current: HTMLAudioElement | null},
     |};
 
-    /*
-
-    componentDidUpdate(prevProps: PropsType, prevState: StateType) {
-        const {state} = this;
-
-        if (state.playingState !== prevState.playingState) {
-            this.updatePlayingState();
-        }
-    }
-
-    // eslint-disable-next-line complexity, max-statements
-    updatePlayingState() {
-        const {state, ref} = this;
-        const {refAudio} = ref;
-        const audioNode = refAudio.current;
-
-        if (!audioNode) {
-            console.error('audioNode is null');
-            return;
-        }
-
-        if (state.playingState === playerPlayingStateTypeMap.playing) {
-            audioNode.play();
-            return;
-        }
-
-        if (state.playingState === playerPlayingStateTypeMap.paused) {
-            audioNode.pause();
-            return;
-        }
-
-        console.error('Can not detect this playingState:', state.playingState);
-    }
-
-    ref: {|
-        +refAudio: {current: HTMLAudioElement | null},
-    |};
-
-    play = (): null => {
-        this.setState({playingState: playerPlayingStateTypeMap.playing});
-
-        return null;
-    };
-
-    pause = (): null => {
-        this.setState({playingState: playerPlayingStateTypeMap.paused});
-
-        return null;
-    };
-
-    renderPlayButton(): Node {
-        const {state} = this;
-        const handlePlay = this.play;
-        const handlePause = this.pause;
-        const {playingState} = state;
-        const {playing: playingStatePlaying} = playerPlayingStateTypeMap;
-
-        return playingState === playingStatePlaying
-            ? <AudioPlayerControlButton ariaLabel="pause" imageId="button-pause" onClick={handlePause}/>
-            : <AudioPlayerControlButton ariaLabel="play" imageId="button-play" onClick={handlePlay}/>
-        ;
-    }
-
-    renderDownloadButton(): Node {
-        const {props} = this;
-        const {data, downloadFileName} = props;
-
-        if (!data) {
-            return null;
-        }
-
-        const {src} = data;
-
-        return (
-            <a
-                className={audioPlayerControlStyle.audio_player_control__button_link_wrapper}
-                download={downloadFileName || true}
-                href={src}
-            >
-                <AudioPlayerControlButton ariaLabel="download" imageId="button-download" onClick={noop}/>
-            </a>
-        );
-    }
-
-    handleOnLoadedMetadata = (evt: SyntheticEvent<HTMLAudioElement>): null => {
-        const {state} = this;
-        const {trackVolume, playingState} = state;
-        const audioNode = evt.currentTarget;
-
-        this.setState({
-            trackCurrentTime: 0,
-            trackFullTime: audioNode.duration,
-        });
-
-        audioNode.volume = trackVolume;
-
-        if (playingState !== playerPlayingStateTypeMap.playing) {
-            return null;
-        }
-
-        audioNode.play();
-
-        return null;
-    };
-
-    handleOnTrackEnded = (evt: SyntheticEvent<HTMLAudioElement>) => {
-        const audioNode = evt.currentTarget;
-
-        audioNode.pause();
-        audioNode.currentTime = 0;
-    };
-
-    handleOnTrackError = () => {};
-
-    handlePause = (): null => {
-        this.pause();
-
-        return null;
-    };
-
-    handlePlay = (): null => {
-        this.play();
-
-        return null;
-    };
-
-
-    renderBottomBarList(): Node {
-        const {props} = this;
-        const {data} = props;
-
-        if (!data) {
-            return null;
-        }
-
-        const {src} = data;
-
-        return (
-            <div className={audioPlayerControlStyle.audio_player_control__bottom_bar_list_wrapper}>
-                {this.renderPlayButton()}
-                <div className={audioPlayerControlStyle.audio_player_control__progress_bar_part_wrapper}>
-                    {src ? this.renderProgressBar() : this.renderProgressBarInactive()}
-                </div>
-                {hasVolumeBar ? this.renderVolumeBar() : null}
-                {this.renderDownloadButton()}
-            </div>
-        );
-    }
-*/
-
     getAudioTag(): HTMLAudioElement | null {
         const {ref} = this;
         const {refAudio} = ref;
@@ -271,8 +121,6 @@ export class Audio extends Component<PropsType, StateType> {
             return;
         }
 
-        console.log(audioTag.volume);
-
         this.setState({
             isMuted: audioTag.muted,
             trackVolume: audioTag.volume,
@@ -297,7 +145,7 @@ export class Audio extends Component<PropsType, StateType> {
     };
 
     handleOnTrackError = (error: Error) => {
-        console.log('[handleOnTrackError]: Error!');
+        console.error('[handleOnTrackError]: Error!');
 
         throw error;
     };
@@ -362,9 +210,7 @@ export class Audio extends Component<PropsType, StateType> {
         return (
             // eslint-disable-next-line jsx-a11y/media-has-caption
             <audio
-                // className={audioStyle.audio_tag}
-                controls
-                key={src}
+                className={audioStyle.audio_tag}
                 onEnded={this.handleOnEnded}
                 onError={this.handleOnTrackError}
                 onLoadedMetadata={this.handleOnLoadedMetadata}
@@ -413,6 +259,7 @@ export class Audio extends Component<PropsType, StateType> {
         return (
             <AudioPlayerControlButton
                 ariaLabel="switch-sound"
+                className={audioStyle.switch_sound_button}
                 imageId={soundImageSrc}
                 onClick={this.handleToggleMute}
             />
@@ -423,7 +270,24 @@ export class Audio extends Component<PropsType, StateType> {
         const {state} = this;
         const {trackVolume} = state;
 
-        return <RangeBar onChange={this.handleOnChangeVolumeBar} progress={trackVolume}/>;
+        return (
+            <RangeBar
+                className={audioStyle.sound_range}
+                onChange={this.handleOnChangeVolumeBar}
+                progress={trackVolume}
+            />
+        );
+    }
+
+    renderDownloadButton(): Node {
+        const {props} = this;
+        const {src, downloadFileName} = props;
+
+        return (
+            <a className={audioStyle.download_button} download={downloadFileName || true} href={src}>
+                <AudioPlayerControlButton ariaLabel="download" imageId="button-download"/>
+            </a>
+        );
     }
 
     render(): Node {
@@ -431,17 +295,15 @@ export class Audio extends Component<PropsType, StateType> {
         const {className} = props;
 
         return (
-            <>
+            <div className={classNames(audioStyle.audio, className)}>
                 {this.renderAudioTag()}
-                <div className={classNames(audioStyle.audio, className)}>
-                    {this.renderPlayButton()}
-                    {this.renderTime()}
-                    {this.renderProgressBar()}
-                    {this.renderSwitchSoundButton()}
-                    {this.renderVolumeBar()}
-                    {/* {this.renderBottomBarList()}*/}
-                </div>
-            </>
+                {this.renderPlayButton()}
+                {this.renderTime()}
+                {this.renderProgressBar()}
+                {this.renderSwitchSoundButton()}
+                {this.renderVolumeBar()}
+                {this.renderDownloadButton()}
+            </div>
         );
     }
 }
