@@ -10,16 +10,16 @@ import classNames from 'classnames';
 import rangeBarStyle from './range-bar.scss';
 import {inputData} from './range-bar-const';
 
-type PropsType = {
+type PropsType = {|
     +progress: number,
     +onChange: (value: number) => mixed,
     +isDisable?: boolean,
     +className?: string,
-};
+|};
 
-type StateType = {
-    isMouseDown: boolean,
-};
+type StateType = {|
+    +isMouseDown: boolean,
+|};
 
 export class RangeBar extends Component<PropsType, StateType> {
     constructor(props: PropsType) {

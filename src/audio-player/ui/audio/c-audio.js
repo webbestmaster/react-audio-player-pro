@@ -265,6 +265,19 @@ export class Audio extends Component<PropsType, StateType> {
         this.setState({playingState: playerPlayingStateTypeMap.paused});
     };
 
+    handleOnVolumeChange = () => {
+        const audioTag = this.getAudioTag();
+
+        if (!audioTag) {
+            return;
+        }
+
+        this.setState({
+            isMuted: audioTag.muted,
+            trackVolume: audioTag.volume,
+        });
+    };
+
     handleOnEnded = () => {
         const audioTag = this.getAudioTag();
 
@@ -292,6 +305,36 @@ export class Audio extends Component<PropsType, StateType> {
         this.setState({trackCurrentTime: audioTag.currentTime});
     };
 
+    handleOnChangeProgressBar = (progress: number) => {
+        const {state} = this;
+        const {trackFullTime} = state;
+        const audioTag = this.getAudioTag();
+
+        if (!audioTag) {
+            return;
+        }
+
+        const trackCurrentTime = progress * trackFullTime;
+
+        audioTag.currentTime = trackCurrentTime;
+
+        this.setState({trackCurrentTime});
+    };
+
+    handleToggleMute = () => {
+        const audioTag = this.getAudioTag();
+
+        if (!audioTag) {
+            return;
+        }
+
+        const isMuted = !audioTag.muted;
+
+        audioTag.muted = isMuted;
+
+        this.setState({isMuted});
+    };
+
     renderAudioTag(): Node {
         const {props, ref} = this;
         const {refAudio} = ref;
@@ -303,12 +346,13 @@ export class Audio extends Component<PropsType, StateType> {
                 // className={audioStyle.audio_tag}
                 controls
                 key={src}
-                // onError={this.handleOnTrackError}
                 onEnded={this.handleOnEnded}
+                // onError={this.handleOnTrackError}
                 onLoadedMetadata={this.handleOnLoadedMetadata}
                 onPause={this.handleOnPause}
                 onPlay={this.handleOnPlay}
                 onTimeUpdate={this.handleOnTimeUpdate}
+                onVolumeChange={this.handleOnVolumeChange}
                 preload="metadata"
                 ref={refAudio}
                 src={src}
@@ -333,27 +377,26 @@ export class Audio extends Component<PropsType, StateType> {
         return <Time className={audioStyle.time} currentTime={trackCurrentTime} fullTime={trackFullTime}/>;
     }
 
-    handleOnChangeProgressBar = (progress: number) => {
-        const {state} = this;
-        const {trackFullTime} = state;
-        const audioTag = this.getAudioTag();
-
-        if (!audioTag) {
-            return;
-        }
-
-        const trackCurrentTime = progress * trackFullTime;
-
-        audioTag.currentTime = trackCurrentTime;
-
-        this.setState({trackCurrentTime});
-    };
-
     renderProgressBar(): Node {
         const {state} = this;
         const {trackCurrentTime, trackFullTime} = state;
 
         return <RangeBar onChange={this.handleOnChangeProgressBar} progress={trackCurrentTime / trackFullTime}/>;
+    }
+
+    renderSwitchSoundButton(): Node {
+        const {state} = this;
+        const {trackVolume, isMuted} = state;
+        const isActualMuted = isMuted || trackVolume === 0;
+        const soundImageSrc = isActualMuted ? 'button-sound-off' : 'button-sound-on';
+
+        return (
+            <AudioPlayerControlButton
+                ariaLabel="switch-sound"
+                imageId={soundImageSrc}
+                onClick={this.handleToggleMute}
+            />
+        );
     }
 
     render(): Node {
@@ -367,6 +410,7 @@ export class Audio extends Component<PropsType, StateType> {
                     {this.renderPlayButton()}
                     {this.renderTime()}
                     {this.renderProgressBar()}
+                    {this.renderSwitchSoundButton()}
                     {/* {this.renderBottomBarList()}*/}
                 </div>
             </>

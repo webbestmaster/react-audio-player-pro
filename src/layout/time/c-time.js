@@ -1,13 +1,15 @@
+// @flow
+
 import React, {type Node} from 'react';
 import classNames from 'classnames';
 
 import timeStyle from './time.scss';
 
-type PropsType = {
+type PropsType = {|
     +currentTime: number,
     +fullTime: number,
     +className?: string,
-};
+|};
 
 export function Time(props: PropsType): Node {
     const {currentTime, fullTime, className} = props;
