@@ -1,6 +1,7 @@
+/*
 // @flow
 
-/* global navigator, MediaMetadata */
+/!* global navigator, MediaMetadata *!/
 
 import React, {Component, type Node} from 'react';
 
@@ -201,14 +202,14 @@ export class AudioPlayerProvider extends Component<PropsType, StateType> {
         // $FlowFixMe
         navigator.mediaSession.metadata = new MediaMetadata(metadata);
 
-        /*
+        /!*
         navigator.mediaSession.setActionHandler('play', function () {});
         navigator.mediaSession.setActionHandler('pause', function () {});
         navigator.mediaSession.setActionHandler('seekbackward', function () {});
         navigator.mediaSession.setActionHandler('seekforward', function () {});
         navigator.mediaSession.setActionHandler('previoustrack', function () {});
         navigator.mediaSession.setActionHandler('nexttrack', function () {});
-        */
+        *!/
 
         console.log('[not implemented]: setMediaMetadata:', metadata);
 
@@ -427,3 +428,4 @@ export class AudioPlayerProvider extends Component<PropsType, StateType> {
         ];
     }
 }
+*/

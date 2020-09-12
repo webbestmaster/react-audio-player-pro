@@ -2,12 +2,14 @@
 
 // export type AudioPlayerItemIdType = string | number;
 
-import type {MediaMetadataType} from '../lib/media-meta-data/media-meta-data-type';
+// import type {MediaMetadataType} from '../lib/media-meta-data/media-meta-data-type';
 
+/*
 export type AudioPlayerListItemType = {|
     +src: string,
     +mediaMetadata?: MediaMetadataType,
 |};
+*/
 
 export type PlayerPlayingStateType = 'playing' | 'paused' | 'stopped';
 // export type PlayerRepeatingStateType = 'none' | 'all' | 'one';

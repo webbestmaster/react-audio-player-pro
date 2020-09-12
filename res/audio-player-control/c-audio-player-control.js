@@ -1,3 +1,4 @@
+/*
 // @flow
 
 import React, {Component, type Node} from 'react';
@@ -203,11 +204,11 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
         return null;
     };
 
-    /*
+    /!*
     handleOnCanPlay = (evt: SyntheticEvent<HTMLAudioElement>): null => {
         return null;
     };
-*/
+*!/
 
     handleProgressBarChange = (value: number) => {
         const {state, ref} = this;
@@ -367,7 +368,7 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
     renderAudioTag(): Node {
         return null;
 
-        /*
+        /!*
         const {props, state, ref} = this;
         const {refAudio} = ref;
         const {src} = props;
@@ -390,7 +391,7 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
                 src={src}
             />
         );
-*/
+*!/
     }
 
     render(): Node {
@@ -400,13 +401,14 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
         return (
             <>
                 {this.renderAudioTag()}
-                {/*
+                {/!*
                 <div className={classNames(audioPlayerControlStyle.audio_player_control__wrapper, className)}>
                     {this.renderMainButtonList()}
                     {this.renderBottomBarList()}
                 </div>
-*/}
+*!/}
             </>
         );
     }
 }
+*/

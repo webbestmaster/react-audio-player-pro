@@ -18,8 +18,8 @@ import akunaMatata from '../../../file/audio/akuna-matata.mp3';
 import antoshka from '../../../file/audio/antoshka.mp3';
 import arabskayaNoch from '../../../file/audio/arabskaya-noch.mp3';
 import the33korovi from '../../../file/audio/the-33-korovi.mp3';
-
 import {Audio} from '../../../../src/audio-player/audio/c-audio';
+// eslint-disable-next-line max-len
 import {AudioPlayerControlSprite} from '../../../../src/layout/audio-player-control-sprite/c-audio-player-control-sprite';
 
 const audioDataList = [

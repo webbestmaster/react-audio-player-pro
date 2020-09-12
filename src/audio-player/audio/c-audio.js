@@ -1,6 +1,6 @@
 // @flow
 
-import React, {type Node, Component} from 'react';
+import React, {Component, type Node} from 'react';
 import classNames from 'classnames';
 
 import {playerPlayingStateTypeMap, seekStepSecond} from '../audio-player-const';

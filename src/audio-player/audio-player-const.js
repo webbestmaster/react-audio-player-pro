@@ -2,6 +2,8 @@
 
 // import {type MediaMetadataControlNameType} from './audio-player-type'
 
+import {type PlayerPlayingStateType} from './audio-player-type';
+
 /*
 import type {
     AudioPlayerContextType,
@@ -13,7 +15,7 @@ import type {
 
 export const seekStepSecond = 10;
 
-export const playerPlayingStateTypeMap = {
+export const playerPlayingStateTypeMap: {+[key: PlayerPlayingStateType]: PlayerPlayingStateType} = {
     playing: 'playing',
     paused: 'paused',
     stopped: 'stopped',

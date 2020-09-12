@@ -14,7 +14,14 @@ export type MediaMetadataControlSettingType = {
 };
 */
 
-export type MediaMetadataControlSettingType = mixed;
+export type MediaMetadataControlSettingType = {|
+    +play?: () => mixed,
+    +pause?: () => mixed,
+    +seekbackward?: () => mixed,
+    +seekforward?: () => mixed,
+    +previoustrack?: () => mixed,
+    +nexttrack?: () => mixed,
+|};
 
 type AudioPlayerListItemArtworkType = {|
     +src: string, // 'https://dummyimage.com/96x96',
