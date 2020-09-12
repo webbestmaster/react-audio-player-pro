@@ -2,6 +2,7 @@
 
 import React, {type Node} from 'react';
 
+/*
 import {
     Audio,
     AudioPlayerContextConsumer,
@@ -10,13 +11,17 @@ import {
     AudioPlayerPlayList,
     AudioPlayerProvider,
 } from '../../../../src/audio-player.js';
+*/
 
 import aMozhetBitVorona from '../../../file/audio/a-mozhet-bit-vorona.mp3';
 import akunaMatata from '../../../file/audio/akuna-matata.mp3';
 import antoshka from '../../../file/audio/antoshka.mp3';
 import arabskayaNoch from '../../../file/audio/arabskaya-noch.mp3';
 import the33korovi from '../../../file/audio/the-33-korovi.mp3';
-import {RangeBar} from '../../../../src/audio-player/ui/range-bar/c-range-bar';
+import {RangeBar} from '../../../../src/layout/range-bar/c-range-bar';
+
+import {Audio} from '../../../../src/audio-player/ui/audio/c-audio';
+import {AudioPlayerControlSprite} from '../../../../src/layout/audio-player-control-sprite/c-audio-player-control-sprite';
 
 const audioDataList = [
     {
@@ -62,23 +67,26 @@ export function App(): Node {
 
     return (
         <div>
+            <AudioPlayerControlSprite/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <RangeBar onChange={handleChange} progress={0.5}/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <Audio src={audioDataList[0].src}/>
+
+            {/*
             <AudioPlayerProvider>
                 <br/>
                 <br/>
                 <br/>
                 <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <RangeBar onChange={handleChange} progress={0.5}/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <Audio data={audioDataList[0]}/>
                 <br/>
                 <br/>
                 <br/>
@@ -98,6 +106,7 @@ export function App(): Node {
                     }}
                 </AudioPlayerContextConsumer>
             </AudioPlayerProvider>
+*/}
         </div>
     );
 }

@@ -6,6 +6,8 @@ import React, {Component, type Node} from 'react';
 
 import {getRandom} from '../lib/number';
 
+import {AudioPlayerControlSprite} from '../layout/audio-player-control-sprite/c-audio-player-control-sprite';
+
 import type {
     AudioPlayerContextType,
     AudioPlayerListItemType,
@@ -21,7 +23,6 @@ import {
     playerRepeatingStateTypeMap,
 } from './audio-player-const';
 
-import {AudioPlayerControlSprite} from './ui/audio-player-control/c-audio-player-control-sprite';
 
 type PropsType = {|
     +children: Node,

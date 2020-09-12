@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import type {AudioPlayerContextType, AudioPlayerListItemType} from '../../audio-player-type';
 import {defaultAudioPlayerContextData, playerPlayingStateTypeMap} from '../../audio-player-const';
-import {audioPlayerIconIdPrefix} from '../audio-player-control/c-audio-player-control-sprite';
+import {audioPlayerIconIdPrefix} from '../../../layout/audio-player-control-sprite/c-audio-player-control-sprite';
 import {SvgImage} from '../../../layout/svg-image/c-svg-image';
 
 import audioPlayerPlayListStyle from './audio-player-play-list.scss';

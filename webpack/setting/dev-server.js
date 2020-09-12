@@ -2,8 +2,8 @@ const path = require('path');
 
 const {cwd, pathToDist, ssrServerPort, isBuildServer, webpackDevServerPort} = require('./../config');
 
-const host = 'localhost';
-// const host = '192.168.147.25';
+// const host = 'localhost';
+const host = '192.168.147.45';
 
 const mainProxyUrlSetting = {
     // pathRewrite: {'^/*': ''},

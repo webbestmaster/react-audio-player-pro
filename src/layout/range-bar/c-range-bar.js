@@ -19,7 +19,6 @@ type PropsType = {
 
 type StateType = {
     isMouseDown: boolean,
-    value: number,
 };
 
 export class RangeBar extends Component<PropsType, StateType> {
@@ -28,7 +27,6 @@ export class RangeBar extends Component<PropsType, StateType> {
 
         this.state = {
             isMouseDown: false,
-            value: props.progress,
         };
 
         this.ref = {
@@ -63,31 +61,31 @@ export class RangeBar extends Component<PropsType, StateType> {
     handleProgressBarChange = () => {
         const {props} = this;
         const {onChange} = props;
-        const value = this.getCurrentValue();
+        // const value = ;
 
-        this.setState({value});
+        // this.setState({value});
 
-        onChange(value);
+        onChange(this.getCurrentValue());
     };
 
     renderProgressBarLine(): Node {
-        const {state} = this;
-        const {value} = state;
+        const {props} = this;
+        const {progress} = props;
 
         return (
             <div className={rangeBarStyle.progress_bar__wrapper}>
-                <div className={rangeBarStyle.progress_bar} style={{transform: `translateZ(0) scaleX(${value})`}}/>
+                <div className={rangeBarStyle.progress_bar} style={{transform: `translateZ(0) scaleX(${progress})`}}/>
             </div>
         );
     }
 
     renderProgressPoint(): Node {
-        const {state} = this;
-        const {value} = state;
+        const {props} = this;
+        const {progress} = props;
 
         return (
             <div className={rangeBarStyle.point_bar__wrapper}>
-                <div className={rangeBarStyle.point_bar} style={{left: `${value * 100}%`}}/>
+                <div className={rangeBarStyle.point_bar} style={{left: `${progress * 100}%`}}/>
             </div>
         );
     }

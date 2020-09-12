@@ -12,8 +12,11 @@ import {
 } from '../../audio-player-const';
 import {hasVolumeBar} from '../../../lib/system';
 
+import {RangeBar} from '../../../layout/range-bar/c-range-bar';
+
+import {AudioPlayerControlButton} from '../../../layout/audio-player-control-button/c-audio-player-control-button';
+
 import audioPlayerControlStyle from './audio-player-control.scss';
-import {AudioPlayerControlButton} from './c-audio-player-control-button';
 
 export type PropsType = {|
     // native property
@@ -202,43 +205,32 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
     };
 */
 
-    handleProgressBarActive = () => {
-        this.setState({isProgressBarActive: true});
-    };
-
-    handleProgressBarInactive = (evt: SyntheticEvent<HTMLInputElement>) => {
-        this.setState({isProgressBarActive: false});
-    };
-
-    handleProgressBarChange = (evt: SyntheticEvent<HTMLInputElement>) => {
+    handleProgressBarChange = (value: number) => {
         const {state, ref} = this;
+        const {trackFullTime} = state;
         const {refAudio} = ref;
         const audioNode = refAudio.current;
-        const {currentTarget} = evt;
-        const value = Number.parseFloat(currentTarget.value) || 0;
+        const currentTime = value * trackFullTime;
+
+        this.setState({
+            trackCurrentTime: currentTime,
+        });
 
         if (!audioNode) {
             console.error('handleProgressBarChange: audioNode is null');
             return;
         }
 
-        audioNode.currentTime = value;
-
-        this.setState({
-            trackCurrentTime: value,
-        });
+        audioNode.currentTime = currentTime;
     };
 
-    handleChangeVolumeBar = (evt: SyntheticEvent<HTMLInputElement>) => {
-        const {state, ref} = this;
-        const {currentTarget} = evt;
-        const volume = Number.parseInt(currentTarget.value, 10) / volumeMultiplier;
-
+    handleChangeVolumeBar = (value: number) => {
+        const {ref} = this;
         const {refAudio} = ref;
         const audioNode = refAudio.current;
 
         this.setState({
-            trackVolume: volume,
+            trackVolume: value,
             isMuted: false,
         });
 
@@ -247,7 +239,7 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
             return;
         }
 
-        audioNode.volume = volume;
+        audioNode.volume = value;
     };
 
     handleToggleMute = () => {
@@ -281,22 +273,11 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
                     isActive={isActualMuted}
                     onClick={this.handleToggleMute}
                 />
-                <label className={audioPlayerControlStyle.audio_player_control__progress_bar__wrapper}>
-                    {this.renderProgressBarLine(isMuted ? 0 : trackVolume || 0)}
-                    <input
-                        className={classNames(audioPlayerControlStyle.audio_player_control__input_range, {
-                            [audioPlayerControlStyle.audio_player_control__input_range__no_matter_value]: isActualMuted,
-                        })}
-                        defaultValue={trackVolume * volumeMultiplier}
-                        key="volume"
-                        max={volumeMultiplier}
-                        min="0"
-                        // eslint-disable-next-line react/jsx-handler-names
-                        onChange={this.handleChangeVolumeBar}
-                        step="0.01"
-                        type="range"
-                    />
-                </label>
+                <RangeBar
+                    className={audioPlayerControlStyle.audio_player_control__progress_bar__wrapper}
+                    onChange={this.handleChangeVolumeBar}
+                    progress={trackVolume}
+                />
             </div>
         );
     }
@@ -313,8 +294,7 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
     }
 
     renderProgressBar(): Node {
-        const {props, state} = this;
-        const {audioPlayerContext} = props;
+        const {state} = this;
         const {trackCurrentTime, trackFullTime} = state;
 
         const trackCurrentTimeMinutes = Math.floor(trackCurrentTime / 60);
@@ -329,37 +309,11 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
                     {trackCurrentTimeMinutes}:{trackCurrentTimeSeconds}&nbsp;/&nbsp;{trackFullTimeMinutes}:
                     {trackFullTimeSeconds}
                 </p>
-                <label className={audioPlayerControlStyle.audio_player_control__progress_bar__wrapper}>
-                    {this.renderProgressBarLine(trackCurrentTime / trackFullTime || 0)}
-                    <input
-                        className={classNames(
-                            audioPlayerControlStyle.audio_player_control__input_range,
-                            audioPlayerControlStyle.audio_player_control__input_range__active_progress_bar
-                        )}
-                        defaultValue="0"
-                        disabled={trackFullTime === 0}
-                        key={audioPlayerContext.activeIndex}
-                        max={trackFullTime}
-                        min="0"
-                        onChange={this.handleProgressBarChange}
-                        onMouseDown={this.handleProgressBarActive}
-                        onMouseUp={this.handleProgressBarInactive}
-                        step="0.01"
-                        type="range"
-                    />
-                    <input
-                        className={audioPlayerControlStyle.audio_player_control__input_range}
-                        disabled={trackFullTime === 0}
-                        key={audioPlayerContext.activeIndex + '-display'}
-                        max={trackFullTime}
-                        min="0"
-                        onChange={parseFloat}
-                        // eslint-disable-next-line react/jsx-handler-names
-                        step="0.01"
-                        type="range"
-                        value={trackCurrentTime}
-                    />
-                </label>
+                <RangeBar
+                    className={audioPlayerControlStyle.audio_player_control__progress_bar__wrapper}
+                    onChange={this.handleProgressBarChange}
+                    progress={trackCurrentTime / trackFullTime || 0}
+                />
             </>
         );
     }
@@ -390,38 +344,6 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
         );
     }
 
-    renderAudioTag(): Node {
-        const {props, state, ref} = this;
-        const {refAudio} = ref;
-        const {audioPlayerContext} = props;
-        const {activeIndex, playList} = audioPlayerContext;
-        const activeItem = playList[activeIndex];
-
-        if (!activeItem) {
-            return null;
-        }
-
-        const {src} = activeItem;
-
-        return (
-            // eslint-disable-next-line jsx-a11y/media-has-caption
-            <audio
-                className={serviceStyle.hidden}
-                key={activeIndex + '-' + src}
-                onEnded={audioPlayerContext.handleOnTrackEnded}
-                onError={audioPlayerContext.handleOnTrackError}
-                // onCanPlay={this.handleOnCanPlay}
-                onLoadedMetadata={this.handleOnLoadedMetadata}
-                onPause={audioPlayerContext.handlePause}
-                onPlay={audioPlayerContext.handlePlay}
-                onTimeUpdate={this.handleOnTimeUpdate}
-                preload="metadata"
-                ref={refAudio}
-                src={src}
-            />
-        );
-    }
-
     renderBottomBarList(): Node {
         const {props} = this;
         const {audioPlayerContext} = props;
@@ -438,6 +360,31 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
         );
     }
 
+    renderAudioTag(): Node {
+        const {props, state, ref} = this;
+        const {refAudio} = ref;
+        const {src} = props;
+
+        return (
+            // eslint-disable-next-line jsx-a11y/media-has-caption
+            <audio
+                controls
+                key={src}
+                preload="metadata"
+                // className={serviceStyle.hidden}
+                ref={refAudio}
+                // onEnded={audioPlayerContext.handleOnTrackEnded}
+                // onError={audioPlayerContext.handleOnTrackError}
+                // onCanPlay={this.handleOnCanPlay}
+                // onLoadedMetadata={this.handleOnLoadedMetadata}
+                // onPause={audioPlayerContext.handlePause}
+                // onPlay={audioPlayerContext.handlePlay}
+                // onTimeUpdate={this.handleOnTimeUpdate}
+                src={src}
+            />
+        );
+    }
+
     render(): Node {
         const {props} = this;
         const {className} = props;
@@ -445,10 +392,12 @@ export class AudioPlayerControl extends Component<PropsType, StateType> {
         return (
             <>
                 {this.renderAudioTag()}
+                {/*
                 <div className={classNames(audioPlayerControlStyle.audio_player_control__wrapper, className)}>
                     {this.renderMainButtonList()}
                     {this.renderBottomBarList()}
                 </div>
+*/}
             </>
         );
     }
