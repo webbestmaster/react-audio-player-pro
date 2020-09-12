@@ -22,8 +22,9 @@ export type AudioPlayerListItemType = {|
 |};
 
 export type PlayerPlayingStateType = 'playing' | 'paused' | 'stopped';
-export type PlayerRepeatingStateType = 'none' | 'all' | 'one';
+// export type PlayerRepeatingStateType = 'none' | 'all' | 'one';
 
+/*
 export type AudioPlayerContextType = {|
     +setPlayList: (itemList: Array<AudioPlayerListItemType>) => mixed,
     +addItemToPlayList: (item: AudioPlayerListItemType) => mixed,
@@ -57,3 +58,4 @@ export type AudioPlayerContextType = {|
     +handlePause: (evt: SyntheticEvent<HTMLAudioElement>) => mixed,
     +handlePlay: (evt: SyntheticEvent<HTMLAudioElement>) => mixed,
 |};
+*/

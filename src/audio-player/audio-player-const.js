@@ -1,11 +1,13 @@
 // @flow
 
+/*
 import type {
     AudioPlayerContextType,
     AudioPlayerListItemType,
     MediaMetadataType,
     PlayerRepeatingStateType,
 } from './audio-player-type';
+*/
 
 export const playerPlayingStateTypeMap = {
     playing: 'playing',
@@ -18,6 +20,8 @@ export const playerRepeatingStateTypeMap = {
     all: 'all',
     one: 'one',
 };
+
+/*
 
 export const playerRepeatingStateTypeList: Array<PlayerRepeatingStateType> = Object.keys(
     playerRepeatingStateTypeMap
@@ -104,3 +108,4 @@ export const defaultAudioPlayerContextData: AudioPlayerContextType = {
         return null;
     },
 };
+*/

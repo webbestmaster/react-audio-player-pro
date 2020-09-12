@@ -251,6 +251,10 @@ export class Audio extends Component<PropsType, StateType> {
     }
 
     renderSwitchSoundButton(): Node {
+        if (!hasVolumeBar) {
+            return null;
+        }
+
         const {state} = this;
         const {trackVolume, isMuted} = state;
         const isActualMuted = isMuted || trackVolume === 0;
@@ -267,6 +271,10 @@ export class Audio extends Component<PropsType, StateType> {
     }
 
     renderVolumeBar(): Node {
+        if (!hasVolumeBar) {
+            return null;
+        }
+
         const {state} = this;
         const {trackVolume} = state;
 

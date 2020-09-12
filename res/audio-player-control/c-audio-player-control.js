@@ -3,18 +3,22 @@
 import React, {Component, type Node} from 'react';
 import classNames from 'classnames';
 
-import serviceStyle from '../../../css/service.scss';
-import type {AudioPlayerContextType, AudioPlayerListItemType, PlayerPlayingStateType} from '../../audio-player-type';
+import serviceStyle from '../../src/css/service.scss';
+import type {
+    AudioPlayerContextType,
+    AudioPlayerListItemType,
+    PlayerPlayingStateType,
+} from '../../src/audio-player/audio-player-type';
 import {
     defaultAudioPlayerContextData,
     playerPlayingStateTypeMap,
     playerRepeatingStateTypeMap,
-} from '../../audio-player-const';
-import {hasVolumeBar} from '../../../lib/system';
+} from '../../src/audio-player/audio-player-const';
+import {hasVolumeBar} from '../../src/lib/system';
 
-import {RangeBar} from '../../../layout/range-bar/c-range-bar';
+import {RangeBar} from '../../src/layout/range-bar/c-range-bar';
 
-import {AudioPlayerControlButton} from '../../../layout/audio-player-control-button/c-audio-player-control-button';
+import {AudioPlayerControlButton} from '../../src/layout/audio-player-control-button/c-audio-player-control-button';
 
 import audioPlayerControlStyle from './audio-player-control.scss';
 

@@ -3,10 +3,10 @@
 import React, {Component, type Node} from 'react';
 import classNames from 'classnames';
 
-import type {AudioPlayerContextType, AudioPlayerListItemType} from '../../audio-player-type';
-import {defaultAudioPlayerContextData, playerPlayingStateTypeMap} from '../../audio-player-const';
-import {audioPlayerIconIdPrefix} from '../../../layout/audio-player-control-sprite/c-audio-player-control-sprite';
-import {SvgImage} from '../../../layout/svg-image/c-svg-image';
+import type {AudioPlayerContextType, AudioPlayerListItemType} from '../../src/audio-player/audio-player-type';
+import {defaultAudioPlayerContextData, playerPlayingStateTypeMap} from '../../src/audio-player/audio-player-const';
+import {audioPlayerIconIdPrefix} from '../../src/layout/audio-player-control-sprite/c-audio-player-control-sprite';
+import {SvgImage} from '../../src/layout/svg-image/c-svg-image';
 
 import audioPlayerPlayListStyle from './audio-player-play-list.scss';
 
