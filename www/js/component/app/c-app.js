@@ -21,6 +21,8 @@ import the33korovi from '../../../file/audio/the-33-korovi.mp3';
 import {Audio} from '../../../../src/audio-player/audio/c-audio';
 // eslint-disable-next-line max-len
 import {AudioPlayerControlSprite} from '../../../../src/layout/audio-player-control-sprite/c-audio-player-control-sprite';
+import {AudioContextProvider, AudioContextConsumer} from '../../../../src/audio-player/audio-context/c-audio-context';
+import type {AudioContextType} from '../../../../src/audio-player/audio-context/audio-context-type';
 
 const audioDataList = [
     {
@@ -29,11 +31,7 @@ const audioDataList = [
             title: 'a mozhet bit vorona',
             artist: 'souz mult film',
             album: 'the album name',
-            artwork: [
-                {src: 'https://dummyimage.com/196x196'},
-                {src: 'http://webbestmaster.github.io/img/preview/audio-book.png'},
-                // {src: 'https://dummyimage.com/128x128', sizes: '128x128', type: 'image/png'},
-            ],
+            artwork: [{src: 'https://dummyimage.com/128x128', sizes: '128x128', type: 'image/png'}],
         },
     },
     {
@@ -68,6 +66,7 @@ export function App(): Node {
     return (
         <div>
             <AudioPlayerControlSprite/>
+
             <br/>
             <br/>
             <br/>
@@ -75,38 +74,27 @@ export function App(): Node {
             <br/>
             <br/>
             <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+
             <Audio mediaMetadata={audioDataList[0].mediaMetadata} src={audioDataList[0].src}/>
 
-            {/*
-            <AudioPlayerProvider>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <AudioPlayerContextConsumer>
-                    {(audioPlayerContext: AudioPlayerContextType): Node => {
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+
+            <AudioContextProvider>
+                <AudioContextConsumer>
+                    {(audioContext: AudioContextType): Node => {
                         return (
                             <>
-                                <AudioPlayerControl audioPlayerContext={audioPlayerContext}/>
-                                <AudioPlayerPlayList audioPlayerContext={audioPlayerContext} playList={audioDataList}/>
+                                <h1>player</h1>
+                                <h2>list</h2>
                             </>
                         );
                     }}
-                </AudioPlayerContextConsumer>
-            </AudioPlayerProvider>
-*/}
+                </AudioContextConsumer>
+            </AudioContextProvider>
         </div>
     );
 }
