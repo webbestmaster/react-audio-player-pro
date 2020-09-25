@@ -23,6 +23,8 @@ import {Audio} from '../../../../src/audio-player/audio/c-audio';
 import {AudioPlayerControlSprite} from '../../../../src/layout/audio-player-control-sprite/c-audio-player-control-sprite';
 import {AudioContextProvider, AudioContextConsumer} from '../../../../src/audio-player/audio-context/c-audio-context';
 import type {AudioContextType} from '../../../../src/audio-player/audio-context/audio-context-type';
+import {AudioPlayerHead} from '../../../../src/audio-player/audio-player-head/c-audio-player-head';
+import {AudioPlayerPlayList} from '../../../../src/audio-player/audio-player-play-list/c-audio-player-play-list';
 
 const audioDataList = [
     {
@@ -61,8 +63,6 @@ const audioDataList = [
 ];
 
 export function App(): Node {
-    const handleChange = console.log;
-
     return (
         <div>
             <AudioPlayerControlSprite/>
@@ -88,8 +88,9 @@ export function App(): Node {
                     {(audioContext: AudioContextType): Node => {
                         return (
                             <>
-                                <h1>player</h1>
-                                <h2>list</h2>
+                                <AudioPlayerHead/>
+                                <br/>
+                                <AudioPlayerPlayList/>
                             </>
                         );
                     }}
