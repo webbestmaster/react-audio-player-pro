@@ -57,7 +57,7 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
         // const isActualMuted = isMuted || trackVolume === 0;
         // const soundImageSrc = isActualMuted ? 'button-sound-off' : 'button-sound-on';
 
-        const soundImageSrc = 1 ? 'button-sound-off' : 'button-sound-on';
+        const soundImageSrc = Math.random() > 0.5 ? 'button-sound-off' : 'button-sound-on';
 
         return (
             <AudioPlayerControlButton

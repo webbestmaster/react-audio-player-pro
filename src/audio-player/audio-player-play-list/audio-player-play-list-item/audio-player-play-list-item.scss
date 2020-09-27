@@ -1,0 +1,38 @@
+.audio_player_play_list_item {
+    display: block;
+    font-family: verdana,geneva,sans-serif;
+    min-height: 48px;
+    padding: 0;
+    margin: 0;
+}
+
+.button {
+    float: left;
+    height: 48px;
+    outline: none;
+    width: 48px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.button_image {
+    background-color: #cbcbcb;
+    border: 3px solid #cbcbcb;
+    border-radius: 100%;
+    display: block;
+    height: 18px;
+    margin-left: 12px;
+    width: 18px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 48px;
+    min-height: 48px;
+    padding-right: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+}
