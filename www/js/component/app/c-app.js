@@ -67,19 +67,8 @@ export function App(): Node {
         <div>
             <AudioPlayerControlSprite/>
 
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-
             <Audio mediaMetadata={audioDataList[0].mediaMetadata} src={audioDataList[0].src}/>
 
-            <br/>
-            <br/>
-            <br/>
             <br/>
             <br/>
 

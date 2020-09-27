@@ -32,7 +32,7 @@ export function AudioPlayerControlSprite(): Node {
             </symbol>
             <symbol
                 id={audioPlayerIconIdPrefix + 'button-play-list'}
-                viewBox="0 0 24 24"
+                viewBox="-1 -1 23 23"
                 xmlns="http://www.w3.org/2000/svg"
             >
                 <path d="M19 9H2v2h17V9m0-4H2v2h17V5M2 15h13v-2H2v2m15-2v6l5-3-5-3z" fill={mainFillColor}/>
