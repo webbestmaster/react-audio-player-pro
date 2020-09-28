@@ -2,17 +2,6 @@
 
 import React, {type Node} from 'react';
 
-/*
-import {
-    Audio,
-    AudioPlayerContextConsumer,
-    type AudioPlayerContextType,
-    AudioPlayerControl,
-    AudioPlayerPlayList,
-    AudioPlayerProvider,
-} from '../../../../src/audio-player.js';
-*/
-
 import aMozhetBitVorona from '../../../file/audio/a-mozhet-bit-vorona.mp3';
 import akunaMatata from '../../../file/audio/akuna-matata.mp3';
 import antoshka from '../../../file/audio/antoshka.mp3';
@@ -21,10 +10,7 @@ import the33korovi from '../../../file/audio/the-33-korovi.mp3';
 import {Audio} from '../../../../src/audio-player/audio/c-audio';
 // eslint-disable-next-line max-len
 import {AudioPlayerControlSprite} from '../../../../src/layout/audio-player-control-sprite/c-audio-player-control-sprite';
-import {AudioContextProvider, AudioContextConsumer} from '../../../../src/audio-player/audio-context/c-audio-context';
-import type {AudioContextType} from '../../../../src/audio-player/audio-context/audio-context-type';
-import {AudioPlayerHead} from '../../../../src/audio-player/audio-player-head/c-audio-player-head';
-import {AudioPlayerPlayList} from '../../../../src/audio-player/audio-player-play-list/c-audio-player-play-list';
+import {AudioPlayer} from '../../../../src/audio-player/c-audio-player';
 
 const audioDataList = [
     {
@@ -72,19 +58,7 @@ export function App(): Node {
             <br/>
             <br/>
 
-            <AudioContextProvider>
-                <AudioContextConsumer>
-                    {(audioContext: AudioContextType): Node => {
-                        return (
-                            <>
-                                <AudioPlayerHead/>
-                                <br/>
-                                <AudioPlayerPlayList/>
-                            </>
-                        );
-                    }}
-                </AudioContextConsumer>
-            </AudioContextProvider>
+            <AudioPlayer/>
         </div>
     );
 }
