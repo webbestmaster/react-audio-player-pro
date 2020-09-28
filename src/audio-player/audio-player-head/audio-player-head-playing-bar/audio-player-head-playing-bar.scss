@@ -6,4 +6,11 @@
 
 .time {
     display: block;
+    padding: 0 4px;
+}
+
+.volume_bar {
+    display: block;
+    width: 76px;
+    flex-shrink: 0;
 }

@@ -77,7 +77,13 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
         // const {state} = this;
         // const {trackVolume} = state;
 
-        return <RangeBar className="" onChange={this.handleOnChangeVolumeBar} progress={0.5}/>;
+        return (
+            <RangeBar
+                className={audioPlayerHeadPlayingBarStyle.volume_bar}
+                onChange={this.handleOnChangeVolumeBar}
+                progress={0.5}
+            />
+        );
     }
 
     render(): Node {

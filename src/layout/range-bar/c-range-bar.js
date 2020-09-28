@@ -93,7 +93,7 @@ export class RangeBar extends Component<PropsType, StateType> {
         const {className, isDisable} = props;
         const {isMouseDown} = state;
 
-        const fullClassName = classNames(rangeBarStyle.wrapper, className, {
+        const fullClassName = classNames(rangeBarStyle.range_bar, className, {
             [rangeBarStyle.wrapper__active]: isMouseDown,
             [rangeBarStyle.wrapper__disable]: isDisable === true,
         });

@@ -295,7 +295,7 @@ export class Audio extends Component<PropsType, StateType> {
         return (
             <AudioPlayerControlButton
                 ariaLabel="switch-sound"
-                className={audioStyle.switch_sound_button}
+                // className={audioStyle.switch_sound_button}
                 imageId={soundImageSrc}
                 onClick={this.handleToggleMute}
             />
