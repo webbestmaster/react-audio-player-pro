@@ -3,7 +3,7 @@
 import React, {Component, type Node} from 'react';
 import classNames from 'classnames';
 
-import type {PlayerPlayingStateType} from '../audio-player-type';
+import type {PlayerPlayingStateType, PlayerRepeatingStateType} from '../audio-player-type';
 
 import {AudioPlayerHeadPlayingBar} from './audio-player-head-playing-bar/c-audio-player-head-playing-bar';
 import {AudioPlayerHeadControls} from './audio-player-head-controls/c-audio-player-head-controls';
@@ -21,6 +21,7 @@ type PropsType = {|
 
     +playingState: PlayerPlayingStateType,
     +isShuffleOn: boolean,
+    +repeatingState: PlayerRepeatingStateType,
 |};
 
 type StateType = {};
@@ -45,6 +46,7 @@ export class AudioPlayerHead extends Component<PropsType, StateType> {
 
             playingState,
             isShuffleOn,
+            repeatingState,
         } = props;
 
         return (
@@ -58,6 +60,7 @@ export class AudioPlayerHead extends Component<PropsType, StateType> {
                     onClickShuffle={onClickShuffle}
                     onClickTrackList={onClickTrackList}
                     playingState={playingState}
+                    repeatingState={repeatingState}
                 />
 
                 <AudioPlayerHeadPlayingBar onClickMuteVolume={onClickMuteVolume}/>

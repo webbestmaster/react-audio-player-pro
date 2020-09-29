@@ -17,6 +17,8 @@ import type {MediaMetadataType} from '../lib/media-meta-data/media-meta-data-typ
 
 export type PlayerPlayingStateType = 'playing' | 'paused' | 'stopped';
 
+export type PlayerRepeatingStateType = 'none' | 'all' | 'one';
+
 export type TrackType = {|
     +src: string,
     +mediaMetadata?: MediaMetadataType,

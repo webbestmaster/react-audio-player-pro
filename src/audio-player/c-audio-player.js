@@ -8,10 +8,16 @@ import {setMediaMetadata} from '../lib/media-meta-data/media-meta-data';
 
 import {AudioPlayerHead} from './audio-player-head/c-audio-player-head';
 import {AudioPlayerPlayList} from './audio-player-play-list/c-audio-player-play-list';
-import type {PlayerPlayingStateType, TrackType} from './audio-player-type';
+import type {PlayerPlayingStateType, PlayerRepeatingStateType, TrackType} from './audio-player-type';
+
+import {
+    playerPlayingStateTypeMap,
+    seekStepSecond,
+    playerRepeatingStateTypeList,
+    playerRepeatingStateTypeMap,
+} from './audio-player-const';
+
 import audioPlayerStyle from './audio-player.scss';
-import {playerPlayingStateTypeMap, seekStepSecond} from './audio-player-const';
-import {AudioPlayerHeadControls} from './audio-player-head/audio-player-head-controls/c-audio-player-head-controls';
 
 type PropsType = {|
     +trackList: Array<TrackType>,
@@ -27,6 +33,7 @@ type StateType = {|
     +playingState: PlayerPlayingStateType,
     +activeIndex: number,
     +isShuffleOn: boolean,
+    +repeatingState: PlayerRepeatingStateType,
 |};
 
 export class AudioPlayer extends Component<PropsType, StateType> {
@@ -41,6 +48,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
             playingState: playerPlayingStateTypeMap.paused,
             activeIndex: 0,
             isShuffleOn: false,
+            repeatingState: playerRepeatingStateTypeMap.none,
         };
 
         this.ref = {
@@ -243,10 +251,22 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         this.setState({isShuffleOn: !isShuffleOn});
     };
 
+    onClickRepeatButton = () => {
+        const {state} = this;
+        const {repeatingState} = state;
+
+        const currentIndex = playerRepeatingStateTypeList.indexOf(repeatingState);
+        const nextIndex = (currentIndex + 1) % playerRepeatingStateTypeList.length;
+
+        this.setState({repeatingState: playerRepeatingStateTypeList[nextIndex]});
+    };
+
     render(): Node {
         const {state, props} = this;
         const {className} = props;
-        const {isShuffleOn} = state;
+        const {isShuffleOn, playingState, repeatingState} = state;
+
+        console.log(state);
 
         return (
             <div className={className || ''}>
@@ -257,10 +277,11 @@ export class AudioPlayer extends Component<PropsType, StateType> {
                     onClickNextTrack={console.log}
                     onClickPlay={this.handleClickPlay}
                     onClickPrevTrack={console.log}
-                    onClickRepeat={console.log}
+                    onClickRepeat={this.onClickRepeatButton}
                     onClickShuffle={this.onClickShuffle}
                     onClickTrackList={console.log}
-                    playingState={state.playingState}
+                    playingState={playingState}
+                    repeatingState={repeatingState}
                 />
 
                 <AudioPlayerPlayList/>

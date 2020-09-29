@@ -2,7 +2,7 @@
 
 // import {type MediaMetadataControlNameType} from './audio-player-type'
 
-import {type PlayerPlayingStateType} from './audio-player-type';
+import {type PlayerPlayingStateType, type PlayerRepeatingStateType} from './audio-player-type';
 
 /*
 import type {
@@ -20,6 +20,16 @@ export const playerPlayingStateTypeMap: {+[key: PlayerPlayingStateType]: PlayerP
     paused: 'paused',
     stopped: 'stopped',
 };
+
+export const playerRepeatingStateTypeMap: {+[key: PlayerRepeatingStateType]: PlayerRepeatingStateType} = {
+    none: 'none',
+    all: 'all',
+    one: 'one',
+};
+
+export const playerRepeatingStateTypeList: Array<PlayerRepeatingStateType> = Object.keys(
+    playerRepeatingStateTypeMap
+).map((key: PlayerRepeatingStateType): PlayerRepeatingStateType => playerRepeatingStateTypeMap[key]);
 
 /*
 export const playerRepeatingStateTypeMap = {

@@ -4,8 +4,8 @@ import React, {Component, type Node} from 'react';
 
 import {AudioPlayerControlButton} from '../../../layout/audio-player-control-button/c-audio-player-control-button';
 
-import type {PlayerPlayingStateType} from '../../audio-player-type';
-import {playerPlayingStateTypeMap} from '../../audio-player-const';
+import type {PlayerPlayingStateType, PlayerRepeatingStateType} from '../../audio-player-type';
+import {playerPlayingStateTypeMap, playerRepeatingStateTypeMap} from '../../audio-player-const';
 
 import AudioPlayerHeadControlsStyle from './audio-player-head-controls.scss';
 
@@ -19,6 +19,7 @@ type PropsType = {|
 
     +playingState: PlayerPlayingStateType,
     +isShuffleOn: boolean,
+    +repeatingState: PlayerRepeatingStateType,
 |};
 
 type StateType = {};
@@ -46,15 +47,14 @@ export class AudioPlayerHeadControls extends Component<PropsType, StateType> {
 
     renderButtonRepeat(): Node {
         const {props} = this;
-        const {onClickRepeat} = props;
+        const {onClickRepeat, repeatingState} = props;
+        const {one: repeatOne, all: repeatAll} = playerRepeatingStateTypeMap;
 
         return (
             <AudioPlayerControlButton
                 ariaLabel="repeat"
-                // imageId={repeatingState === repeatOne ? 'button-repeat-one' : 'button-repeat'}
-                imageId="button-repeat"
-                // isActive={[repeatOne, repeatAll].includes(repeatingState)}
-                isActive={false}
+                imageId={repeatingState === repeatOne ? 'button-repeat-one' : 'button-repeat'}
+                isActive={[repeatOne, repeatAll].includes(repeatingState)}
                 onClick={onClickRepeat}
             />
         );
@@ -90,7 +90,7 @@ export class AudioPlayerHeadControls extends Component<PropsType, StateType> {
 
         return (
             <AudioPlayerControlButton
-                ariaLabel="list"
+                ariaLabel="track-list"
                 imageId="button-play-list"
                 isActive={false}
                 onClick={onClickTrackList}
