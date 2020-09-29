@@ -11,8 +11,9 @@ import {Audio} from '../../../../src/audio-player/audio/c-audio';
 // eslint-disable-next-line max-len
 import {AudioPlayerControlSprite} from '../../../../src/layout/audio-player-control-sprite/c-audio-player-control-sprite';
 import {AudioPlayer} from '../../../../src/audio-player/c-audio-player';
+import type {TrackType} from '../../../../src/audio-player/audio-player-type';
 
-const audioDataList = [
+const audioDataList: Array<TrackType> = [
     {
         src: aMozhetBitVorona,
         mediaMetadata: {
@@ -58,7 +59,7 @@ export function App(): Node {
             <br/>
             <br/>
 
-            <AudioPlayer/>
+            <AudioPlayer trackList={audioDataList}/>
         </div>
     );
 }

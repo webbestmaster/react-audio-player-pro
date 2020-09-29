@@ -9,7 +9,9 @@ import {AudioPlayerControlButton} from '../../../layout/audio-player-control-but
 
 import audioPlayerHeadPlayingBarStyle from './audio-player-head-playing-bar.scss';
 
-type PropsType = {};
+type PropsType = {|
+    +onClickMuteVolume: () => mixed,
+|};
 
 type StateType = {};
 
@@ -21,8 +23,6 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
     }
 
     handleOnChangeProgressBar = () => {};
-
-    handleToggleMute = () => {};
 
     handleOnChangeVolumeBar = (trackVolume: number) => {
         // const audioTag = this.getAudioTag();
@@ -57,6 +57,9 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
         // const isActualMuted = isMuted || trackVolume === 0;
         // const soundImageSrc = isActualMuted ? 'button-sound-off' : 'button-sound-on';
 
+        const {props} = this;
+        const {onClickMuteVolume} = props;
+
         const soundImageSrc = Math.random() > 0.5 ? 'button-sound-off' : 'button-sound-on';
 
         return (
@@ -64,7 +67,7 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
                 ariaLabel="switch-sound"
                 className=""
                 imageId={soundImageSrc}
-                onClick={this.handleToggleMute}
+                onClick={onClickMuteVolume}
             />
         );
     }

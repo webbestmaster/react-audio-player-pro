@@ -4,9 +4,22 @@ import React, {Component, type Node} from 'react';
 
 import {AudioPlayerControlButton} from '../../../layout/audio-player-control-button/c-audio-player-control-button';
 
+import type {PlayerPlayingStateType} from '../../audio-player-type';
+import {playerPlayingStateTypeMap} from '../../audio-player-const';
+
 import AudioPlayerHeadControlsStyle from './audio-player-head-controls.scss';
 
-type PropsType = {};
+type PropsType = {|
+    +onClickShuffle: () => mixed,
+    +onClickRepeat: () => mixed,
+    +onClickPrevTrack: () => mixed,
+    +onClickPlay: () => mixed,
+    +onClickNextTrack: () => mixed,
+    +onClickTrackList: () => mixed,
+
+    +playingState: PlayerPlayingStateType,
+    +isShuffleOn: boolean,
+|};
 
 type StateType = {};
 
@@ -18,17 +31,23 @@ export class AudioPlayerHeadControls extends Component<PropsType, StateType> {
     }
 
     renderButtonShuffle(): Node {
+        const {props} = this;
+        const {onClickShuffle, isShuffleOn} = props;
+
         return (
             <AudioPlayerControlButton
                 ariaLabel="shuffle"
                 imageId="button-shuffle"
-                isActive={false}
-                onClick={console.log}
+                isActive={isShuffleOn}
+                onClick={onClickShuffle}
             />
         );
     }
 
     renderButtonRepeat(): Node {
+        const {props} = this;
+        const {onClickRepeat} = props;
+
         return (
             <AudioPlayerControlButton
                 ariaLabel="repeat"
@@ -36,34 +55,45 @@ export class AudioPlayerHeadControls extends Component<PropsType, StateType> {
                 imageId="button-repeat"
                 // isActive={[repeatOne, repeatAll].includes(repeatingState)}
                 isActive={false}
-                onClick={console.log}
+                onClick={onClickRepeat}
             />
         );
     }
 
     renderButtonPrevTrack(): Node {
-        return <AudioPlayerControlButton ariaLabel="prev" imageId="button-prev-track" onClick={console.log}/>;
+        const {props} = this;
+        const {onClickPrevTrack} = props;
+
+        return <AudioPlayerControlButton ariaLabel="prev" imageId="button-prev-track" onClick={onClickPrevTrack}/>;
     }
 
     renderButtonPlay(): Node {
-        // {playingState !== playingStatePlaying
-        //     ? <AudioPlayerControlButton ariaLabel="play" imageId="button-play" onClick={handlePlay}/>
-        //     : <AudioPlayerControlButton ariaLabel="pause" imageId="button-pause" onClick={handlePause}/>}
+        const {props} = this;
+        const {onClickPlay, playingState} = props;
 
-        return <AudioPlayerControlButton ariaLabel="pause" imageId="button-pause" onClick={console.log}/>;
+        return playingState !== playerPlayingStateTypeMap.playing
+            ? <AudioPlayerControlButton ariaLabel="play" imageId="button-play" onClick={onClickPlay}/>
+            : <AudioPlayerControlButton ariaLabel="pause" imageId="button-pause" onClick={onClickPlay}/>
+        ;
     }
 
     renderButtonNextTrack(): Node {
-        return <AudioPlayerControlButton ariaLabel="next" imageId="button-next-track" onClick={console.log}/>;
+        const {props} = this;
+        const {onClickNextTrack} = props;
+
+        return <AudioPlayerControlButton ariaLabel="next" imageId="button-next-track" onClick={onClickNextTrack}/>;
     }
 
-    renderButtonPlayList(): Node {
+    renderButtonTrackList(): Node {
+        const {props} = this;
+        const {onClickTrackList} = props;
+
         return (
             <AudioPlayerControlButton
                 ariaLabel="list"
                 imageId="button-play-list"
                 isActive={false}
-                onClick={console.log}
+                onClick={onClickTrackList}
             />
         );
     }
@@ -76,7 +106,7 @@ export class AudioPlayerHeadControls extends Component<PropsType, StateType> {
                 {this.renderButtonPrevTrack()}
                 {this.renderButtonPlay()}
                 {this.renderButtonNextTrack()}
-                {this.renderButtonPlayList()}
+                {this.renderButtonTrackList()}
             </div>
         );
     }

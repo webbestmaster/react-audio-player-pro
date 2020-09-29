@@ -1,5 +1,7 @@
 // @flow
 
+import {type Node} from 'react';
+
 // export type AudioPlayerItemIdType = string | number;
 
 // import type {MediaMetadataType} from '../lib/media-meta-data/media-meta-data-type';
@@ -11,7 +13,15 @@ export type AudioPlayerListItemType = {|
 |};
 */
 
+import type {MediaMetadataType} from '../lib/media-meta-data/media-meta-data-type';
+
 export type PlayerPlayingStateType = 'playing' | 'paused' | 'stopped';
+
+export type TrackType = {|
+    +src: string,
+    +mediaMetadata?: MediaMetadataType,
+    +content?: Node,
+|};
 // export type PlayerRepeatingStateType = 'none' | 'all' | 'one';
 
 /*
