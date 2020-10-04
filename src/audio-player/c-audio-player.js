@@ -312,14 +312,27 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         this.setState({isTrackListOpen: !isTrackListOpen});
     };
 
-    handleChangeProgressBar = (progress: number) => {
-        console.log('progress');
-        console.log(progress);
+    handleChangeProgressBar = (trackCurrentProgress: number) => {
+        const audioTag = this.getAudioTag();
+
+        if (!audioTag) {
+            return;
+        }
+
+        const {state} = this;
+        const {trackFullTime} = state;
+
+        audioTag.currentTime = trackCurrentProgress * trackFullTime;
     };
 
-    handleChangeVolumeBar = (volume: number) => {
-        console.log('volume');
-        console.log(volume);
+    handleChangeVolumeBar = (trackVolume: number) => {
+        const audioTag = this.getAudioTag();
+
+        if (!audioTag) {
+            return;
+        }
+
+        audioTag.volume = trackVolume;
     };
 
     render(): Node {
