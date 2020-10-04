@@ -53,15 +53,10 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
             return null;
         }
 
-        // const {state} = this;
-        // const {trackVolume, isMuted} = state;
-        // const isActualMuted = isMuted || trackVolume === 0;
-        // const soundImageSrc = isActualMuted ? 'button-sound-off' : 'button-sound-on';
-
         const {props} = this;
-        const {onClickMuteVolume, isMuted} = props;
-
-        const soundImageSrc = isMuted ? 'button-sound-off' : 'button-sound-on';
+        const {onClickMuteVolume, isMuted, trackVolume} = props;
+        const isActualMuted = isMuted || trackVolume === 0;
+        const soundImageSrc = isActualMuted ? 'button-sound-off' : 'button-sound-on';
 
         return (
             <AudioPlayerControlButton
