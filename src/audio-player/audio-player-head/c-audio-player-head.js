@@ -18,6 +18,8 @@ type PropsType = {|
     +onClickNextTrack: () => mixed,
     +onClickTrackList: () => mixed,
     +onClickMuteVolume: () => mixed,
+    +onChangeProgressBar: (progress: number) => mixed,
+    +onChangeVolumeBar: (volume: number) => mixed,
 
     +playingState: PlayerPlayingStateType,
     +isShuffleOn: boolean,
@@ -48,6 +50,8 @@ export class AudioPlayerHead extends Component<PropsType, StateType> {
             onClickNextTrack,
             onClickTrackList,
             onClickMuteVolume,
+            onChangeProgressBar,
+            onChangeVolumeBar,
 
             isMuted,
             playingState,
@@ -76,6 +80,8 @@ export class AudioPlayerHead extends Component<PropsType, StateType> {
 
                 <AudioPlayerHeadPlayingBar
                     isMuted={isMuted}
+                    onChangeProgressBar={onChangeProgressBar}
+                    onChangeVolumeBar={onChangeVolumeBar}
                     onClickMuteVolume={onClickMuteVolume}
                     trackCurrentTime={trackCurrentTime}
                     trackFullTime={trackFullTime}

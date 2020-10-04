@@ -15,6 +15,8 @@ type PropsType = {|
     +trackCurrentTime: number,
     +trackVolume: number,
     +trackFullTime: number,
+    +onChangeProgressBar: (progress: number) => mixed,
+    +onChangeVolumeBar: (volume: number) => mixed,
 |};
 
 type StateType = {};
@@ -25,17 +27,6 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
 
         this.state = {};
     }
-
-    handleOnChangeProgressBar = () => {};
-
-    handleOnChangeVolumeBar = (trackVolume: number) => {
-        // const audioTag = this.getAudioTag();
-        // if (!audioTag) {
-        //     return;
-        // }
-        // audioTag.volume = trackVolume;
-        // this.setState({trackVolume});
-    };
 
     renderTime(): Node {
         const {props} = this;
@@ -52,9 +43,9 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
 
     renderProgressBar(): Node {
         const {props} = this;
-        const {trackCurrentTime, trackFullTime} = props;
+        const {trackCurrentTime, trackFullTime, onChangeProgressBar} = props;
 
-        return <RangeBar onChange={this.handleOnChangeProgressBar} progress={trackCurrentTime / trackFullTime}/>;
+        return <RangeBar onChange={onChangeProgressBar} progress={trackCurrentTime / trackFullTime}/>;
     }
 
     renderSwitchSoundButton(): Node {
@@ -88,12 +79,12 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
         }
 
         const {props} = this;
-        const {trackVolume} = props;
+        const {trackVolume, onChangeVolumeBar} = props;
 
         return (
             <RangeBar
                 className={audioPlayerHeadPlayingBarStyle.volume_bar}
-                onChange={this.handleOnChangeVolumeBar}
+                onChange={onChangeVolumeBar}
                 progress={trackVolume}
             />
         );

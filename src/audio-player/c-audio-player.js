@@ -312,6 +312,16 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         this.setState({isTrackListOpen: !isTrackListOpen});
     };
 
+    handleChangeProgressBar = (progress: number) => {
+        console.log('progress');
+        console.log(progress);
+    };
+
+    handleChangeVolumeBar = (volume: number) => {
+        console.log('volume');
+        console.log(volume);
+    };
+
     render(): Node {
         const {state, props} = this;
         const {className} = props;
@@ -335,6 +345,8 @@ export class AudioPlayer extends Component<PropsType, StateType> {
                     isMuted={isMuted}
                     isShuffleOn={isShuffleOn}
                     isTrackListOpen={isTrackListOpen}
+                    onChangeProgressBar={this.handleChangeProgressBar}
+                    onChangeVolumeBar={this.handleChangeVolumeBar}
                     onClickMuteVolume={this.handleClickMute}
                     onClickNextTrack={this.handleClickNextTrack}
                     onClickPlay={this.handleClickPlay}
