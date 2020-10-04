@@ -59,7 +59,7 @@ export function App(): Node {
             <br/>
             <br/>
 
-            <AudioPlayer trackList={audioDataList} onDidMount={console.log}/>
+            <AudioPlayer trackList={audioDataList}/>
         </div>
     );
 }

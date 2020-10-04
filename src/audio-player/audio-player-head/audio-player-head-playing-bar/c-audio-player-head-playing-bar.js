@@ -11,6 +11,7 @@ import audioPlayerHeadPlayingBarStyle from './audio-player-head-playing-bar.scss
 
 type PropsType = {|
     +onClickMuteVolume: () => mixed,
+    +isMuted: boolean,
 |};
 
 type StateType = {};
@@ -58,9 +59,9 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
         // const soundImageSrc = isActualMuted ? 'button-sound-off' : 'button-sound-on';
 
         const {props} = this;
-        const {onClickMuteVolume} = props;
+        const {onClickMuteVolume, isMuted} = props;
 
-        const soundImageSrc = Math.random() > 0.5 ? 'button-sound-off' : 'button-sound-on';
+        const soundImageSrc = isMuted ? 'button-sound-off' : 'button-sound-on';
 
         return (
             <AudioPlayerControlButton

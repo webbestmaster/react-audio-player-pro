@@ -244,14 +244,30 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         }
     };
 
-    onClickShuffle = () => {
+    handleClickMute = () => {
+        const audioTag = this.getAudioTag();
+
+        if (!audioTag) {
+            return;
+        }
+
+        const isNewMuted = !audioTag.muted;
+
+        audioTag.muted = isNewMuted;
+
+        this.setState({
+            isMuted: isNewMuted,
+        });
+    };
+
+    handleClickShuffle = () => {
         const {state} = this;
         const {isShuffleOn} = state;
 
         this.setState({isShuffleOn: !isShuffleOn});
     };
 
-    onClickRepeatButton = () => {
+    handleClickRepeat = () => {
         const {state} = this;
         const {repeatingState} = state;
 
@@ -264,7 +280,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
     render(): Node {
         const {state, props} = this;
         const {className} = props;
-        const {isShuffleOn, playingState, repeatingState} = state;
+        const {isShuffleOn, playingState, repeatingState, isMuted} = state;
 
         console.log(state);
 
@@ -272,13 +288,14 @@ export class AudioPlayer extends Component<PropsType, StateType> {
             <div className={className || ''}>
                 {this.renderAudioTag()}
                 <AudioPlayerHead
+                    isMuted={isMuted}
                     isShuffleOn={isShuffleOn}
-                    onClickMuteVolume={console.log}
+                    onClickMuteVolume={this.handleClickMute}
                     onClickNextTrack={console.log}
                     onClickPlay={this.handleClickPlay}
                     onClickPrevTrack={console.log}
-                    onClickRepeat={this.onClickRepeatButton}
-                    onClickShuffle={this.onClickShuffle}
+                    onClickRepeat={this.handleClickRepeat}
+                    onClickShuffle={this.handleClickShuffle}
                     onClickTrackList={console.log}
                     playingState={playingState}
                     repeatingState={repeatingState}

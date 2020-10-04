@@ -22,6 +22,7 @@ type PropsType = {|
     +playingState: PlayerPlayingStateType,
     +isShuffleOn: boolean,
     +repeatingState: PlayerRepeatingStateType,
+    +isMuted: boolean,
 |};
 
 type StateType = {};
@@ -44,6 +45,7 @@ export class AudioPlayerHead extends Component<PropsType, StateType> {
             onClickTrackList,
             onClickMuteVolume,
 
+            isMuted,
             playingState,
             isShuffleOn,
             repeatingState,
@@ -63,7 +65,7 @@ export class AudioPlayerHead extends Component<PropsType, StateType> {
                     repeatingState={repeatingState}
                 />
 
-                <AudioPlayerHeadPlayingBar onClickMuteVolume={onClickMuteVolume}/>
+                <AudioPlayerHeadPlayingBar isMuted={isMuted} onClickMuteVolume={onClickMuteVolume}/>
             </div>
         );
     }
