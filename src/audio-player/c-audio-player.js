@@ -315,7 +315,16 @@ export class AudioPlayer extends Component<PropsType, StateType> {
     render(): Node {
         const {state, props} = this;
         const {className} = props;
-        const {isShuffleOn, playingState, repeatingState, isMuted, isTrackListOpen} = state;
+        const {
+            isShuffleOn,
+            playingState,
+            repeatingState,
+            isMuted,
+            isTrackListOpen,
+            trackCurrentTime,
+            trackVolume,
+            trackFullTime,
+        } = state;
 
         console.log(state);
 
@@ -335,6 +344,9 @@ export class AudioPlayer extends Component<PropsType, StateType> {
                     onClickTrackList={this.handleClickShowHideTrackList}
                     playingState={playingState}
                     repeatingState={repeatingState}
+                    trackCurrentTime={trackCurrentTime}
+                    trackFullTime={trackFullTime}
+                    trackVolume={trackVolume}
                 />
 
                 {isTrackListOpen ? <AudioPlayerTrackList/> : null}
