@@ -18,7 +18,7 @@ type PropsType = {|
     +src: string,
     +mediaMetadata?: MediaMetadataType,
     +className?: string,
-    +onDidMount?: (audioNode: HTMLAudioElement) => mixed,
+    +onDidMount?: (audioNode: HTMLAudioElement | null) => mixed,
     +downloadFileName?: string,
 |};
 
@@ -57,7 +57,7 @@ export class Audio extends Component<PropsType, StateType> {
             audioTag.volume = trackVolume;
         }
 
-        if (onDidMount && audioTag) {
+        if (onDidMount) {
             onDidMount(audioTag);
         }
     }

@@ -22,7 +22,7 @@ import audioPlayerStyle from './audio-player.scss';
 type PropsType = {|
     +trackList: Array<TrackType>,
     +className?: string,
-    +onDidMount?: (audioNode: HTMLAudioElement) => mixed,
+    +onDidMount?: (audioNode: HTMLAudioElement | null) => mixed,
 |};
 
 type StateType = {|
@@ -66,7 +66,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
             audioTag.volume = trackVolume;
         }
 
-        if (onDidMount && audioTag) {
+        if (onDidMount) {
             onDidMount(audioTag);
         }
     }
