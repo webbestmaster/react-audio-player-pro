@@ -403,6 +403,10 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         );
     }
 
+    setActiveIndex = (activeIndex: number, callBack?: () => mixed) => {
+        this.setState({activeIndex}, callBack);
+    };
+
     renderAudioPlayerTrackList(): Node {
         const {state, props} = this;
         const {trackList} = props;
@@ -412,7 +416,15 @@ export class AudioPlayer extends Component<PropsType, StateType> {
             return null;
         }
 
-        return <AudioPlayerTrackList activeIndex={activeIndex} playingState={playingState} trackList={trackList}/>;
+        return (
+            <AudioPlayerTrackList
+                activeIndex={activeIndex}
+                onClickPlay={this.handleClickPlay}
+                playingState={playingState}
+                setActiveIndex={this.setActiveIndex}
+                trackList={trackList}
+            />
+        );
     }
 
     render(): Node {

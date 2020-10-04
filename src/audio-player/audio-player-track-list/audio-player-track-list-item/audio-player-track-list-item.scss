@@ -4,6 +4,11 @@
     min-height: 48px;
     padding: 0;
     margin: 0;
+
+    &:hover,
+    &.audio_player_track_list_item__active {
+        background-color: #e8e8e8;
+    }
 }
 
 .button {
@@ -14,6 +19,8 @@
     padding: 0;
     margin: 0;
     border: 0;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .button_image {
