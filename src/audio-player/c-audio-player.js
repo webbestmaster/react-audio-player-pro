@@ -367,9 +367,8 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         audioTag.volume = trackVolume;
     };
 
-    render(): Node {
-        const {state, props} = this;
-        const {className} = props;
+    renderAudioPlayerHead(): Node {
+        const {state} = this;
         const {
             isShuffleOn,
             playingState,
@@ -381,32 +380,50 @@ export class AudioPlayer extends Component<PropsType, StateType> {
             trackFullTime,
         } = state;
 
-        console.log(state);
+        return (
+            <AudioPlayerHead
+                isMuted={isMuted}
+                isShuffleOn={isShuffleOn}
+                isTrackListOpen={isTrackListOpen}
+                onChangeProgressBar={this.handleChangeProgressBar}
+                onChangeVolumeBar={this.handleChangeVolumeBar}
+                onClickMuteVolume={this.handleClickMute}
+                onClickNextTrack={this.handleClickNextTrack}
+                onClickPlay={this.handleClickPlay}
+                onClickPrevTrack={this.handleClickPrevTrack}
+                onClickRepeat={this.handleClickRepeat}
+                onClickShuffle={this.handleClickShuffle}
+                onClickTrackList={this.handleClickShowHideTrackList}
+                playingState={playingState}
+                repeatingState={repeatingState}
+                trackCurrentTime={trackCurrentTime}
+                trackFullTime={trackFullTime}
+                trackVolume={trackVolume}
+            />
+        );
+    }
+
+    renderAudioPlayerTrackList(): Node {
+        const {state, props} = this;
+        const {trackList} = props;
+        const {playingState, isTrackListOpen, activeIndex} = state;
+
+        if (!isTrackListOpen) {
+            return null;
+        }
+
+        return <AudioPlayerTrackList activeIndex={activeIndex} playingState={playingState} trackList={trackList}/>;
+    }
+
+    render(): Node {
+        const {props} = this;
+        const {className} = props;
 
         return (
             <div className={className || ''}>
                 {this.renderAudioTag()}
-                <AudioPlayerHead
-                    isMuted={isMuted}
-                    isShuffleOn={isShuffleOn}
-                    isTrackListOpen={isTrackListOpen}
-                    onChangeProgressBar={this.handleChangeProgressBar}
-                    onChangeVolumeBar={this.handleChangeVolumeBar}
-                    onClickMuteVolume={this.handleClickMute}
-                    onClickNextTrack={this.handleClickNextTrack}
-                    onClickPlay={this.handleClickPlay}
-                    onClickPrevTrack={this.handleClickPrevTrack}
-                    onClickRepeat={this.handleClickRepeat}
-                    onClickShuffle={this.handleClickShuffle}
-                    onClickTrackList={this.handleClickShowHideTrackList}
-                    playingState={playingState}
-                    repeatingState={repeatingState}
-                    trackCurrentTime={trackCurrentTime}
-                    trackFullTime={trackFullTime}
-                    trackVolume={trackVolume}
-                />
-
-                {isTrackListOpen ? <AudioPlayerTrackList/> : null}
+                {this.renderAudioPlayerHead()}
+                {this.renderAudioPlayerTrackList()}
             </div>
         );
     }

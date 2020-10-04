@@ -3,9 +3,15 @@
 import React, {Component, type Node} from 'react';
 import classNames from 'classnames';
 
+import type {PlayerPlayingStateType, TrackType} from '../../audio-player-type';
+
 import audioPlayerTrackListItemStyle from './audio-player-track-list-item.scss';
 
-type PropsType = {};
+type PropsType = {|
+    +activeIndex: number,
+    +track: TrackType,
+    +playingState: PlayerPlayingStateType,
+|};
 
 type StateType = {};
 
