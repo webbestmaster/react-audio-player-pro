@@ -7,7 +7,7 @@ import {hasVolumeBar} from '../lib/system';
 import {setMediaMetadata} from '../lib/media-meta-data/media-meta-data';
 
 import {AudioPlayerHead} from './audio-player-head/c-audio-player-head';
-import {AudioPlayerPlayList} from './audio-player-play-list/c-audio-player-play-list';
+import {AudioPlayerTrackList} from './audio-player-track-list/c-audio-player-track-list';
 import type {PlayerPlayingStateType, PlayerRepeatingStateType, TrackType} from './audio-player-type';
 
 import {
@@ -34,6 +34,7 @@ type StateType = {|
     +activeIndex: number,
     +isShuffleOn: boolean,
     +repeatingState: PlayerRepeatingStateType,
+    +isTrackListOpen: boolean,
 |};
 
 export class AudioPlayer extends Component<PropsType, StateType> {
@@ -49,6 +50,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
             activeIndex: 0,
             isShuffleOn: false,
             repeatingState: playerRepeatingStateTypeMap.none,
+            isTrackListOpen: true,
         };
 
         this.ref = {
@@ -96,7 +98,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         return trackList[trackIndex] || null;
     }
 
-    handleOnLoadedMetadata = () => {
+    handleAudioTagOnLoadedMetadata = () => {
         const {state} = this;
         const {trackVolume} = state;
         const audioTag = this.getAudioTag();
@@ -113,11 +115,11 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         audioTag.volume = trackVolume;
     };
 
-    handleOnPause = () => {
+    handleAudioTagOnPause = () => {
         this.setState({playingState: playerPlayingStateTypeMap.paused});
     };
 
-    handleOnVolumeChange = () => {
+    handleAudioTagOnVolumeChange = () => {
         const audioTag = this.getAudioTag();
 
         if (!audioTag) {
@@ -130,7 +132,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         });
     };
 
-    handleOnEnded = () => {
+    handleAudioTagOnEnded = () => {
         const audioTag = this.getAudioTag();
 
         if (audioTag) {
@@ -143,7 +145,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         });
     };
 
-    handleOnPlay = () => {
+    handleAudioTagOnPlay = () => {
         this.setState({playingState: playerPlayingStateTypeMap.playing});
 
         const track = this.getCurrentTrack();
@@ -162,13 +164,13 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         }
     };
 
-    handleOnTrackError = (error: Error) => {
-        console.error('[handleOnTrackError]: Error!');
+    handleAudioTagOnTrackError = (error: Error) => {
+        console.error('[handleAudioTagOnTrackError]: Error!');
 
         throw error;
     };
 
-    handleOnTimeUpdate = () => {
+    handleAudioTagOnTimeUpdate = () => {
         const audioTag = this.getAudioTag();
 
         if (!audioTag) {
@@ -216,13 +218,13 @@ export class AudioPlayer extends Component<PropsType, StateType> {
             <audio
                 className={audioPlayerStyle.audio_tag}
                 key={activeIndex + src}
-                onEnded={this.handleOnEnded}
-                onError={this.handleOnTrackError}
-                onLoadedMetadata={this.handleOnLoadedMetadata}
-                onPause={this.handleOnPause}
-                onPlay={this.handleOnPlay}
-                onTimeUpdate={this.handleOnTimeUpdate}
-                onVolumeChange={this.handleOnVolumeChange}
+                onEnded={this.handleAudioTagOnEnded}
+                onError={this.handleAudioTagOnTrackError}
+                onLoadedMetadata={this.handleAudioTagOnLoadedMetadata}
+                onPause={this.handleAudioTagOnPause}
+                onPlay={this.handleAudioTagOnPlay}
+                onTimeUpdate={this.handleAudioTagOnTimeUpdate}
+                onVolumeChange={this.handleAudioTagOnVolumeChange}
                 preload="metadata"
                 ref={refAudio}
                 src={src}
@@ -277,10 +279,17 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         this.setState({repeatingState: playerRepeatingStateTypeList[nextIndex]});
     };
 
+    handleClickShowHideTrackList = () => {
+        const {state} = this;
+        const {isTrackListOpen} = state;
+
+        this.setState({isTrackListOpen: !isTrackListOpen});
+    };
+
     render(): Node {
         const {state, props} = this;
         const {className} = props;
-        const {isShuffleOn, playingState, repeatingState, isMuted} = state;
+        const {isShuffleOn, playingState, repeatingState, isMuted, isTrackListOpen} = state;
 
         console.log(state);
 
@@ -290,18 +299,19 @@ export class AudioPlayer extends Component<PropsType, StateType> {
                 <AudioPlayerHead
                     isMuted={isMuted}
                     isShuffleOn={isShuffleOn}
+                    isTrackListOpen={isTrackListOpen}
                     onClickMuteVolume={this.handleClickMute}
                     onClickNextTrack={console.log}
                     onClickPlay={this.handleClickPlay}
                     onClickPrevTrack={console.log}
                     onClickRepeat={this.handleClickRepeat}
                     onClickShuffle={this.handleClickShuffle}
-                    onClickTrackList={console.log}
+                    onClickTrackList={this.handleClickShowHideTrackList}
                     playingState={playingState}
                     repeatingState={repeatingState}
                 />
 
-                <AudioPlayerPlayList/>
+                {isTrackListOpen ? <AudioPlayerTrackList/> : null}
             </div>
         );
     }

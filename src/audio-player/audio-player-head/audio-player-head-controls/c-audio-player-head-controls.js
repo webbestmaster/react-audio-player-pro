@@ -20,6 +20,7 @@ type PropsType = {|
     +playingState: PlayerPlayingStateType,
     +isShuffleOn: boolean,
     +repeatingState: PlayerRepeatingStateType,
+    +isTrackListOpen: boolean,
 |};
 
 type StateType = {};
@@ -86,13 +87,13 @@ export class AudioPlayerHeadControls extends Component<PropsType, StateType> {
 
     renderButtonTrackList(): Node {
         const {props} = this;
-        const {onClickTrackList} = props;
+        const {onClickTrackList, isTrackListOpen} = props;
 
         return (
             <AudioPlayerControlButton
                 ariaLabel="track-list"
-                imageId="button-play-list"
-                isActive={false}
+                imageId="button-track-list"
+                isActive={isTrackListOpen}
                 onClick={onClickTrackList}
             />
         );

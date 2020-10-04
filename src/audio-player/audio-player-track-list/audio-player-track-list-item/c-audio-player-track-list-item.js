@@ -3,13 +3,13 @@
 import React, {Component, type Node} from 'react';
 import classNames from 'classnames';
 
-import audioPlayerPlayListItemStyle from './audio-player-play-list-item.scss';
+import audioPlayerTrackListItemStyle from './audio-player-track-list-item.scss';
 
 type PropsType = {};
 
 type StateType = {};
 
-export class AudioPlayerPlayListItem extends Component<PropsType, StateType> {
+export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
     constructor(props: PropsType) {
         super(props);
 
@@ -18,20 +18,20 @@ export class AudioPlayerPlayListItem extends Component<PropsType, StateType> {
 
     renderButton(): Node {
         return (
-            <button className={audioPlayerPlayListItemStyle.button} type="button">
-                <span className={audioPlayerPlayListItemStyle.button_image}/>
+            <button className={audioPlayerTrackListItemStyle.button} type="button">
+                <span className={audioPlayerTrackListItemStyle.button_image}/>
                 <span>play/pause</span>
             </button>
         );
     }
 
     renderContent(): Node {
-        return <div className={audioPlayerPlayListItemStyle.content}>content</div>;
+        return <div className={audioPlayerTrackListItemStyle.content}>content</div>;
     }
 
     render(): Node {
         return (
-            <li className={audioPlayerPlayListItemStyle.audio_player_play_list_item}>
+            <li className={audioPlayerTrackListItemStyle.audio_player_track_list_item}>
                 {this.renderButton()}
                 {this.renderContent()}
             </li>
