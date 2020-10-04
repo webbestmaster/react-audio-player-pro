@@ -3,8 +3,8 @@
 import React, {Component, type Node} from 'react';
 
 import {hasVolumeBar} from '../lib/system';
-
 import {setMediaMetadata} from '../lib/media-meta-data/media-meta-data';
+import {getShiftIndex} from '../lib/array';
 
 import {AudioPlayerHead} from './audio-player-head/c-audio-player-head';
 import {AudioPlayerTrackList} from './audio-player-track-list/c-audio-player-track-list';
@@ -202,7 +202,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
 
     renderAudioTag(): Node {
         const {ref, state} = this;
-        const {activeIndex} = state;
+        const {activeIndex, playingState, isMuted} = state;
         const {refAudio} = ref;
 
         const track = this.getCurrentTrack();
@@ -216,8 +216,10 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         return (
             // eslint-disable-next-line jsx-a11y/media-has-caption
             <audio
+                autoPlay={playingState === playerPlayingStateTypeMap.playing}
                 className={audioPlayerStyle.audio_tag}
                 key={activeIndex + src}
+                muted={isMuted}
                 onEnded={this.handleAudioTagOnEnded}
                 onError={this.handleAudioTagOnTrackError}
                 onLoadedMetadata={this.handleAudioTagOnLoadedMetadata}
@@ -262,6 +264,30 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         });
     };
 
+    handleClickNextTrack = () => {
+        const {state, props} = this;
+        const {activeIndex} = state;
+        const {trackList} = props;
+
+        const nextIndex = getShiftIndex(trackList.length, activeIndex, 1);
+
+        this.setState({
+            activeIndex: nextIndex,
+        });
+    };
+
+    handleClickPrevTrack = () => {
+        const {state, props} = this;
+        const {activeIndex} = state;
+        const {trackList} = props;
+
+        const nextIndex = getShiftIndex(trackList.length, activeIndex, -1);
+
+        this.setState({
+            activeIndex: nextIndex,
+        });
+    };
+
     handleClickShuffle = () => {
         const {state} = this;
         const {isShuffleOn} = state;
@@ -301,9 +327,9 @@ export class AudioPlayer extends Component<PropsType, StateType> {
                     isShuffleOn={isShuffleOn}
                     isTrackListOpen={isTrackListOpen}
                     onClickMuteVolume={this.handleClickMute}
-                    onClickNextTrack={console.log}
+                    onClickNextTrack={this.handleClickNextTrack}
                     onClickPlay={this.handleClickPlay}
-                    onClickPrevTrack={console.log}
+                    onClickPrevTrack={this.handleClickPrevTrack}
                     onClickRepeat={this.handleClickRepeat}
                     onClickShuffle={this.handleClickShuffle}
                     onClickTrackList={this.handleClickShowHideTrackList}

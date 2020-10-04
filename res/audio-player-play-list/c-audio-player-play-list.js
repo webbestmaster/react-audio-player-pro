@@ -9,7 +9,7 @@ import {defaultAudioPlayerContextData, playerPlayingStateTypeMap} from '../../sr
 import {audioPlayerIconIdPrefix} from '../../src/layout/audio-player-control-sprite/c-audio-player-control-sprite';
 import {SvgImage} from '../../src/layout/svg-image/c-svg-image';
 
-import audioPlayerPlayListStyle from './audio-player-play-list.scss';
+import audioPlayerTrackListStyle from './audio-player-play-list.scss';
 
 type PropsType = {|
     +audioPlayerContext: AudioPlayerContextType,
@@ -19,7 +19,7 @@ type PropsType = {|
 
 type StateType = null;
 
-export class AudioPlayerPlayList extends Component<PropsType, StateType> {
+export class AudioPlayerTrackList extends Component<PropsType, StateType> {
     constructor(props: PropsType) {
         super(props);
 
@@ -38,7 +38,7 @@ export class AudioPlayerPlayList extends Component<PropsType, StateType> {
             return (
                 <SvgImage
                     className={
-                        audioPlayerPlayListStyle.audio_player_play_list___list_item__play_pause_button__image__active
+                        audioPlayerTrackListStyle.audio_player_play_list___list_item__play_pause_button__image__active
                     }
                     imageId={'#' + audioPlayerIconIdPrefix + 'button-pause-playlist'}
                 />
@@ -47,7 +47,7 @@ export class AudioPlayerPlayList extends Component<PropsType, StateType> {
 
         return (
             <SvgImage
-                className={audioPlayerPlayListStyle.audio_player_play_list___list_item__play_pause_button__image}
+                className={audioPlayerTrackListStyle.audio_player_play_list___list_item__play_pause_button__image}
                 imageId={'#' + audioPlayerIconIdPrefix + 'button-play'}
             />
         );
@@ -81,7 +81,7 @@ export class AudioPlayerPlayList extends Component<PropsType, StateType> {
         return (
             <button
                 aria-label="play"
-                className={audioPlayerPlayListStyle.audio_player_play_list___list_item__play_pause_button}
+                className={audioPlayerTrackListStyle.audio_player_play_list___list_item__play_pause_button}
                 onClick={handleClick}
                 type="button"
             >
@@ -99,14 +99,14 @@ export class AudioPlayerPlayList extends Component<PropsType, StateType> {
 
         return (
             <li
-                className={classNames(audioPlayerPlayListStyle.audio_player_play_list___list_item, {
-                    [audioPlayerPlayListStyle.audio_player_play_list___list_item__active]: index === activeIndex,
+                className={classNames(audioPlayerTrackListStyle.audio_player_play_list___list_item, {
+                    [audioPlayerTrackListStyle.audio_player_play_list___list_item__active]: index === activeIndex,
                 })}
                 key={src + '-' + String(index)}
             >
                 {this.renderMainButton(item, index)}
-                <div className={audioPlayerPlayListStyle.audio_player_play_list__info}>
-                    <p className={audioPlayerPlayListStyle.audio_player_play_list__title}>{title}</p>
+                <div className={audioPlayerTrackListStyle.audio_player_play_list__info}>
+                    <p className={audioPlayerTrackListStyle.audio_player_play_list__title}>{title}</p>
                 </div>
             </li>
         );
@@ -122,8 +122,8 @@ export class AudioPlayerPlayList extends Component<PropsType, StateType> {
         }
 
         return (
-            <div className={classNames(audioPlayerPlayListStyle.audio_player_play_list__wrapper, className)}>
-                <ol className={audioPlayerPlayListStyle.audio_player_play_list__list}>
+            <div className={classNames(audioPlayerTrackListStyle.audio_player_play_list__wrapper, className)}>
+                <ol className={audioPlayerTrackListStyle.audio_player_play_list__list}>
                     {playList.map(this.renderPlayListItem)}
                 </ol>
             </div>
