@@ -190,6 +190,8 @@ export class AudioPlayer extends Component<PropsType, StateType> {
             setMediaMetadata(mediaMetadata, {
                 seekforward: this.seekForward,
                 seekbackward: this.seekBackward,
+                previoustrack: this.handleClickPrevTrack,
+                nexttrack: this.handleClickNextTrack,
             });
         }
     };
