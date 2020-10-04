@@ -4,7 +4,7 @@ import React, {Component, type Node} from 'react';
 
 import {hasVolumeBar} from '../lib/system';
 import {setMediaMetadata} from '../lib/media-meta-data/media-meta-data';
-import {getShiftIndex} from '../lib/array';
+import {getRandom, getShiftIndex} from '../lib/number';
 
 import {AudioPlayerHead} from './audio-player-head/c-audio-player-head';
 import {AudioPlayerTrackList} from './audio-player-track-list/c-audio-player-track-list';
@@ -133,16 +133,46 @@ export class AudioPlayer extends Component<PropsType, StateType> {
     };
 
     handleAudioTagOnEnded = () => {
-        const audioTag = this.getAudioTag();
+        // const audioTag = this.getAudioTag();
 
-        if (audioTag) {
-            audioTag.currentTime = 0;
+        // if (audioTag) {
+        // audioTag.currentTime = 0;
+        // }
+
+        const {state, props} = this;
+        const {trackList} = props;
+        const {isShuffleOn, repeatingState, activeIndex} = state;
+        const {one: repeatOne, all: repeatAll, none: repeatNone} = playerRepeatingStateTypeMap;
+
+        if (isShuffleOn) {
+            const randomActiveIndex = getRandom(0, trackList.length);
+
+            this.setState({activeIndex: randomActiveIndex}, this.handleClickPlay);
+            return;
         }
 
-        this.setState({
-            playingState: playerPlayingStateTypeMap.paused,
-            trackCurrentTime: 0,
-        });
+        if (repeatingState === repeatOne) {
+            // TODO: fix this workaround
+            this.setState({}, this.handleClickPlay);
+            return;
+        }
+
+        if (repeatingState === repeatAll) {
+            this.handleClickNextTrack();
+            // TODO: fix this workaround
+            this.setState({}, this.handleClickPlay);
+            return;
+        }
+
+        // repeatingState === repeatNone
+        if (activeIndex < trackList.length - 1) {
+            this.handleClickNextTrack();
+            // TODO: fix this workaround
+            this.setState({}, this.handleClickPlay);
+            return;
+        }
+
+        this.setState({activeIndex: 0});
     };
 
     handleAudioTagOnPlay = () => {
