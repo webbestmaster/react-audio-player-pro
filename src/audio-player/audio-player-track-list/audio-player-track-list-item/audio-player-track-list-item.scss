@@ -23,6 +23,7 @@
     cursor: pointer;
 }
 
+%button--image,
 .button_image {
     background-color: #cbcbcb;
     border: 3px solid #cbcbcb;
@@ -33,13 +34,34 @@
     width: 18px;
 }
 
+.button_image__active {
+    @extend %button--image;
+
+    background-color: #d2dff5;
+    border: 3px solid #d2dff5;
+}
+
 .content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-left: 48px;
     min-height: 48px;
-    padding-right: 8px;
+    box-sizing: border-box;
+    padding: 6px 8px 6px 0;
     font-size: 14px;
     line-height: 1.4;
+}
+
+.track_title {
+    display: block;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
 }

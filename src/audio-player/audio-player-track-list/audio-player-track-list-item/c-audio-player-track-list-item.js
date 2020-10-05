@@ -5,6 +5,8 @@ import classNames from 'classnames';
 
 import type {PlayerPlayingStateType, TrackType} from '../../audio-player-type';
 import {playerPlayingStateTypeMap} from '../../audio-player-const';
+import {SvgImage} from '../../../layout/svg-image/c-svg-image';
+import {audioPlayerIconIdPrefix} from '../../../layout/audio-player-control-sprite/c-audio-player-control-sprite';
 
 import audioPlayerTrackListItemStyle from './audio-player-track-list-item.scss';
 
@@ -42,14 +44,19 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
 
     renderButton(): Node {
         const {props} = this;
-        const {isCurrentTrack, playingState, onClickPlay, setActiveIndex, activeIndex} = props;
+        const {isCurrentTrack, playingState, onClickPlay} = props;
+
+        const playImageId = '#' + audioPlayerIconIdPrefix + 'button-play';
+        const pauseImageId = '#' + audioPlayerIconIdPrefix + 'button-pause-playlist';
 
         if (playingState === playerPlayingStateTypeMap.playing) {
             if (isCurrentTrack) {
                 return (
                     <button className={audioPlayerTrackListItemStyle.button} onClick={onClickPlay} type="button">
-                        <span className={audioPlayerTrackListItemStyle.button_image}/>
-                        <span>handleClickPause</span>
+                        <SvgImage
+                            className={audioPlayerTrackListItemStyle.button_image__active}
+                            imageId={pauseImageId}
+                        />
                     </button>
                 );
             }
@@ -60,8 +67,7 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
                     onClick={this.handleSetActiveIndex}
                     type="button"
                 >
-                    <span className={audioPlayerTrackListItemStyle.button_image}/>
-                    <span>handleClickToPlay</span>
+                    <SvgImage className={audioPlayerTrackListItemStyle.button_image} imageId={playImageId}/>
                 </button>
             );
         }
@@ -69,8 +75,7 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
         if (isCurrentTrack) {
             return (
                 <button className={audioPlayerTrackListItemStyle.button} onClick={onClickPlay} type="button">
-                    <span className={audioPlayerTrackListItemStyle.button_image}/>
-                    <span>handleClickToPlay</span>
+                    <SvgImage className={audioPlayerTrackListItemStyle.button_image} imageId={playImageId}/>
                 </button>
             );
         }
@@ -81,17 +86,21 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
                 onClick={this.handleSetActiveIndexAndTogglePlay}
                 type="button"
             >
-                <span className={audioPlayerTrackListItemStyle.button_image}/>
-                <span>handleClickToPlay</span>
+                <SvgImage className={audioPlayerTrackListItemStyle.button_image} imageId={playImageId}/>
             </button>
         );
     }
 
     renderContent(): Node {
         const {props} = this;
-        const {isCurrentTrack} = props;
+        const {track} = props;
+        const {content} = track;
 
-        return <div className={audioPlayerTrackListItemStyle.content}>content</div>;
+        return (
+            <div className={audioPlayerTrackListItemStyle.content}>
+                <p className={audioPlayerTrackListItemStyle.track_title}>{content || track.src}</p>
+            </div>
+        );
     }
 
     render(): Node {
