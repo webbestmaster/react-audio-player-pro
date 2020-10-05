@@ -64,7 +64,7 @@ export function App(): Node {
             <br/>
             <br/>
 
-            <Audio mediaMetadata={audioDataList[0].mediaMetadata} src={audioDataList[0].src}/>
+            <Audio mediaMetadata={audioDataList[0].mediaMetadata} src={audioDataList[0].src} useRepeatButton/>
 
             <br/>
             <br/>

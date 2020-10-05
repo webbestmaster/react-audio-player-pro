@@ -20,6 +20,7 @@ type PropsType = {|
     +className?: string,
     +onDidMount?: (audioNode: HTMLAudioElement | null) => mixed,
     +downloadFileName?: string,
+    +useRepeatButton?: boolean,
 |};
 
 type StateType = {|
@@ -28,6 +29,7 @@ type StateType = {|
     +trackVolume: number,
     +isMuted: boolean,
     +playingState: PlayerPlayingStateType,
+    +isRepeatOn: boolean,
 |};
 
 export class Audio extends Component<PropsType, StateType> {
@@ -40,6 +42,7 @@ export class Audio extends Component<PropsType, StateType> {
             trackVolume: hasVolumeBar ? 0.5 : 1,
             isMuted: false,
             playingState: playerPlayingStateTypeMap.paused,
+            isRepeatOn: false,
         };
 
         this.ref = {
@@ -95,6 +98,13 @@ export class Audio extends Component<PropsType, StateType> {
         audioTag.play();
     };
 
+    handleRepeat = () => {
+        const {state} = this;
+        const {isRepeatOn} = state;
+
+        this.setState({isRepeatOn: !isRepeatOn});
+    };
+
     handleOnLoadedMetadata = () => {
         const {state} = this;
         const {trackVolume} = state;
@@ -134,6 +144,15 @@ export class Audio extends Component<PropsType, StateType> {
 
         if (audioTag) {
             audioTag.currentTime = 0;
+        }
+
+        const {state} = this;
+        const {isRepeatOn} = state;
+
+        if (isRepeatOn) {
+            // TODO: fix this workaround
+            this.setState({trackCurrentTime: 0}, this.handlePlay);
+            return;
         }
 
         this.setState({
@@ -268,6 +287,25 @@ export class Audio extends Component<PropsType, StateType> {
         return <AudioPlayerControlButton ariaLabel="play" imageId="button-play" onClick={this.handlePlay}/>;
     }
 
+    renderRepeatButton(): Node {
+        const {state, props} = this;
+        const {isRepeatOn} = state;
+        const {useRepeatButton} = props;
+
+        if (useRepeatButton === true) {
+            return (
+                <AudioPlayerControlButton
+                    ariaLabel="repeat"
+                    imageId="button-repeat"
+                    isActive={isRepeatOn}
+                    onClick={this.handleRepeat}
+                />
+            );
+        }
+
+        return null;
+    }
+
     renderTime(): Node {
         const {state} = this;
         const {trackCurrentTime, trackFullTime} = state;
@@ -338,6 +376,7 @@ export class Audio extends Component<PropsType, StateType> {
             <div className={classNames(audioStyle.audio, className)}>
                 {this.renderAudioTag()}
                 {this.renderPlayButton()}
+                {this.renderRepeatButton()}
                 {this.renderTime()}
                 {this.renderProgressBar()}
                 {this.renderSwitchSoundButton()}
