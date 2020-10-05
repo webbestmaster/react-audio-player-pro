@@ -1,5 +1,6 @@
-declare module 'audio-player' {
 /*
+declare module 'react-audio-player-pro' {
+/!*
     export interface MarkdownConfigType {
         useLineBreak?: boolean,
         wrapperClassName?: string,
@@ -11,15 +12,18 @@ declare module 'audio-player' {
     export default function markdownPro(mdInput: string, config?: MarkdownConfigType): string;
 
     export function markdown(mdInput: string, config?: MarkdownConfigType): string;
-*/
+*!/
 }
+*/
 
-declare module 'audio-player/dist/style.css' {
 /*
+declare module 'react-audio-player-pro/dist/style.css' {
+/!*
     type StyleType = {};
 
     const style: StyleType;
 
     export default style;
-*/
+*!/
 }
+*/
