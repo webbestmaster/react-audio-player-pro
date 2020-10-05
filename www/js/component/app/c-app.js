@@ -35,9 +35,6 @@ const audioDataList: Array<TrackType> = [
     },
     {
         src: antoshka,
-        mediaMetadata: {
-            title: 'antoshka',
-        },
     },
     {
         src: arabskayaNoch,
@@ -57,6 +54,15 @@ export function App(): Node {
     return (
         <div>
             <AudioPlayerControlSprite/>
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
 
             <Audio mediaMetadata={audioDataList[0].mediaMetadata} src={audioDataList[0].src}/>
 

@@ -42,14 +42,14 @@ export function AudioPlayerControlSprite(): Node {
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
             >
-                <path d="M11.5 12l8.5 6V6m-9 12V6l-8.5 6 8.5 6z" fill={mainFillColor}/>
+                <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" fill={mainFillColor}/>
             </symbol>
             <symbol
                 id={audioPlayerIconIdPrefix + 'button-next-track'}
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
             >
-                <path d="M13 6v12l8.5-6M4 18l8.5-6L4 6v12z" fill={mainFillColor}/>
+                <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" fill={mainFillColor}/>
             </symbol>
             <symbol
                 id={audioPlayerIconIdPrefix + 'button-repeat'}

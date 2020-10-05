@@ -94,11 +94,13 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
     renderContent(): Node {
         const {props} = this;
         const {track} = props;
-        const {content} = track;
+        const {content, mediaMetadata} = track;
+        const mediaTitle = mediaMetadata && mediaMetadata.title;
+        const actualContent = content || mediaTitle || track.src;
 
         return (
             <div className={audioPlayerTrackListItemStyle.content}>
-                <div className={audioPlayerTrackListItemStyle.track_title}>{content || track.src}</div>
+                <div className={audioPlayerTrackListItemStyle.track_title}>{actualContent}</div>
             </div>
         );
     }
