@@ -163,16 +163,21 @@ export class Audio extends Component<PropsType, StateType> {
 
     handleOnPlay = () => {
         const {props} = this;
-        const {mediaMetadata} = props;
+        const {mediaMetadata, src} = props;
 
         this.setState({playingState: playerPlayingStateTypeMap.playing});
 
+        const seek = {
+            seekforward: this.seekForward,
+            seekbackward: this.seekBackward,
+        };
+
         if (mediaMetadata) {
-            setMediaMetadata(mediaMetadata, {
-                seekforward: this.seekForward,
-                seekbackward: this.seekBackward,
-            });
+            setMediaMetadata(mediaMetadata, seek);
+            return;
         }
+
+        setMediaMetadata({title: src}, seek);
     };
 
     handleOnTrackError = (error: Error) => {
