@@ -16,6 +16,10 @@ import type {TrackType} from '../../../../src/audio-player/audio-player-type';
 const audioDataList: Array<TrackType> = [
     {
         src: aMozhetBitVorona,
+        content:
+    <a href="https://skazki.land" rel="noreferrer" target="_blank">
+        skazki.land
+    </a>,
         mediaMetadata: {
             title: 'a mozhet bit vorona',
             artist: 'souz mult film',

@@ -98,7 +98,7 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
 
         return (
             <div className={audioPlayerTrackListItemStyle.content}>
-                <p className={audioPlayerTrackListItemStyle.track_title}>{content || track.src}</p>
+                <div className={audioPlayerTrackListItemStyle.track_title}>{content || track.src}</div>
             </div>
         );
     }
