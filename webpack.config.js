@@ -14,7 +14,7 @@ const {
 } = require('./webpack/config');
 
 const webpackConfig = {
-    entry: isBuildLib ? ['./src/audio-player.scss', './src/audio-player.js'] : ['./www/root.scss', './www/root.js'],
+    entry: isBuildLib ? ['./src/audio-player.js'] : ['./www/root.scss', './www/root.js'],
     output: {
         path: path.join(cwd, pathToDist),
         // publicPath: `${isDevelopment || isBuildServer ? '' : pathToStaticFileFolder}/`,
@@ -29,6 +29,25 @@ const webpackConfig = {
     resolve: {alias: require('./webpack/setting/resolve/alias').alias},
     plugins: require('./webpack/setting/plugins').plugins,
     devServer: require('./webpack/setting/dev-server').devServer,
+
+    // TODO: separate this
+    externals: isBuildLib
+        ? {
+            // Don't bundle react and react-dom
+            react: {
+                commonjs: 'react',
+                commonjs2: 'react',
+                amd: 'React',
+                root: 'React',
+            },
+            'react-dom': {
+                commonjs: 'react-dom',
+                commonjs2: 'react-dom',
+                amd: 'ReactDOM',
+                root: 'ReactDOM',
+            },
+        }
+        : {},
 };
 
 if (isProduction && isBuildLib) {
