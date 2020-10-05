@@ -21,9 +21,9 @@ export function Time(props: PropsType): Node {
     const trackFullTimeSeconds = String(Math.round(fullTime % 60)).padStart(2, '0');
 
     return (
-        <p className={classNames(timeStyle.time, className)}>
+        <span className={classNames(timeStyle.time, className)}>
             {trackCurrentTimeMinutes}:{trackCurrentTimeSeconds}&nbsp;/&nbsp;{trackFullTimeMinutes}:
             {trackFullTimeSeconds}
-        </p>
+        </span>
     );
 }
