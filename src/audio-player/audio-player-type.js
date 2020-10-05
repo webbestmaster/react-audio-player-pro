@@ -1,6 +1,6 @@
 // @flow
 
-import {type Node} from 'react';
+// import {type Node} from 'react';
 
 // export type AudioPlayerItemIdType = string | number;
 
@@ -22,7 +22,8 @@ export type PlayerRepeatingStateType = 'none' | 'all' | 'one';
 export type TrackType = {|
     +src: string,
     +mediaMetadata?: MediaMetadataType,
-    +content?: Node,
+    // eslint-disable-next-line id-match
+    +content?: React$Node,
 |};
 // export type PlayerRepeatingStateType = 'none' | 'all' | 'one';
 
