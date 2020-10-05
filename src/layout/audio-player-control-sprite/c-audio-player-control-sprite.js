@@ -4,12 +4,14 @@
 
 import React, {type Node} from 'react';
 
+import audioPlayerControlSpriteStyle from './audio-player-control-sprite.scss';
+
 export const audioPlayerIconIdPrefix = 'audio-player-icon-id-prefix-';
 export const mainFillColor = '#5a5a5a';
 
 export function AudioPlayerControlSprite(): Node {
     return (
-        <svg height="0" width="0">
+        <svg className={audioPlayerControlSpriteStyle.hidden}>
             <symbol
                 id={audioPlayerIconIdPrefix + 'button-pause-playlist'}
                 viewBox="0 0 24 24"
