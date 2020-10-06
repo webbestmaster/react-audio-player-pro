@@ -2,57 +2,103 @@
 
 import React, {type Node} from 'react';
 
-import aMozhetBitVorona from '../../../file/audio/a-mozhet-bit-vorona.mp3';
-import akunaMatata from '../../../file/audio/akuna-matata.mp3';
-import antoshka from '../../../file/audio/antoshka.mp3';
-import arabskayaNoch from '../../../file/audio/arabskaya-noch.mp3';
-import the33korovi from '../../../file/audio/the-33-korovi.mp3';
-import type {TrackType} from '../../../../src/audio-player/audio-player-type';
+import icon64 from '../../../file/image/react-icon-64.png';
+import icon128 from '../../../file/image/react-icon-128.png';
+import icon256 from '../../../file/image/react-icon-256.png';
+import icon512 from '../../../file/image/react-icon-512.png';
 
+import lesserFaith from '../../../file/audio/j-syreus-bach-lesser-faith.mp3';
+import brothersAllegretto from '../../../file/audio/dee-yan-key-world-of-brothers-allegretto.mp3';
+import atLeastItIs from '../../../file/audio/mid-air-machine-at-least-it-is.mp3';
+import theGhostInYourPiano from '../../../file/audio/the-ghost-in-your-piano-climb.mp3';
+import meydnPureWater from '../../../file/audio/meydn-pure-water.mp3';
+
+import type {TrackType} from '../../../../src/audio-player/audio-player-type';
 import {AudioPlayerControlSprite, Audio, AudioPlayer} from '../../../../src/audio-player';
 
 const audioDataList: Array<TrackType> = [
     {
-        src: aMozhetBitVorona,
-        content:
-    <a href="https://skazki.land" rel="noreferrer" target="_blank">
-        skazki.land
-    </a>,
+        src: lesserFaith,
+        content: 'Lesser Faith',
         mediaMetadata: {
-            title: 'a mozhet bit vorona',
-            artist: 'souz mult film',
-            album: 'the album name',
-            artwork: [{src: 'https://dummyimage.com/128x128', sizes: '128x128', type: 'image/png'}],
+            title: 'Lesser Faith',
+            artist: 'J. Syreus Bach',
+            album: 'Ability to Break ~ Energetic Tracks',
+            artwork: [
+                {src: icon64, sizes: '64x64', type: 'image/png'},
+                {src: icon128, sizes: '128x128', type: 'image/png'},
+                {src: icon256, sizes: '256x256', type: 'image/png'},
+                {src: icon512, sizes: '512x512', type: 'image/png'},
+            ],
         },
     },
     {
-        src: akunaMatata,
+        src: brothersAllegretto,
+        content: 'World of Brothers (Allegretto)',
         mediaMetadata: {
-            title: 'akuna matata',
+            title: 'World of Brothers (Allegretto)',
+            artist: 'Dee Yan-Key',
+            album: 'Perpetual Peace',
+            artwork: [
+                {src: icon64, sizes: '64x64', type: 'image/png'},
+                {src: icon128, sizes: '128x128', type: 'image/png'},
+                {src: icon256, sizes: '256x256', type: 'image/png'},
+                {src: icon512, sizes: '512x512', type: 'image/png'},
+            ],
         },
     },
     {
-        src: antoshka,
-    },
-    {
-        src: arabskayaNoch,
+        src: atLeastItIs,
+        content: 'At Least It Is',
         mediaMetadata: {
-            title: 'arabskaya noch',
+            title: 'At Least It Is',
+            artist: 'Mid-Air Machine',
+            album: 'Everywhere Outside ~ World Music',
+            artwork: [
+                {src: icon64, sizes: '64x64', type: 'image/png'},
+                {src: icon128, sizes: '128x128', type: 'image/png'},
+                {src: icon256, sizes: '256x256', type: 'image/png'},
+                {src: icon512, sizes: '512x512', type: 'image/png'},
+            ],
         },
     },
     {
-        src: the33korovi,
+        src: theGhostInYourPiano,
+        content: 'Climb',
         mediaMetadata: {
-            title: 'the 33 korovi',
+            title: 'Climb',
+            artist: 'The Ghost in Your Piano',
+            album: 'The Ghost in Your Piano',
+            artwork: [
+                {src: icon64, sizes: '64x64', type: 'image/png'},
+                {src: icon128, sizes: '128x128', type: 'image/png'},
+                {src: icon256, sizes: '256x256', type: 'image/png'},
+                {src: icon512, sizes: '512x512', type: 'image/png'},
+            ],
         },
     },
 ];
+
+const singleAudioData = {
+    src: meydnPureWater,
+    content: 'Pure Water',
+    mediaMetadata: {
+        title: 'Pure Water',
+        artist: 'Meydän',
+        album: 'Interplanetary Forest',
+        artwork: [
+            {src: icon64, sizes: '64x64', type: 'image/png'},
+            {src: icon128, sizes: '128x128', type: 'image/png'},
+            {src: icon256, sizes: '256x256', type: 'image/png'},
+            {src: icon512, sizes: '512x512', type: 'image/png'},
+        ],
+    },
+};
 
 export function App(): Node {
     return (
         <div>
             <AudioPlayerControlSprite/>
-
             <br/>
             <br/>
             <br/>
@@ -62,7 +108,7 @@ export function App(): Node {
             <br/>
             <br/>
 
-            <Audio mediaMetadata={audioDataList[0].mediaMetadata} src={audioDataList[0].src} useRepeatButton/>
+            <Audio mediaMetadata={singleAudioData.mediaMetadata} src={singleAudioData.src} useRepeatButton/>
 
             <br/>
             <br/>
