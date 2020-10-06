@@ -16,10 +16,17 @@ import meydnPureWater from '../../../file/audio/meydn-pure-water.mp3';
 import type {TrackType} from '../../../../src/audio-player/audio-player-type';
 import {AudioPlayerControlSprite, Audio, AudioPlayer} from '../../../../src/audio-player';
 
+function LinkToNpm(): Node {
+    return (
+        <a href="https://npmjs.com" rel="noreferrer" target="_blank">
+            Your custom `content`
+        </a>
+    );
+}
+
 const audioDataList: Array<TrackType> = [
     {
         src: lesserFaith,
-        content: 'Lesser Faith',
         mediaMetadata: {
             title: 'Lesser Faith',
             artist: 'J. Syreus Bach',
@@ -34,7 +41,7 @@ const audioDataList: Array<TrackType> = [
     },
     {
         src: brothersAllegretto,
-        content: 'World of Brothers (Allegretto)',
+        content: <LinkToNpm/>,
         mediaMetadata: {
             title: 'World of Brothers (Allegretto)',
             artist: 'Dee Yan-Key',
@@ -49,7 +56,6 @@ const audioDataList: Array<TrackType> = [
     },
     {
         src: atLeastItIs,
-        content: 'At Least It Is',
         mediaMetadata: {
             title: 'At Least It Is',
             artist: 'Mid-Air Machine',
@@ -64,7 +70,6 @@ const audioDataList: Array<TrackType> = [
     },
     {
         src: theGhostInYourPiano,
-        content: 'Climb',
         mediaMetadata: {
             title: 'Climb',
             artist: 'The Ghost in Your Piano',
@@ -81,7 +86,6 @@ const audioDataList: Array<TrackType> = [
 
 const singleAudioData = {
     src: meydnPureWater,
-    content: 'Pure Water',
     mediaMetadata: {
         title: 'Pure Water',
         artist: 'Meydän',
@@ -95,6 +99,7 @@ const singleAudioData = {
     },
 };
 
+// eslint-disable-next-line react/no-multi-comp
 export function App(): Node {
     return (
         <div>
