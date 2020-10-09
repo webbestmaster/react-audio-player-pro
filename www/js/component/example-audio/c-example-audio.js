@@ -32,11 +32,10 @@ export function ExampleAudio(): Node {
     };
 
     return (
-        <>
+        <div className="example-wrapper">
             <Markdown config={{useWrapper: false}} mdInput={exampleAudio}/>
-
-            <AudioPlayerControlSprite/>
             <Audio mediaMetadata={singleAudioData.mediaMetadata} src={singleAudioData.src} useRepeatButton/>
-        </>
+            <AudioPlayerControlSprite/>
+        </div>
     );
 }

@@ -2,7 +2,6 @@
 
 ```
 import React from 'react';
-
 import {AudioPlayerControlSprite, Audio} from 'react-audio-player-pro';
 
 const mediaMetadata = {
