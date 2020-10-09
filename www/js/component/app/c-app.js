@@ -11,10 +11,10 @@ import lesserFaith from '../../../file/audio/j-syreus-bach-lesser-faith.mp3';
 import brothersAllegretto from '../../../file/audio/dee-yan-key-world-of-brothers-allegretto.mp3';
 import atLeastItIs from '../../../file/audio/mid-air-machine-at-least-it-is.mp3';
 import theGhostInYourPiano from '../../../file/audio/the-ghost-in-your-piano-climb.mp3';
-import meydnPureWater from '../../../file/audio/meydn-pure-water.mp3';
 
 import type {TrackType} from '../../../../src/audio-player/audio-player-type';
-import {AudioPlayerControlSprite, Audio, AudioPlayer} from '../../../../src/audio-player';
+import {AudioPlayer} from '../../../../src/audio-player';
+import {ExampleAudio} from '../example-audio/c-example-audio';
 
 function LinkToNpm(): Node {
     return (
@@ -84,33 +84,16 @@ const audioDataList: Array<TrackType> = [
     },
 ];
 
-const singleAudioData = {
-    src: meydnPureWater,
-    mediaMetadata: {
-        title: 'Pure Water',
-        artist: 'Meydän',
-        album: 'Interplanetary Forest',
-        artwork: [
-            {src: icon64, sizes: '64x64', type: 'image/png'},
-            {src: icon128, sizes: '128x128', type: 'image/png'},
-            {src: icon256, sizes: '256x256', type: 'image/png'},
-            {src: icon512, sizes: '512x512', type: 'image/png'},
-        ],
-    },
-};
-
 // eslint-disable-next-line react/no-multi-comp
 export function App(): Node {
     return (
-        <div>
-            <AudioPlayerControlSprite/>
-
-            <Audio mediaMetadata={singleAudioData.mediaMetadata} src={singleAudioData.src} useRepeatButton/>
+        <>
+            <ExampleAudio/>
 
             <br/>
             <br/>
 
             <AudioPlayer trackList={audioDataList}/>
-        </div>
+        </>
     );
 }
