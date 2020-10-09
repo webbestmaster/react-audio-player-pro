@@ -49,4 +49,13 @@ body {
             text-decoration: underline;
         }
     }
+
+    .top-content {
+        display: block;
+        flex-shrink: 0;
+
+        .main-header {
+            margin-right: 110px;
+        }
+    }
 }

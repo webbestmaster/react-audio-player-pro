@@ -49,6 +49,7 @@ module.exports.rules = [
     {
         test: /\.css$/,
         use: [
+            cssLoader,
             'css-module-flow-loader',
             {
                 loader: 'css-loader',

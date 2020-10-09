@@ -104,14 +104,6 @@ export function App(): Node {
     return (
         <div>
             <AudioPlayerControlSprite/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
 
             <Audio mediaMetadata={singleAudioData.mediaMetadata} src={singleAudioData.src} useRepeatButton/>
 
