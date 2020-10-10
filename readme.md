@@ -27,7 +27,7 @@ Use `./flow-typed/markdown-pro.js`.
 Use `./@types/index.d.ts`.
 
 
-## Usage example &lt;Audio/&gt;
+## Usage example <Audio/>
 
 ```javascript
 import React from 'react';
@@ -55,9 +55,9 @@ const mediaMetadata = {
 
 export function ExampleAudio() {
     return (
-        &lt;&gt;
-            &lt;AudioPlayerControlSprite/&gt;
-            &lt;Audio
+        <>
+            <AudioPlayerControlSprite/>
+            <Audio
                 // string - path to audio file, required
                 src="/path/to/audio/file"
 
@@ -72,31 +72,31 @@ export function ExampleAudio() {
                 // callback function - called on did mount, optional, default: noop
                 onDidMount={console.log}
 
-                // string - name for download file, optional, deafult: &lt;src&gt;
+                // string - name for download file, optional, deafult: <src>
                 downloadFileName="my-file.mp3"
 
                 // boolean - show repeat button, optional, deafult: false
                 useRepeatButton={true}
-            /&gt;
-        &lt;/&gt;
+            />
+        </>
     );
 }
 ```
 
 
-## Usage example &lt;AudioPlayer/&gt;
+## Usage example <AudioPlayer/>
 
 ```javascript
 import React from 'react';
 import {AudioPlayerControlSprite, AudioPlayer} from 'react-audio-player-pro';
 
-const audioTrackList: Array&lt;Track&gt; = [
+const audioTrackList: Array<Track> = [
     {
         // string - path to audio file, required
         src: '/path/to/audio/file',
 
-        // React$Node - custom content instead of title, optional, deafult: &lt;title&gt or &lt;src&gt
-        content: &lt;CustomContent/&gt;,
+        // React$Node - custom content instead of title, optional, deafult: <title> or <src>
+        content: <CustomContent/>,
 
         // MediaMetadata - media meta data, see `mediaMetadata` above
         // https://developer.mozilla.org/en-US/docs/Web/API/MediaMetadata/MediaMetadata
@@ -116,10 +116,10 @@ const audioTrackList: Array&lt;Track&gt; = [
 
 export function ExampleAudioPlayer() {
     return (
-        &lt;&gt;
-            &lt;AudioPlayerControlSprite/&gt;
-            &lt;AudioPlayer
-                // Array&lt;Track&gt; - list of track, see `audioTrackList` above, required
+        <>
+            <AudioPlayerControlSprite/>
+            <AudioPlayer
+                // Array<Track> - list of track, see `audioTrackList` above, required
                 trackList={audioTrackList}
 
                 // string - wrapper's class name, optional, deafult: ''
@@ -127,8 +127,8 @@ export function ExampleAudioPlayer() {
 
                 // callback function - called on did mount, optional, default: noop
                 onDidMount={console.log}
-            /&gt;
-        &lt;/&gt;
+            />
+        </>
     );
 }
 ```
