@@ -1,9 +1,9 @@
 // @flow
 
 import React, {Component, type Node} from 'react';
-import classNames from 'classnames';
 
 import type {PlayerPlayingStateType, PlayerRepeatingStateType} from '../audio-player-type';
+import {Spinner} from '../../layout/spinner/c-spinner';
 
 import {AudioPlayerHeadPlayingBar} from './audio-player-head-playing-bar/c-audio-player-head-playing-bar';
 import {AudioPlayerHeadControls} from './audio-player-head-controls/c-audio-player-head-controls';
@@ -29,6 +29,7 @@ type PropsType = {|
     +trackCurrentTime: number,
     +trackVolume: number,
     +trackFullTime: number,
+    +isLoading: boolean,
 |};
 
 type StateType = {};
@@ -61,10 +62,22 @@ export class AudioPlayerHead extends Component<PropsType, StateType> {
             trackCurrentTime,
             trackVolume,
             trackFullTime,
+            isLoading,
         } = props;
 
         return (
             <div className={audioPlayerHeadStyle.audio_player_head}>
+                <Spinner
+                    className={audioPlayerHeadStyle.spinner}
+                    isShow={isLoading}
+                    lineWidth={3}
+                    position="absolute"
+                    size={26}
+                    wrapperHeight={26}
+                    wrapperPadding={0}
+                    wrapperWidth={26}
+                />
+
                 <AudioPlayerHeadControls
                     isShuffleOn={isShuffleOn}
                     isTrackListOpen={isTrackListOpen}

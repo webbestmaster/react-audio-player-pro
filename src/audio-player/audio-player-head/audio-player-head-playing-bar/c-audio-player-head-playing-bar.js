@@ -45,6 +45,10 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
         const {props} = this;
         const {trackCurrentTime, trackFullTime, onChangeProgressBar} = props;
 
+        if (trackFullTime === 0) {
+            return <RangeBar isDisable onChange={onChangeProgressBar} progress={0}/>;
+        }
+
         return <RangeBar onChange={onChangeProgressBar} progress={trackCurrentTime / trackFullTime}/>;
     }
 

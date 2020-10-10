@@ -35,6 +35,7 @@ type StateType = {|
     +isShuffleOn: boolean,
     +repeatingState: PlayerRepeatingStateType,
     +isTrackListOpen: boolean,
+    +isLoadingMetadata: boolean,
 |};
 
 export class AudioPlayer extends Component<PropsType, StateType> {
@@ -51,6 +52,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
             isShuffleOn: false,
             repeatingState: playerRepeatingStateTypeMap.none,
             isTrackListOpen: true,
+            isLoadingMetadata: true,
         };
 
         this.ref = {
@@ -103,12 +105,13 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         const {trackVolume} = state;
         const audioTag = this.getAudioTag();
 
+        this.setState({isLoadingMetadata: false});
+
         if (!audioTag) {
             return;
         }
 
         this.setState({
-            trackCurrentTime: 0,
             trackFullTime: audioTag.duration,
         });
 
@@ -147,7 +150,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         if (isShuffleOn) {
             const randomActiveIndex = getRandom(0, trackList.length);
 
-            this.setState({activeIndex: randomActiveIndex}, this.handleClickPlay);
+            this.setActiveIndex(randomActiveIndex, this.handleClickPlay);
             return;
         }
 
@@ -172,7 +175,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
             return;
         }
 
-        this.setState({activeIndex: 0});
+        this.setActiveIndex(0);
     };
 
     handleAudioTagOnPlay = () => {
@@ -303,9 +306,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
 
         const nextIndex = getShiftIndex(trackList.length, activeIndex, 1);
 
-        this.setState({
-            activeIndex: nextIndex,
-        });
+        this.setActiveIndex(nextIndex);
     };
 
     handleClickPrevTrack = () => {
@@ -315,9 +316,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
 
         const nextIndex = getShiftIndex(trackList.length, activeIndex, -1);
 
-        this.setState({
-            activeIndex: nextIndex,
-        });
+        this.setActiveIndex(nextIndex);
     };
 
     handleClickShuffle = () => {
@@ -378,10 +377,12 @@ export class AudioPlayer extends Component<PropsType, StateType> {
             trackCurrentTime,
             trackVolume,
             trackFullTime,
+            isLoadingMetadata,
         } = state;
 
         return (
             <AudioPlayerHead
+                isLoading={isLoadingMetadata}
                 isMuted={isMuted}
                 isShuffleOn={isShuffleOn}
                 isTrackListOpen={isTrackListOpen}
@@ -404,7 +405,12 @@ export class AudioPlayer extends Component<PropsType, StateType> {
     }
 
     setActiveIndex = (activeIndex: number, callBack?: () => mixed) => {
-        this.setState({activeIndex}, callBack);
+        this.setState({
+            activeIndex,
+            isLoadingMetadata: true,
+            trackCurrentTime: 0,
+            trackFullTime: 0,
+        });
     };
 
     renderAudioPlayerTrackList(): Node {
