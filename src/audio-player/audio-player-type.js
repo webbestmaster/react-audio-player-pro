@@ -25,3 +25,31 @@ export type TrackType = {|
     // eslint-disable-next-line id-match
     +content?: React$Node,
 |};
+
+export type DefaultAudioPlayerStateType = {|
+    +isTrackListOpen?: boolean,
+    +activeIndex?: number,
+    +isShuffleOn?: boolean,
+    +isMuted?: boolean,
+    +repeatingState?: PlayerRepeatingStateType,
+|};
+
+export type AudioPlayerStateType = {|
+    +trackCurrentTime: number,
+    +trackFullTime: number,
+    +trackVolume: number,
+    +isMuted: boolean,
+    +playingState: PlayerPlayingStateType,
+    +activeIndex: number,
+    +isShuffleOn: boolean,
+    +repeatingState: PlayerRepeatingStateType,
+    +isTrackListOpen: boolean,
+    +isLoadingMetadata: boolean,
+|};
+
+export type AudioPlayerPropsType = {|
+    +trackList: Array<TrackType>,
+    +className?: string,
+    +onDidMount?: (audioNode: HTMLAudioElement | null) => mixed,
+    +defaultState?: DefaultAudioPlayerStateType,
+|};

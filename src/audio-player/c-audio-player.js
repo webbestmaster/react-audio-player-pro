@@ -2,58 +2,31 @@
 
 import React, {Component, type Node} from 'react';
 
-import {hasVolumeBar} from '../lib/system';
 import {setMediaMetadata} from '../lib/media-meta-data/media-meta-data';
 import {getRandom, getShiftIndex} from '../lib/number';
 
 import {AudioPlayerHead} from './audio-player-head/c-audio-player-head';
 import {AudioPlayerTrackList} from './audio-player-track-list/c-audio-player-track-list';
-import type {PlayerPlayingStateType, PlayerRepeatingStateType, TrackType} from './audio-player-type';
+import type {AudioPlayerPropsType, AudioPlayerStateType, TrackType} from './audio-player-type';
 
 import {
     playerPlayingStateTypeMap,
     seekStepSecond,
     playerRepeatingStateTypeList,
     playerRepeatingStateTypeMap,
+    defaultAudioPlayerState,
 } from './audio-player-const';
 
 import audioPlayerStyle from './audio-player.scss';
 
-type PropsType = {|
-    +trackList: Array<TrackType>,
-    +className?: string,
-    +onDidMount?: (audioNode: HTMLAudioElement | null) => mixed,
-|};
-
-type StateType = {|
-    +trackCurrentTime: number,
-    +trackFullTime: number,
-    +trackVolume: number,
-    +isMuted: boolean,
-    +playingState: PlayerPlayingStateType,
-    +activeIndex: number,
-    +isShuffleOn: boolean,
-    +repeatingState: PlayerRepeatingStateType,
-    +isTrackListOpen: boolean,
-    +isLoadingMetadata: boolean,
-|};
+type StateType = AudioPlayerStateType;
+type PropsType = AudioPlayerPropsType;
 
 export class AudioPlayer extends Component<PropsType, StateType> {
     constructor(props: PropsType) {
         super(props);
 
-        this.state = {
-            trackCurrentTime: 0,
-            trackFullTime: 0,
-            trackVolume: hasVolumeBar ? 0.5 : 1,
-            isMuted: false,
-            playingState: playerPlayingStateTypeMap.paused,
-            activeIndex: 0,
-            isShuffleOn: false,
-            repeatingState: playerRepeatingStateTypeMap.none,
-            isTrackListOpen: true,
-            isLoadingMetadata: true,
-        };
+        this.state = this.getDefaultState(props);
 
         this.ref = {
             refAudio: React.createRef<HTMLAudioElement>(),
@@ -78,6 +51,16 @@ export class AudioPlayer extends Component<PropsType, StateType> {
     ref: {|
         +refAudio: {current: HTMLAudioElement | null},
     |};
+
+    getDefaultState(props: PropsType): StateType {
+        const {defaultState = {}} = props;
+
+        // $FlowFixMe
+        return {
+            ...defaultAudioPlayerState,
+            ...defaultState,
+        };
+    }
 
     getAudioTag(): HTMLAudioElement | null {
         const {ref} = this;

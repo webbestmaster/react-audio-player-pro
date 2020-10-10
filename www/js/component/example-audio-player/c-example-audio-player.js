@@ -83,7 +83,16 @@ export function ExamplePlayer(): Node {
     return (
         <div className="example-wrapper">
             <Markdown config={{useWrapper: false}} mdInput={exampleAudioPlayer}/>
-            <AudioPlayer trackList={audioDataList}/>
+            <AudioPlayer
+                defaultState={{
+                    isMuted: false,
+                    activeIndex: 0,
+                    isShuffleOn: false,
+                    isTrackListOpen: true,
+                    repeatingState: 'none',
+                }}
+                trackList={audioDataList}
+            />
             <AudioPlayerControlSprite/>
         </div>
     );

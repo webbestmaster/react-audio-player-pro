@@ -1,5 +1,7 @@
 /// <reference types="react" />
 
+import {DefaultAudioPlayerStateType} from "react-audio-player-pro"
+
 declare module 'react-audio-player-pro' {
     export interface AudioPlayerListItemArtworkType {
         src: string, // 'https://dummyimage.com/96x96',
@@ -21,6 +23,14 @@ declare module 'react-audio-player-pro' {
         content?: React.ReactNode,
     }
 
+    export interface DefaultAudioPlayerStateType {
+        isTrackListOpen?: boolean,
+        activeIndex?: number,
+        isShuffleOn?: boolean,
+        isMuted?: boolean,
+        repeatingState?: 'none' | 'all' | 'one',
+    }
+
     export const AudioPlayerControlSprite: (props: {}) => React.SFC<{}>;
 
     export interface AudioPropsType {
@@ -38,6 +48,7 @@ declare module 'react-audio-player-pro' {
         trackList: Array<TrackType>,
         className?: string,
         onDidMount?: (audioNode: HTMLAudioElement | null) => void,
+        defaultState?: DefaultAudioPlayerStateType,
     }
 
     export const AudioPlayer: (props: AudioPlayerPropsType) => React.SFC<AudioPlayerPropsType>;

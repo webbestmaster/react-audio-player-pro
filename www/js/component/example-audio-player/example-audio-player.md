@@ -41,6 +41,24 @@ export function ExampleAudioPlayer() {
 
                 // callback function - called on did mount, optional, default: noop
                 onDidMount={console.log}
+
+                // default player state, optional
+                defaultState={{
+                    // boolean - is player muted, optional, default: false
+                    isMuted: false,
+
+                    // number - active song index, optional, default: 0
+                    activeIndex: 0,
+
+                    // boolean - is shuffle on, optional, default: false
+                    isShuffleOn: false,
+
+                    // boolean - is track list open, optional, default: true
+                    isTrackListOpen: true,
+
+                    // string: 'none' | 'all' | 'one' - repeating state, optional, default: 'none'
+                    repeatingState: 'none',
+                }}
             /&gt;
         &lt;/&gt;
     );

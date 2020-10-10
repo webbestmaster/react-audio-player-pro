@@ -21,6 +21,16 @@ declare module 'react-audio-player-pro' {
         +content?: React$Node,
     |};
 
+    declare export type PlayerRepeatingStateType = 'none' | 'all' | 'one';
+
+    declare export type DefaultAudioPlayerStateType = {|
+        +isTrackListOpen?: boolean,
+        +activeIndex?: number,
+        +isShuffleOn?: boolean,
+        +isMuted?: boolean,
+        +repeatingState?: PlayerRepeatingStateType,
+    |};
+
     // eslint-disable-next-line id-match
     declare export var AudioPlayerControlSprite: React$ComponentType<{}>;
 
@@ -40,6 +50,7 @@ declare module 'react-audio-player-pro' {
         +trackList: Array<TrackType>,
         +className?: string,
         +onDidMount?: (audioNode: HTMLAudioElement | null) => mixed,
+        +defaultState?: DefaultAudioPlayerStateType,
     |};
 
     // eslint-disable-next-line id-match
