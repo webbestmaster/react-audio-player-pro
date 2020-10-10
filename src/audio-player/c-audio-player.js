@@ -416,7 +416,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
     renderAudioPlayerTrackList(): Node {
         const {state, props} = this;
         const {trackList} = props;
-        const {playingState, isTrackListOpen, activeIndex} = state;
+        const {playingState, isTrackListOpen, activeIndex, isLoadingMetadata} = state;
 
         if (!isTrackListOpen) {
             return null;
@@ -425,6 +425,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         return (
             <AudioPlayerTrackList
                 activeIndex={activeIndex}
+                isLoading={isLoadingMetadata}
                 onClickPlay={this.handleClickPlay}
                 playingState={playingState}
                 setActiveIndex={this.setActiveIndex}

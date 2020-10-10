@@ -7,6 +7,7 @@ import type {PlayerPlayingStateType, TrackType} from '../../audio-player-type';
 import {playerPlayingStateTypeMap} from '../../audio-player-const';
 import {SvgImage} from '../../../layout/svg-image/c-svg-image';
 import {audioPlayerIconIdPrefix} from '../../../layout/audio-player-control-sprite/c-audio-player-control-sprite';
+import {Spinner} from '../../../layout/spinner/c-spinner';
 
 import audioPlayerTrackListItemStyle from './audio-player-track-list-item.scss';
 
@@ -17,6 +18,7 @@ type PropsType = {|
     +playingState: PlayerPlayingStateType,
     +onClickPlay: () => mixed,
     +setActiveIndex: (activeIndex: number, callBack?: () => mixed) => mixed,
+    +isLoading: boolean,
 |};
 
 type StateType = {};
@@ -42,6 +44,13 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
         setActiveIndex(activeIndex, onClickPlay);
     };
 
+    renderLoadingSpinner(): Node {
+        const {props} = this;
+        const {isLoading} = props;
+
+        return <Spinner isShow={isLoading} lineWidth={4} position="absolute" size={30} wrapperPadding={0}/>;
+    }
+
     renderButton(): Node {
         const {props} = this;
         const {isCurrentTrack, playingState, onClickPlay} = props;
@@ -53,6 +62,7 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
             if (isCurrentTrack) {
                 return (
                     <button className={audioPlayerTrackListItemStyle.button} onClick={onClickPlay} type="button">
+                        {this.renderLoadingSpinner()}
                         <SvgImage
                             className={audioPlayerTrackListItemStyle.button_image__active}
                             imageId={pauseImageId}
@@ -75,6 +85,7 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
         if (isCurrentTrack) {
             return (
                 <button className={audioPlayerTrackListItemStyle.button} onClick={onClickPlay} type="button">
+                    {this.renderLoadingSpinner()}
                     <SvgImage className={audioPlayerTrackListItemStyle.button_image} imageId={playImageId}/>
                 </button>
             );

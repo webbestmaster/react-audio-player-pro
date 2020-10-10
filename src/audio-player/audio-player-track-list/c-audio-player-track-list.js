@@ -14,6 +14,7 @@ type PropsType = {|
     +playingState: PlayerPlayingStateType,
     +onClickPlay: () => mixed,
     +setActiveIndex: (activeIndex: number) => mixed,
+    +isLoading: boolean,
 |};
 
 type StateType = {};
@@ -27,13 +28,16 @@ export class AudioPlayerTrackList extends Component<PropsType, StateType> {
 
     renderAudioItemList(): Array<Node> {
         const {props} = this;
-        const {trackList, activeIndex, playingState, onClickPlay, setActiveIndex} = props;
+        const {trackList, activeIndex, playingState, onClickPlay, setActiveIndex, isLoading} = props;
 
         return trackList.map((track: TrackType, index: number): Node => {
+            const isCurrentTrack = activeIndex === index;
+
             return (
                 <AudioPlayerTrackListItem
                     activeIndex={index}
-                    isCurrentTrack={activeIndex === index}
+                    isCurrentTrack={isCurrentTrack}
+                    isLoading={isLoading && isCurrentTrack}
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
                     onClickPlay={onClickPlay}

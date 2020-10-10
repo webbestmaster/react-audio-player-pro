@@ -21,6 +21,12 @@
     border: 0;
     background-color: transparent;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
 %button--image,
@@ -30,8 +36,10 @@
     border-radius: 100%;
     display: block;
     height: 18px;
-    margin-left: 12px;
     width: 18px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
 }
 
 .button_image__active {
