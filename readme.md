@@ -4,11 +4,10 @@
 [![GitHub license](https://img.shields.io/npm/l/react-audio-player-pro)](https://github.com/webbestmaster/react-audio-player-pro/blob/master/license)
 [![npm version](https://img.shields.io/npm/v/react-audio-player-pro.svg?style=flat)](https://www.npmjs.com/package/react-audio-player-pro)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-audio-player-pro)
-[![Coverage Status](https://coveralls.io/repos/github/webbestmaster/react-audio-player-pro/badge.svg?branch=master)](https://coveralls.io/github/webbestmaster/react-audio-player-pro?branch=master)
 [![GitHub stars](https://img.shields.io/github/stars/webbestmaster/react-audio-player-pro?style=social&maxAge=2592000)](https://github.com/webbestmaster/react-audio-player-pro/)
 
 
-**[Demo](http://webbestmaster.github.io/audio-player)**
+**[Live demo](http://webbestmaster.github.io/audio-player)**
 
 
 ## Install
@@ -16,6 +15,17 @@
 ```bash
 npm i markdown-pro
 ```
+
+
+### Typing Flow
+
+Use `./flow-typed/markdown-pro.js`.
+
+
+### Typing TypeScript
+
+Use `./@types/index.d.ts`.
+
 
 ## Usage example &lt;Audio/&gt;
 
