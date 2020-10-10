@@ -1,13 +1,13 @@
 ### Example &lt;AudioPlayer/&gt;
 
-```
+```javascript
 import React from 'react';
 import {AudioPlayerControlSprite, AudioPlayer} from 'react-audio-player-pro';
 
 const audioTrackList: Array&lt;Track&gt; = [
     {
         // string - path to audio file, required
-        src="/path/to/audio/file"
+        src: '/path/to/audio/file',
 
         // React$Node - custom content instead of title, optional, deafult: &lt;title&gt or &lt;src&gt
         content: &lt;CustomContent/&gt;,
@@ -20,8 +20,8 @@ const audioTrackList: Array&lt;Track&gt; = [
             artist: 'J. Syreus Bach',
             album: 'Ability to Break ~ Energetic Tracks',
             artwork: [
-                {src: /path/to/image/64px/64px, sizes: '64x64', type: 'image/png'},
-                {src: /path/to/image/128px/128px, sizes: '128x128', type: 'image/png'},
+                {src: '/path/to/image/64px/64px', sizes: '64x64', type: 'image/png'},
+                {src: '/path/to/image/128px/128px', sizes: '128x128', type: 'image/png'},
             ],
         },
     },

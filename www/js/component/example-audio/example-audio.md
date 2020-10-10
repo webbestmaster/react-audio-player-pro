@@ -1,6 +1,6 @@
 ### Example &lt;Audio/&gt;
 
-```
+```javascript
 import React from 'react';
 import {AudioPlayerControlSprite, Audio} from 'react-audio-player-pro';
 
@@ -19,8 +19,8 @@ const mediaMetadata = {
     artwork: [
 
         // src, sizes and type is required
-        {src: /path/to/image/64px/64px, sizes: '64x64', type: 'image/png'},
-        {src: /path/to/image/128px/128px, sizes: '128x128', type: 'image/png'},
+        {src: '/path/to/image/64px/64px', sizes: '64x64', type: 'image/png'},
+        {src: '/path/to/image/128px/128px', sizes: '128x128', type: 'image/png'},
     ],
 };
 
@@ -46,8 +46,8 @@ export function ExampleAudio() {
                 // string - name for download file, optional, deafult: &lt;src&gt;
                 downloadFileName="my-file.mp3"
 
-                // boolean - use repeat button, optional, deafult: false
-                useRepeatButton={false}
+                // boolean - show repeat button, optional, deafult: false
+                useRepeatButton={true}
             /&gt;
         &lt;/&gt;
     );
