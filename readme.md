@@ -27,7 +27,7 @@ Use `./flow-typed/markdown-pro.js`.
 Use `./@types/index.d.ts`.
 
 
-## Usage example <Audio/>
+## Usage example &lt;Audio/&gt;
 
 ```javascript
 import React from 'react';
@@ -84,7 +84,7 @@ export function ExampleAudio() {
 ```
 
 
-## Usage example <AudioPlayer/>
+## Usage example &lt;AudioPlayer/&gt;
 
 ```javascript
 import React from 'react';
