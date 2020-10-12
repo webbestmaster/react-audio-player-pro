@@ -236,7 +236,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
             <audio
                 autoPlay={playingState === playerPlayingStateTypeMap.playing}
                 className={audioPlayerStyle.audio_tag}
-                key={activeIndex + src}
+                key="audio-tag"
                 muted={isMuted}
                 onEnded={this.handleAudioTagOnEnded}
                 onError={this.handleAudioTagOnTrackError}
