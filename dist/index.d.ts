@@ -1,7 +1,3 @@
-/// <reference types="react" />
-
-import {DefaultAudioPlayerStateType} from "react-audio-player-pro"
-
 declare module 'react-audio-player-pro' {
     export interface AudioPlayerListItemArtworkType {
         src: string, // 'https://dummyimage.com/96x96',
@@ -31,7 +27,7 @@ declare module 'react-audio-player-pro' {
         repeatingState?: 'none' | 'all' | 'one',
     }
 
-    export const AudioPlayerControlSprite: (props: {}) => React.SFC<{}>;
+    export const AudioPlayerControlSprite: React.FC<{}>;
 
     export interface AudioPropsType {
         src: string,
@@ -42,7 +38,7 @@ declare module 'react-audio-player-pro' {
         useRepeatButton?: boolean,
     }
 
-    export const Audio: (props: AudioPropsType) => React.SFC<AudioPropsType>;
+    export const Audio: React.FC<AudioPropsType>;
 
     export interface AudioPlayerPropsType {
         trackList: Array<TrackType>,
@@ -51,7 +47,7 @@ declare module 'react-audio-player-pro' {
         defaultState?: DefaultAudioPlayerStateType,
     }
 
-    export const AudioPlayer: (props: AudioPlayerPropsType) => React.SFC<AudioPlayerPropsType>;
+    export const AudioPlayer: React.FC<AudioPlayerPropsType>;
 }
 
 declare module 'react-audio-player-pro/dist/style.css' {

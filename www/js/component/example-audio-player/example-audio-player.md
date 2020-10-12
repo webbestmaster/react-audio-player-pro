@@ -2,9 +2,10 @@
 
 ```javascript
 import React from 'react';
-import {AudioPlayerControlSprite, AudioPlayer} from 'react-audio-player-pro';
+import {AudioPlayerControlSprite, AudioPlayer, TrackType} from 'react-audio-player-pro';
+import style from 'react-audio-player-pro/dist/style.css';
 
-const audioTrackList: Array&lt;Track&gt; = [
+const audioTrackList: Array&lt;TrackType&gt; = [
     {
         // string - path to audio file, required
         src: '/path/to/audio/file',
@@ -33,7 +34,7 @@ export function ExampleAudioPlayer() {
         &lt;&gt;
             &lt;AudioPlayerControlSprite/&gt;
             &lt;AudioPlayer
-                // Array&lt;Track&gt; - list of track, see `audioTrackList` above, required
+                // Array&lt;TrackType&gt; - list of track, see `audioTrackList` above, required
                 trackList={audioTrackList}
 
                 // string - wrapper's class name, optional, deafult: ''

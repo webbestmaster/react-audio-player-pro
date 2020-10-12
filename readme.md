@@ -32,6 +32,7 @@ Use `./@types/index.d.ts`.
 ```javascript
 import React from 'react';
 import {AudioPlayerControlSprite, Audio} from 'react-audio-player-pro';
+import style from 'react-audio-player-pro/dist/style.css';
 
 const mediaMetadata = {
 
@@ -64,7 +65,7 @@ export function ExampleAudio() {
                 // MediaMetadata - media meta data
                 // https://developer.mozilla.org/en-US/docs/Web/API/MediaMetadata/MediaMetadata
                 // optional
-                mediaMetadata={audioData.mediaMetadata}
+                mediaMetadata={mediaMetadata}
 
                 // string - wrapper's class name, optional, deafult: ''
                 className="my-class-name"
@@ -88,9 +89,10 @@ export function ExampleAudio() {
 
 ```javascript
 import React from 'react';
-import {AudioPlayerControlSprite, AudioPlayer} from 'react-audio-player-pro';
+import {AudioPlayerControlSprite, AudioPlayer, TrackType} from 'react-audio-player-pro';
+import style from 'react-audio-player-pro/dist/style.css';
 
-const audioTrackList: Array<Track> = [
+const audioTrackList: Array<TrackType> = [
     {
         // string - path to audio file, required
         src: '/path/to/audio/file',
@@ -119,7 +121,7 @@ export function ExampleAudioPlayer() {
         <>
             <AudioPlayerControlSprite/>
             <AudioPlayer
-                // Array<Track> - list of track, see `audioTrackList` above, required
+                // Array<TrackType> - list of track, see `audioTrackList` above, required
                 trackList={audioTrackList}
 
                 // string - wrapper's class name, optional, deafult: ''
