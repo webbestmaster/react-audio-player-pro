@@ -3,7 +3,7 @@
 ```javascript
 import React from 'react';
 import {AudioPlayerControlSprite, Audio} from 'react-audio-player-pro';
-import style from 'react-audio-player-pro/dist/style.css';
+import reactAudioPlayerProStyle from 'react-audio-player-pro/dist/style.css';
 
 const mediaMetadata = {
 

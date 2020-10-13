@@ -32,7 +32,7 @@ Use `./@types/index.d.ts`.
 ```javascript
 import React from 'react';
 import {AudioPlayerControlSprite, Audio} from 'react-audio-player-pro';
-import style from 'react-audio-player-pro/dist/style.css';
+import reactAudioPlayerProStyle from 'react-audio-player-pro/dist/style.css';
 
 const mediaMetadata = {
 
@@ -90,7 +90,7 @@ export function ExampleAudio() {
 ```javascript
 import React from 'react';
 import {AudioPlayerControlSprite, AudioPlayer, TrackType} from 'react-audio-player-pro';
-import style from 'react-audio-player-pro/dist/style.css';
+import reactAudioPlayerProStyle from 'react-audio-player-pro/dist/style.css';
 
 const audioTrackList: Array<TrackType> = [
     {
