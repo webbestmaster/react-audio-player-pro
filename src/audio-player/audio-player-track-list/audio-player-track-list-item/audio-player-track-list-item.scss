@@ -1,9 +1,13 @@
 .audio_player_track_list_item {
-    display: block;
+    display: flex;
     font-family: verdana,geneva,sans-serif;
     min-height: 48px;
     padding: 0;
     margin: 0;
+    flex-direction: row;
+    align-items: center;
+    font-size: 14px;
+    line-height: 1.4;
 
     &:hover,
     &.audio_player_track_list_item__active {
@@ -12,13 +16,14 @@
 }
 
 .button {
-    float: left;
+    //float: left;
     height: 48px;
     outline: none;
     width: 48px;
     padding: 0;
     margin: 0;
     border: 0;
+    flex-shrink: 0;
     background-color: transparent;
     cursor: pointer;
     display: flex;
@@ -50,15 +55,15 @@
 }
 
 .content {
+    padding: 6px 8px 6px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 48px;
+    //margin-left: 48px;
     min-height: 48px;
     box-sizing: border-box;
-    padding: 6px 8px 6px 0;
-    font-size: 14px;
-    line-height: 1.4;
+    flex-grow: 1;
+    overflow: hidden;
 }
 
 .track_title {
@@ -72,4 +77,13 @@
     white-space: nowrap;
     margin: 0;
     padding: 0;
+}
+
+.audio_tag {
+    display: none;
+}
+
+.track_time {
+    padding-right: 8px;
+    flex-shrink: 0;
 }

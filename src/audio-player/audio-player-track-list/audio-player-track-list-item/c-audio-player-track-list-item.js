@@ -21,14 +21,26 @@ type PropsType = {|
     +isLoading: boolean,
 |};
 
-type StateType = {};
+type StateType = {|
+    +trackFullTime: number,
+|};
 
 export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
     constructor(props: PropsType) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            trackFullTime: 0,
+        };
+
+        this.ref = {
+            refAudio: React.createRef<HTMLAudioElement>(),
+        };
     }
+
+    ref: {|
+        +refAudio: {current: HTMLAudioElement | null},
+    |};
 
     handleSetActiveIndex = () => {
         const {props} = this;
@@ -116,6 +128,64 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
         );
     }
 
+    getAudioTag(): HTMLAudioElement | null {
+        const {ref} = this;
+        const {refAudio} = ref;
+
+        return refAudio.current;
+    }
+
+    handleOnTrackError = (error: Error) => {
+        console.error('[handleOnTrackError]: Error!');
+
+        throw error;
+    };
+
+    handleOnLoadedMetadata = () => {
+        const audioTag = this.getAudioTag();
+
+        if (!audioTag) {
+            return;
+        }
+
+        this.setState({
+            trackFullTime: audioTag.duration,
+        });
+    };
+
+    renderAudioTag(): Node {
+        const {props, ref} = this;
+        const {refAudio} = ref;
+        const {track} = props;
+        const {src} = track;
+
+        return (
+            <audio
+                className={audioPlayerTrackListItemStyle.audio_tag}
+                muted
+                onError={this.handleOnTrackError}
+                onLoadedMetadata={this.handleOnLoadedMetadata}
+                preload="auto"
+                ref={refAudio}
+                src={src}
+            />
+        );
+    }
+
+    renderFullTime(): Node {
+        const {props, state} = this;
+        const {trackFullTime} = state;
+
+        const trackFullTimeMinutes = Math.floor(trackFullTime / 60);
+        const trackFullTimeSeconds = String(Math.round(trackFullTime % 60)).padStart(2, '0');
+
+        return (
+            <div className={audioPlayerTrackListItemStyle.track_time}>
+                {trackFullTimeMinutes}:{trackFullTimeSeconds}
+            </div>
+        );
+    }
+
     render(): Node {
         const {props} = this;
         const {isCurrentTrack} = props;
@@ -126,8 +196,10 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
 
         return (
             <li className={className}>
+                {this.renderAudioTag()}
                 {this.renderButton()}
                 {this.renderContent()}
+                {this.renderFullTime()}
             </li>
         );
     }
