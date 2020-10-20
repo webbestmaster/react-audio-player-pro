@@ -19,10 +19,8 @@ module.exports.rules = [
         test: fileRegExp,
         use: [
             {
-                loader: 'base64-inline-loader',
+                loader: 'file-loader',
                 query: {
-                    limit: 1,
-                    // limit: isProduction ? 1 : 1, // 1k bytes for production
                     name: pathToLoadedFileFolder.replace(/^\//, '') + '/[name]-[md5:hash:hex:7].[ext]',
                 },
             },

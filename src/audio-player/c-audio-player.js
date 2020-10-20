@@ -161,9 +161,7 @@ export class AudioPlayer extends Component<PropsType, StateType> {
         this.setActiveIndex(0);
     };
 
-    handleAudioTagOnPlay = () => {
-        this.setState({playingState: playerPlayingStateTypeMap.playing});
-
+    updateMediaMetadata() {
         const track = this.getCurrentTrack();
 
         if (!track) {
@@ -180,6 +178,11 @@ export class AudioPlayer extends Component<PropsType, StateType> {
                 nexttrack: this.handleClickNextTrack,
             });
         }
+    }
+
+    handleAudioTagOnPlay = () => {
+        this.setState({playingState: playerPlayingStateTypeMap.playing});
+        this.updateMediaMetadata();
     };
 
     handleAudioTagOnTrackError = (error: Error) => {
@@ -394,6 +397,8 @@ export class AudioPlayer extends Component<PropsType, StateType> {
             trackCurrentTime: 0,
             trackFullTime: 0,
         });
+
+        this.updateMediaMetadata();
     };
 
     renderAudioPlayerTrackList(): Node {
