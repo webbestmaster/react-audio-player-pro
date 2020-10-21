@@ -165,7 +165,7 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
                 muted
                 onError={this.handleOnTrackError}
                 onLoadedMetadata={this.handleOnLoadedMetadata}
-                preload="auto"
+                preload="metadata"
                 ref={refAudio}
                 src={src}
             />
