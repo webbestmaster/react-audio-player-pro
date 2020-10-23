@@ -17,11 +17,11 @@ type PropsType = {|
 
 export function RangeBar(props: PropsType): Node {
     const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
-    const input = useRef<?HTMLInputElement>();
+    const inputRef = useRef<?HTMLInputElement>();
     const {className, isDisable, progress, onChange} = props;
 
     function getCurrentValue(): number {
-        const {current} = input;
+        const {current} = inputRef;
 
         if (!current) {
             return 0;
@@ -72,7 +72,7 @@ export function RangeBar(props: PropsType): Node {
                 max={inputData.max}
                 min={inputData.min}
                 onChange={handleProgressBarChange}
-                ref={input}
+                ref={inputRef}
                 step={inputData.step}
                 type="range"
             />

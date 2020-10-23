@@ -1,6 +1,8 @@
 // @flow
 
-import React, {Component, type Node} from 'react';
+/* global setTimeout */
+
+import React, {type Node, useState, useRef, useEffect} from 'react';
 import classNames from 'classnames';
 
 import {playerPlayingStateTypeMap, seekStepSecond} from '../audio-player-const';
@@ -23,153 +25,77 @@ type PropsType = {|
     +useRepeatButton?: boolean,
 |};
 
-type StateType = {|
-    +trackCurrentTime: number,
-    +trackFullTime: number,
-    +trackVolume: number,
-    +isMuted: boolean,
-    +playingState: PlayerPlayingStateType,
-    +isRepeatOn: boolean,
-|};
+// eslint-disable-next-line complexity, max-statements, sonarjs/cognitive-complexity
+export function Audio(props: PropsType): Node {
+    const {src, mediaMetadata, className, onDidMount, downloadFileName, useRepeatButton} = props;
 
-export class Audio extends Component<PropsType, StateType> {
-    constructor(props: PropsType) {
-        super(props);
+    const refAudio = useRef<?HTMLAudioElement>();
+    const [trackCurrentTime, setTrackCurrentTime] = useState<number>(0);
+    const [trackFullTime, setTrackFullTime] = useState<number>(0);
+    const [trackVolume, setTrackVolume] = useState<number>(hasVolumeBar ? 0.5 : 1);
+    const [isMuted, setIsMuted] = useState<boolean>(false);
+    const [playingState, setPlayingState] = useState<PlayerPlayingStateType>(playerPlayingStateTypeMap.paused);
+    const [isRepeatOn, setIsRepeatOn] = useState<boolean>(false);
+    const isActualMuted = isMuted || trackVolume === 0;
+    const soundImageId = isActualMuted ? 'button-sound-off' : 'button-sound-on';
 
-        this.state = {
-            trackCurrentTime: 0,
-            trackFullTime: 0,
-            trackVolume: hasVolumeBar ? 0.5 : 1,
-            isMuted: false,
-            playingState: playerPlayingStateTypeMap.paused,
-            isRepeatOn: false,
-        };
-
-        this.ref = {
-            refAudio: React.createRef<HTMLAudioElement>(),
-        };
-    }
-
-    componentDidMount() {
-        const {props, state} = this;
-        const {trackVolume} = state;
-        const {onDidMount} = props;
-        const audioTag = this.getAudioTag();
-
-        if (audioTag) {
-            audioTag.volume = trackVolume;
-        }
-
-        if (onDidMount) {
-            onDidMount(audioTag);
-        }
-    }
-
-    ref: {|
-        +refAudio: {current: HTMLAudioElement | null},
-    |};
-
-    getAudioTag(): HTMLAudioElement | null {
-        const {ref} = this;
-        const {refAudio} = ref;
-
-        return refAudio.current;
-    }
-
-    handlePause = () => {
-        const audioTag = this.getAudioTag();
-
-        if (!audioTag) {
-            console.error('[handlePause]: can not get audio tag');
-            return;
-        }
-
-        audioTag.pause();
-    };
-
-    handlePlay = () => {
-        const audioTag = this.getAudioTag();
-
-        if (!audioTag) {
-            console.error('[handlePlay]: can not get audio tag');
-            return;
-        }
-
-        audioTag.play();
-    };
-
-    handleRepeat = () => {
-        const {state} = this;
-        const {isRepeatOn} = state;
-
-        this.setState({isRepeatOn: !isRepeatOn});
-    };
-
-    handleOnLoadedMetadata = () => {
-        const {state} = this;
-        const {trackVolume} = state;
-        const audioTag = this.getAudioTag();
-
-        if (!audioTag) {
-            return;
-        }
-
-        this.setState({
-            trackCurrentTime: 0,
-            trackFullTime: audioTag.duration,
-        });
-
-        audioTag.volume = trackVolume;
-    };
-
-    handleOnPause = () => {
-        this.setState({playingState: playerPlayingStateTypeMap.paused});
-    };
-
-    handleOnVolumeChange = () => {
-        const audioTag = this.getAudioTag();
-
-        if (!audioTag) {
-            return;
-        }
-
-        this.setState({
-            isMuted: audioTag.muted,
-            trackVolume: audioTag.volume,
-        });
-    };
-
-    handleOnEnded = () => {
-        const audioTag = this.getAudioTag();
+    function handleOnEnded() {
+        const audioTag = refAudio.current;
 
         if (audioTag) {
             audioTag.currentTime = 0;
         }
 
-        const {state} = this;
-        const {isRepeatOn} = state;
-
         if (isRepeatOn) {
             // TODO: fix this workaround
-            this.setState({trackCurrentTime: 0}, this.handlePlay);
+            setTrackCurrentTime(0);
+            setTimeout(handlePlay, 200);
             return;
         }
 
-        this.setState({
-            playingState: playerPlayingStateTypeMap.paused,
-            trackCurrentTime: 0,
-        });
-    };
+        setPlayingState(playerPlayingStateTypeMap.paused);
+        setTrackCurrentTime(0);
+    }
 
-    handleOnPlay = () => {
-        const {props} = this;
-        const {mediaMetadata, src} = props;
+    function handleOnLoadedMetadata() {
+        const audioTag = refAudio.current;
 
-        this.setState({playingState: playerPlayingStateTypeMap.playing});
+        if (!audioTag) {
+            return;
+        }
+
+        setTrackCurrentTime(0);
+        setTrackFullTime(audioTag.duration);
+
+        audioTag.volume = trackVolume;
+    }
+
+    function handleOnPause() {
+        setPlayingState(playerPlayingStateTypeMap.paused);
+    }
+
+    function seekForward() {
+        const audioTag = refAudio.current;
+
+        if (audioTag) {
+            audioTag.currentTime += seekStepSecond;
+        }
+    }
+
+    function seekBackward() {
+        const audioTag = refAudio.current;
+
+        if (audioTag) {
+            audioTag.currentTime -= seekStepSecond;
+        }
+    }
+
+    function handleOnPlay() {
+        setPlayingState(playerPlayingStateTypeMap.playing);
 
         const seek = {
-            seekforward: this.seekForward,
-            seekbackward: this.seekBackward,
+            seekforward: seekForward,
+            seekbackward: seekBackward,
         };
 
         if (mediaMetadata) {
@@ -178,216 +104,152 @@ export class Audio extends Component<PropsType, StateType> {
         }
 
         setMediaMetadata({title: src}, seek);
-    };
+    }
 
-    handleOnTrackError = (error: Error) => {
-        console.error('[handleOnTrackError]: Error!');
-
-        throw error;
-    };
-
-    handleOnTimeUpdate = () => {
-        const audioTag = this.getAudioTag();
+    function handleOnTimeUpdate() {
+        const audioTag = refAudio.current;
 
         if (!audioTag) {
             return;
         }
 
-        this.setState({trackCurrentTime: audioTag.currentTime});
-    };
+        setTrackCurrentTime(audioTag.currentTime);
+    }
 
-    handleOnChangeProgressBar = (progress: number) => {
-        const {state} = this;
-        const {trackFullTime} = state;
-        const audioTag = this.getAudioTag();
+    function handleOnVolumeChange() {
+        const audioTag = refAudio.current;
 
         if (!audioTag) {
             return;
         }
 
-        const trackCurrentTime = progress * trackFullTime;
+        setIsMuted(audioTag.muted);
+        setTrackVolume(audioTag.volume);
+    }
 
-        audioTag.currentTime = trackCurrentTime;
+    function handlePause() {
+        const audioTag = refAudio.current;
 
-        this.setState({trackCurrentTime});
-    };
+        if (!audioTag) {
+            console.error('[handlePause]: can not get audio tag');
+            return;
+        }
 
-    handleOnChangeVolumeBar = (trackVolume: number) => {
-        const audioTag = this.getAudioTag();
+        audioTag.pause();
+    }
+
+    function handlePlay() {
+        const audioTag = refAudio.current;
+
+        if (!audioTag) {
+            console.error('[handlePlay]: can not get audio tag');
+            return;
+        }
+
+        audioTag.play();
+    }
+
+    function handleRepeat() {
+        setIsRepeatOn(!isRepeatOn);
+    }
+
+    function handleOnChangeProgressBar(progress: number) {
+        const audioTag = refAudio.current;
 
         if (!audioTag) {
             return;
         }
 
-        audioTag.volume = trackVolume;
+        const audioTagTrackCurrentTime = progress * trackFullTime;
 
-        this.setState({trackVolume});
-    };
+        audioTag.currentTime = audioTagTrackCurrentTime;
 
-    handleToggleMute = () => {
-        const audioTag = this.getAudioTag();
+        setTrackCurrentTime(audioTagTrackCurrentTime);
+    }
 
-        if (!audioTag) {
-            return;
-        }
-
-        const isMuted = !audioTag.muted;
-
-        audioTag.muted = isMuted;
-
-        this.setState({isMuted});
-    };
-
-    seekForward = () => {
-        const audioTag = this.getAudioTag();
+    function handleToggleMute() {
+        const audioTag = refAudio.current;
 
         if (!audioTag) {
             return;
         }
 
-        audioTag.currentTime += seekStepSecond;
-    };
+        const audioTagIsMuted = !audioTag.muted;
 
-    seekBackward = () => {
-        const audioTag = this.getAudioTag();
+        audioTag.muted = audioTagIsMuted;
+        setIsMuted(audioTagIsMuted);
+    }
+
+    function handleOnChangeVolumeBar(volumeBarValue: number) {
+        const audioTag = refAudio.current;
 
         if (!audioTag) {
             return;
         }
 
-        audioTag.currentTime -= seekStepSecond;
-    };
+        audioTag.volume = volumeBarValue;
 
-    renderAudioTag(): Node {
-        const {props, ref} = this;
-        const {refAudio} = ref;
-        const {src} = props;
+        setTrackVolume(volumeBarValue);
+    }
 
-        return (
-            // eslint-disable-next-line jsx-a11y/media-has-caption
+    useEffect(() => {
+        const audioTag = refAudio.current;
+
+        if (onDidMount) {
+            onDidMount(audioTag);
+        }
+    }, [onDidMount]);
+
+    return (
+        <div className={classNames(audioStyle.audio, className)}>
             <audio
                 className={audioStyle.audio_tag}
-                onEnded={this.handleOnEnded}
-                onError={this.handleOnTrackError}
-                onLoadedMetadata={this.handleOnLoadedMetadata}
-                onPause={this.handleOnPause}
-                onPlay={this.handleOnPlay}
-                onTimeUpdate={this.handleOnTimeUpdate}
-                onVolumeChange={this.handleOnVolumeChange}
+                onEnded={handleOnEnded}
+                onLoadedMetadata={handleOnLoadedMetadata}
+                onPause={handleOnPause}
+                onPlay={handleOnPlay}
+                onTimeUpdate={handleOnTimeUpdate}
+                onVolumeChange={handleOnVolumeChange}
                 preload="metadata"
                 ref={refAudio}
                 src={src}
-            />
-        );
-    }
+                volume={trackVolume}
+            >
+                <track kind="captions" src={src}/>
+            </audio>
 
-    renderPlayButton(): Node {
-        const {state} = this;
-        const {playingState} = state;
+            {playingState === playerPlayingStateTypeMap.playing
+                ? <AudioPlayerControlButton ariaLabel="pause" imageId="button-pause" onClick={handlePause}/>
+                : <AudioPlayerControlButton ariaLabel="play" imageId="button-play" onClick={handlePlay}/>}
 
-        if (playingState === playerPlayingStateTypeMap.playing) {
-            return <AudioPlayerControlButton ariaLabel="pause" imageId="button-pause" onClick={this.handlePause}/>;
-        }
-
-        return <AudioPlayerControlButton ariaLabel="play" imageId="button-play" onClick={this.handlePlay}/>;
-    }
-
-    renderRepeatButton(): Node {
-        const {state, props} = this;
-        const {isRepeatOn} = state;
-        const {useRepeatButton} = props;
-
-        if (useRepeatButton === true) {
-            return (
-                <AudioPlayerControlButton
+            {useRepeatButton === true
+                ? <AudioPlayerControlButton
                     ariaLabel="repeat"
                     imageId="button-repeat"
                     isActive={isRepeatOn}
-                    onClick={this.handleRepeat}
+                    onClick={handleRepeat}
                 />
-            );
-        }
+                : null}
 
-        return null;
-    }
+            <Time className={audioStyle.time} currentTime={trackCurrentTime} fullTime={trackFullTime}/>
 
-    renderTime(): Node {
-        const {state} = this;
-        const {trackCurrentTime, trackFullTime} = state;
+            <RangeBar onChange={handleOnChangeProgressBar} progress={trackCurrentTime / trackFullTime}/>
 
-        return <Time className={audioStyle.time} currentTime={trackCurrentTime} fullTime={trackFullTime}/>;
-    }
+            {hasVolumeBar
+                ? <AudioPlayerControlButton ariaLabel="switch-sound" imageId={soundImageId} onClick={handleToggleMute}/>
+                : null}
 
-    renderProgressBar(): Node {
-        const {state} = this;
-        const {trackCurrentTime, trackFullTime} = state;
+            {hasVolumeBar
+                ? <RangeBar
+                    className={audioStyle.sound_range}
+                    onChange={handleOnChangeVolumeBar}
+                    progress={trackVolume}
+                />
+                : null}
 
-        return <RangeBar onChange={this.handleOnChangeProgressBar} progress={trackCurrentTime / trackFullTime}/>;
-    }
-
-    renderSwitchSoundButton(): Node {
-        if (!hasVolumeBar) {
-            return null;
-        }
-
-        const {state} = this;
-        const {trackVolume, isMuted} = state;
-        const isActualMuted = isMuted || trackVolume === 0;
-        const soundImageSrc = isActualMuted ? 'button-sound-off' : 'button-sound-on';
-
-        return (
-            <AudioPlayerControlButton
-                ariaLabel="switch-sound"
-                // className={audioStyle.switch_sound_button}
-                imageId={soundImageSrc}
-                onClick={this.handleToggleMute}
-            />
-        );
-    }
-
-    renderVolumeBar(): Node {
-        if (!hasVolumeBar) {
-            return null;
-        }
-
-        const {state} = this;
-        const {trackVolume} = state;
-
-        return (
-            <RangeBar
-                className={audioStyle.sound_range}
-                onChange={this.handleOnChangeVolumeBar}
-                progress={trackVolume}
-            />
-        );
-    }
-
-    renderDownloadButton(): Node {
-        const {props} = this;
-        const {src, downloadFileName} = props;
-
-        return (
             <a className={audioStyle.download_button} download={downloadFileName || true} href={src}>
                 <AudioPlayerControlButton ariaLabel="download" imageId="button-download"/>
             </a>
-        );
-    }
-
-    render(): Node {
-        const {props} = this;
-        const {className} = props;
-
-        return (
-            <div className={classNames(audioStyle.audio, className)}>
-                {this.renderAudioTag()}
-                {this.renderPlayButton()}
-                {this.renderRepeatButton()}
-                {this.renderTime()}
-                {this.renderProgressBar()}
-                {this.renderSwitchSoundButton()}
-                {this.renderVolumeBar()}
-                {this.renderDownloadButton()}
-            </div>
-        );
-    }
+        </div>
+    );
 }

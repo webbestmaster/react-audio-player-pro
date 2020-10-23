@@ -185,6 +185,7 @@
             "line-aligned"
         ],
         "react/forbid-component-props": 0,
+        "react/jsx-indent-props": [2, "first"],
         "react/jsx-no-literals": 0,
         "react/require-default-props": 0,
         "react/require-optimization": 0,

@@ -23,6 +23,8 @@ const webpackConfig = {
         chunkFilename: isDevelopment ? '[name].chunk.js' : '[name].[hash:6].chunk.js',
     },
 
+    // TODO: fix hardcode - mode: "development"
+    mode: 'development',
     devtool: isProduction ? false : 'source-map',
     optimization: require('./webpack/setting/optimization').optimization,
     module: {rules: require('./webpack/setting/module/rules').rules},
