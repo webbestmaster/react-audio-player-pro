@@ -20,7 +20,7 @@ module.exports.rules = [
         use: [
             {
                 loader: 'file-loader',
-                query: {
+                options: {
                     name: pathToLoadedFileFolder.replace(/^\//, '') + '/[name]-[md5:hash:hex:7].[ext]',
                 },
             },
