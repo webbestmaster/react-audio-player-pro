@@ -242,8 +242,10 @@ export function AudioPlayer(props: PropsType): Node {
 
         updateMediaMetadata();
 
-        // TODO: fix this workaround
-        setTimeout(callBack || console.log, 200);
+        if (callBack) {
+            // TODO: fix this workaround
+            setTimeout(callBack, 200);
+        }
     }
 
     return (
