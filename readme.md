@@ -13,13 +13,13 @@
 ## Install
 
 ```bash
-npm i markdown-pro
+npm i react-audio-player-pro
 ```
 
 
 ### Typing Flow
 
-Use `./flow-typed/markdown-pro.js`.
+Use `./flow-typed/react-audio-player-pro.js`.
 
 
 ### Typing TypeScript
