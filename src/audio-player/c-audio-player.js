@@ -74,6 +74,12 @@ export function AudioPlayer(props: PropsType): Node {
         return trackList[trackIndex] || null;
     }
 
+    function getCurrentTrackSrcAsString(): string {
+        const track = getCurrentTrack();
+
+        return track ? track.src : '';
+    }
+
     function handleAudioTagOnLoadedMetadata() {
         const audioTag = getAudioTag();
 
@@ -240,41 +246,28 @@ export function AudioPlayer(props: PropsType): Node {
         setTimeout(callBack || console.log, 200);
     }
 
-    function renderAudioTag(): Node {
-        const track = getCurrentTrack();
-
-        if (!track) {
-            return null;
-        }
-
-        const {src} = track;
-
-        return (
-            // eslint-disable-next-line jsx-a11y/media-has-caption
-            <audio
-                autoPlay={playingState === playerPlayingStateTypeMap.playing}
-                className={audioPlayerStyle.audio_tag}
-                key="audio-tag"
-                muted={isMuted}
-                onEnded={handleAudioTagOnEnded}
-                onLoadedMetadata={handleAudioTagOnLoadedMetadata}
-                onPause={handleAudioTagOnPause}
-                onPlay={handleAudioTagOnPlay}
-                onTimeUpdate={handleAudioTagOnTimeUpdate}
-                onVolumeChange={handleAudioTagOnVolumeChange}
-                preload="metadata"
-                ref={refAudio}
-                src={src}
-                volume={trackVolume}
-            >
-                <track kind="captions" src={src}/>
-            </audio>
-        );
-    }
-
     return (
         <div className={className || ''}>
-            {renderAudioTag()}
+            <IsRender isRender={Boolean(getCurrentTrackSrcAsString())}>
+                <audio
+                    autoPlay={playingState === playerPlayingStateTypeMap.playing}
+                    className={audioPlayerStyle.audio_tag}
+                    key="audio-tag"
+                    muted={isMuted}
+                    onEnded={handleAudioTagOnEnded}
+                    onLoadedMetadata={handleAudioTagOnLoadedMetadata}
+                    onPause={handleAudioTagOnPause}
+                    onPlay={handleAudioTagOnPlay}
+                    onTimeUpdate={handleAudioTagOnTimeUpdate}
+                    onVolumeChange={handleAudioTagOnVolumeChange}
+                    preload="metadata"
+                    ref={refAudio}
+                    src={getCurrentTrackSrcAsString()}
+                    volume={trackVolume}
+                >
+                    <track kind="captions" src={getCurrentTrackSrcAsString()}/>
+                </audio>
+            </IsRender>
             <AudioPlayerHead
                 isLoading={isLoadingMetadata}
                 isMuted={isMuted}
