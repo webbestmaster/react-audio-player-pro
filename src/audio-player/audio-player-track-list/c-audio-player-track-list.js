@@ -1,7 +1,6 @@
 // @flow
 
-import React, {Component, type Node} from 'react';
-import classNames from 'classnames';
+import React, {type Node} from 'react';
 
 import type {PlayerPlayingStateType, TrackType} from '../audio-player-type';
 
@@ -17,39 +16,27 @@ type PropsType = {|
     +isLoading: boolean,
 |};
 
-type StateType = {};
+export function AudioPlayerTrackList(props: PropsType): Node {
+    const {activeIndex, trackList, playingState, onClickPlay, setActiveIndex, isLoading} = props;
 
-export class AudioPlayerTrackList extends Component<PropsType, StateType> {
-    constructor(props: PropsType) {
-        super(props);
+    return (
+        <ul className={audioPlayerTrackListStyle.audio_player_track_list}>
+            {trackList.map((track: TrackType, index: number): Node => {
+                const isCurrentTrack = activeIndex === index;
 
-        this.state = {};
-    }
-
-    renderAudioItemList(): Array<Node> {
-        const {props} = this;
-        const {trackList, activeIndex, playingState, onClickPlay, setActiveIndex, isLoading} = props;
-
-        return trackList.map((track: TrackType, index: number): Node => {
-            const isCurrentTrack = activeIndex === index;
-
-            return (
-                <AudioPlayerTrackListItem
-                    activeIndex={index}
-                    isCurrentTrack={isCurrentTrack}
-                    isLoading={isLoading && isCurrentTrack}
-                    // eslint-disable-next-line react/no-array-index-key
-                    key={index}
-                    onClickPlay={onClickPlay}
-                    playingState={playingState}
-                    setActiveIndex={setActiveIndex}
-                    track={track}
-                />
-            );
-        });
-    }
-
-    render(): Node {
-        return <ul className={audioPlayerTrackListStyle.audio_player_track_list}>{this.renderAudioItemList()}</ul>;
-    }
+                return (
+                    <AudioPlayerTrackListItem
+                        activeIndex={index}
+                        isCurrentTrack={isCurrentTrack}
+                        isLoading={isLoading && isCurrentTrack}
+                        key={track.src}
+                        onClickPlay={onClickPlay}
+                        playingState={playingState}
+                        setActiveIndex={setActiveIndex}
+                        track={track}
+                    />
+                );
+            })}
+        </ul>
+    );
 }

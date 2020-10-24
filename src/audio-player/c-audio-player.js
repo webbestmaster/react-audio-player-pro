@@ -1,168 +1,134 @@
 // @flow
 
-import React, {Component, type Node} from 'react';
+/* global setTimeout */
+
+import React, {type Node, useEffect, useRef, useState} from 'react';
 
 import {setMediaMetadata} from '../lib/media-meta-data/media-meta-data';
 import {getRandom, getShiftIndex} from '../lib/number';
+import {hasVolumeBar} from '../lib/system';
+import {IsRender} from '../layout/is-render/c-is-render';
 
 import {AudioPlayerHead} from './audio-player-head/c-audio-player-head';
 import {AudioPlayerTrackList} from './audio-player-track-list/c-audio-player-track-list';
-import type {AudioPlayerPropsType, AudioPlayerStateType, TrackType} from './audio-player-type';
+import type {
+    AudioPlayerPropsType,
+    PlayerPlayingStateType,
+    PlayerRepeatingStateType,
+    TrackType,
+} from './audio-player-type';
 
 import {
     playerPlayingStateTypeMap,
-    seekStepSecond,
     playerRepeatingStateTypeList,
     playerRepeatingStateTypeMap,
-    defaultAudioPlayerState,
+    seekStepSecond,
 } from './audio-player-const';
 
+import {getDefaultState} from './audio-player-helper';
 import audioPlayerStyle from './audio-player.scss';
 
-type StateType = AudioPlayerStateType;
 type PropsType = AudioPlayerPropsType;
 
-export class AudioPlayer extends Component<PropsType, StateType> {
-    constructor(props: PropsType) {
-        super(props);
+// eslint-disable-next-line complexity, max-statements, sonarjs/cognitive-complexity
+export function AudioPlayer(props: PropsType): Node {
+    const {defaultState, className, onDidMount, trackList} = props;
 
-        this.state = this.getDefaultState(props);
+    const defaultDefinedState = getDefaultState(defaultState);
 
-        this.ref = {
-            refAudio: React.createRef<HTMLAudioElement>(),
-        };
-    }
+    const [trackCurrentTime, setTrackCurrentTime] = useState<number>(0);
+    const [trackFullTime, setTrackFullTime] = useState<number>(0);
+    const [trackVolume, setTrackVolume] = useState<number>(hasVolumeBar ? 0.5 : 1);
+    const [isMuted, setIsMuted] = useState<boolean>(defaultDefinedState.isMuted);
+    const [playingState, setPlayingState] = useState<PlayerPlayingStateType>(playerPlayingStateTypeMap.paused);
+    const [activeIndex, setActiveIndex] = useState<number>(defaultDefinedState.activeIndex);
+    const [isShuffleOn, setIsShuffleOn] = useState<boolean>(defaultDefinedState.isShuffleOn);
+    const [repeatingState, setRepeatingState] = useState<PlayerRepeatingStateType>(defaultDefinedState.repeatingState);
+    const [isTrackListOpen, setIsTrackListOpen] = useState<boolean>(defaultDefinedState.isTrackListOpen);
+    const [isLoadingMetadata, setIsLoadingMetadata] = useState<boolean>(true);
+    const refAudio = useRef<?HTMLAudioElement>();
 
-    componentDidMount() {
-        const {props, state} = this;
-        const {trackVolume} = state;
-        const {onDidMount} = props;
-        const audioTag = this.getAudioTag();
+    function getAudioTag(): HTMLAudioElement {
+        const audioTag = refAudio.current;
 
         if (audioTag) {
-            audioTag.volume = trackVolume;
+            return audioTag;
         }
+
+        throw new Error('Audio tag is not exists');
+    }
+
+    useEffect(() => {
+        const audioTag = getAudioTag();
 
         if (onDidMount) {
             onDidMount(audioTag);
         }
+    }, [onDidMount]);
+
+    function getCurrentTrack(): TrackType | null {
+        return getTrackByIndex(activeIndex);
     }
 
-    ref: {|
-        +refAudio: {current: HTMLAudioElement | null},
-    |};
-
-    getDefaultState(props: PropsType): StateType {
-        const {defaultState = {}} = props;
-
-        // $FlowFixMe
-        return {
-            ...defaultAudioPlayerState,
-            ...defaultState,
-        };
-    }
-
-    getAudioTag(): HTMLAudioElement | null {
-        const {ref} = this;
-        const {refAudio} = ref;
-
-        return refAudio.current;
-    }
-
-    getCurrentTrack(): TrackType | null {
-        const {state} = this;
-        const {activeIndex} = state;
-
-        return this.getTrackByIndex(activeIndex);
-    }
-
-    getTrackByIndex(trackIndex: number): TrackType | null {
-        const {props} = this;
-        const {trackList} = props;
-
+    function getTrackByIndex(trackIndex: number): TrackType | null {
         return trackList[trackIndex] || null;
     }
 
-    handleAudioTagOnLoadedMetadata = () => {
-        const {state} = this;
-        const {trackVolume} = state;
-        const audioTag = this.getAudioTag();
+    function handleAudioTagOnLoadedMetadata() {
+        const audioTag = getAudioTag();
 
-        this.setState({isLoadingMetadata: false});
-
-        if (!audioTag) {
-            return;
-        }
-
-        this.setState({
-            trackFullTime: audioTag.duration,
-        });
-
+        setIsLoadingMetadata(false);
+        setTrackFullTime(audioTag.duration);
         audioTag.volume = trackVolume;
-    };
+    }
 
-    handleAudioTagOnPause = () => {
-        this.setState({playingState: playerPlayingStateTypeMap.paused});
-    };
+    function handleAudioTagOnPause() {
+        setPlayingState(playerPlayingStateTypeMap.paused);
+    }
 
-    handleAudioTagOnVolumeChange = () => {
-        const audioTag = this.getAudioTag();
+    function handleAudioTagOnVolumeChange() {
+        const audioTag = getAudioTag();
 
-        if (!audioTag) {
-            return;
-        }
+        setIsMuted(audioTag.muted);
+        setTrackVolume(audioTag.volume);
+    }
 
-        this.setState({
-            isMuted: audioTag.muted,
-            trackVolume: audioTag.volume,
-        });
-    };
-
-    handleAudioTagOnEnded = () => {
-        // const audioTag = this.getAudioTag();
-
-        // if (audioTag) {
-        // audioTag.currentTime = 0;
-        // }
-
-        const {state, props} = this;
-        const {trackList} = props;
-        const {isShuffleOn, repeatingState, activeIndex} = state;
+    function handleAudioTagOnEnded() {
         const {one: repeatOne, all: repeatAll, none: repeatNone} = playerRepeatingStateTypeMap;
 
         if (isShuffleOn) {
             const randomActiveIndex = getRandom(0, trackList.length);
 
-            this.setActiveIndex(randomActiveIndex, this.handleClickPlay);
+            setActiveTrackIndex(randomActiveIndex, handleClickPlay);
             return;
         }
 
         if (repeatingState === repeatOne) {
             // TODO: fix this workaround
-            this.setState({}, this.handleClickPlay);
+            setTimeout(handleClickPlay, 200);
             return;
         }
 
         if (repeatingState === repeatAll) {
-            this.handleClickNextTrack();
+            handleClickNextTrack();
             // TODO: fix this workaround
-            this.setState({}, this.handleClickPlay);
+            setTimeout(handleClickPlay, 200);
             return;
         }
 
         // repeatingState === repeatNone
         if (activeIndex < trackList.length - 1) {
-            this.handleClickNextTrack();
+            handleClickNextTrack();
             // TODO: fix this workaround
-            this.setState({}, this.handleClickPlay);
+            setTimeout(handleClickPlay, 200);
             return;
         }
 
-        this.setActiveIndex(0);
-    };
+        setActiveTrackIndex(0);
+    }
 
-    updateMediaMetadata() {
-        const track = this.getCurrentTrack();
+    function updateMediaMetadata() {
+        const track = getCurrentTrack();
 
         if (!track) {
             return;
@@ -172,61 +138,110 @@ export class AudioPlayer extends Component<PropsType, StateType> {
 
         if (mediaMetadata) {
             setMediaMetadata(mediaMetadata, {
-                seekforward: this.seekForward,
-                seekbackward: this.seekBackward,
-                previoustrack: this.handleClickPrevTrack,
-                nexttrack: this.handleClickNextTrack,
+                seekforward: seekForward,
+                seekbackward: seekBackward,
+                previoustrack: handleClickPrevTrack,
+                nexttrack: handleClickNextTrack,
             });
         }
     }
 
-    handleAudioTagOnPlay = () => {
-        this.setState({playingState: playerPlayingStateTypeMap.playing});
-        this.updateMediaMetadata();
-    };
+    function handleAudioTagOnPlay() {
+        setPlayingState(playerPlayingStateTypeMap.playing);
+        updateMediaMetadata();
+    }
 
-    handleAudioTagOnTrackError = (error: Error) => {
-        console.error('[handleAudioTagOnTrackError]: Error!');
+    function handleAudioTagOnTimeUpdate() {
+        const audioTag = getAudioTag();
 
-        throw error;
-    };
+        setTrackCurrentTime(audioTag.currentTime);
+    }
 
-    handleAudioTagOnTimeUpdate = () => {
-        const audioTag = this.getAudioTag();
-
-        if (!audioTag) {
-            return;
-        }
-
-        this.setState({trackCurrentTime: audioTag.currentTime});
-    };
-
-    seekForward = () => {
-        const audioTag = this.getAudioTag();
-
-        if (!audioTag) {
-            return;
-        }
+    function seekForward() {
+        const audioTag = getAudioTag();
 
         audioTag.currentTime += seekStepSecond;
-    };
+    }
 
-    seekBackward = () => {
-        const audioTag = this.getAudioTag();
-
-        if (!audioTag) {
-            return;
-        }
+    function seekBackward() {
+        const audioTag = getAudioTag();
 
         audioTag.currentTime -= seekStepSecond;
-    };
+    }
 
-    renderAudioTag(): Node {
-        const {ref, state} = this;
-        const {activeIndex, playingState, isMuted} = state;
-        const {refAudio} = ref;
+    function handleClickPlay() {
+        const audioTag = getAudioTag();
 
-        const track = this.getCurrentTrack();
+        if (audioTag.paused) {
+            audioTag.play();
+        } else {
+            audioTag.pause();
+        }
+    }
+
+    function handleClickMute() {
+        const audioTag = getAudioTag();
+
+        const isNewMuted = !audioTag.muted;
+
+        audioTag.muted = isNewMuted;
+
+        setIsMuted(isNewMuted);
+    }
+
+    function handleClickNextTrack() {
+        const nextIndex = getShiftIndex(trackList.length, activeIndex, 1);
+
+        setActiveTrackIndex(nextIndex);
+    }
+
+    function handleClickPrevTrack() {
+        const nextIndex = getShiftIndex(trackList.length, activeIndex, -1);
+
+        setActiveTrackIndex(nextIndex);
+    }
+
+    function handleClickShuffle() {
+        setIsShuffleOn(!isShuffleOn);
+    }
+
+    function handleClickRepeat() {
+        const currentIndex = playerRepeatingStateTypeList.indexOf(repeatingState);
+        const nextIndex = (currentIndex + 1) % playerRepeatingStateTypeList.length;
+
+        setRepeatingState(playerRepeatingStateTypeList[nextIndex]);
+    }
+
+    function handleClickShowHideTrackList() {
+        setIsTrackListOpen(!isTrackListOpen);
+    }
+
+    function handleChangeProgressBar(trackCurrentProgress: number) {
+        const audioTag = getAudioTag();
+
+        audioTag.currentTime = trackCurrentProgress * trackFullTime;
+    }
+
+    function handleChangeVolumeBar(VolumeBarValue: number) {
+        const audioTag = getAudioTag();
+
+        audioTag.volume = VolumeBarValue;
+    }
+
+    function setActiveTrackIndex(newActiveIndex: number, callBack?: () => mixed) {
+        setActiveIndex(newActiveIndex);
+        setIsLoadingMetadata(true);
+        setTrackCurrentTime(0);
+        setTrackFullTime(0);
+
+        updateMediaMetadata();
+
+        // TODO: fix this workaround
+        setTimeout(callBack || console.log, 200);
+    }
+
+    function renderAudioTag(): Node {
+        const track = getCurrentTrack();
 
         if (!track) {
             return null;
@@ -241,197 +256,55 @@ export class AudioPlayer extends Component<PropsType, StateType> {
                 className={audioPlayerStyle.audio_tag}
                 key="audio-tag"
                 muted={isMuted}
-                onEnded={this.handleAudioTagOnEnded}
-                onError={this.handleAudioTagOnTrackError}
-                onLoadedMetadata={this.handleAudioTagOnLoadedMetadata}
-                onPause={this.handleAudioTagOnPause}
-                onPlay={this.handleAudioTagOnPlay}
-                onTimeUpdate={this.handleAudioTagOnTimeUpdate}
-                onVolumeChange={this.handleAudioTagOnVolumeChange}
+                onEnded={handleAudioTagOnEnded}
+                onLoadedMetadata={handleAudioTagOnLoadedMetadata}
+                onPause={handleAudioTagOnPause}
+                onPlay={handleAudioTagOnPlay}
+                onTimeUpdate={handleAudioTagOnTimeUpdate}
+                onVolumeChange={handleAudioTagOnVolumeChange}
                 preload="metadata"
                 ref={refAudio}
                 src={src}
-            />
+                volume={trackVolume}
+            >
+                <track kind="captions" src={src}/>
+            </audio>
         );
     }
 
-    handleClickPlay = () => {
-        const audioTag = this.getAudioTag();
-
-        if (!audioTag) {
-            return;
-        }
-
-        if (audioTag.paused) {
-            audioTag.play();
-        } else {
-            audioTag.pause();
-        }
-    };
-
-    handleClickMute = () => {
-        const audioTag = this.getAudioTag();
-
-        if (!audioTag) {
-            return;
-        }
-
-        const isNewMuted = !audioTag.muted;
-
-        audioTag.muted = isNewMuted;
-
-        this.setState({
-            isMuted: isNewMuted,
-        });
-    };
-
-    handleClickNextTrack = () => {
-        const {state, props} = this;
-        const {activeIndex} = state;
-        const {trackList} = props;
-
-        const nextIndex = getShiftIndex(trackList.length, activeIndex, 1);
-
-        this.setActiveIndex(nextIndex);
-    };
-
-    handleClickPrevTrack = () => {
-        const {state, props} = this;
-        const {activeIndex} = state;
-        const {trackList} = props;
-
-        const nextIndex = getShiftIndex(trackList.length, activeIndex, -1);
-
-        this.setActiveIndex(nextIndex);
-    };
-
-    handleClickShuffle = () => {
-        const {state} = this;
-        const {isShuffleOn} = state;
-
-        this.setState({isShuffleOn: !isShuffleOn});
-    };
-
-    handleClickRepeat = () => {
-        const {state} = this;
-        const {repeatingState} = state;
-
-        const currentIndex = playerRepeatingStateTypeList.indexOf(repeatingState);
-        const nextIndex = (currentIndex + 1) % playerRepeatingStateTypeList.length;
-
-        this.setState({repeatingState: playerRepeatingStateTypeList[nextIndex]});
-    };
-
-    handleClickShowHideTrackList = () => {
-        const {state} = this;
-        const {isTrackListOpen} = state;
-
-        this.setState({isTrackListOpen: !isTrackListOpen});
-    };
-
-    handleChangeProgressBar = (trackCurrentProgress: number) => {
-        const audioTag = this.getAudioTag();
-
-        if (!audioTag) {
-            return;
-        }
-
-        const {state} = this;
-        const {trackFullTime} = state;
-
-        audioTag.currentTime = trackCurrentProgress * trackFullTime;
-    };
-
-    handleChangeVolumeBar = (trackVolume: number) => {
-        const audioTag = this.getAudioTag();
-
-        if (!audioTag) {
-            return;
-        }
-
-        audioTag.volume = trackVolume;
-    };
-
-    renderAudioPlayerHead(): Node {
-        const {state} = this;
-        const {
-            isShuffleOn,
-            playingState,
-            repeatingState,
-            isMuted,
-            isTrackListOpen,
-            trackCurrentTime,
-            trackVolume,
-            trackFullTime,
-            isLoadingMetadata,
-        } = state;
-
-        return (
+    return (
+        <div className={className || ''}>
+            {renderAudioTag()}
             <AudioPlayerHead
                 isLoading={isLoadingMetadata}
                 isMuted={isMuted}
                 isShuffleOn={isShuffleOn}
                 isTrackListOpen={isTrackListOpen}
-                onChangeProgressBar={this.handleChangeProgressBar}
-                onChangeVolumeBar={this.handleChangeVolumeBar}
-                onClickMuteVolume={this.handleClickMute}
-                onClickNextTrack={this.handleClickNextTrack}
-                onClickPlay={this.handleClickPlay}
-                onClickPrevTrack={this.handleClickPrevTrack}
-                onClickRepeat={this.handleClickRepeat}
-                onClickShuffle={this.handleClickShuffle}
-                onClickTrackList={this.handleClickShowHideTrackList}
+                onChangeProgressBar={handleChangeProgressBar}
+                onChangeVolumeBar={handleChangeVolumeBar}
+                onClickMuteVolume={handleClickMute}
+                onClickNextTrack={handleClickNextTrack}
+                onClickPlay={handleClickPlay}
+                onClickPrevTrack={handleClickPrevTrack}
+                onClickRepeat={handleClickRepeat}
+                onClickShuffle={handleClickShuffle}
+                onClickTrackList={handleClickShowHideTrackList}
                 playingState={playingState}
                 repeatingState={repeatingState}
                 trackCurrentTime={trackCurrentTime}
                 trackFullTime={trackFullTime}
                 trackVolume={trackVolume}
             />
-        );
-    }
-
-    setActiveIndex = (activeIndex: number, callBack?: () => mixed) => {
-        this.setState({
-            activeIndex,
-            isLoadingMetadata: true,
-            trackCurrentTime: 0,
-            trackFullTime: 0,
-        });
-
-        this.updateMediaMetadata();
-    };
-
-    renderAudioPlayerTrackList(): Node {
-        const {state, props} = this;
-        const {trackList} = props;
-        const {playingState, isTrackListOpen, activeIndex, isLoadingMetadata} = state;
-
-        if (!isTrackListOpen) {
-            return null;
-        }
-
-        return (
-            <AudioPlayerTrackList
-                activeIndex={activeIndex}
-                isLoading={isLoadingMetadata}
-                onClickPlay={this.handleClickPlay}
-                playingState={playingState}
-                setActiveIndex={this.setActiveIndex}
-                trackList={trackList}
-            />
-        );
-    }
-
-    render(): Node {
-        const {props} = this;
-        const {className} = props;
-
-        return (
-            <div className={className || ''}>
-                {this.renderAudioTag()}
-                {this.renderAudioPlayerHead()}
-                {this.renderAudioPlayerTrackList()}
-            </div>
-        );
-    }
+            <IsRender isRender={isTrackListOpen}>
+                <AudioPlayerTrackList
+                    activeIndex={activeIndex}
+                    isLoading={isLoadingMetadata}
+                    onClickPlay={handleClickPlay}
+                    playingState={playingState}
+                    setActiveIndex={setActiveTrackIndex}
+                    trackList={trackList}
+                />
+            </IsRender>
+        </div>
+    );
 }

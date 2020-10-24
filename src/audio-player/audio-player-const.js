@@ -2,10 +2,8 @@
 
 // import {type MediaMetadataControlNameType} from './audio-player-type'
 
-import {hasVolumeBar} from '../lib/system';
-
+import type {DefaultDefinedAudioPlayerStateType} from './audio-player-type';
 import {type PlayerPlayingStateType, type PlayerRepeatingStateType} from './audio-player-type';
-import type {AudioPlayerStateType} from './audio-player-type';
 
 /*
 import type {
@@ -34,15 +32,10 @@ export const playerRepeatingStateTypeList: Array<PlayerRepeatingStateType> = Obj
     playerRepeatingStateTypeMap
 ).map((key: PlayerRepeatingStateType): PlayerRepeatingStateType => playerRepeatingStateTypeMap[key]);
 
-export const defaultAudioPlayerState: AudioPlayerStateType = {
-    trackCurrentTime: 0,
-    trackFullTime: 0,
-    trackVolume: hasVolumeBar ? 0.5 : 1,
-    isMuted: false,
-    playingState: playerPlayingStateTypeMap.paused,
+export const defaultAudioPlayerState: DefaultDefinedAudioPlayerStateType = {
+    isTrackListOpen: true,
     activeIndex: 0,
     isShuffleOn: false,
+    isMuted: false,
     repeatingState: playerRepeatingStateTypeMap.none,
-    isTrackListOpen: true,
-    isLoadingMetadata: true,
 };

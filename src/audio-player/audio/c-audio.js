@@ -2,7 +2,7 @@
 
 /* global setTimeout */
 
-import React, {type Node, useState, useRef, useEffect} from 'react';
+import React, {type Node, useEffect, useRef, useState} from 'react';
 import classNames from 'classnames';
 
 import {playerPlayingStateTypeMap, seekStepSecond} from '../audio-player-const';

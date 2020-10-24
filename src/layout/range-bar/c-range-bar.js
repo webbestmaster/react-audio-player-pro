@@ -2,7 +2,7 @@
 
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
-import React, {type Node, useState, useRef} from 'react';
+import React, {type Node, useRef, useState} from 'react';
 import classNames from 'classnames';
 
 import rangeBarStyle from './range-bar.scss';

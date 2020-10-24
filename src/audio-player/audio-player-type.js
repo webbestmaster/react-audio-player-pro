@@ -34,6 +34,14 @@ export type DefaultAudioPlayerStateType = {|
     +repeatingState?: PlayerRepeatingStateType,
 |};
 
+export type DefaultDefinedAudioPlayerStateType = {|
+    +isTrackListOpen: boolean,
+    +activeIndex: number,
+    +isShuffleOn: boolean,
+    +isMuted: boolean,
+    +repeatingState: PlayerRepeatingStateType,
+|};
+
 export type AudioPlayerStateType = {|
     +trackCurrentTime: number,
     +trackFullTime: number,
