@@ -1,7 +1,8 @@
 // @flow
 
 import React, {type Node} from 'react';
-import classNames from 'classnames';
+
+import {classNames} from '../../lib/css';
 
 import spinnerStyle from './spinner.scss';
 import {defaultData, positionValueMap} from './spinner-const';

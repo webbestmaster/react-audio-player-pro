@@ -3,8 +3,8 @@
 /* global setTimeout */
 
 import React, {type Node, useEffect, useRef, useState} from 'react';
-import classNames from 'classnames';
 
+import {classNames} from '../../lib/css';
 import {playerPlayingStateTypeMap, seekStepSecond} from '../audio-player-const';
 import {AudioPlayerControlButton} from '../../layout/audio-player-control-button/c-audio-player-control-button';
 import {Time} from '../../layout/time/c-time';

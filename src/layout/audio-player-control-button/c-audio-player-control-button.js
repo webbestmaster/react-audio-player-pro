@@ -1,8 +1,8 @@
 // @flow
 
 import React, {type Node} from 'react';
-import classNames from 'classnames';
 
+import {classNames} from '../../lib/css';
 import {SvgImage} from '../svg-image/c-svg-image';
 import {audioPlayerIconIdPrefix} from '../audio-player-control-sprite/c-audio-player-control-sprite';
 

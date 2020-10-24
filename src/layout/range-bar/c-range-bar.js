@@ -3,7 +3,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import React, {type Node, useRef, useState} from 'react';
-import classNames from 'classnames';
+
+import {classNames} from '../../lib/css';
 
 import rangeBarStyle from './range-bar.scss';
 import {inputData} from './range-bar-const';

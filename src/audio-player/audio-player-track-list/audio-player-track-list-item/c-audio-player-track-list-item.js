@@ -1,8 +1,8 @@
 // @flow
 
 import React, {type Node, useRef, useState} from 'react';
-import classNames from 'classnames';
 
+import {classNames} from '../../../lib/css';
 import type {PlayerPlayingStateType, TrackType} from '../../audio-player-type';
 import {playerPlayingStateTypeMap} from '../../audio-player-const';
 import {SvgImage} from '../../../layout/svg-image/c-svg-image';

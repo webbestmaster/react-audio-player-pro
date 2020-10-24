@@ -1,9 +1,9 @@
 // @flow
 
 import React, {type Node} from 'react';
-import classNames from 'classnames';
 
 import {getTrackHumanTime} from '../../lib/time';
+import {classNames} from '../../lib/css';
 
 import timeStyle from './time.scss';
 
