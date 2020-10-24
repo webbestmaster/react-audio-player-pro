@@ -13,6 +13,7 @@ const buildType = process.env.BUILD_TYPE || buildTypeLibrary;
 
 // module.exports.NODE_ENV = process.env.NODE_ENV || DEVELOPMENT;
 module.exports.isBuildServer = process.env.IS_BUILD_SERVER === 'YES';
+module.exports.nodeEnvironment = nodeEnvironment;
 
 module.exports.isDevelopment = nodeEnvironment === modeDevelopmentName;
 module.exports.isProduction = nodeEnvironment === modeProductionName;

@@ -11,6 +11,7 @@ const {
     isBuildServer,
     isBuildLib,
     isBuildSite,
+    nodeEnvironment,
 } = require('./webpack/config');
 
 const webpackConfig = {
@@ -23,8 +24,7 @@ const webpackConfig = {
         chunkFilename: isDevelopment ? '[name].chunk.js' : '[name].[hash:6].chunk.js',
     },
 
-    // TODO: fix hardcode - mode: "development"
-    mode: 'development',
+    mode: nodeEnvironment,
     devtool: isProduction ? false : 'source-map',
     optimization: require('./webpack/setting/optimization').optimization,
     module: {rules: require('./webpack/setting/module/rules').rules},
