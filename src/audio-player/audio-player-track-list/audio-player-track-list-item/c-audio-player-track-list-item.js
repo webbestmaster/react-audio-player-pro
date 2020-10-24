@@ -8,6 +8,7 @@ import {playerPlayingStateTypeMap} from '../../audio-player-const';
 import {SvgImage} from '../../../layout/svg-image/c-svg-image';
 import {audioPlayerIconIdPrefix} from '../../../layout/audio-player-control-sprite/c-audio-player-control-sprite';
 import {Spinner} from '../../../layout/spinner/c-spinner';
+import {getTrackHumanTime} from '../../../lib/time';
 
 import audioPlayerTrackListItemStyle from './audio-player-track-list-item.scss';
 
@@ -173,11 +174,10 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
     }
 
     renderFullTime(): Node {
-        const {props, state} = this;
+        const {state} = this;
         const {trackFullTime} = state;
 
-        const trackFullTimeMinutes = Math.floor(trackFullTime / 60);
-        const trackFullTimeSeconds = String(Math.round(trackFullTime % 60)).padStart(2, '0');
+        const {minutes: trackFullTimeMinutes, seconds: trackFullTimeSeconds} = getTrackHumanTime(trackFullTime);
 
         return (
             <div className={audioPlayerTrackListItemStyle.track_time}>
