@@ -18,7 +18,7 @@ type PropsType = {|
     +track: TrackType,
     +playingState: PlayerPlayingStateType,
     +onClickPlay: () => mixed,
-    +setActiveIndex: (activeIndex: number, callBack?: () => mixed) => mixed,
+    +setActiveIndex: (activeIndex: number) => mixed,
     +isLoading: boolean,
 |};
 
@@ -53,7 +53,8 @@ export function AudioPlayerTrackListItem(props: PropsType): Node {
     }
 
     function handleSetActiveIndexAndTogglePlay() {
-        setActiveIndex(activeIndex, onClickPlay);
+        setActiveIndex(activeIndex);
+        onClickPlay();
     }
 
     function handleOnLoadedMetadata() {

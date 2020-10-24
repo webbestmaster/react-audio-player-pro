@@ -1,7 +1,5 @@
 // @flow
 
-/* global setTimeout */
-
 import React, {type Node, useEffect, useRef, useState} from 'react';
 
 import {classNames} from '../../lib/css';
@@ -50,15 +48,16 @@ export function Audio(props: PropsType): Node {
         throw new Error('Audio tag is not exists');
     }
 
+    useEffect(() => {}, []);
+
     function handleOnEnded() {
         const audioTag = getAudioTag();
 
         audioTag.currentTime = 0;
 
         if (isRepeatOn) {
-            // TODO: fix this workaround
             setTrackCurrentTime(0);
-            setTimeout(handleClickPlay, 200);
+            handleClickPlay();
             return;
         }
 

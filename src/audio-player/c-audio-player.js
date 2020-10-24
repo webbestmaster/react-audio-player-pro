@@ -1,6 +1,6 @@
 // @flow
 
-/* global setTimeout */
+/* global requestAnimationFrame */
 
 import React, {type Node, useEffect, useRef, useState} from 'react';
 
@@ -102,31 +102,31 @@ export function AudioPlayer(props: PropsType): Node {
     function handleAudioTagOnEnded() {
         const {one: repeatOne, all: repeatAll, none: repeatNone} = playerRepeatingStateTypeMap;
 
+        const rAF = requestAnimationFrame;
+
         if (isShuffleOn) {
             const randomActiveIndex = getRandom(0, trackList.length);
 
-            setActiveTrackIndex(randomActiveIndex, handleClickPlay);
+            setActiveTrackIndex(randomActiveIndex);
+            rAF(handleClickPlay);
             return;
         }
 
         if (repeatingState === repeatOne) {
-            // TODO: fix this workaround
-            setTimeout(handleClickPlay, 200);
+            rAF(handleClickPlay);
             return;
         }
 
         if (repeatingState === repeatAll) {
             handleClickNextTrack();
-            // TODO: fix this workaround
-            setTimeout(handleClickPlay, 200);
+            rAF(handleClickPlay);
             return;
         }
 
         // repeatingState === repeatNone
         if (activeIndex < trackList.length - 1) {
             handleClickNextTrack();
-            // TODO: fix this workaround
-            setTimeout(handleClickPlay, 200);
+            rAF(handleClickPlay);
             return;
         }
 
@@ -234,18 +234,13 @@ export function AudioPlayer(props: PropsType): Node {
         audioTag.volume = VolumeBarValue;
     }
 
-    function setActiveTrackIndex(newActiveIndex: number, callBack?: () => mixed) {
+    function setActiveTrackIndex(newActiveIndex: number) {
         setActiveIndex(newActiveIndex);
         setIsLoadingMetadata(true);
         setTrackCurrentTime(0);
         setTrackFullTime(0);
 
         updateMediaMetadata();
-
-        if (callBack) {
-            // TODO: fix this workaround
-            setTimeout(callBack, 200);
-        }
     }
 
     return (
