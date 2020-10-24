@@ -13,6 +13,7 @@ import {type PlayerPlayingStateType} from '../audio-player-type';
 import {type MediaMetadataType} from '../../lib/media-meta-data/media-meta-data-type';
 import {RangeBar} from '../../layout/range-bar/c-range-bar';
 import {setMediaMetadata} from '../../lib/media-meta-data/media-meta-data';
+import {IsRender} from '../../layout/is-render/c-is-render';
 
 import audioStyle from './audio.scss';
 
@@ -39,17 +40,25 @@ export function Audio(props: PropsType): Node {
     const isActualMuted = isMuted || trackVolume === 0;
     const soundImageId = isActualMuted ? 'button-sound-off' : 'button-sound-on';
 
-    function handleOnEnded() {
+    function getAudioTag(): HTMLAudioElement {
         const audioTag = refAudio.current;
 
         if (audioTag) {
-            audioTag.currentTime = 0;
+            return audioTag;
         }
+
+        throw new Error('Audio tag is not exists');
+    }
+
+    function handleOnEnded() {
+        const audioTag = getAudioTag();
+
+        audioTag.currentTime = 0;
 
         if (isRepeatOn) {
             // TODO: fix this workaround
             setTrackCurrentTime(0);
-            setTimeout(handlePlay, 200);
+            setTimeout(handleClickPlay, 200);
             return;
         }
 
@@ -58,11 +67,7 @@ export function Audio(props: PropsType): Node {
     }
 
     function handleOnLoadedMetadata() {
-        const audioTag = refAudio.current;
-
-        if (!audioTag) {
-            return;
-        }
+        const audioTag = getAudioTag();
 
         setTrackCurrentTime(0);
         setTrackFullTime(audioTag.duration);
@@ -75,19 +80,15 @@ export function Audio(props: PropsType): Node {
     }
 
     function seekForward() {
-        const audioTag = refAudio.current;
+        const audioTag = getAudioTag();
 
-        if (audioTag) {
-            audioTag.currentTime += seekStepSecond;
-        }
+        audioTag.currentTime += seekStepSecond;
     }
 
     function seekBackward() {
-        const audioTag = refAudio.current;
+        const audioTag = getAudioTag();
 
-        if (audioTag) {
-            audioTag.currentTime -= seekStepSecond;
-        }
+        audioTag.currentTime -= seekStepSecond;
     }
 
     function handleOnPlay() {
@@ -107,59 +108,36 @@ export function Audio(props: PropsType): Node {
     }
 
     function handleOnTimeUpdate() {
-        const audioTag = refAudio.current;
-
-        if (!audioTag) {
-            return;
-        }
+        const audioTag = getAudioTag();
 
         setTrackCurrentTime(audioTag.currentTime);
     }
 
     function handleOnVolumeChange() {
-        const audioTag = refAudio.current;
-
-        if (!audioTag) {
-            return;
-        }
+        const audioTag = getAudioTag();
 
         setIsMuted(audioTag.muted);
         setTrackVolume(audioTag.volume);
     }
 
-    function handlePause() {
-        const audioTag = refAudio.current;
-
-        if (!audioTag) {
-            console.error('[handlePause]: can not get audio tag');
-            return;
-        }
+    function handleClickPause() {
+        const audioTag = getAudioTag();
 
         audioTag.pause();
     }
 
-    function handlePlay() {
-        const audioTag = refAudio.current;
-
-        if (!audioTag) {
-            console.error('[handlePlay]: can not get audio tag');
-            return;
-        }
+    function handleClickPlay() {
+        const audioTag = getAudioTag();
 
         audioTag.play();
     }
 
-    function handleRepeat() {
+    function handleClickRepeat() {
         setIsRepeatOn(!isRepeatOn);
     }
 
     function handleOnChangeProgressBar(progress: number) {
-        const audioTag = refAudio.current;
-
-        if (!audioTag) {
-            return;
-        }
-
+        const audioTag = getAudioTag();
         const audioTagTrackCurrentTime = progress * trackFullTime;
 
         audioTag.currentTime = audioTagTrackCurrentTime;
@@ -167,25 +145,16 @@ export function Audio(props: PropsType): Node {
         setTrackCurrentTime(audioTagTrackCurrentTime);
     }
 
-    function handleToggleMute() {
-        const audioTag = refAudio.current;
-
-        if (!audioTag) {
-            return;
-        }
-
+    function handleClickToggleMute() {
+        const audioTag = getAudioTag();
         const audioTagIsMuted = !audioTag.muted;
 
         audioTag.muted = audioTagIsMuted;
         setIsMuted(audioTagIsMuted);
     }
 
-    function handleOnChangeVolumeBar(volumeBarValue: number) {
-        const audioTag = refAudio.current;
-
-        if (!audioTag) {
-            return;
-        }
+    function handleChangeVolumeBar(volumeBarValue: number) {
+        const audioTag = getAudioTag();
 
         audioTag.volume = volumeBarValue;
 
@@ -193,7 +162,7 @@ export function Audio(props: PropsType): Node {
     }
 
     useEffect(() => {
-        const audioTag = refAudio.current;
+        const audioTag = getAudioTag();
 
         if (onDidMount) {
             onDidMount(audioTag);
@@ -219,33 +188,30 @@ export function Audio(props: PropsType): Node {
             </audio>
 
             {playingState === playerPlayingStateTypeMap.playing
-                ? <AudioPlayerControlButton ariaLabel="pause" imageId="button-pause" onClick={handlePause}/>
-                : <AudioPlayerControlButton ariaLabel="play" imageId="button-play" onClick={handlePlay}/>}
+                ? <AudioPlayerControlButton ariaLabel="pause" imageId="button-pause" onClick={handleClickPause}/>
+                : <AudioPlayerControlButton ariaLabel="play" imageId="button-play" onClick={handleClickPlay}/>}
 
-            {useRepeatButton === true
-                ? <AudioPlayerControlButton
+            <IsRender isRender={useRepeatButton === true}>
+                <AudioPlayerControlButton
                     ariaLabel="repeat"
                     imageId="button-repeat"
                     isActive={isRepeatOn}
-                    onClick={handleRepeat}
+                    onClick={handleClickRepeat}
                 />
-                : null}
+            </IsRender>
 
             <Time className={audioStyle.time} currentTime={trackCurrentTime} fullTime={trackFullTime}/>
 
             <RangeBar onChange={handleOnChangeProgressBar} progress={trackCurrentTime / trackFullTime}/>
 
-            {hasVolumeBar
-                ? <AudioPlayerControlButton ariaLabel="switch-sound" imageId={soundImageId} onClick={handleToggleMute}/>
-                : null}
-
-            {hasVolumeBar
-                ? <RangeBar
-                    className={audioStyle.sound_range}
-                    onChange={handleOnChangeVolumeBar}
-                    progress={trackVolume}
+            <IsRender isRender={hasVolumeBar}>
+                <AudioPlayerControlButton
+                    ariaLabel="switch-sound"
+                    imageId={soundImageId}
+                    onClick={handleClickToggleMute}
                 />
-                : null}
+                <RangeBar className={audioStyle.sound_range} onChange={handleChangeVolumeBar} progress={trackVolume}/>
+            </IsRender>
 
             <a className={audioStyle.download_button} download={downloadFileName || true} href={src}>
                 <AudioPlayerControlButton ariaLabel="download" imageId="button-download"/>
