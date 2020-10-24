@@ -1,6 +1,6 @@
 // @flow
 
-/* global requestAnimationFrame */
+/* global requestAnimationFrame, document */
 
 import React, {type Node, useEffect, useRef, useState} from 'react';
 
@@ -45,7 +45,7 @@ export function AudioPlayer(props: PropsType): Node {
     const [isShuffleOn, setIsShuffleOn] = useState<boolean>(defaultDefinedState.isShuffleOn);
     const [repeatingState, setRepeatingState] = useState<PlayerRepeatingStateType>(defaultDefinedState.repeatingState);
     const [isTrackListOpen, setIsTrackListOpen] = useState<boolean>(defaultDefinedState.isTrackListOpen);
-    const [isLoadingMetadata, setIsLoadingMetadata] = useState<boolean>(true);
+    const [isLoadingMetadata, setIsLoadingMetadata] = useState<boolean>(false);
     const refAudio = useRef<?HTMLAudioElement>();
 
     function getAudioTag(): HTMLAudioElement {
@@ -55,7 +55,9 @@ export function AudioPlayer(props: PropsType): Node {
             return audioTag;
         }
 
-        throw new Error('Audio tag is not exists');
+        console.error('Audio tag is not exists');
+
+        return document.createElement('audio');
     }
 
     useEffect(() => {
@@ -99,13 +101,21 @@ export function AudioPlayer(props: PropsType): Node {
         setTrackVolume(audioTag.volume);
     }
 
+    // eslint-disable-next-line complexity, max-statements
     function handleAudioTagOnEnded() {
         const {one: repeatOne, all: repeatAll, none: repeatNone} = playerRepeatingStateTypeMap;
-
         const rAF = requestAnimationFrame;
+        const trackListLength = trackList.length;
+
+        if (trackListLength <= 1) {
+            setActiveIndex(0);
+            setTrackCurrentTime(0);
+
+            return;
+        }
 
         if (isShuffleOn) {
-            const randomActiveIndex = getRandom(0, trackList.length);
+            const randomActiveIndex = getRandom(0, trackListLength, [activeIndex]);
 
             setActiveTrackIndex(randomActiveIndex);
             rAF(handleClickPlay);
@@ -124,7 +134,7 @@ export function AudioPlayer(props: PropsType): Node {
         }
 
         // repeatingState === repeatNone
-        if (activeIndex < trackList.length - 1) {
+        if (activeIndex < trackListLength - 1) {
             handleClickNextTrack();
             rAF(handleClickPlay);
             return;
