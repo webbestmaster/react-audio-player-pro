@@ -1,6 +1,6 @@
 // @flow
 
-import React, {Component, type Node} from 'react';
+import React, {type Node, useRef, useState} from 'react';
 import classNames from 'classnames';
 
 import type {PlayerPlayingStateType, TrackType} from '../../audio-player-type';
@@ -22,52 +22,47 @@ type PropsType = {|
     +isLoading: boolean,
 |};
 
-type StateType = {|
-    +trackFullTime: number,
-|};
+export function AudioPlayerTrackListItem(props: PropsType): Node {
+    const {isCurrentTrack, activeIndex, track, playingState, onClickPlay, setActiveIndex, isLoading} = props;
 
-export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
-    constructor(props: PropsType) {
-        super(props);
+    const [trackFullTime, setTrackFullTime] = useState<number>(0);
+    const {minutes: trackFullTimeMinutes, seconds: trackFullTimeSeconds} = getTrackHumanTime(trackFullTime);
+    const refAudio = useRef<?HTMLAudioElement>();
+    const {content, mediaMetadata, src} = track;
+    const mediaTitle = mediaMetadata && mediaMetadata.title;
+    const actualContent = content || mediaTitle || src;
 
-        this.state = {
-            trackFullTime: 0,
-        };
+    const spinner = <Spinner isShow={isLoading} lineWidth={4} position="absolute" size={30} wrapperPadding={0}/>;
 
-        this.ref = {
-            refAudio: React.createRef<HTMLAudioElement>(),
-        };
+    const className = classNames(audioPlayerTrackListItemStyle.audio_player_track_list_item, {
+        [audioPlayerTrackListItemStyle.audio_player_track_list_item__active]: isCurrentTrack,
+    });
+
+    function getAudioTag(): HTMLAudioElement {
+        const audioTag = refAudio.current;
+
+        if (audioTag) {
+            return audioTag;
+        }
+
+        throw new Error('Audio tag is not exists');
     }
 
-    ref: {|
-        +refAudio: {current: HTMLAudioElement | null},
-    |};
-
-    handleSetActiveIndex = () => {
-        const {props} = this;
-        const {setActiveIndex, activeIndex} = props;
-
+    function handleSetActiveIndex() {
         setActiveIndex(activeIndex);
-    };
-
-    handleSetActiveIndexAndTogglePlay = () => {
-        const {props} = this;
-        const {onClickPlay, setActiveIndex, activeIndex} = props;
-
-        setActiveIndex(activeIndex, onClickPlay);
-    };
-
-    renderLoadingSpinner(): Node {
-        const {props} = this;
-        const {isLoading} = props;
-
-        return <Spinner isShow={isLoading} lineWidth={4} position="absolute" size={30} wrapperPadding={0}/>;
     }
 
-    renderButton(): Node {
-        const {props} = this;
-        const {isCurrentTrack, playingState, onClickPlay} = props;
+    function handleSetActiveIndexAndTogglePlay() {
+        setActiveIndex(activeIndex, onClickPlay);
+    }
 
+    function handleOnLoadedMetadata() {
+        const audioTag = getAudioTag();
+
+        setTrackFullTime(audioTag.duration);
+    }
+
+    function renderButton(): Node {
         const playImageId = '#' + audioPlayerIconIdPrefix + 'button-play';
         const pauseImageId = '#' + audioPlayerIconIdPrefix + 'button-pause-playlist';
 
@@ -75,7 +70,7 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
             if (isCurrentTrack) {
                 return (
                     <button className={audioPlayerTrackListItemStyle.button} onClick={onClickPlay} type="button">
-                        {this.renderLoadingSpinner()}
+                        {spinner}
                         <SvgImage
                             className={audioPlayerTrackListItemStyle.button_image__active}
                             imageId={pauseImageId}
@@ -85,11 +80,7 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
             }
 
             return (
-                <button
-                    className={audioPlayerTrackListItemStyle.button}
-                    onClick={this.handleSetActiveIndex}
-                    type="button"
-                >
+                <button className={audioPlayerTrackListItemStyle.button} onClick={handleSetActiveIndex} type="button">
                     <SvgImage className={audioPlayerTrackListItemStyle.button_image} imageId={playImageId}/>
                 </button>
             );
@@ -98,7 +89,7 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
         if (isCurrentTrack) {
             return (
                 <button className={audioPlayerTrackListItemStyle.button} onClick={onClickPlay} type="button">
-                    {this.renderLoadingSpinner()}
+                    {spinner}
                     <SvgImage className={audioPlayerTrackListItemStyle.button_image} imageId={playImageId}/>
                 </button>
             );
@@ -107,7 +98,7 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
         return (
             <button
                 className={audioPlayerTrackListItemStyle.button}
-                onClick={this.handleSetActiveIndexAndTogglePlay}
+                onClick={handleSetActiveIndexAndTogglePlay}
                 type="button"
             >
                 <SvgImage className={audioPlayerTrackListItemStyle.button_image} imageId={playImageId}/>
@@ -115,92 +106,23 @@ export class AudioPlayerTrackListItem extends Component<PropsType, StateType> {
         );
     }
 
-    renderContent(): Node {
-        const {props} = this;
-        const {track} = props;
-        const {content, mediaMetadata} = track;
-        const mediaTitle = mediaMetadata && mediaMetadata.title;
-        const actualContent = content || mediaTitle || track.src;
-
-        return (
-            <div className={audioPlayerTrackListItemStyle.content}>
-                <div className={audioPlayerTrackListItemStyle.track_title}>{actualContent}</div>
-            </div>
-        );
-    }
-
-    getAudioTag(): HTMLAudioElement | null {
-        const {ref} = this;
-        const {refAudio} = ref;
-
-        return refAudio.current;
-    }
-
-    handleOnTrackError = (error: Error) => {
-        console.error('[handleOnTrackError]: Error!');
-
-        throw error;
-    };
-
-    handleOnLoadedMetadata = () => {
-        const audioTag = this.getAudioTag();
-
-        if (!audioTag) {
-            return;
-        }
-
-        this.setState({
-            trackFullTime: audioTag.duration,
-        });
-    };
-
-    renderAudioTag(): Node {
-        const {props, ref} = this;
-        const {refAudio} = ref;
-        const {track} = props;
-        const {src} = track;
-
-        return (
+    return (
+        <li className={className}>
             <audio
                 className={audioPlayerTrackListItemStyle.audio_tag}
                 muted
-                onError={this.handleOnTrackError}
-                onLoadedMetadata={this.handleOnLoadedMetadata}
+                onLoadedMetadata={handleOnLoadedMetadata}
                 preload="metadata"
                 ref={refAudio}
                 src={src}
             />
-        );
-    }
-
-    renderFullTime(): Node {
-        const {state} = this;
-        const {trackFullTime} = state;
-
-        const {minutes: trackFullTimeMinutes, seconds: trackFullTimeSeconds} = getTrackHumanTime(trackFullTime);
-
-        return (
+            {renderButton()}
+            <div className={audioPlayerTrackListItemStyle.content}>
+                <div className={audioPlayerTrackListItemStyle.track_title}>{actualContent}</div>
+            </div>
             <div className={audioPlayerTrackListItemStyle.track_time}>
                 {trackFullTimeMinutes}:{trackFullTimeSeconds}
             </div>
-        );
-    }
-
-    render(): Node {
-        const {props} = this;
-        const {isCurrentTrack} = props;
-
-        const className = classNames(audioPlayerTrackListItemStyle.audio_player_track_list_item, {
-            [audioPlayerTrackListItemStyle.audio_player_track_list_item__active]: isCurrentTrack,
-        });
-
-        return (
-            <li className={className}>
-                {this.renderAudioTag()}
-                {this.renderButton()}
-                {this.renderContent()}
-                {this.renderFullTime()}
-            </li>
-        );
-    }
+        </li>
+    );
 }
