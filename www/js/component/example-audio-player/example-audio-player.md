@@ -2,7 +2,7 @@
 
 ```javascript
 import React from 'react';
-import {AudioPlayerControlSprite, AudioPlayer, TrackType} from 'react-audio-player-pro';
+import {AudioPlayerControlSprite, AudioPlayer, type TrackType} from 'react-audio-player-pro';
 import reactAudioPlayerProStyle from 'react-audio-player-pro/dist/style.css';
 
 const audioTrackList: Array&lt;TrackType&gt; = [
