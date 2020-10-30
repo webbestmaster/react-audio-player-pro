@@ -7,7 +7,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/webbestmaster/react-audio-player-pro?style=social&maxAge=2592000)](https://github.com/webbestmaster/react-audio-player-pro/)
 
 
-**[Live demo](http://webbestmaster.github.io/audio-player)**
+**[Live demo](http://webbestmaster.github.io/react-audio-player-pro)**
 
 
 ## Install
