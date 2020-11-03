@@ -3,17 +3,18 @@
 import React, {type Node} from 'react';
 
 import {AudioPlayerControlSprite} from '../../../../src/audio-player';
-
 import {Audio} from '../../../../src/audio-player/audio/c-audio';
-import meydnPureWater from '../../../file/audio/meydn-pure-water.mp3';
-import icon64 from '../../../file/image/react-icon-64.png';
-import icon128 from '../../../file/image/react-icon-128.png';
-import icon256 from '../../../file/image/react-icon-256.png';
-import icon512 from '../../../file/image/react-icon-512.png';
-
+import {demoUrl} from '../../../const';
 import {Markdown} from '../layout/c-markdown';
 
 import exampleAudio from './example-audio.md';
+
+const meydnPureWater = demoUrl + '/audio-file/meydn-pure-water.mp3';
+
+const icon64 = demoUrl + '/image-file/react-icon-64.png';
+const icon128 = demoUrl + '/image-file/react-icon-128.png';
+const icon256 = demoUrl + '/image-file/react-icon-256.png';
+const icon512 = demoUrl + '/image-file/react-icon-512.png';
 
 export function ExampleAudio(): Node {
     const singleAudioData = {

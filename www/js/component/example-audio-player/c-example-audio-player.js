@@ -3,18 +3,19 @@
 import React, {type Node} from 'react';
 
 import {AudioPlayer, AudioPlayerControlSprite} from '../../../../src/audio-player';
-import icon64 from '../../../file/image/react-icon-64.png';
-import icon128 from '../../../file/image/react-icon-128.png';
-import icon256 from '../../../file/image/react-icon-256.png';
-import icon512 from '../../../file/image/react-icon-512.png';
-
 import {Markdown} from '../layout/c-markdown';
-
 import type {TrackType} from '../../../../src/audio-player/audio-player-type';
-import lesserFaith from '../../../file/audio/j-syreus-bach-lesser-faith.mp3';
-import brothersAllegretto from '../../../file/audio/dee-yan-key-world-of-brothers-allegretto.mp3';
-import atLeastItIs from '../../../file/audio/mid-air-machine-at-least-it-is.mp3';
-import theGhostInYourPiano from '../../../file/audio/the-ghost-in-your-piano-climb.mp3';
+import {demoUrl} from '../../../const';
+
+const icon64 = demoUrl + '/image-file/react-icon-64.png';
+const icon128 = demoUrl + '/image-file/react-icon-128.png';
+const icon256 = demoUrl + '/image-file/react-icon-256.png';
+const icon512 = demoUrl + '/image-file/react-icon-512.png';
+
+const lesserFaith = demoUrl + '/audio-file/j-syreus-bach-lesser-faith.mp3';
+const brothersAllegretto = demoUrl + '/audio-file/dee-yan-key-world-of-brothers-allegretto.mp3';
+const atLeastItIs = demoUrl + '/audio-file/mid-air-machine-at-least-it-is.mp3';
+const theGhostInYourPiano = demoUrl + '/audio-file/the-ghost-in-your-piano-climb.mp3';
 
 import exampleAudioPlayer from './example-audio-player.md';
 import {CustomContent} from './c-custom-content';
