@@ -36,7 +36,7 @@ export function RangeBar(props: PropsType): Node {
     }
 
     function handleMouseUp() {
-        setIsMouseDown(true);
+        setIsMouseDown(false);
     }
 
     function handleProgressBarChange() {
