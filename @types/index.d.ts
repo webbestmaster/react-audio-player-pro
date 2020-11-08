@@ -19,12 +19,14 @@ declare module 'react-audio-player-pro' {
         content?: React.ReactNode,
     }
 
+    export type PlayerRepeatingStateType = 'none' | 'all' | 'one';
+
     export interface DefaultAudioPlayerStateType {
         isTrackListOpen?: boolean,
         activeIndex?: number,
         isShuffleOn?: boolean,
         isMuted?: boolean,
-        repeatingState?: 'none' | 'all' | 'one',
+        repeatingState?: keyof PlayerRepeatingStateType,
     }
 
     export const AudioPlayerControlSprite: React.FC<{}>;

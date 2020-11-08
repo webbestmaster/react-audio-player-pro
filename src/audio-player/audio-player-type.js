@@ -58,6 +58,6 @@ export type AudioPlayerStateType = {|
 export type AudioPlayerPropsType = {|
     +trackList: Array<TrackType>,
     +className?: string,
-    +onDidMount?: (audioNode: HTMLAudioElement | null) => mixed,
+    +onDidMount?: (audioNode: HTMLAudioElement | null) => void,
     +defaultState?: DefaultAudioPlayerStateType,
 |};

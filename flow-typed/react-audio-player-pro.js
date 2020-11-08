@@ -38,7 +38,7 @@ declare module 'react-audio-player-pro' {
         +src: string,
         +mediaMetadata?: MediaMetadataType,
         +className?: string,
-        +onDidMount?: (audioNode: HTMLAudioElement | null) => mixed,
+        +onDidMount?: (audioNode: HTMLAudioElement | null) => void,
         +downloadFileName?: string,
         +useRepeatButton?: boolean,
     |};
@@ -49,7 +49,7 @@ declare module 'react-audio-player-pro' {
     declare export type AudioPlayerPropsType = {|
         +trackList: Array<TrackType>,
         +className?: string,
-        +onDidMount?: (audioNode: HTMLAudioElement | null) => mixed,
+        +onDidMount?: (audioNode: HTMLAudioElement | null) => void,
         +defaultState?: DefaultAudioPlayerStateType,
     |};
 
