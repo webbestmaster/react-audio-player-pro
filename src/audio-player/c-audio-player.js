@@ -46,6 +46,7 @@ export function AudioPlayer(props: PropsType): Node {
     const [repeatingState, setRepeatingState] = useState<PlayerRepeatingStateType>(defaultDefinedState.repeatingState);
     const [isTrackListOpen, setIsTrackListOpen] = useState<boolean>(defaultDefinedState.isTrackListOpen);
     const [isLoadingMetadata, setIsLoadingMetadata] = useState<boolean>(false);
+    const [isOnEndState, setIsOnEndState] = useState<boolean>(false);
     const refAudio = useRef<?HTMLAudioElement>();
 
     function getAudioTag(): HTMLAudioElement {
@@ -83,6 +84,8 @@ export function AudioPlayer(props: PropsType): Node {
     }
 
     function handleAudioTagOnLoadedMetadata() {
+        console.log('handleAudioTagOnLoadedMetadata', new Date());
+
         const audioTag = getAudioTag();
 
         setIsLoadingMetadata(false);
@@ -91,6 +94,8 @@ export function AudioPlayer(props: PropsType): Node {
     }
 
     function handleAudioTagOnPause() {
+        console.log('handleAudioTagOnPause', new Date());
+
         setPlayingState(playerPlayingStateTypeMap.paused);
     }
 
@@ -104,8 +109,11 @@ export function AudioPlayer(props: PropsType): Node {
     // eslint-disable-next-line complexity, max-statements
     function handleAudioTagOnEnded() {
         const {one: repeatOne, all: repeatAll, none: repeatNone} = playerRepeatingStateTypeMap;
-        const rAF = requestAnimationFrame;
         const trackListLength = trackList.length;
+
+        console.log('handleAudioTagOnEnded', new Date());
+
+        setIsOnEndState(true);
 
         if (trackListLength <= 1) {
             setActiveIndex(0);
@@ -118,28 +126,28 @@ export function AudioPlayer(props: PropsType): Node {
             const randomActiveIndex = getRandom(0, trackListLength, [activeIndex]);
 
             setActiveTrackIndex(randomActiveIndex);
-            rAF(handleClickPlay);
             return;
         }
 
         if (repeatingState === repeatOne) {
-            rAF(handleClickPlay);
+            setIsOnEndState(false);
+            handleClickPlay();
             return;
         }
 
         if (repeatingState === repeatAll) {
             handleClickNextTrack();
-            rAF(handleClickPlay);
             return;
         }
 
-        // repeatingState === repeatNone
+        // repeatingState === repeatNone, no last track
         if (activeIndex < trackListLength - 1) {
             handleClickNextTrack();
-            rAF(handleClickPlay);
             return;
         }
 
+        // repeatingState === repeatNone, last track
+        setIsOnEndState(false);
         setActiveTrackIndex(0);
     }
 
@@ -163,11 +171,24 @@ export function AudioPlayer(props: PropsType): Node {
     }
 
     function handleAudioTagOnPlay() {
+        console.log('handleAudioTagOnPlay', new Date());
+
         setPlayingState(playerPlayingStateTypeMap.playing);
         updateMediaMetadata();
     }
 
+    function handleAudioTagCanOnPlay() {
+        console.log('handleAudioTagCanOnPlay', new Date());
+
+        if (isOnEndState) {
+            setIsOnEndState(false);
+            handleClickPlay();
+        }
+    }
+
     function handleAudioTagOnTimeUpdate() {
+        console.log('handleAudioTagOnTimeUpdate', new Date());
+
         const audioTag = getAudioTag();
 
         setTrackCurrentTime(audioTag.currentTime);
@@ -255,26 +276,27 @@ export function AudioPlayer(props: PropsType): Node {
 
     return (
         <div className={className || ''}>
-            <IsRender isRender={Boolean(getCurrentTrackSrcAsString())}>
-                <audio
-                    autoPlay={playingState === playerPlayingStateTypeMap.playing}
-                    className={audioPlayerStyle.audio_tag}
-                    key="audio-tag"
-                    muted={isMuted}
-                    onEnded={handleAudioTagOnEnded}
-                    onLoadedMetadata={handleAudioTagOnLoadedMetadata}
-                    onPause={handleAudioTagOnPause}
-                    onPlay={handleAudioTagOnPlay}
-                    onTimeUpdate={handleAudioTagOnTimeUpdate}
-                    onVolumeChange={handleAudioTagOnVolumeChange}
-                    preload="metadata"
-                    ref={refAudio}
-                    src={getCurrentTrackSrcAsString()}
-                    volume={trackVolume}
-                >
-                    <track kind="captions" src={getCurrentTrackSrcAsString()}/>
-                </audio>
-            </IsRender>
+            {/* <IsRender isRender={Boolean(getCurrentTrackSrcAsString())}>*/}
+            <audio
+                autoPlay={playingState === playerPlayingStateTypeMap.playing}
+                className={audioPlayerStyle.audio_tag}
+                key="audio-tag"
+                muted={isMuted}
+                onCanPlay={handleAudioTagCanOnPlay}
+                onEnded={handleAudioTagOnEnded}
+                onLoadedMetadata={handleAudioTagOnLoadedMetadata}
+                onPause={handleAudioTagOnPause}
+                onPlay={handleAudioTagOnPlay}
+                onTimeUpdate={handleAudioTagOnTimeUpdate}
+                onVolumeChange={handleAudioTagOnVolumeChange}
+                preload="metadata"
+                ref={refAudio}
+                src={getCurrentTrackSrcAsString()}
+                volume={trackVolume}
+            >
+                <track kind="captions" src={getCurrentTrackSrcAsString()}/>
+            </audio>
+            {/* </IsRender>*/}
             <AudioPlayerHead
                 isLoading={isLoadingMetadata}
                 isMuted={isMuted}
