@@ -2,20 +2,12 @@
 
 /* global window, navigator */
 
-function getIsIOS(): boolean {
-    if (typeof navigator === 'undefined' || typeof window === 'undefined') {
-        return false;
-    }
+const isWindowExists = typeof window !== 'undefined';
+const isNavigatorExists = typeof navigator !== 'undefined';
+const userAgent = isNavigatorExists ? navigator.userAgent : '';
 
-    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-}
+const isIOS = isNavigatorExists && isWindowExists ? /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream : false;
 
-function getIsAndroid(): boolean {
-    if (typeof navigator === 'undefined') {
-        return false;
-    }
+const isAndroid = isNavigatorExists ? /(android)/i.test(userAgent) : false;
 
-    return /(android)/i.test(navigator.userAgent);
-}
-
-export const hasVolumeBar = !(getIsIOS() || getIsAndroid());
+export const hasVolumeBar: boolean = !isIOS && !isAndroid && isWindowExists;
