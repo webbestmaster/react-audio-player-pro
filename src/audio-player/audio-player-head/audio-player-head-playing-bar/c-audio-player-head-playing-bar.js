@@ -44,12 +44,19 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
     renderProgressBar(): Node {
         const {props} = this;
         const {trackCurrentTime, trackFullTime, onChangeProgressBar} = props;
+        const ariaLabel = 'progress bar';
 
         if (trackFullTime === 0) {
-            return <RangeBar isDisable onChange={onChangeProgressBar} progress={0}/>;
+            return <RangeBar ariaLabel={ariaLabel} isDisable onChange={onChangeProgressBar} progress={0}/>;
         }
 
-        return <RangeBar onChange={onChangeProgressBar} progress={trackCurrentTime / trackFullTime}/>;
+        return (
+            <RangeBar
+                ariaLabel={ariaLabel}
+                onChange={onChangeProgressBar}
+                progress={trackCurrentTime / trackFullTime}
+            />
+        );
     }
 
     renderSwitchSoundButton(): Node {
@@ -79,9 +86,11 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
 
         const {props} = this;
         const {trackVolume, onChangeVolumeBar} = props;
+        const ariaLabel = 'volume bar';
 
         return (
             <RangeBar
+                ariaLabel={ariaLabel}
                 className={audioPlayerHeadPlayingBarStyle.volume_bar}
                 onChange={onChangeVolumeBar}
                 progress={trackVolume}

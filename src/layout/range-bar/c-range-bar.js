@@ -12,6 +12,7 @@ import {inputData} from './range-bar-const';
 type PropsType = {|
     +progress: number,
     +onChange: (value: number) => mixed,
+    +ariaLabel: string,
     +isDisable?: boolean,
     +className?: string,
 |};
@@ -19,7 +20,7 @@ type PropsType = {|
 export function RangeBar(props: PropsType): Node {
     const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
     const inputRef = useRef<?HTMLInputElement>();
-    const {className, isDisable, progress, onChange} = props;
+    const {className, isDisable, progress, onChange, ariaLabel} = props;
 
     function getCurrentValue(): number {
         const {current} = inputRef;
@@ -68,6 +69,7 @@ export function RangeBar(props: PropsType): Node {
             </div>
 
             <input
+                aria-label={ariaLabel}
                 className={rangeBarStyle.input_range}
                 defaultValue={inputData.defaultValue}
                 max={inputData.max}

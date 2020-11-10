@@ -66,11 +66,17 @@ export function AudioPlayerTrackListItem(props: PropsType): Node {
     function renderButton(): Node {
         const playImageId = '#' + audioPlayerIconIdPrefix + 'button-play';
         const pauseImageId = '#' + audioPlayerIconIdPrefix + 'button-pause-playlist';
+        const accessibleName = 'play';
 
         if (playingState === playerPlayingStateTypeMap.playing) {
             if (isCurrentTrack) {
                 return (
-                    <button className={audioPlayerTrackListItemStyle.button} onClick={onClickPlay} type="button">
+                    <button
+                        aria-label={accessibleName}
+                        className={audioPlayerTrackListItemStyle.button}
+                        onClick={onClickPlay}
+                        type="button"
+                    >
                         {spinner}
                         <SvgImage
                             className={audioPlayerTrackListItemStyle.button_image__active}
@@ -81,7 +87,12 @@ export function AudioPlayerTrackListItem(props: PropsType): Node {
             }
 
             return (
-                <button className={audioPlayerTrackListItemStyle.button} onClick={handleSetActiveIndex} type="button">
+                <button
+                    aria-label={accessibleName}
+                    className={audioPlayerTrackListItemStyle.button}
+                    onClick={handleSetActiveIndex}
+                    type="button"
+                >
                     <SvgImage className={audioPlayerTrackListItemStyle.button_image} imageId={playImageId}/>
                 </button>
             );
@@ -89,7 +100,12 @@ export function AudioPlayerTrackListItem(props: PropsType): Node {
 
         if (isCurrentTrack) {
             return (
-                <button className={audioPlayerTrackListItemStyle.button} onClick={onClickPlay} type="button">
+                <button
+                    aria-label={accessibleName}
+                    className={audioPlayerTrackListItemStyle.button}
+                    onClick={onClickPlay}
+                    type="button"
+                >
                     {spinner}
                     <SvgImage className={audioPlayerTrackListItemStyle.button_image} imageId={playImageId}/>
                 </button>
@@ -98,6 +114,7 @@ export function AudioPlayerTrackListItem(props: PropsType): Node {
 
         return (
             <button
+                aria-label={accessibleName}
                 className={audioPlayerTrackListItemStyle.button}
                 onClick={handleSetActiveIndexAndTogglePlay}
                 type="button"

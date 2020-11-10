@@ -201,7 +201,11 @@ export function Audio(props: PropsType): Node {
 
             <Time className={audioStyle.time} currentTime={trackCurrentTime} fullTime={trackFullTime}/>
 
-            <RangeBar onChange={handleOnChangeProgressBar} progress={trackCurrentTime / trackFullTime}/>
+            <RangeBar
+                ariaLabel="progress bar"
+                onChange={handleOnChangeProgressBar}
+                progress={trackCurrentTime / trackFullTime}
+            />
 
             <IsRender isRender={hasVolumeBar}>
                 <AudioPlayerControlButton
@@ -209,7 +213,12 @@ export function Audio(props: PropsType): Node {
                     imageId={soundImageId}
                     onClick={handleClickToggleMute}
                 />
-                <RangeBar className={audioStyle.sound_range} onChange={handleChangeVolumeBar} progress={trackVolume}/>
+                <RangeBar
+                    ariaLabel="volume bar"
+                    className={audioStyle.sound_range}
+                    onChange={handleChangeVolumeBar}
+                    progress={trackVolume}
+                />
             </IsRender>
 
             <a className={audioStyle.download_button} download={downloadFileName || true} href={src}>

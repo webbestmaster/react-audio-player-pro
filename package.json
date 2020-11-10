@@ -1,6 +1,6 @@
 {
   "name": "react-audio-player-pro",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "React Audio Player Pro",
   "keywords": [
     "react",
@@ -72,7 +72,7 @@
     "@babel/preset-react": "^7.12.5",
     "@babel/runtime": "^7.12.5",
     "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "^8.2.0",
     "babel-plugin-css-modules-transform": "^1.6.2",
     "babel-plugin-file-loader": "^2.0.0",
     "babel-plugin-flow-runtime": "^0.19.0",
