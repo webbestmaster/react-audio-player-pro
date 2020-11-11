@@ -84,8 +84,6 @@ export function AudioPlayer(props: PropsType): Node {
     }
 
     function handleAudioTagOnLoadedMetadata() {
-        console.log('handleAudioTagOnLoadedMetadata', new Date());
-
         const audioTag = getAudioTag();
 
         setIsLoadingMetadata(false);
@@ -94,8 +92,6 @@ export function AudioPlayer(props: PropsType): Node {
     }
 
     function handleAudioTagOnPause() {
-        console.log('handleAudioTagOnPause', new Date());
-
         setPlayingState(playerPlayingStateTypeMap.paused);
     }
 
@@ -110,8 +106,6 @@ export function AudioPlayer(props: PropsType): Node {
     function handleAudioTagOnEnded() {
         const {one: repeatOne, all: repeatAll, none: repeatNone} = playerRepeatingStateTypeMap;
         const trackListLength = trackList.length;
-
-        console.log('handleAudioTagOnEnded', new Date());
 
         setIsOnEndState(true);
 
@@ -171,15 +165,11 @@ export function AudioPlayer(props: PropsType): Node {
     }
 
     function handleAudioTagOnPlay() {
-        console.log('handleAudioTagOnPlay', new Date());
-
         setPlayingState(playerPlayingStateTypeMap.playing);
         updateMediaMetadata();
     }
 
     function handleAudioTagCanOnPlay() {
-        console.log('handleAudioTagCanOnPlay', new Date());
-
         if (isOnEndState) {
             setIsOnEndState(false);
             handleClickPlay();
@@ -187,8 +177,6 @@ export function AudioPlayer(props: PropsType): Node {
     }
 
     function handleAudioTagOnTimeUpdate() {
-        console.log('handleAudioTagOnTimeUpdate', new Date());
-
         const audioTag = getAudioTag();
 
         setTrackCurrentTime(audioTag.currentTime);
@@ -274,6 +262,23 @@ export function AudioPlayer(props: PropsType): Node {
         updateMediaMetadata();
     }
 
+    function playByIndex(trackIndex: number) {
+        setActiveIndex(trackIndex);
+        setIsLoadingMetadata(true);
+
+        const audioTag = getAudioTag();
+
+        function handleOnCanPlay() {
+            setIsLoadingMetadata(false);
+
+            audioTag.removeEventListener('canplay', handleOnCanPlay, false);
+
+            audioTag.play();
+        }
+
+        audioTag.addEventListener('canplay', handleOnCanPlay, false);
+    }
+
     return (
         <div className={className || ''}>
             {/* <IsRender isRender={Boolean(getCurrentTrackSrcAsString())}>*/}
@@ -322,6 +327,7 @@ export function AudioPlayer(props: PropsType): Node {
                     activeIndex={activeIndex}
                     isLoading={isLoadingMetadata}
                     onClickPlay={handleClickPlay}
+                    playByIndex={playByIndex}
                     playingState={playingState}
                     setActiveIndex={setActiveTrackIndex}
                     trackList={trackList}

@@ -12,12 +12,13 @@ type PropsType = {|
     +trackList: Array<TrackType>,
     +playingState: PlayerPlayingStateType,
     +onClickPlay: () => mixed,
+    +playByIndex: (trackIndex: number) => mixed,
     +setActiveIndex: (activeIndex: number) => mixed,
     +isLoading: boolean,
 |};
 
 export function AudioPlayerTrackList(props: PropsType): Node {
-    const {activeIndex, trackList, playingState, onClickPlay, setActiveIndex, isLoading} = props;
+    const {activeIndex, trackList, playingState, onClickPlay, setActiveIndex, isLoading, playByIndex} = props;
 
     return (
         <ul className={audioPlayerTrackListStyle.audio_player_track_list}>
@@ -31,6 +32,7 @@ export function AudioPlayerTrackList(props: PropsType): Node {
                         isLoading={isLoading && isCurrentTrack}
                         key={track.src}
                         onClickPlay={onClickPlay}
+                        playByIndex={playByIndex}
                         playingState={playingState}
                         setActiveIndex={setActiveIndex}
                         track={track}

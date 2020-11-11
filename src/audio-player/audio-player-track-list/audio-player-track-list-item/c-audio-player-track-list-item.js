@@ -18,12 +18,22 @@ type PropsType = {|
     +track: TrackType,
     +playingState: PlayerPlayingStateType,
     +onClickPlay: () => mixed,
+    +playByIndex: (trackIndex: number) => mixed,
     +setActiveIndex: (activeIndex: number) => mixed,
     +isLoading: boolean,
 |};
 
 export function AudioPlayerTrackListItem(props: PropsType): Node {
-    const {isCurrentTrack, activeIndex, track, playingState, onClickPlay, setActiveIndex, isLoading} = props;
+    const {
+        isCurrentTrack,
+        activeIndex,
+        track,
+        playingState,
+        onClickPlay,
+        setActiveIndex,
+        isLoading,
+        playByIndex,
+    } = props;
 
     const [trackFullTime, setTrackFullTime] = useState<number>(0);
     const {minutes: trackFullTimeMinutes, seconds: trackFullTimeSeconds} = getTrackHumanTime(trackFullTime);
@@ -52,9 +62,8 @@ export function AudioPlayerTrackListItem(props: PropsType): Node {
         setActiveIndex(activeIndex);
     }
 
-    function handleSetActiveIndexAndTogglePlay() {
-        setActiveIndex(activeIndex);
-        onClickPlay();
+    function handleSetActiveIndexAndPlay() {
+        playByIndex(activeIndex);
     }
 
     function handleOnLoadedMetadata() {
@@ -116,7 +125,7 @@ export function AudioPlayerTrackListItem(props: PropsType): Node {
             <button
                 aria-label={accessibleName}
                 className={audioPlayerTrackListItemStyle.button}
-                onClick={handleSetActiveIndexAndTogglePlay}
+                onClick={handleSetActiveIndexAndPlay}
                 type="button"
             >
                 <SvgImage className={audioPlayerTrackListItemStyle.button_image} imageId={playImageId}/>
