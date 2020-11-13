@@ -2,20 +2,19 @@
 
 /* eslint-disable max-len */
 
-import React, {type Node} from 'react';
+import React from 'react';
 
 import audioPlayerControlSpriteStyle from './audio-player-control-sprite.scss';
 
 export const audioPlayerIconIdPrefix = 'audio-player-icon-id-prefix-';
-export const mainFillColor = '#5a5a5a';
+const mainFillColor = '#5a5a5a';
+const defaultViewBox = '0 0 24 24';
 
 type SymbolDataType = {
     +viewBox?: string,
     +id: string,
     +dPath: string,
 };
-
-const defaultViewBox = '0 0 24 24';
 
 function makeSymbol(props: SymbolDataType): React$Node {
     const {viewBox = defaultViewBox, id, dPath} = props;
@@ -83,7 +82,7 @@ const iconList: Array<SymbolDataType> = [
     },
 ];
 
-export function AudioPlayerControlSprite(): Node {
+export function AudioPlayerControlSprite(): React$Node {
     return <svg className={audioPlayerControlSpriteStyle.hidden}>{iconList.map(makeSymbol)}</svg>;
 
     // <symbol id={audioPlayerIconIdPrefix + 'button-stop'} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
