@@ -1,6 +1,6 @@
 // @flow
 
-import React, {type Node} from 'react';
+import React from 'react';
 
 import {classNames} from '../../lib/css';
 import {SvgImage} from '../svg-image/c-svg-image';
@@ -20,7 +20,7 @@ type PropsType = {|
     +isActive?: boolean,
 |};
 
-export function AudioPlayerControlButton(props: PropsType): Node {
+export function AudioPlayerControlButton(props: PropsType): React$Node {
     const {onClick, imageId, isActive, ariaLabel, className} = props;
     const fullClassName = classNames(cssButton, {[cssActive]: isActive}, className);
 

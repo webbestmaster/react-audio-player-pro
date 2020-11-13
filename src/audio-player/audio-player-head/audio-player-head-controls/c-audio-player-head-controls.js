@@ -1,6 +1,6 @@
 // @flow
 
-import React, {Component, type Node} from 'react';
+import React, {Component} from 'react';
 
 import {AudioPlayerControlButton} from '../../../layout/audio-player-control-button/c-audio-player-control-button';
 
@@ -32,7 +32,7 @@ export class AudioPlayerHeadControls extends Component<PropsType, StateType> {
         this.state = {};
     }
 
-    renderButtonShuffle(): Node {
+    renderButtonShuffle(): React$Node {
         const {props} = this;
         const {onClickShuffle, isShuffleOn} = props;
 
@@ -46,7 +46,7 @@ export class AudioPlayerHeadControls extends Component<PropsType, StateType> {
         );
     }
 
-    renderButtonRepeat(): Node {
+    renderButtonRepeat(): React$Node {
         const {props} = this;
         const {onClickRepeat, repeatingState} = props;
         const {one: repeatOne, all: repeatAll} = playerRepeatingStateTypeMap;
@@ -61,14 +61,14 @@ export class AudioPlayerHeadControls extends Component<PropsType, StateType> {
         );
     }
 
-    renderButtonPrevTrack(): Node {
+    renderButtonPrevTrack(): React$Node {
         const {props} = this;
         const {onClickPrevTrack} = props;
 
         return <AudioPlayerControlButton ariaLabel="prev" imageId="button-prev-track" onClick={onClickPrevTrack}/>;
     }
 
-    renderButtonPlay(): Node {
+    renderButtonPlay(): React$Node {
         const {props} = this;
         const {onClickPlay, playingState} = props;
 
@@ -78,14 +78,14 @@ export class AudioPlayerHeadControls extends Component<PropsType, StateType> {
         ;
     }
 
-    renderButtonNextTrack(): Node {
+    renderButtonNextTrack(): React$Node {
         const {props} = this;
         const {onClickNextTrack} = props;
 
         return <AudioPlayerControlButton ariaLabel="next" imageId="button-next-track" onClick={onClickNextTrack}/>;
     }
 
-    renderButtonTrackList(): Node {
+    renderButtonTrackList(): React$Node {
         const {props} = this;
         const {onClickTrackList, isTrackListOpen} = props;
 
@@ -99,7 +99,7 @@ export class AudioPlayerHeadControls extends Component<PropsType, StateType> {
         );
     }
 
-    render(): Node {
+    render(): React$Node {
         return (
             <div className={AudioPlayerHeadControlsStyle.audio_player_head_controls}>
                 {this.renderButtonShuffle()}

@@ -1,6 +1,6 @@
 // @flow
 
-import React, {Component, type Node} from 'react';
+import React, {Component} from 'react';
 
 import {Time} from '../../../layout/time/c-time';
 import {RangeBar} from '../../../layout/range-bar/c-range-bar';
@@ -28,7 +28,7 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
         this.state = {};
     }
 
-    renderTime(): Node {
+    renderTime(): React$Node {
         const {props} = this;
         const {trackCurrentTime, trackFullTime} = props;
 
@@ -41,7 +41,7 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
         );
     }
 
-    renderProgressBar(): Node {
+    renderProgressBar(): React$Node {
         const {props} = this;
         const {trackCurrentTime, trackFullTime, onChangeProgressBar} = props;
         const ariaLabel = 'progress bar';
@@ -59,7 +59,7 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
         );
     }
 
-    renderSwitchSoundButton(): Node {
+    renderSwitchSoundButton(): React$Node {
         if (!hasVolumeBar) {
             return null;
         }
@@ -79,7 +79,7 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
         );
     }
 
-    renderVolumeBar(): Node {
+    renderVolumeBar(): React$Node {
         if (!hasVolumeBar) {
             return null;
         }
@@ -98,7 +98,7 @@ export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
         );
     }
 
-    render(): Node {
+    render(): React$Node {
         return (
             <div className={audioPlayerHeadPlayingBarStyle.audio_player_head_playing_bar}>
                 {this.renderTime()}

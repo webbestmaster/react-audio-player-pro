@@ -1,6 +1,6 @@
 // @flow
 
-import React, {type Node, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 import {classNames} from '../../lib/css';
 import {playerPlayingStateTypeMap, seekStepSecond} from '../audio-player-const';
@@ -25,7 +25,7 @@ type PropsType = {|
 |};
 
 // eslint-disable-next-line complexity, max-statements, sonarjs/cognitive-complexity
-export function Audio(props: PropsType): Node {
+export function Audio(props: PropsType): React$Node {
     const {src, mediaMetadata, className, onDidMount, downloadFileName, useRepeatButton} = props;
 
     const refAudio = useRef<?HTMLAudioElement>();

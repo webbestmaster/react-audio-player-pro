@@ -1,6 +1,6 @@
 // @flow
 
-import React, {Component, type Node} from 'react';
+import React, {Component} from 'react';
 
 import type {PlayerPlayingStateType, PlayerRepeatingStateType} from '../audio-player-type';
 import {Spinner} from '../../layout/spinner/c-spinner';
@@ -41,7 +41,7 @@ export class AudioPlayerHead extends Component<PropsType, StateType> {
         this.state = {};
     }
 
-    render(): Node {
+    render(): React$Node {
         const {props} = this;
         const {
             onClickShuffle,

@@ -1,6 +1,6 @@
 // @flow
 
-import React, {type Node} from 'react';
+import React from 'react';
 
 import type {PlayerPlayingStateType, TrackType} from '../audio-player-type';
 
@@ -17,12 +17,12 @@ type PropsType = {|
     +isLoading: boolean,
 |};
 
-export function AudioPlayerTrackList(props: PropsType): Node {
+export function AudioPlayerTrackList(props: PropsType): React$Node {
     const {activeIndex, trackList, playingState, onClickPlay, setActiveIndex, isLoading, playByIndex} = props;
 
     return (
         <ul className={audioPlayerTrackListStyle.audio_player_track_list}>
-            {trackList.map((track: TrackType, index: number): Node => {
+            {trackList.map((track: TrackType, index: number): React$Node => {
                 const isCurrentTrack = activeIndex === index;
 
                 return (

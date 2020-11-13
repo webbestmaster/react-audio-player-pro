@@ -1,13 +1,13 @@
 // @flow
 
-import React, {type Node} from 'react';
+import React from 'react';
 
 type PropsType = {|
     +isRender: boolean,
-    +children: Node,
+    +children: React$Node,
 |};
 
-export function IsRender(props: PropsType): Node {
+export function IsRender(props: PropsType): React$Node {
     const {isRender, children} = props;
 
     return isRender ? children : null;

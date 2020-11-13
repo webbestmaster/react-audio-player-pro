@@ -1,6 +1,6 @@
 // @flow
 
-import React, {type Node} from 'react';
+import React from 'react';
 
 import {AudioPlayer, AudioPlayerControlSprite} from '../../../../src/audio-player';
 import {Markdown} from '../layout/c-markdown';
@@ -80,7 +80,7 @@ const audioDataList: Array<TrackType> = [
     },
 ];
 
-export function ExamplePlayer(): Node {
+export function ExamplePlayer(): React$Node {
     return (
         <div className="example-wrapper">
             <Markdown config={{useWrapper: false}} mdInput={exampleAudioPlayer}/>

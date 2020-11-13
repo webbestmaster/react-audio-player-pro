@@ -1,6 +1,6 @@
 // @flow
 
-import React, {type Node, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 
 import {classNames} from '../../../lib/css';
 import type {PlayerPlayingStateType, TrackType} from '../../audio-player-type';
@@ -23,7 +23,7 @@ type PropsType = {|
     +isLoading: boolean,
 |};
 
-export function AudioPlayerTrackListItem(props: PropsType): Node {
+export function AudioPlayerTrackListItem(props: PropsType): React$Node {
     const {
         isCurrentTrack,
         activeIndex,
@@ -72,7 +72,7 @@ export function AudioPlayerTrackListItem(props: PropsType): Node {
         setTrackFullTime(audioTag.duration);
     }
 
-    function renderButton(): Node {
+    function renderButton(): React$Node {
         const playImageId = '#' + audioPlayerIconIdPrefix + 'button-play';
         const pauseImageId = '#' + audioPlayerIconIdPrefix + 'button-pause-playlist';
         const accessibleName = 'play';

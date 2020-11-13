@@ -2,7 +2,7 @@
 
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
-import React, {type Node, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 
 import {classNames} from '../../lib/css';
 
@@ -17,7 +17,7 @@ type PropsType = {|
     +className?: string,
 |};
 
-export function RangeBar(props: PropsType): Node {
+export function RangeBar(props: PropsType): React$Node {
     const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
     const inputRef = useRef<?HTMLInputElement>();
     const {className, isDisable, progress, onChange, ariaLabel} = props;

@@ -2,7 +2,7 @@
 
 /* global requestAnimationFrame, document */
 
-import React, {type Node, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 import {setMediaMetadata} from '../lib/media-meta-data/media-meta-data';
 import {getRandom, getShiftIndex} from '../lib/number';
@@ -31,7 +31,7 @@ import audioPlayerStyle from './audio-player.scss';
 type PropsType = AudioPlayerPropsType;
 
 // eslint-disable-next-line complexity, max-statements, sonarjs/cognitive-complexity
-export function AudioPlayer(props: PropsType): Node {
+export function AudioPlayer(props: PropsType): React$Node {
     const {defaultState, className, onDidMount, trackList} = props;
 
     const defaultDefinedState = getDefaultState(defaultState);

@@ -1,6 +1,6 @@
 // @flow
 
-import React, {type Node} from 'react';
+import React from 'react';
 
 import {classNames} from '../../lib/css';
 
@@ -24,7 +24,7 @@ type PropsType = {|
     +className?: string, // default = ''
 |};
 
-export function Spinner(props: PropsType): Node {
+export function Spinner(props: PropsType): React$Node {
     const {
         size: rawSize,
         lineWidth,

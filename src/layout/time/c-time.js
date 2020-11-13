@@ -1,6 +1,6 @@
 // @flow
 
-import React, {type Node} from 'react';
+import React from 'react';
 
 import {getTrackHumanTime} from '../../lib/time';
 import {classNames} from '../../lib/css';
@@ -13,7 +13,7 @@ type PropsType = {|
     +className?: string,
 |};
 
-export function Time(props: PropsType): Node {
+export function Time(props: PropsType): React$Node {
     const {currentTime, fullTime, className} = props;
 
     const {minutes: trackCurrentTimeMinutes, seconds: trackCurrentTimeSeconds} = getTrackHumanTime(currentTime);

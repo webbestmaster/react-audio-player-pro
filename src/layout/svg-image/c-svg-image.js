@@ -1,13 +1,13 @@
 // @flow
 
-import React, {type Node} from 'react';
+import React from 'react';
 
 type PropsType = {|
     +className: string,
     +imageId: string,
 |};
 
-export function SvgImage(props: PropsType): Node {
+export function SvgImage(props: PropsType): React$Node {
     const {className, imageId} = props;
 
     return (
