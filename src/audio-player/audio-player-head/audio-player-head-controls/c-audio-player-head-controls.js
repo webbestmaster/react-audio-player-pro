@@ -7,6 +7,8 @@ import {AudioPlayerControlButton} from '../../../layout/audio-player-control-but
 import type {PlayerPlayingStateType, PlayerRepeatingStateType} from '../../audio-player-type';
 import {playerPlayingStateTypeMap, playerRepeatingStateTypeMap} from '../../audio-player-const';
 
+const {one: repeatOne, all: repeatAll} = playerRepeatingStateTypeMap;
+
 import AudioPlayerHeadControlsStyle from './audio-player-head-controls.scss';
 
 type PropsType = {|
@@ -23,92 +25,52 @@ type PropsType = {|
     +isTrackListOpen: boolean,
 |};
 
-type StateType = {};
+export function AudioPlayerHeadControls(props: PropsType): React$Node {
+    const {
+        onClickShuffle,
+        onClickRepeat,
+        onClickPrevTrack,
+        onClickPlay,
+        onClickNextTrack,
+        onClickTrackList,
+        playingState,
+        isShuffleOn,
+        repeatingState,
+        isTrackListOpen,
+    } = props;
 
-export class AudioPlayerHeadControls extends Component<PropsType, StateType> {
-    constructor(props: PropsType) {
-        super(props);
+    const isPlaying = playingState === playerPlayingStateTypeMap.playing;
 
-        this.state = {};
-    }
-
-    renderButtonShuffle(): React$Node {
-        const {props} = this;
-        const {onClickShuffle, isShuffleOn} = props;
-
-        return (
+    return (
+        <div className={AudioPlayerHeadControlsStyle.audio_player_head_controls}>
             <AudioPlayerControlButton
                 ariaLabel="shuffle"
                 imageId="button-shuffle"
                 isActive={isShuffleOn}
                 onClick={onClickShuffle}
             />
-        );
-    }
 
-    renderButtonRepeat(): React$Node {
-        const {props} = this;
-        const {onClickRepeat, repeatingState} = props;
-        const {one: repeatOne, all: repeatAll} = playerRepeatingStateTypeMap;
-
-        return (
             <AudioPlayerControlButton
                 ariaLabel="repeat"
                 imageId={repeatingState === repeatOne ? 'button-repeat-one' : 'button-repeat'}
-                isActive={[repeatOne, repeatAll].includes(repeatingState)}
+                isActive={repeatingState === repeatOne || repeatingState === repeatAll}
                 onClick={onClickRepeat}
             />
-        );
-    }
 
-    renderButtonPrevTrack(): React$Node {
-        const {props} = this;
-        const {onClickPrevTrack} = props;
+            <AudioPlayerControlButton ariaLabel="prev" imageId="button-prev-track" onClick={onClickPrevTrack}/>
 
-        return <AudioPlayerControlButton ariaLabel="prev" imageId="button-prev-track" onClick={onClickPrevTrack}/>;
-    }
+            {isPlaying
+                ? <AudioPlayerControlButton ariaLabel="pause" imageId="button-pause" onClick={onClickPlay}/>
+                : <AudioPlayerControlButton ariaLabel="play" imageId="button-play" onClick={onClickPlay}/>}
 
-    renderButtonPlay(): React$Node {
-        const {props} = this;
-        const {onClickPlay, playingState} = props;
+            <AudioPlayerControlButton ariaLabel="next" imageId="button-next-track" onClick={onClickNextTrack}/>
 
-        return playingState !== playerPlayingStateTypeMap.playing
-            ? <AudioPlayerControlButton ariaLabel="play" imageId="button-play" onClick={onClickPlay}/>
-            : <AudioPlayerControlButton ariaLabel="pause" imageId="button-pause" onClick={onClickPlay}/>
-        ;
-    }
-
-    renderButtonNextTrack(): React$Node {
-        const {props} = this;
-        const {onClickNextTrack} = props;
-
-        return <AudioPlayerControlButton ariaLabel="next" imageId="button-next-track" onClick={onClickNextTrack}/>;
-    }
-
-    renderButtonTrackList(): React$Node {
-        const {props} = this;
-        const {onClickTrackList, isTrackListOpen} = props;
-
-        return (
             <AudioPlayerControlButton
                 ariaLabel="track-list"
                 imageId="button-track-list"
                 isActive={isTrackListOpen}
                 onClick={onClickTrackList}
             />
-        );
-    }
-
-    render(): React$Node {
-        return (
-            <div className={AudioPlayerHeadControlsStyle.audio_player_head_controls}>
-                {this.renderButtonShuffle()}
-                {this.renderButtonRepeat()}
-                {this.renderButtonPrevTrack()}
-                {this.renderButtonPlay()}
-                {this.renderButtonNextTrack()}
-                {this.renderButtonTrackList()}
-            </div>
-        );
-    }
+        </div>
+    );
 }

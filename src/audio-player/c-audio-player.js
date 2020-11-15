@@ -281,7 +281,6 @@ export function AudioPlayer(props: PropsType): React$Node {
 
     return (
         <div className={className || ''}>
-            {/* <IsRender isRender={Boolean(getCurrentTrackSrcAsString())}>*/}
             <audio
                 autoPlay={playingState === playerPlayingStateTypeMap.playing}
                 className={audioPlayerStyle.audio_tag}
@@ -301,7 +300,7 @@ export function AudioPlayer(props: PropsType): React$Node {
             >
                 <track kind="captions" src={getCurrentTrackSrcAsString()}/>
             </audio>
-            {/* </IsRender>*/}
+
             <AudioPlayerHead
                 isLoading={isLoadingMetadata}
                 isMuted={isMuted}

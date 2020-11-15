@@ -30,9 +30,6 @@ export function AudioPlayerHeadPlayingBar(props: PropsType): React$Node {
         onChangeProgressBar,
         onChangeVolumeBar,
     } = props;
-    const progressBarAriaLabel = 'progress bar';
-    const volumeBarAriaLabel = 'volume bar';
-    const switchSoundAriaLabel = 'switch-sound';
     const isActualMuted = isMuted || trackVolume === 0;
     const soundImageSrc = isActualMuted ? 'button-sound-off' : 'button-sound-on';
     const isTrackInitialized = trackFullTime !== 0;
@@ -46,7 +43,7 @@ export function AudioPlayerHeadPlayingBar(props: PropsType): React$Node {
             />
 
             <RangeBar
-                ariaLabel={progressBarAriaLabel}
+                ariaLabel="progress bar"
                 isDisable={!isTrackInitialized}
                 onChange={onChangeProgressBar}
                 progress={isTrackInitialized ? trackCurrentTime / trackFullTime : 0}
@@ -54,13 +51,13 @@ export function AudioPlayerHeadPlayingBar(props: PropsType): React$Node {
 
             <IsRender isRender={hasVolumeBar}>
                 <AudioPlayerControlButton
-                    ariaLabel={switchSoundAriaLabel}
+                    ariaLabel="switch-sound"
                     className=""
                     imageId={soundImageSrc}
                     onClick={onClickMuteVolume}
                 />
                 <RangeBar
-                    ariaLabel={volumeBarAriaLabel}
+                    ariaLabel="volume bar"
                     className={audioPlayerHeadPlayingBarStyle.volume_bar}
                     onChange={onChangeVolumeBar}
                     progress={trackVolume}
