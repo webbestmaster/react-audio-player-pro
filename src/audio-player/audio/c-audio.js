@@ -19,7 +19,7 @@ type PropsType = {|
     +src: string,
     +mediaMetadata?: MediaMetadataType,
     +className?: string,
-    +onDidMount?: (audioNode: HTMLAudioElement | null) => mixed,
+    +onDidMount?: (audioNode: HTMLAudioElement | null) => void,
     +downloadFileName?: string,
     +useRepeatButton?: boolean,
 |};

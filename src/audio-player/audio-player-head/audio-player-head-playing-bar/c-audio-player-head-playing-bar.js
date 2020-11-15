@@ -11,13 +11,13 @@ import {IsRender} from '../../../layout/is-render/c-is-render';
 import audioPlayerHeadPlayingBarStyle from './audio-player-head-playing-bar.scss';
 
 type PropsType = {|
-    +onClickMuteVolume: () => mixed,
+    +onClickMuteVolume: () => void,
     +isMuted: boolean,
     +trackCurrentTime: number,
     +trackVolume: number,
     +trackFullTime: number,
-    +onChangeProgressBar: (progress: number) => mixed,
-    +onChangeVolumeBar: (volume: number) => mixed,
+    +onChangeProgressBar: (progress: number) => void,
+    +onChangeVolumeBar: (volume: number) => void,
 |};
 
 export function AudioPlayerHeadPlayingBar(props: PropsType): React$Node {

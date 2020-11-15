@@ -14,7 +14,7 @@ const cssImage = audioPlayerControlStyle.audio_player_control__button__image;
 
 type PropsType = {|
     +className?: string,
-    +onClick?: () => mixed,
+    +onClick?: () => void,
     +imageId: string,
     +ariaLabel: string,
     +isActive?: boolean,

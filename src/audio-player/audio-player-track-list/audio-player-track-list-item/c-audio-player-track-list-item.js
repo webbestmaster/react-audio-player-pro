@@ -17,9 +17,9 @@ type PropsType = {|
     +activeIndex: number,
     +track: TrackType,
     +playingState: PlayerPlayingStateType,
-    +onClickPlay: () => mixed,
-    +playByIndex: (trackIndex: number) => mixed,
-    +setActiveIndex: (activeIndex: number) => mixed,
+    +onClickPlay: () => void,
+    +playByIndex: (trackIndex: number) => void,
+    +setActiveIndex: (activeIndex: number) => void,
     +isLoading: boolean,
 |};
 

@@ -12,12 +12,12 @@ const {one: repeatOne, all: repeatAll} = playerRepeatingStateTypeMap;
 import AudioPlayerHeadControlsStyle from './audio-player-head-controls.scss';
 
 type PropsType = {|
-    +onClickShuffle: () => mixed,
-    +onClickRepeat: () => mixed,
-    +onClickPrevTrack: () => mixed,
-    +onClickPlay: () => mixed,
-    +onClickNextTrack: () => mixed,
-    +onClickTrackList: () => mixed,
+    +onClickShuffle: () => void,
+    +onClickRepeat: () => void,
+    +onClickPrevTrack: () => void,
+    +onClickPlay: () => void,
+    +onClickNextTrack: () => void,
+    +onClickTrackList: () => void,
 
     +playingState: PlayerPlayingStateType,
     +isShuffleOn: boolean,

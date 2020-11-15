@@ -11,7 +11,7 @@ import {inputData} from './range-bar-const';
 
 type PropsType = {|
     +progress: number,
-    +onChange: (value: number) => mixed,
+    +onChange: (value: number) => void,
     +ariaLabel: string,
     +isDisable?: boolean,
     +className?: string,

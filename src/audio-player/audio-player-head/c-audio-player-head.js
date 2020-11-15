@@ -11,15 +11,15 @@ import {AudioPlayerHeadControls} from './audio-player-head-controls/c-audio-play
 import audioPlayerHeadStyle from './audio-player-head.scss';
 
 type PropsType = {|
-    +onClickShuffle: () => mixed,
-    +onClickRepeat: () => mixed,
-    +onClickPrevTrack: () => mixed,
-    +onClickPlay: () => mixed,
-    +onClickNextTrack: () => mixed,
-    +onClickTrackList: () => mixed,
-    +onClickMuteVolume: () => mixed,
-    +onChangeProgressBar: (progress: number) => mixed,
-    +onChangeVolumeBar: (volume: number) => mixed,
+    +onClickShuffle: () => void,
+    +onClickRepeat: () => void,
+    +onClickPrevTrack: () => void,
+    +onClickPlay: () => void,
+    +onClickNextTrack: () => void,
+    +onClickTrackList: () => void,
+    +onClickMuteVolume: () => void,
+    +onChangeProgressBar: (progress: number) => void,
+    +onChangeVolumeBar: (volume: number) => void,
 
     +playingState: PlayerPlayingStateType,
     +isShuffleOn: boolean,

@@ -10,17 +10,17 @@ export type MediaMetadataControlNameType =
 
 /*
 export type MediaMetadataControlSettingType = {
-    +[key: MediaMetadataControlNameType]: () => mixed,
+    +[key: MediaMetadataControlNameType]: () => void,
 };
 */
 
 export type MediaMetadataControlSettingType = {|
-    +play?: () => mixed,
-    +pause?: () => mixed,
-    +seekbackward?: () => mixed,
-    +seekforward?: () => mixed,
-    +previoustrack?: () => mixed,
-    +nexttrack?: () => mixed,
+    +play?: () => void,
+    +pause?: () => void,
+    +seekbackward?: () => void,
+    +seekforward?: () => void,
+    +previoustrack?: () => void,
+    +nexttrack?: () => void,
 |};
 
 type AudioPlayerListItemArtworkType = {|
