@@ -1,11 +1,12 @@
 // @flow
 
-import React, {Component} from 'react';
+import React from 'react';
 
 import {Time} from '../../../layout/time/c-time';
 import {RangeBar} from '../../../layout/range-bar/c-range-bar';
 import {hasVolumeBar} from '../../../lib/system';
 import {AudioPlayerControlButton} from '../../../layout/audio-player-control-button/c-audio-player-control-button';
+import {IsRender} from '../../../layout/is-render/c-is-render';
 
 import audioPlayerHeadPlayingBarStyle from './audio-player-head-playing-bar.scss';
 
@@ -19,93 +20,52 @@ type PropsType = {|
     +onChangeVolumeBar: (volume: number) => mixed,
 |};
 
-type StateType = {};
+export function AudioPlayerHeadPlayingBar(props: PropsType): React$Node {
+    const {
+        trackCurrentTime,
+        trackFullTime,
+        onClickMuteVolume,
+        isMuted,
+        trackVolume,
+        onChangeProgressBar,
+        onChangeVolumeBar,
+    } = props;
+    const progressBarAriaLabel = 'progress bar';
+    const volumeBarAriaLabel = 'volume bar';
+    const switchSoundAriaLabel = 'switch-sound';
+    const isActualMuted = isMuted || trackVolume === 0;
+    const soundImageSrc = isActualMuted ? 'button-sound-off' : 'button-sound-on';
+    const isTrackInitialized = trackFullTime !== 0;
 
-export class AudioPlayerHeadPlayingBar extends Component<PropsType, StateType> {
-    constructor(props: PropsType) {
-        super(props);
-
-        this.state = {};
-    }
-
-    renderTime(): React$Node {
-        const {props} = this;
-        const {trackCurrentTime, trackFullTime} = props;
-
-        return (
+    return (
+        <div className={audioPlayerHeadPlayingBarStyle.audio_player_head_playing_bar}>
             <Time
                 className={audioPlayerHeadPlayingBarStyle.time}
                 currentTime={trackCurrentTime}
                 fullTime={trackFullTime}
             />
-        );
-    }
 
-    renderProgressBar(): React$Node {
-        const {props} = this;
-        const {trackCurrentTime, trackFullTime, onChangeProgressBar} = props;
-        const ariaLabel = 'progress bar';
-
-        if (trackFullTime === 0) {
-            return <RangeBar ariaLabel={ariaLabel} isDisable onChange={onChangeProgressBar} progress={0}/>;
-        }
-
-        return (
             <RangeBar
-                ariaLabel={ariaLabel}
+                ariaLabel={progressBarAriaLabel}
+                isDisable={!isTrackInitialized}
                 onChange={onChangeProgressBar}
-                progress={trackCurrentTime / trackFullTime}
+                progress={isTrackInitialized ? trackCurrentTime / trackFullTime : 0}
             />
-        );
-    }
 
-    renderSwitchSoundButton(): React$Node {
-        if (!hasVolumeBar) {
-            return null;
-        }
-
-        const {props} = this;
-        const {onClickMuteVolume, isMuted, trackVolume} = props;
-        const isActualMuted = isMuted || trackVolume === 0;
-        const soundImageSrc = isActualMuted ? 'button-sound-off' : 'button-sound-on';
-
-        return (
-            <AudioPlayerControlButton
-                ariaLabel="switch-sound"
-                className=""
-                imageId={soundImageSrc}
-                onClick={onClickMuteVolume}
-            />
-        );
-    }
-
-    renderVolumeBar(): React$Node {
-        if (!hasVolumeBar) {
-            return null;
-        }
-
-        const {props} = this;
-        const {trackVolume, onChangeVolumeBar} = props;
-        const ariaLabel = 'volume bar';
-
-        return (
-            <RangeBar
-                ariaLabel={ariaLabel}
-                className={audioPlayerHeadPlayingBarStyle.volume_bar}
-                onChange={onChangeVolumeBar}
-                progress={trackVolume}
-            />
-        );
-    }
-
-    render(): React$Node {
-        return (
-            <div className={audioPlayerHeadPlayingBarStyle.audio_player_head_playing_bar}>
-                {this.renderTime()}
-                {this.renderProgressBar()}
-                {this.renderSwitchSoundButton()}
-                {this.renderVolumeBar()}
-            </div>
-        );
-    }
+            <IsRender isRender={hasVolumeBar}>
+                <AudioPlayerControlButton
+                    ariaLabel={switchSoundAriaLabel}
+                    className=""
+                    imageId={soundImageSrc}
+                    onClick={onClickMuteVolume}
+                />
+                <RangeBar
+                    ariaLabel={volumeBarAriaLabel}
+                    className={audioPlayerHeadPlayingBarStyle.volume_bar}
+                    onChange={onChangeVolumeBar}
+                    progress={trackVolume}
+                />
+            </IsRender>
+        </div>
+    );
 }
