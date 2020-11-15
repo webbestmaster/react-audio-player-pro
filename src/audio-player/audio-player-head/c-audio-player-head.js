@@ -1,6 +1,6 @@
 // @flow
 
-import React, {Component} from 'react';
+import React from 'react';
 
 import type {PlayerPlayingStateType, PlayerRepeatingStateType} from '../audio-player-type';
 import {Spinner} from '../../layout/spinner/c-spinner';
@@ -32,75 +32,64 @@ type PropsType = {|
     +isLoading: boolean,
 |};
 
-type StateType = {};
+export function AudioPlayerHead(props: PropsType): React$Node {
+    const {
+        onClickShuffle,
+        onClickRepeat,
+        onClickPrevTrack,
+        onClickPlay,
+        onClickNextTrack,
+        onClickTrackList,
+        onClickMuteVolume,
+        onChangeProgressBar,
+        onChangeVolumeBar,
 
-export class AudioPlayerHead extends Component<PropsType, StateType> {
-    constructor(props: PropsType) {
-        super(props);
+        isMuted,
+        playingState,
+        isShuffleOn,
+        repeatingState,
+        isTrackListOpen,
+        trackCurrentTime,
+        trackVolume,
+        trackFullTime,
+        isLoading,
+    } = props;
 
-        this.state = {};
-    }
+    return (
+        <div className={audioPlayerHeadStyle.audio_player_head}>
+            <Spinner
+                className={audioPlayerHeadStyle.spinner}
+                isShow={isLoading}
+                lineWidth={3}
+                position="absolute"
+                size={26}
+                wrapperHeight={26}
+                wrapperPadding={0}
+                wrapperWidth={26}
+            />
 
-    render(): React$Node {
-        const {props} = this;
-        const {
-            onClickShuffle,
-            onClickRepeat,
-            onClickPrevTrack,
-            onClickPlay,
-            onClickNextTrack,
-            onClickTrackList,
-            onClickMuteVolume,
-            onChangeProgressBar,
-            onChangeVolumeBar,
+            <AudioPlayerHeadControls
+                isShuffleOn={isShuffleOn}
+                isTrackListOpen={isTrackListOpen}
+                onClickNextTrack={onClickNextTrack}
+                onClickPlay={onClickPlay}
+                onClickPrevTrack={onClickPrevTrack}
+                onClickRepeat={onClickRepeat}
+                onClickShuffle={onClickShuffle}
+                onClickTrackList={onClickTrackList}
+                playingState={playingState}
+                repeatingState={repeatingState}
+            />
 
-            isMuted,
-            playingState,
-            isShuffleOn,
-            repeatingState,
-            isTrackListOpen,
-            trackCurrentTime,
-            trackVolume,
-            trackFullTime,
-            isLoading,
-        } = props;
-
-        return (
-            <div className={audioPlayerHeadStyle.audio_player_head}>
-                <Spinner
-                    className={audioPlayerHeadStyle.spinner}
-                    isShow={isLoading}
-                    lineWidth={3}
-                    position="absolute"
-                    size={26}
-                    wrapperHeight={26}
-                    wrapperPadding={0}
-                    wrapperWidth={26}
-                />
-
-                <AudioPlayerHeadControls
-                    isShuffleOn={isShuffleOn}
-                    isTrackListOpen={isTrackListOpen}
-                    onClickNextTrack={onClickNextTrack}
-                    onClickPlay={onClickPlay}
-                    onClickPrevTrack={onClickPrevTrack}
-                    onClickRepeat={onClickRepeat}
-                    onClickShuffle={onClickShuffle}
-                    onClickTrackList={onClickTrackList}
-                    playingState={playingState}
-                    repeatingState={repeatingState}
-                />
-
-                <AudioPlayerHeadPlayingBar
-                    isMuted={isMuted}
-                    onChangeProgressBar={onChangeProgressBar}
-                    onChangeVolumeBar={onChangeVolumeBar}
-                    onClickMuteVolume={onClickMuteVolume}
-                    trackCurrentTime={trackCurrentTime}
-                    trackFullTime={trackFullTime}
-                    trackVolume={trackVolume}
-                />
-            </div>
-        );
-    }
+            <AudioPlayerHeadPlayingBar
+                isMuted={isMuted}
+                onChangeProgressBar={onChangeProgressBar}
+                onChangeVolumeBar={onChangeVolumeBar}
+                onClickMuteVolume={onClickMuteVolume}
+                trackCurrentTime={trackCurrentTime}
+                trackFullTime={trackFullTime}
+                trackVolume={trackVolume}
+            />
+        </div>
+    );
 }
