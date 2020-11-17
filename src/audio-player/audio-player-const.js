@@ -28,9 +28,9 @@ export const playerRepeatingStateTypeMap: {+[key: PlayerRepeatingStateType]: Pla
     one: 'one',
 };
 
-export const playerRepeatingStateTypeList: Array<PlayerRepeatingStateType> = Object.keys(
-    playerRepeatingStateTypeMap
-).map((key: PlayerRepeatingStateType): PlayerRepeatingStateType => playerRepeatingStateTypeMap[key]);
+const {none, all, one} = playerRepeatingStateTypeMap;
+
+export const playerRepeatingStateTypeList: Array<PlayerRepeatingStateType> = [none, all, one];
 
 export const defaultAudioPlayerState: DefaultDefinedAudioPlayerStateType = {
     isTrackListOpen: true,

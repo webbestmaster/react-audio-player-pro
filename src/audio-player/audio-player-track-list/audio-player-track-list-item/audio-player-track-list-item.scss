@@ -50,8 +50,10 @@
 .button_image__active {
     @extend %button--image;
 
-    background-color: #d2dff5;
-    border: 3px solid #d2dff5;
+    //background-color: #d2dff5;
+    //border: 3px solid #d2dff5;
+    background-color: #fff;
+    border: 3px solid #fff;
 }
 
 .content {
