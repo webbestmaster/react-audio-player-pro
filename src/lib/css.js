@@ -21,10 +21,8 @@ export function classNames(...argumentList: Array<ClassNamesArgumentType>): stri
             continue;
         }
 
-        const keyList = Object.keys(classNameData);
-
         // eslint-disable-next-line no-loops/no-loops
-        for (const key of keyList) {
+        for (const key in classNameData) {
             if (classNameData[key]) {
                 classNameList.push(key);
             }
