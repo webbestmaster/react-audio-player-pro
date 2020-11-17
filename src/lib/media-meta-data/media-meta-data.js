@@ -19,12 +19,14 @@ export function clearMediaMetadata() {
     // $FlowFixMe
     navigator.mediaSession.metadata = null;
 
-    Object.keys(mediaMetadataControlNameMap).forEach((controlName: MediaMetadataControlNameType) => {
+    // eslint-disable-next-line no-loops/no-loops, guard-for-in
+    for (const controlName in mediaMetadataControlNameMap) {
         // $FlowFixMe
         navigator.mediaSession.setActionHandler(controlName, null);
-    });
+    }
 }
 
+// eslint-disable-next-line complexity
 export function setMediaMetadata(
     mediaMetadata: MediaMetadataType,
     mediaMetadataControlSetting?: MediaMetadataControlSettingType
@@ -43,10 +45,13 @@ export function setMediaMetadata(
     // $FlowFixMe
     navigator.mediaSession.metadata = new MediaMetadata(mediaMetadata);
 
-    if (mediaMetadataControlSetting) {
-        Object.keys(mediaMetadataControlSetting).forEach((controlName: MediaMetadataControlNameType) => {
-            // $FlowFixMe
-            navigator.mediaSession.setActionHandler(controlName, mediaMetadataControlSetting[controlName]);
-        });
+    if (!mediaMetadataControlSetting) {
+        return;
+    }
+
+    // eslint-disable-next-line no-loops/no-loops, guard-for-in
+    for (const controlName in mediaMetadataControlSetting) {
+        // $FlowFixMe
+        navigator.mediaSession.setActionHandler(controlName, mediaMetadataControlSetting[controlName]);
     }
 }
