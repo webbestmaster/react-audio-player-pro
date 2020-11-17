@@ -5,29 +5,19 @@
         "@babel/preset-flow"
     ],
     "plugins": [
-// for preact's pragma
-//        ["@babel/plugin-transform-react-jsx", { "pragma":"h" }],
-//        ["babel-plugin-jsx-pragmatic", {
-//            "module": "preact",
-//            "import": "h",
-//            "export": "h"
-//        }],
+        // for preact's pragma
+        //        ["@babel/plugin-transform-react-jsx", { "pragma":"h" }],
+        //        ["babel-plugin-jsx-pragmatic", {
+        //            "module": "preact",
+        //            "import": "h",
+        //            "export": "h"
+        //        }],
         "@babel/plugin-transform-strict-mode",
-        "@babel/plugin-transform-runtime",
-        "babel-plugin-transform-class-properties",
-        "@babel/plugin-proposal-export-namespace-from",
-        "@babel/plugin-proposal-throw-expressions",
-        "@babel/plugin-syntax-dynamic-import"
+        "@babel/plugin-transform-runtime"
     ],
     "env": {
         "development": {
             "plugins": [
-//                [
-//                    "@babel/plugin-proposal-decorators",
-//                    {
-//                        "legacy": true
-//                    }
-//                ],
                 [
                     "babel-plugin-flow-runtime",
                     {
