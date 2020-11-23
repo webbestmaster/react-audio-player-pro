@@ -50,13 +50,7 @@ export function RangeBar(props: PropsType): React$Node {
     });
 
     return (
-        <div
-            className={fullClassName}
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onTouchEnd={handleMouseUp}
-            onTouchStart={handleMouseDown}
-        >
+        <div className={fullClassName} onPointerDown={handleMouseDown} onPointerUp={handleMouseUp}>
             <div className={rangeBarStyle.progress_bar__wrapper}>
                 <div
                     className={rangeBarStyle.progress_bar}
