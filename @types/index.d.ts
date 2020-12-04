@@ -15,6 +15,7 @@ declare module 'react-audio-player-pro' {
     export interface TrackType {
         src: string,
         mediaMetadata?: MediaMetadataType,
+        // TODO: try to use JSX.Element | JSX.Element[] instead of React.ReactNode
         // eslint-disable-next-line id-match
         content?: React.ReactNode,
     }
