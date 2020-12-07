@@ -15,8 +15,7 @@ declare module 'react-audio-player-pro' {
     export interface TrackType {
         src: string,
         mediaMetadata?: MediaMetadataType,
-        // eslint-disable-next-line id-match
-        content?: React.ReactNode,
+        content?: JSX.Element | Array<JSX.Element>,
     }
 
     export type PlayerRepeatingStateType = 'none' | 'all' | 'one';
