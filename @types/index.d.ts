@@ -25,7 +25,7 @@ declare module 'react-audio-player-pro' {
         activeIndex?: number,
         isShuffleOn?: boolean,
         isMuted?: boolean,
-        repeatingState?: keyof PlayerRepeatingStateType,
+        repeatingState?: PlayerRepeatingStateType,
     }
 
     export const AudioPlayerControlSprite: React.FC<{}>;

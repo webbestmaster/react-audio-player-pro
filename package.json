@@ -1,6 +1,6 @@
 {
   "name": "react-audio-player-pro",
-  "version": "0.0.38",
+  "version": "0.0.39",
   "description": "React Audio Player Pro",
   "keywords": [
     "react",
@@ -71,7 +71,7 @@
     "babel-plugin-flow-runtime": "^0.19.0",
     "circular-dependency-plugin": "^5.2.2",
     "clean-webpack-plugin": "^3.0.0",
-    "copy-webpack-plugin": "^6.3.2",
+    "copy-webpack-plugin": "^6.4.0",
     "coveralls": "^3.1.0",
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
@@ -93,7 +93,7 @@
     "eslint-plugin-sonarjs": "^0.5.0",
     "eslint-plugin-unicorn": "^23.0.0",
     "file-loader": "^6.2.0",
-    "flow-bin": "^0.138.0",
+    "flow-bin": "^0.139.0",
     "flow-coverage-report": "^0.8.0",
     "flow-runtime": "^0.17.0",
     "flow-typed": "^3.2.1",
