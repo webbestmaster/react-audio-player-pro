@@ -13,3 +13,20 @@ export function getDefaultState(defaultState?: DefaultAudioPlayerStateType): Def
 
     return defaultAudioPlayerState;
 }
+
+export function getStopHandler(audioTag: HTMLAudioElement): () => void {
+    return function handleOnStop() {
+        // eslint-disable-next-line no-param-reassign
+        audioTag.currentTime = 0;
+
+        async function handleCanPlay() {
+            audioTag.removeEventListener('canplay', handleCanPlay, false);
+            await audioTag.play();
+            audioTag.pause();
+            // eslint-disable-next-line no-param-reassign
+            audioTag.currentTime = 0;
+        }
+
+        audioTag.addEventListener('canplay', handleCanPlay, false);
+    };
+}

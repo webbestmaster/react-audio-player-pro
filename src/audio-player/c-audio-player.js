@@ -25,7 +25,7 @@ import {
     seekStepSecond,
 } from './audio-player-const';
 
-import {getDefaultState} from './audio-player-helper';
+import {getDefaultState, getStopHandler} from './audio-player-helper';
 import audioPlayerStyle from './audio-player.scss';
 
 type PropsType = AudioPlayerPropsType;
@@ -160,6 +160,7 @@ export function AudioPlayer(props: PropsType): React$Node {
                 seekbackward: seekBackward,
                 previoustrack: handleClickPrevTrack,
                 nexttrack: handleClickNextTrack,
+                stop: getStopHandler(getAudioTag()),
             });
         }
     }

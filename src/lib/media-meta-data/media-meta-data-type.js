@@ -21,6 +21,7 @@ export type MediaMetadataControlSettingType = {|
     +seekforward?: () => void,
     +previoustrack?: () => void,
     +nexttrack?: () => void,
+    +stop?: () => void,
 |};
 
 type AudioPlayerListItemArtworkType = {|

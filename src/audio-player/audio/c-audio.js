@@ -12,6 +12,7 @@ import {type MediaMetadataType} from '../../lib/media-meta-data/media-meta-data-
 import {RangeBar} from '../../layout/range-bar/c-range-bar';
 import {setMediaMetadata} from '../../lib/media-meta-data/media-meta-data';
 import {IsRender} from '../../layout/is-render/c-is-render';
+import {getStopHandler} from '../audio-player-helper';
 
 import audioStyle from './audio.scss';
 
@@ -96,6 +97,7 @@ export function Audio(props: PropsType): React$Node {
         const seek = {
             seekforward: seekForward,
             seekbackward: seekBackward,
+            stop: getStopHandler(getAudioTag()),
         };
 
         if (mediaMetadata) {
