@@ -19,12 +19,18 @@ export function getStopHandler(audioTag: HTMLAudioElement): () => void {
         // eslint-disable-next-line no-param-reassign
         audioTag.currentTime = 0;
 
-        async function handleCanPlay() {
+        function handleCanPlay() {
             audioTag.removeEventListener('canplay', handleCanPlay, false);
-            await audioTag.play();
-            audioTag.pause();
-            // eslint-disable-next-line no-param-reassign
-            audioTag.currentTime = 0;
+
+            // eslint-disable-next-line promise/catch-or-return
+            audioTag
+                .play()
+                // eslint-disable-next-line promise/always-return
+                .then(() => {
+                    audioTag.pause();
+                    // eslint-disable-next-line no-param-reassign
+                    audioTag.currentTime = 0;
+                });
         }
 
         audioTag.addEventListener('canplay', handleCanPlay, false);
