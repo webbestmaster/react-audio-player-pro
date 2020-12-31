@@ -16,6 +16,7 @@ type PropsType = {};
 export function PlayListPanel(props: PropsType): React$Node {
     const playListContextData = useContext(PlayListContext);
     const allPlayLists = playListContextData.getAllPlayLists();
+    const handleCreateNewPlayList = playListContextData.createPlayList;
 
     const defaultActivePlayList = allPlayLists.length > 0 ? allPlayLists[0] : null;
 
@@ -31,7 +32,9 @@ export function PlayListPanel(props: PropsType): React$Node {
             <h2>page name: {pageName}</h2>
 
             <IsRender isRender={pageName === playListPanelPageNameMap.listOfPlayList}>
-                <div>click here to create play list</div>
+                <button onClick={handleCreateNewPlayList} type="button">
+                    click here to create play list
+                </button>
 
                 <ListOfPlayList/>
             </IsRender>
