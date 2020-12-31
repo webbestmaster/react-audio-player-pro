@@ -1,9 +1,10 @@
 // @flow
 
-import React, {useState, useMemo, useCallback} from 'react';
+import React, {useState, useMemo, useCallback, useEffect} from 'react';
 
 import type {PlayListContextType, PlayListType} from './play-list-context-type';
-import {getAllSavedPlayLists, getDefaultPlayListContextData} from './play-list-context-helper';
+import {getDefaultPlayListContextData} from './play-list-context-helper';
+import {getSavedPlayListContextData, savePlayListContextData} from './play-list-context-storage';
 
 const defaultPlayListContextData = getDefaultPlayListContextData();
 
@@ -17,7 +18,7 @@ type PropsType = {|
 
 export function PlayListProvider(props: PropsType): React$Node {
     const {children} = props;
-    const [list, setList] = useState<Array<PlayListType>>(getAllSavedPlayLists());
+    const [list, setList] = useState<Array<PlayListType>>(getSavedPlayListContextData());
 
     const createPlayList = useCallback(
         function createPlayListInner(): PlayListType {
@@ -88,6 +89,10 @@ export function PlayListProvider(props: PropsType): React$Node {
             deletePlayList,
         };
     }, [createPlayList, getAllPlayLists, updatePlayList, deletePlayList]);
+
+    useEffect(() => {
+        savePlayListContextData(list);
+    }, [list]);
 
     return <PlayListContext.Provider value={providedData}>{children}</PlayListContext.Provider>;
 }

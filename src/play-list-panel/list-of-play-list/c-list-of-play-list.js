@@ -5,7 +5,7 @@ import React, {useContext} from 'react';
 import {PlayListContext} from '../../../www/js/provider/play-list/c-play-list-context';
 import type {PlayListType} from '../../../www/js/provider/play-list/play-list-context-type';
 
-import {PlayListItem} from './play-list-item/c-play-list-item';
+import {PlayListContainer} from './play-list-container/c-play-list-container';
 
 type PropsType = {};
 
@@ -16,8 +16,10 @@ export function ListOfPlayList(props: PropsType): React$Node {
 
     return (
         <div>
+            <h1>ListOfPlayList</h1>
+
             {listOfPlayList.map((playList: PlayListType, index: number): React$Node => {
-                return <PlayListItem key={index} playList={playList}/>;
+                return <PlayListContainer key={index} playList={playList}/>;
             })}
         </div>
     );

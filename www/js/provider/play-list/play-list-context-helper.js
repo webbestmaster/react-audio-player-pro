@@ -2,10 +2,6 @@
 
 import type {PlayListContextType, PlayListType} from './play-list-context-type';
 
-export function getAllSavedPlayLists(): Array<PlayListType> {
-    return [];
-}
-
 export function getDefaultPlayListContextData(): PlayListContextType {
     const defaultPlayList: PlayListType = {
         name: '',
