@@ -11,10 +11,6 @@ export function PlayList(): React$Node {
             <PlayListProvider>
                 <hr/>
 
-                <h1>try play list</h1>
-
-                <hr/>
-
                 <PlayListPanel/>
 
                 <hr/>
