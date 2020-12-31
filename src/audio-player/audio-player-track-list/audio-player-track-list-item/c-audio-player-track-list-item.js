@@ -87,6 +87,7 @@ export function AudioPlayerTrackListItem(props: PropsType): React$Node {
                         type="button"
                     >
                         {spinner}
+
                         <SvgImage
                             className={audioPlayerTrackListItemStyle.button_image__active}
                             imageId={pauseImageId}
@@ -116,6 +117,7 @@ export function AudioPlayerTrackListItem(props: PropsType): React$Node {
                     type="button"
                 >
                     {spinner}
+
                     <SvgImage className={audioPlayerTrackListItemStyle.button_image} imageId={playImageId}/>
                 </button>
             );
@@ -143,12 +145,15 @@ export function AudioPlayerTrackListItem(props: PropsType): React$Node {
                 ref={refAudio}
                 src={src}
             />
+
             {renderButton()}
+
             <div className={audioPlayerTrackListItemStyle.content}>
                 <div className={audioPlayerTrackListItemStyle.track_title}>{actualContent}</div>
             </div>
+
             <div className={audioPlayerTrackListItemStyle.track_time}>
-                {trackFullTimeMinutes}:{trackFullTimeSeconds}
+                {`${trackFullTimeMinutes}:${trackFullTimeSeconds}`}
             </div>
         </li>
     );

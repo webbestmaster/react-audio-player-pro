@@ -1,6 +1,6 @@
 // @flow
 
-/* global requestAnimationFrame, document */
+/* global document */
 
 import React, {useEffect, useRef, useState} from 'react';
 
@@ -322,6 +322,7 @@ export function AudioPlayer(props: PropsType): React$Node {
                 trackFullTime={trackFullTime}
                 trackVolume={trackVolume}
             />
+
             <IsRender isRender={isTrackListOpen}>
                 <AudioPlayerTrackList
                     activeIndex={activeIndex}

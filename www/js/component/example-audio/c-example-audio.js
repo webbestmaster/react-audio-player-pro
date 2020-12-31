@@ -35,7 +35,9 @@ export function ExampleAudio(): React$Node {
     return (
         <div className="example-wrapper">
             <Markdown config={{useWrapper: false}} mdInput={exampleAudio}/>
+
             <Audio mediaMetadata={singleAudioData.mediaMetadata} src={singleAudioData.src} useRepeatButton/>
+
             <AudioPlayerControlSprite/>
         </div>
     );

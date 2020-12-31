@@ -84,6 +84,7 @@ export function ExamplePlayer(): React$Node {
     return (
         <div className="example-wrapper">
             <Markdown config={{useWrapper: false}} mdInput={exampleAudioPlayer}/>
+
             <AudioPlayer
                 defaultState={{
                     isMuted: false,
@@ -94,6 +95,7 @@ export function ExamplePlayer(): React$Node {
                 }}
                 trackList={audioDataList}
             />
+
             <AudioPlayerControlSprite/>
         </div>
     );

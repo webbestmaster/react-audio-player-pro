@@ -215,6 +215,7 @@ export function Audio(props: PropsType): React$Node {
                     imageId={soundImageId}
                     onClick={handleClickToggleMute}
                 />
+
                 <RangeBar
                     ariaLabel="volume bar"
                     className={audioStyle.sound_range}

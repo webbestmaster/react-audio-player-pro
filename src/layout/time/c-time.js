@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import {getTrackHumanTime} from '../../lib/time';
+import {getProgressHumanTime} from '../../lib/time';
 import {classNames} from '../../lib/css';
 
 import timeStyle from './time.scss';
@@ -16,13 +16,8 @@ type PropsType = {|
 export function Time(props: PropsType): React$Node {
     const {currentTime, fullTime, className} = props;
 
-    const {minutes: trackCurrentTimeMinutes, seconds: trackCurrentTimeSeconds} = getTrackHumanTime(currentTime);
-    const {minutes: trackFullTimeMinutes, seconds: trackFullTimeSeconds} = getTrackHumanTime(fullTime);
+    const fullClassName = classNames(timeStyle.time, className);
+    const timeProgress = getProgressHumanTime(currentTime, fullTime);
 
-    return (
-        <span className={classNames(timeStyle.time, className)}>
-            {trackCurrentTimeMinutes}:{trackCurrentTimeSeconds}&nbsp;/&nbsp;{trackFullTimeMinutes}:
-            {trackFullTimeSeconds}
-        </span>
-    );
+    return <span className={fullClassName}>{timeProgress}</span>;
 }

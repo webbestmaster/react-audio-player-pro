@@ -56,6 +56,7 @@ export function AudioPlayerHeadPlayingBar(props: PropsType): React$Node {
                     imageId={soundImageSrc}
                     onClick={onClickMuteVolume}
                 />
+
                 <RangeBar
                     ariaLabel="volume bar"
                     className={audioPlayerHeadPlayingBarStyle.volume_bar}
