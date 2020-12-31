@@ -7,7 +7,7 @@ import {getAllSavedPlayLists, getDefaultPlayListContextData} from './play-list-c
 
 const defaultPlayListContextData = getDefaultPlayListContextData();
 
-const PlayListContext: React$Context<PlayListContextType> = React.createContext<PlayListContextType>(
+export const PlayListContext: React$Context<PlayListContextType> = React.createContext<PlayListContextType>(
     defaultPlayListContextData
 );
 
