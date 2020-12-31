@@ -31,6 +31,8 @@ export function PlayListPanel(props: PropsType): React$Node {
             <h2>page name: {pageName}</h2>
 
             <IsRender isRender={pageName === playListPanelPageNameMap.listOfPlayList}>
+                <div>click here to create play list</div>
+
                 <ListOfPlayList/>
             </IsRender>
 
