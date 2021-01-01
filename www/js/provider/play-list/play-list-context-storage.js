@@ -26,6 +26,7 @@ export function getSavedPlayListContextData(): SavedDataType {
     const rawData = localStorage.getItem(localStorageKeyName);
 
     if (rawData) {
+        // TODO: add type chek here
         return JSON.parse(rawData);
     }
 
