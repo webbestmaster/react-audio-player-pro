@@ -4,7 +4,6 @@ import React, {useContext, useRef, useState} from 'react';
 
 import type {PlayListType} from '../../../../../www/js/provider/play-list/play-list-context-type';
 import {PlayListContext} from '../../../../../www/js/provider/play-list/c-play-list-context';
-
 import type {TrackType} from '../../../../audio-player/audio-player-type';
 
 import playListContainerStyle from './play-list-container.scss';
@@ -72,6 +71,8 @@ export function PlayListContainer(props: PropsType): React$Node {
             <h1>play list container</h1>
 
             <div>
+                <span>play list name:</span>
+
                 <input
                     defaultValue={playList.name}
                     onInput={handleOnInputPlayListName}
@@ -80,6 +81,7 @@ export function PlayListContainer(props: PropsType): React$Node {
                 />
             </div>
 
+            {/*
             <div>
                 <input
                     onInput={handleOnInputSrc}
@@ -92,6 +94,7 @@ export function PlayListContainer(props: PropsType): React$Node {
                     + add your song +
                 </button>
             </div>
+*/}
 
             <TrackList trackList={trackList}/>
         </div>
