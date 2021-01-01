@@ -25,6 +25,7 @@ export function PlayListProvider(props: PropsType): React$Node {
             const newPlayList: PlayListType = {
                 name: '',
                 trackList: [],
+                isDefault: false,
             };
 
             const newList = [...list, newPlayList];

@@ -22,5 +22,5 @@ export function PlayListMenu(props: PropsType): React$Node {
         return null;
     }
 
-    return <div className={fullClassName}>PlayListMenu</div>;
+    return <div className={fullClassName}/>;
 }

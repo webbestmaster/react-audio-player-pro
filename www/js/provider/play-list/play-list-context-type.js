@@ -5,6 +5,7 @@ import type {TrackType} from '../../../../src/audio-player/audio-player-type';
 export type PlayListType = {|
     +name: string,
     +trackList: Array<TrackType>,
+    +isDefault: boolean,
 |};
 
 export type PlayListContextType = {|

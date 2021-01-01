@@ -37,7 +37,7 @@ export function PlayListMenuButton(props: PropsType): React$Node {
     return (
         <div className={playListMenuButtonStyle.content_wrapper}>
             <button className={fullClassName} onClick={handleToggleMenu} type="button">
-                menu
+                +
             </button>
 
             {isMenuOpen ? <PlayListMenu/> : null}

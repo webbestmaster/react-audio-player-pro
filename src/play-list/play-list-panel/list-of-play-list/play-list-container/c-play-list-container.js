@@ -49,6 +49,7 @@ export function PlayListContainer(props: PropsType): React$Node {
         playListContextData.updatePlayList(playList, {
             name: getInputPlayListName().value.trim(),
             trackList: playList.trackList,
+            isDefault: playList.isDefault,
         });
     }
 
@@ -60,6 +61,7 @@ export function PlayListContainer(props: PropsType): React$Node {
         playListContextData.updatePlayList(playList, {
             name: playList.name,
             trackList: newTrackList,
+            isDefault: playList.isDefault,
         });
 
         getInputSrc().value = '';
