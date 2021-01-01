@@ -8,12 +8,26 @@ const localStorageKeyName = 'my-play-list-storage-key';
 
 type SavedDataType = Array<PlayListType>;
 
+function getDefaultPlayListContextData(): SavedDataType {
+    return [
+        {
+            name: 'List-1234',
+            isDefault: true,
+            trackList: [],
+        },
+    ];
+}
+
 export function savePlayListContextData(data: SavedDataType) {
     localStorage.setItem(localStorageKeyName, JSON.stringify(data));
 }
 
 export function getSavedPlayListContextData(): SavedDataType {
-    const rawData = localStorage.getItem(localStorageKeyName) || '[]';
+    const rawData = localStorage.getItem(localStorageKeyName);
 
-    return JSON.parse(rawData);
+    if (rawData) {
+        return JSON.parse(rawData);
+    }
+
+    return getDefaultPlayListContextData();
 }
