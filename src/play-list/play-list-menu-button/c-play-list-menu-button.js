@@ -1,11 +1,13 @@
 // @flow
 
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useCallback} from 'react';
 
 import {classNames} from '../../lib/css';
 
 import {PlayListContext} from '../../../www/js/provider/play-list/c-play-list-context';
 import type {TrackType} from '../../audio-player/audio-player-type';
+
+import {PlayListMenu} from '../play-list-menu/c-play-list-menu';
 
 import playListMenuButtonStyle from './play-list-menu-button.scss';
 
@@ -21,13 +23,24 @@ export function PlayListMenuButton(props: PropsType): React$Node {
 
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
+    const handleToggleMenu = useCallback(
+        function handleToggleMenuInner() {
+            setIsMenuOpen(!isMenuOpen);
+        },
+        [isMenuOpen, setIsMenuOpen]
+    );
+
     if (!playListContextData.isInitialized) {
         return null;
     }
 
     return (
-        <button className={fullClassName} type="button">
-            menu
-        </button>
+        <div className={playListMenuButtonStyle.content_wrapper}>
+            <button className={fullClassName} onClick={handleToggleMenu} type="button">
+                menu
+            </button>
+
+            {isMenuOpen ? <PlayListMenu/> : null}
+        </div>
     );
 }
