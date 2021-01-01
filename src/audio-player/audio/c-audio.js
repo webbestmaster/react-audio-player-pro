@@ -13,6 +13,7 @@ import {RangeBar} from '../../layout/range-bar/c-range-bar';
 import {setMediaMetadata} from '../../lib/media-meta-data/media-meta-data';
 import {IsRender} from '../../layout/is-render/c-is-render';
 import {getStopHandler} from '../audio-player-helper';
+import {PlayListMenuButton} from '../../play-list/play-list-menu-button/c-play-list-menu-button';
 
 import audioStyle from './audio.scss';
 
@@ -227,6 +228,8 @@ export function Audio(props: PropsType): React$Node {
             <a className={audioStyle.download_button} download={downloadFileName || true} href={src}>
                 <AudioPlayerControlButton ariaLabel="download" imageId="button-download"/>
             </a>
+
+            <PlayListMenuButton/>
         </div>
     );
 }

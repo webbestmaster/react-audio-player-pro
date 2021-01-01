@@ -2,9 +2,9 @@
 
 import React, {useContext, useState} from 'react';
 
-import {PlayListContext} from '../../www/js/provider/play-list/c-play-list-context';
-import {IsRender} from '../layout/is-render/c-is-render';
-import type {PlayListType} from '../../www/js/provider/play-list/play-list-context-type';
+import {PlayListContext} from '../../../www/js/provider/play-list/c-play-list-context';
+import {IsRender} from '../../layout/is-render/c-is-render';
+import type {PlayListType} from '../../../www/js/provider/play-list/play-list-context-type';
 
 import playListPanelStyle from './play-list-panel.scss';
 import type {PageNameType} from './play-list-panel-type';

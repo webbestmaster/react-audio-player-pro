@@ -12,4 +12,5 @@ export type PlayListContextType = {|
     +getAllPlayLists: () => Array<PlayListType>,
     +updatePlayList: (oldPlayList: PlayListType, newListPlayData: PlayListType) => PlayListType | Error,
     +deletePlayList: (playList: PlayListType) => null | Error,
+    +isInitialized: boolean,
 |};

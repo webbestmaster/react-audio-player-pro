@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import type {TrackType} from '../../../../../audio-player/audio-player-type';
+import type {TrackType} from '../../../../../../audio-player/audio-player-type';
 
 type PropsType = {|
     +track: TrackType,

@@ -15,5 +15,6 @@ export function getDefaultPlayListContextData(): PlayListContextType {
             return new Error('Overwrite me');
         },
         deletePlayList: (playList: PlayListType): null | Error => new Error('Overwrite me'),
+        isInitialized: false,
     };
 }

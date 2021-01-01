@@ -2,8 +2,8 @@
 
 import React, {useContext} from 'react';
 
-import {PlayListContext} from '../../../www/js/provider/play-list/c-play-list-context';
-import type {PlayListType} from '../../../www/js/provider/play-list/play-list-context-type';
+import {PlayListContext} from '../../../../www/js/provider/play-list/c-play-list-context';
+import type {PlayListType} from '../../../../www/js/provider/play-list/play-list-context-type';
 
 import {PlayListContainer} from './play-list-container/c-play-list-container';
 

@@ -87,6 +87,7 @@ export function PlayListProvider(props: PropsType): React$Node {
             getAllPlayLists,
             updatePlayList,
             deletePlayList,
+            isInitialized: true,
         };
     }, [createPlayList, getAllPlayLists, updatePlayList, deletePlayList]);
 
