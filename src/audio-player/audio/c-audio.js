@@ -229,7 +229,12 @@ export function Audio(props: PropsType): React$Node {
                 <AudioPlayerControlButton ariaLabel="download" imageId="button-download"/>
             </a>
 
-            <PlayListMenuButton/>
+            <PlayListMenuButton
+                track={{
+                    src,
+                    mediaMetadata,
+                }}
+            />
         </div>
     );
 }
