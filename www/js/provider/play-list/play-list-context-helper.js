@@ -13,7 +13,7 @@ export function getDefaultPlayListContextData(): PlayListContextType {
 
     return {
         createPlayList: (): PlayListType => defaultPlayList,
-        getAllPlayLists: (): Array<PlayListType> => [],
+        getAllPlayLists: (): Array<PlayListType> => [defaultPlayList],
         updatePlayList: (oldPlayList: PlayListType, newListPlayData: PlayListType): PlayListType | Error => {
             return new Error('Overwrite me');
         },

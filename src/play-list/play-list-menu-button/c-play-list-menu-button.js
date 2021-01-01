@@ -20,7 +20,6 @@ export function PlayListMenuButton(props: PropsType): React$Node {
     const fullClassName = classNames(playListMenuButtonStyle.play_list_menu_button, className);
     const playListContextData = useContext(PlayListContext);
     const {addTrackToDefaultList, getAllPlayLists} = playListContextData;
-    const [defaultPlayList] = getAllPlayLists();
 
     const handleAddTrack = useCallback(
         function handleAddTrackInner() {
@@ -33,10 +32,13 @@ export function PlayListMenuButton(props: PropsType): React$Node {
         return null;
     }
 
+    const [defaultPlayList] = getAllPlayLists();
+    const savedTrackCount = countTrackInPlayList(defaultPlayList, track);
+
     return (
         <div className={playListMenuButtonStyle.content_wrapper}>
             <button className={fullClassName} onClick={handleAddTrack} type="button">
-                +{countTrackInPlayList(defaultPlayList, track)}
+                +{savedTrackCount}
             </button>
         </div>
     );
