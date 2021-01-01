@@ -2,6 +2,8 @@
 
 import React, {useState, useMemo, useCallback, useEffect} from 'react';
 
+import type {TrackType} from '../../../../src/audio-player/audio-player-type';
+
 import type {PlayListContextType, PlayListType} from './play-list-context-type';
 import {getDefaultPlayListContextData} from './play-list-context-helper';
 import {getSavedPlayListContextData, savePlayListContextData} from './play-list-context-storage';
@@ -82,15 +84,29 @@ export function PlayListProvider(props: PropsType): React$Node {
         [list, setList]
     );
 
+    const addTrackToDefaultList = useCallback(
+        function addTrackToDefaultListInner(track: TrackType) {
+            const defaultList = list[0];
+            const newTrackList = [...defaultList.trackList, track];
+
+            updatePlayList(defaultList, {
+                ...defaultList,
+                trackList: newTrackList,
+            });
+        },
+        [list, updatePlayList]
+    );
+
     const providedData: PlayListContextType = useMemo<PlayListContextType>((): PlayListContextType => {
         return {
             createPlayList,
             getAllPlayLists,
             updatePlayList,
             deletePlayList,
+            addTrackToDefaultList,
             isInitialized: true,
         };
-    }, [createPlayList, getAllPlayLists, updatePlayList, deletePlayList]);
+    }, [createPlayList, getAllPlayLists, updatePlayList, deletePlayList, addTrackToDefaultList]);
 
     useEffect(() => {
         savePlayListContextData(list);

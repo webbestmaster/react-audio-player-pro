@@ -6,8 +6,7 @@ import {classNames} from '../../lib/css';
 
 import {PlayListContext} from '../../../www/js/provider/play-list/c-play-list-context';
 import type {TrackType} from '../../audio-player/audio-player-type';
-
-import {PlayListMenu} from '../play-list-menu/c-play-list-menu';
+import {countTrackInPlayList} from '../../../www/js/provider/play-list/play-list-context-helper';
 
 import playListMenuButtonStyle from './play-list-menu-button.scss';
 
@@ -20,14 +19,14 @@ export function PlayListMenuButton(props: PropsType): React$Node {
     const {className, track} = props;
     const fullClassName = classNames(playListMenuButtonStyle.play_list_menu_button, className);
     const playListContextData = useContext(PlayListContext);
+    const {addTrackToDefaultList, getAllPlayLists} = playListContextData;
+    const [defaultPlayList] = getAllPlayLists();
 
-    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-
-    const handleToggleMenu = useCallback(
-        function handleToggleMenuInner() {
-            setIsMenuOpen(!isMenuOpen);
+    const handleAddTrack = useCallback(
+        function handleAddTrackInner() {
+            addTrackToDefaultList(track);
         },
-        [isMenuOpen, setIsMenuOpen]
+        [addTrackToDefaultList, track]
     );
 
     if (!playListContextData.isInitialized) {
@@ -36,11 +35,9 @@ export function PlayListMenuButton(props: PropsType): React$Node {
 
     return (
         <div className={playListMenuButtonStyle.content_wrapper}>
-            <button className={fullClassName} onClick={handleToggleMenu} type="button">
-                +
+            <button className={fullClassName} onClick={handleAddTrack} type="button">
+                +{countTrackInPlayList(defaultPlayList, track)}
             </button>
-
-            {isMenuOpen ? <PlayListMenu/> : null}
         </div>
     );
 }
