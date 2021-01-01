@@ -19,6 +19,7 @@ export function TrackList(props: PropsType): React$Node {
             <h1>track list</h1>
 
             {trackList.map((track: TrackType, index: number): React$Node => {
+                // eslint-disable-next-line react/no-array-index-key
                 return <TrackItem key={index} track={track}/>;
             })}
         </div>

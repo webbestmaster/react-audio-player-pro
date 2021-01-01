@@ -10,6 +10,8 @@ import {audioPlayerIconIdPrefix} from '../../../layout/audio-player-control-spri
 import {Spinner} from '../../../layout/spinner/c-spinner';
 import {getTrackHumanTime} from '../../../lib/time';
 
+import {PlayListMenuButton} from '../../../play-list/play-list-menu-button/c-play-list-menu-button';
+
 import audioPlayerTrackListItemStyle from './audio-player-track-list-item.scss';
 
 type PropsType = {|
@@ -151,6 +153,8 @@ export function AudioPlayerTrackListItem(props: PropsType): React$Node {
             <div className={audioPlayerTrackListItemStyle.content}>
                 <div className={audioPlayerTrackListItemStyle.track_title}>{actualContent}</div>
             </div>
+
+            <PlayListMenuButton track={track}/>
 
             <div className={audioPlayerTrackListItemStyle.track_time}>
                 {`${trackFullTimeMinutes}:${trackFullTimeSeconds}`}
