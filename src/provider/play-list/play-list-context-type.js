@@ -1,6 +1,6 @@
 // @flow
 
-import type {TrackType} from '../../../../src/audio-player/audio-player-type';
+import type {TrackType} from '../../audio-player/audio-player-type';
 
 export type PlayListType = {|
     +name: string,

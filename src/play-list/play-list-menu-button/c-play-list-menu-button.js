@@ -4,9 +4,9 @@ import React, {useContext, useState, useCallback} from 'react';
 
 import {classNames} from '../../lib/css';
 
-import {PlayListContext} from '../../../www/js/provider/play-list/c-play-list-context';
+import {PlayListContext} from '../../provider/play-list/c-play-list-context';
 import type {TrackType} from '../../audio-player/audio-player-type';
-import {countTrackInPlayList} from '../../../www/js/provider/play-list/play-list-context-helper';
+import {countTrackInPlayList} from '../../provider/play-list/play-list-context-helper';
 
 import playListMenuButtonStyle from './play-list-menu-button.scss';
 
@@ -23,6 +23,11 @@ export function PlayListMenuButton(props: PropsType): React$Node {
 
     const handleAddTrack = useCallback(
         function handleAddTrackInner() {
+            console.log('---- handleAddTrackInner ----');
+            console.log(track);
+            console.log(track.content);
+            console.log(React.isValidElement(track.content));
+
             addTrackToDefaultList(track);
         },
         [addTrackToDefaultList, track]

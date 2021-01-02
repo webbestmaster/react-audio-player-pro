@@ -2,8 +2,8 @@
 
 import React, {useContext, useRef, useState} from 'react';
 
-import type {PlayListType} from '../../../../../www/js/provider/play-list/play-list-context-type';
-import {PlayListContext} from '../../../../../www/js/provider/play-list/c-play-list-context';
+import type {PlayListType} from '../../../../provider/play-list/play-list-context-type';
+import {PlayListContext} from '../../../../provider/play-list/c-play-list-context';
 import type {TrackType} from '../../../../audio-player/audio-player-type';
 
 import playListContainerStyle from './play-list-container.scss';

@@ -2,7 +2,7 @@
 
 import React, {useState, useMemo, useCallback, useEffect} from 'react';
 
-import type {TrackType} from '../../../../src/audio-player/audio-player-type';
+import type {TrackType} from '../../audio-player/audio-player-type';
 
 import type {PlayListContextType, PlayListType} from './play-list-context-type';
 import {getDefaultPlayListContextData} from './play-list-context-helper';

@@ -1,6 +1,6 @@
 // @flow
 
-import type {TrackType} from '../../../../src/audio-player/audio-player-type';
+import type {TrackType} from '../../audio-player/audio-player-type';
 
 import type {PlayListContextType, PlayListType} from './play-list-context-type';
 

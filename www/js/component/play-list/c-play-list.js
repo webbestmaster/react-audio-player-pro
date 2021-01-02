@@ -2,7 +2,7 @@
 
 import React, {useState} from 'react';
 
-import {PlayListProvider} from '../../provider/play-list/c-play-list-context';
+import {PlayListProvider} from '../../../../src/provider/play-list/c-play-list-context';
 import {PlayListPanel} from '../../../../src/play-list/play-list-panel/c-play-list-panel';
 import {Audio, AudioPlayer} from '../../../../src/audio-player';
 import {demoUrl} from '../../../const';
