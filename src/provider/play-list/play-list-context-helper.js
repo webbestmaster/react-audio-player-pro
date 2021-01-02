@@ -4,6 +4,7 @@ import React from 'react';
 import {renderToString} from 'react-dom/server';
 
 import type {TrackType} from '../../audio-player/audio-player-type';
+import {extractText} from '../../lib/string';
 
 import type {PlayListContextType, PlayListType} from './play-list-context-type';
 
@@ -56,16 +57,7 @@ export function getTrackContentAsString(track: TrackType): string {
     }
 
     if (React.isValidElement(content)) {
-        return (
-            renderToString(content)
-                // remove open tags
-                .replace(/<\w[\S\s]*?>/g, '')
-                // remove close tags
-                .replace(/<\/\w*?>/g, '')
-                // remove self close tags
-                .replace(/<\w[\S\s]*?\/>/g, '')
-                .trim()
-        );
+        return extractText(renderToString(content));
     }
 
     return '';
