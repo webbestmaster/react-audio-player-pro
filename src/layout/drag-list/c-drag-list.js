@@ -4,9 +4,11 @@ import React, {useState, useEffect} from 'react';
 
 import {getRandomString} from '../../lib/string';
 
+import dragListStyle from './drag-list.scss'
+
 import type {DragListItemType} from './drag-list-type';
 import {DragListItem} from './drag-list-item/c-drag-list-item';
-import {getDragItemIdList, getDragItemById} from './drag-list-helper';
+import {getDragItemIdList, getDragItemById, activeDragInfo} from './drag-list-helper';
 
 type PropsType = {|
     +list: Array<DragListItemType>,
@@ -17,62 +19,141 @@ export function DragList(props: PropsType): React$Node {
     const {list, onChange} = props;
     const [isDragOver, setIsDragOver] = useState<boolean>(false);
     const [dragItemIdList, setDragItemIdList] = useState<Array<string>>(getDragItemIdList(list));
+    const [isHiddenId, setIsHiddenId] = useState<string>('');
 
-    function handleOnDragOver() {
+    function handleOnDragOver(evt: SyntheticEvent<DragEvent>) {
+        const newDragList = [...dragItemIdList];
+
+        // setIsHiddenId('');
+
+        if (!newDragList.includes(activeDragInfo.itemId)) {
+            // setDragItemIdList([activeDragInfo.itemId, ...newDragList]);
+            // return;
+        }
+
+        // const itemId = evt.dataTransfer.getData('drag-item-id');
+
+        console.log('list handleOnDragOver', dragItemIdList);
+
+        // evt.preventDefault();
+        // setIsDragOver(true);
+    }
+
+    function handleOnDragEnter(evt: SyntheticEvent<DragEvent>) {
+        const newDragList = [...dragItemIdList];
+
+        // setIsHiddenId('');
+
+        if (!newDragList.includes(activeDragInfo.itemId)) {
+            // setDragItemIdList([activeDragInfo.itemId, ...newDragList]);
+            // return;
+        }
+
+        console.log('list handleOnDragEnter', dragItemIdList.join('') + '/' + activeDragInfo.itemId);
+
+        evt.preventDefault();
         setIsDragOver(true);
     }
 
-    function handleOnDragLeave() {
+    function handleOnDragLeave(evt: SyntheticEvent<DragEvent>) {
+        console.log('list handleOnDragLeave', dragItemIdList);
+
+        const idList = getDragItemIdList(list);
+
+        const itemId = activeDragInfo.itemId;
+
+        if (!idList.includes(itemId)) {
+            setDragItemIdList(idList)
+        }
+
+        setIsHiddenId(itemId);
+
         setIsDragOver(false);
     }
 
     function handleOnDragEnd() {
+        console.log('list handleOnDragEnd', dragItemIdList);
+
         onChange(dragItemIdList);
+        console.log(dragItemIdList);
         console.log('LIST - handleOnDragEnd - END');
     }
 
-    if (dragItemIdList.length === 0) {
-        const randomString = getRandomString();
+    function handleOnDrop(evt: SyntheticEvent<DragEvent>) {
+        const itemId = activeDragInfo.itemId;
 
-        return (
-            <ul
-                data-is={isDragOver}
-                key="empty"
-                onDragEnd={handleOnDragEnd}
-                onDragLeave={handleOnDragLeave}
-                onDragOver={handleOnDragOver}
-            >
-                <DragListItem
-                    dragList={dragItemIdList}
-                    isDragActive={isDragOver}
-                    item={{
-                        id: randomString + 1,
-                        node: 'no',
-                    }}
-                    key={randomString + 1}
-                    setDragList={setDragItemIdList}
-                />
-            </ul>
-        );
+        evt.preventDefault();
+
+        console.log('list handleOnDrop', dragItemIdList, itemId);
+
+
+        // setIsDragged(false);
     }
 
+    /*
+        if (dragItemIdList.length === 0) {
+            const randomString = getRandomString();
+
+            return (
+                <ul
+                    data-is={isDragOver}
+                    key="empty"
+                    onDragEnd={handleOnDragEnd}
+                    onDragLeave={handleOnDragLeave}
+                    onDragOver={handleOnDragOver}
+                >
+                    <DragListItem
+                        dragList={dragItemIdList}
+                        isDragActive={isDragOver}
+                        item={{
+                            id: randomString + 1,
+                            node: 'no',
+                        }}
+                        key={randomString + 1}
+                        setDragList={setDragItemIdList}
+                    />
+                </ul>
+            );
+        }
+    */
+
     return (
-        <ul
+        <div
+            className={dragListStyle.drag_list}
             data-is={isDragOver}
-            key="non-empty"
             onDragEnd={handleOnDragEnd}
             onDragLeave={handleOnDragLeave}
+            onDragEnter={handleOnDragEnter}
             onDragOver={handleOnDragOver}
+            onDrop={handleOnDrop}
         >
             {dragItemIdList.map((dragItemId: string): React$Node => {
                 const dragListItem = getDragItemById(list, dragItemId);
 
+                console.log(isHiddenId)
+                console.log(dragItemIdList)
+
+                if (dragItemId === isHiddenId) {
+                    // return null;
+                }
+
                 if (!dragListItem) {
-                    return null;
+                    return <DragListItem
+                        defaultIdList={getDragItemIdList(list)}
+                        dragList={dragItemIdList}
+                        isDragActive={isDragOver}
+                        item={{
+                            id: dragItemId,
+                            node: null,
+                        }}
+                        key={dragItemId}
+                        setDragList={setDragItemIdList}
+                    />
                 }
 
                 return (
                     <DragListItem
+                        defaultIdList={getDragItemIdList(list)}
                         dragList={dragItemIdList}
                         isDragActive={isDragOver}
                         item={dragListItem}
@@ -81,6 +162,20 @@ export function DragList(props: PropsType): React$Node {
                     />
                 );
             })}
-        </ul>
+{/*
+            <DragListItem
+                defaultIdList={getDragItemIdList(list)}
+                dragList={dragItemIdList}
+                isDragActive={isDragOver}
+                item={{
+                    id: 'dragItemId',
+                    node: null,
+                }}
+                key={'dragItemId'}
+                setDragList={setDragItemIdList}
+            />
+*/}
+
+        </div>
     );
 }
