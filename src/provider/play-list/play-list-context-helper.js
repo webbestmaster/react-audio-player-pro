@@ -3,7 +3,7 @@
 import React from 'react';
 import {renderToString} from 'react-dom/server';
 
-import type {TrackType} from '../../audio-player/audio-player-type';
+import type {SavedTrackType, TrackType} from '../../audio-player/audio-player-type';
 import {extractText} from '../../lib/string';
 
 import type {PlayListContextType, PlayListType} from './play-list-context-type';
@@ -24,8 +24,8 @@ export function getDefaultPlayListContextData(): PlayListContextType {
         deletePlayList: (playList: PlayListType): null | Error => new Error('Overwrite me'),
         isInitialized: false,
 
-        addTrackToDefaultList: (track: TrackType) => {},
-        removeTrack: (track: TrackType) => {},
+        addTrackToDefaultList: (track: SavedTrackType) => {},
+        removeTrack: (track: SavedTrackType) => {},
     };
 }
 
@@ -34,7 +34,7 @@ export function countTrackInPlayList(playList: PlayListType, track: TrackType): 
     const {trackList} = playList;
     const trackSrc = track.src;
 
-    trackList.forEach((trackInList: TrackType) => {
+    trackList.forEach((trackInList: SavedTrackType) => {
         if (trackInList.src === trackSrc) {
             counter += 1;
         }

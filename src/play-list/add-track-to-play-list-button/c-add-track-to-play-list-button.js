@@ -5,8 +5,9 @@ import React, {useContext, useState, useCallback} from 'react';
 import {classNames} from '../../lib/css';
 
 import {PlayListContext} from '../../provider/play-list/c-play-list-context';
-import type {TrackType} from '../../audio-player/audio-player-type';
+import type {SavedTrackType, TrackType} from '../../audio-player/audio-player-type';
 import {countTrackInPlayList, getTrackContentAsString} from '../../provider/play-list/play-list-context-helper';
+import {getRandomString} from '../../lib/string';
 
 import addTrackToPlayListButtonStyle from './add-track-to-play-list-button.scss';
 
@@ -31,8 +32,9 @@ export function PlayListMenuButton(props: PropsType): React$Node {
             console.log(track.content);
             console.log(React.isValidElement(track.content));
 
-            let trackToSave: TrackType = {
+            let trackToSave: SavedTrackType = {
                 src,
+                id: getRandomString(),
             };
 
             if (mediaMetadata) {

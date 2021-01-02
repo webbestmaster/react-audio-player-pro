@@ -2,7 +2,7 @@
 
 import React, {useState, useMemo, useCallback, useEffect} from 'react';
 
-import type {TrackType} from '../../audio-player/audio-player-type';
+import type {SavedTrackType} from '../../audio-player/audio-player-type';
 
 import type {PlayListContextType, PlayListType} from './play-list-context-type';
 import {getDefaultPlayListContextData} from './play-list-context-helper';
@@ -85,7 +85,7 @@ export function PlayListProvider(props: PropsType): React$Node {
     );
 
     const addTrackToDefaultList = useCallback(
-        function addTrackToDefaultListInner(track: TrackType) {
+        function addTrackToDefaultListInner(track: SavedTrackType) {
             const defaultList = list[0];
             const newTrackList = [...defaultList.trackList, track];
 
@@ -97,7 +97,7 @@ export function PlayListProvider(props: PropsType): React$Node {
         [list, updatePlayList]
     );
     const removeTrack = useCallback(
-        function removeTrackInner(track: TrackType) {
+        function removeTrackInner(track: SavedTrackType) {
             list.forEach((playList: PlayListType) => {
                 const {trackList} = playList;
 

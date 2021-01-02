@@ -13,6 +13,14 @@ export type TrackType = {|
     +content?: React$Node,
 |};
 
+export type SavedTrackType = {|
+    +src: string,
+    +mediaMetadata?: MediaMetadataType,
+    // eslint-disable-next-line id-match
+    +content?: React$Node,
+    +id: string, // recommended to use for play list
+|};
+
 export type DefaultAudioPlayerStateType = {|
     +isTrackListOpen?: boolean,
     +activeIndex?: number,

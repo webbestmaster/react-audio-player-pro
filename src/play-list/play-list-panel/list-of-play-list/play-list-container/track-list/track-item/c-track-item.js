@@ -2,13 +2,13 @@
 
 import React, {useContext, useCallback} from 'react';
 
-import type {TrackType} from '../../../../../../audio-player/audio-player-type';
+import type {SavedTrackType} from '../../../../../../audio-player/audio-player-type';
 import {PlayListContext} from '../../../../../../provider/play-list/c-play-list-context';
 
 import trackItemStyle from './track-item.scss';
 
 type PropsType = {|
-    +track: TrackType,
+    +track: SavedTrackType,
 |};
 
 export function TrackItem(props: PropsType): React$Node {

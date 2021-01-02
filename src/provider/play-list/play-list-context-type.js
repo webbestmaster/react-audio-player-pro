@@ -1,10 +1,10 @@
 // @flow
 
-import type {TrackType} from '../../audio-player/audio-player-type';
+import type {SavedTrackType} from '../../audio-player/audio-player-type';
 
 export type PlayListType = {|
     +name: string,
-    +trackList: Array<TrackType>,
+    +trackList: Array<SavedTrackType>,
     +isDefault: boolean,
 |};
 
@@ -16,6 +16,6 @@ export type PlayListContextType = {|
     +isInitialized: boolean,
 
     // helpers
-    +addTrackToDefaultList: (track: TrackType) => void,
-    +removeTrack: (track: TrackType) => void,
+    +addTrackToDefaultList: (track: SavedTrackType) => void,
+    +removeTrack: (track: SavedTrackType) => void,
 |};

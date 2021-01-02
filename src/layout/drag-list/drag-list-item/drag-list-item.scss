@@ -1,0 +1,46 @@
+%drag-list-item,
+.drag_list_item {
+    display: block;
+    position: relative;
+}
+
+.content {
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+%drag_hunter {
+    position: absolute;
+    //z-index: 0;
+    opacity: 0.2;
+    width: 100%;
+    height: 50%;
+    background-color: #666;
+    box-sizing: border-box;
+    border: 4px solid #c00;
+    z-index: 2;
+}
+
+.drag_hunter_top {
+    @extend %drag_hunter;
+    top: 0;
+}
+
+.drag_hunter_bottom {
+    @extend %drag_hunter;
+
+    bottom: 0;
+}
+
+.drag_list_item_over {
+    @extend %drag-list-item;
+
+    background-color: #c00;
+
+    .drag_hunter_top,
+    .drag_hunter_bottom {
+        z-index: 2;
+    }
+}
+

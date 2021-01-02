@@ -16,3 +16,11 @@ export function extractText(html: string): string {
             .trim()
     );
 }
+
+export function getRandomString(): string {
+    return Math.round(1e6 * Math.random()).toString(16);
+}
+
+// export function generateId(): string {
+//     return '--id-' + Date.now().toString(32) + '-' + getRandomString();
+// }

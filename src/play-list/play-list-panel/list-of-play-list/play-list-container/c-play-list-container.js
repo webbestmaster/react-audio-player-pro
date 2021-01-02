@@ -4,7 +4,7 @@ import React, {useContext, useRef, useState} from 'react';
 
 import type {PlayListType} from '../../../../provider/play-list/play-list-context-type';
 import {PlayListContext} from '../../../../provider/play-list/c-play-list-context';
-import type {TrackType} from '../../../../audio-player/audio-player-type';
+import type {SavedTrackType} from '../../../../audio-player/audio-player-type';
 
 import playListContainerStyle from './play-list-container.scss';
 import {TrackList} from './track-list/c-track-list';
@@ -52,8 +52,9 @@ export function PlayListContainer(props: PropsType): React$Node {
         });
     }
 
+    /*
     function handleAddSong() {
-        const newTrackList: Array<TrackType> = [...playList.trackList];
+        const newTrackList: Array<SavedTrackType> = [...playList.trackList];
 
         newTrackList.push({src});
 
@@ -65,6 +66,7 @@ export function PlayListContainer(props: PropsType): React$Node {
 
         getInputSrc().value = '';
     }
+*/
 
     return (
         <div className={playListContainerStyle.play_list_container}>
