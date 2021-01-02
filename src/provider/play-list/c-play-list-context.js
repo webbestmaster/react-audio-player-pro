@@ -96,6 +96,22 @@ export function PlayListProvider(props: PropsType): React$Node {
         },
         [list, updatePlayList]
     );
+    const removeTrack = useCallback(
+        function removeTrackInner(track: TrackType) {
+            list.forEach((playList: PlayListType) => {
+                const {trackList} = playList;
+
+                if (trackList.includes(track)) {
+                    trackList.splice(trackList.indexOf(track), 1);
+                    updatePlayList(playList, {
+                        ...playList,
+                        trackList: [...trackList],
+                    });
+                }
+            });
+        },
+        [list, updatePlayList]
+    );
 
     const providedData: PlayListContextType = useMemo<PlayListContextType>((): PlayListContextType => {
         return {
@@ -103,10 +119,12 @@ export function PlayListProvider(props: PropsType): React$Node {
             getAllPlayLists,
             updatePlayList,
             deletePlayList,
-            addTrackToDefaultList,
             isInitialized: true,
+
+            addTrackToDefaultList,
+            removeTrack,
         };
-    }, [createPlayList, getAllPlayLists, updatePlayList, deletePlayList, addTrackToDefaultList]);
+    }, [createPlayList, getAllPlayLists, updatePlayList, deletePlayList, addTrackToDefaultList, removeTrack]);
 
     useEffect(() => {
         savePlayListContextData(list);

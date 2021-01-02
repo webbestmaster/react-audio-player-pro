@@ -17,4 +17,5 @@ export type PlayListContextType = {|
 
     // helpers
     +addTrackToDefaultList: (track: TrackType) => void,
+    +removeTrack: (track: TrackType) => void,
 |};

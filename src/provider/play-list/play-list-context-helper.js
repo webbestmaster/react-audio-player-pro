@@ -24,6 +24,7 @@ export function getDefaultPlayListContextData(): PlayListContextType {
         isInitialized: false,
 
         addTrackToDefaultList: (track: TrackType) => {},
+        removeTrack: (track: TrackType) => {},
     };
 }
 
