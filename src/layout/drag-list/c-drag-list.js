@@ -2,6 +2,8 @@
 
 import React, {useState, useEffect} from 'react';
 
+import {getRandomString} from '../../lib/string';
+
 import type {DragListItemType} from './drag-list-type';
 import {DragListItem} from './drag-list-item/c-drag-list-item';
 import {getDragItemIdList, getDragItemById} from './drag-list-helper';
@@ -29,9 +31,35 @@ export function DragList(props: PropsType): React$Node {
         console.log('LIST - handleOnDragEnd - END');
     }
 
+    if (dragItemIdList.length === 0) {
+        const randomString = getRandomString();
+
+        return (
+            <ul
+                data-is={isDragOver}
+                key="empty"
+                onDragEnd={handleOnDragEnd}
+                onDragLeave={handleOnDragLeave}
+                onDragOver={handleOnDragOver}
+            >
+                <DragListItem
+                    dragList={dragItemIdList}
+                    isDragActive={isDragOver}
+                    item={{
+                        id: randomString + 1,
+                        node: 'no',
+                    }}
+                    key={randomString + 1}
+                    setDragList={setDragItemIdList}
+                />
+            </ul>
+        );
+    }
+
     return (
         <ul
             data-is={isDragOver}
+            key="non-empty"
             onDragEnd={handleOnDragEnd}
             onDragLeave={handleOnDragLeave}
             onDragOver={handleOnDragOver}
