@@ -8,7 +8,7 @@ import {PlayListContext} from '../../provider/play-list/c-play-list-context';
 import type {TrackType} from '../../audio-player/audio-player-type';
 import {countTrackInPlayList} from '../../provider/play-list/play-list-context-helper';
 
-import playListMenuButtonStyle from './play-list-menu-button.scss';
+import addTrackToPlayListButtonStyle from './add-track-to-play-list-button.scss';
 
 type PropsType = {|
     +track: TrackType,
@@ -17,7 +17,7 @@ type PropsType = {|
 
 export function PlayListMenuButton(props: PropsType): React$Node {
     const {className, track} = props;
-    const fullClassName = classNames(playListMenuButtonStyle.play_list_menu_button, className);
+    const fullClassName = classNames(addTrackToPlayListButtonStyle.add_track_to_play_list_button, className);
     const playListContextData = useContext(PlayListContext);
     const {addTrackToDefaultList, getAllPlayLists} = playListContextData;
 
@@ -41,7 +41,7 @@ export function PlayListMenuButton(props: PropsType): React$Node {
     const savedTrackCount = countTrackInPlayList(defaultPlayList, track);
 
     return (
-        <div className={playListMenuButtonStyle.content_wrapper}>
+        <div className={addTrackToPlayListButtonStyle.content_wrapper}>
             <button className={fullClassName} onClick={handleAddTrack} type="button">
                 +{savedTrackCount}
             </button>

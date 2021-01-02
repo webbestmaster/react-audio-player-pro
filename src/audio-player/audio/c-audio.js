@@ -13,7 +13,7 @@ import {RangeBar} from '../../layout/range-bar/c-range-bar';
 import {setMediaMetadata} from '../../lib/media-meta-data/media-meta-data';
 import {IsRender} from '../../layout/is-render/c-is-render';
 import {getStopHandler} from '../audio-player-helper';
-import {PlayListMenuButton} from '../../play-list/play-list-menu-button/c-play-list-menu-button';
+import {PlayListMenuButton} from '../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button';
 
 import audioStyle from './audio.scss';
 

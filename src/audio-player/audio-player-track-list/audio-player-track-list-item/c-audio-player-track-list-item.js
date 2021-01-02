@@ -10,7 +10,7 @@ import {audioPlayerIconIdPrefix} from '../../../layout/audio-player-control-spri
 import {Spinner} from '../../../layout/spinner/c-spinner';
 import {getTrackHumanTime} from '../../../lib/time';
 
-import {PlayListMenuButton} from '../../../play-list/play-list-menu-button/c-play-list-menu-button';
+import {PlayListMenuButton} from '../../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button';
 
 import audioPlayerTrackListItemStyle from './audio-player-track-list-item.scss';
 
