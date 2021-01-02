@@ -1,5 +1,7 @@
 // @flow
 
+import React from 'react';
+
 import type {TrackType} from '../../audio-player/audio-player-type';
 
 import type {PlayListContextType, PlayListType} from './play-list-context-type';
@@ -36,4 +38,24 @@ export function countTrackInPlayList(playList: PlayListType, track: TrackType): 
     });
 
     return counter;
+}
+
+export function getTrackContentAsString(track: TrackType): string {
+    const {content} = track;
+
+    if (!content) {
+        return '';
+    }
+
+    const contentType = typeof content;
+
+    if (['string', 'number'].includes(contentType)) {
+        return String(content).trim();
+    }
+
+    if (React.isValidElement(content)) {
+        return '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1';
+    }
+
+    return '';
 }

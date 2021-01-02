@@ -6,7 +6,7 @@ import {classNames} from '../../lib/css';
 
 import {PlayListContext} from '../../provider/play-list/c-play-list-context';
 import type {TrackType} from '../../audio-player/audio-player-type';
-import {countTrackInPlayList} from '../../provider/play-list/play-list-context-helper';
+import {countTrackInPlayList, getTrackContentAsString} from '../../provider/play-list/play-list-context-helper';
 
 import addTrackToPlayListButtonStyle from './add-track-to-play-list-button.scss';
 
@@ -23,12 +23,33 @@ export function PlayListMenuButton(props: PropsType): React$Node {
 
     const handleAddTrack = useCallback(
         function handleAddTrackInner() {
+            const {src, mediaMetadata} = track;
+            const content = getTrackContentAsString(track);
+
             console.log('---- handleAddTrackInner ----');
             console.log(track);
             console.log(track.content);
             console.log(React.isValidElement(track.content));
 
-            addTrackToDefaultList(track);
+            let trackToSave: TrackType = {
+                src,
+            };
+
+            if (mediaMetadata) {
+                trackToSave = {
+                    ...trackToSave,
+                    mediaMetadata,
+                };
+            }
+
+            if (content) {
+                trackToSave = {
+                    ...trackToSave,
+                    content,
+                };
+            }
+
+            addTrackToDefaultList(trackToSave);
         },
         [addTrackToDefaultList, track]
     );
