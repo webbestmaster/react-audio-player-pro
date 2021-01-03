@@ -5,8 +5,9 @@ import React, {useState, useRef} from 'react';
 import type {DragListItemType} from '../drag-list-type';
 import {IsRender} from '../../is-render/c-is-render';
 
+import {activeDragInfo} from '../drag-list-helper';
+
 import dragListItemStyle from './drag-list-item.scss';
-import {activeDragInfo} from "../drag-list-helper";
 
 type PropsType = {|
     +item: DragListItemType,
@@ -49,8 +50,8 @@ export function DragListItem(props: PropsType): React$Node {
     }
 
     function handleOnDragOverTop(evt) {
-        // evt.preventDefault();
-        // evt.stopPropagation();
+        evt.preventDefault();
+        evt.stopPropagation();
 
         if (id === activeDragInfo.itemId) {
             return;
@@ -62,7 +63,7 @@ export function DragListItem(props: PropsType): React$Node {
             const index = newDragList.indexOf(id);
 
             newDragList.splice(index, 0, activeDragInfo.itemId);
-            console.log('top')
+            console.log('top');
 
             setDragList(newDragList);
             return;
@@ -98,8 +99,8 @@ export function DragListItem(props: PropsType): React$Node {
     }
 
     function handleOnDragOverBottom(evt) {
-        // evt.preventDefault();
-        // evt.stopPropagation();
+        evt.preventDefault();
+        evt.stopPropagation();
 
         if (id === activeDragInfo.itemId) {
             return;
@@ -113,8 +114,6 @@ export function DragListItem(props: PropsType): React$Node {
 
         if (!newDragList.includes(activeDragInfo.itemId)) {
             const index = newDragList.indexOf(id);
-
-            console.log('btttttttttttottm')
 
             newDragList.splice(index, 0, activeDragInfo.itemId);
 
@@ -138,16 +137,15 @@ export function DragListItem(props: PropsType): React$Node {
     function handleOnDragLeaveBottom(evt) {
         evt.preventDefault();
         evt.stopPropagation();
-        console.log('my index', dragList.indexOf(id))
+        console.log('my index', dragList.indexOf(id));
 
         if (id === activeDragInfo.itemId) {
-            console.log('!!!!!!!')
+            console.log('!!!!!!!');
             if (props.defaultIdList.includes(activeDragInfo.itemId)) {
                 return;
             }
             setDragList([...props.defaultIdList]);
         }
-
 
         // setIsDragOverBottom(false);
     }
@@ -170,6 +168,7 @@ export function DragListItem(props: PropsType): React$Node {
                 </div>
             </IsRender>
 */}
+
             <IsRender isRender={isDragged === false}>
                 <div
                     // style={{pointerEvents: isDragActive ? 'initial' : 'none'}}

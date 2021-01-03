@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react';
 
 import {getRandomString} from '../../lib/string';
 
-import dragListStyle from './drag-list.scss'
+import dragListStyle from './drag-list.scss';
 
 import type {DragListItemType} from './drag-list-type';
 import {DragListItem} from './drag-list-item/c-drag-list-item';
@@ -63,7 +63,7 @@ export function DragList(props: PropsType): React$Node {
         const itemId = activeDragInfo.itemId;
 
         if (!idList.includes(itemId)) {
-            setDragItemIdList(idList)
+            setDragItemIdList(idList);
         }
 
         setIsHiddenId(itemId);
@@ -85,7 +85,6 @@ export function DragList(props: PropsType): React$Node {
         evt.preventDefault();
 
         console.log('list handleOnDrop', dragItemIdList, itemId);
-
 
         // setIsDragged(false);
     }
@@ -121,34 +120,36 @@ export function DragList(props: PropsType): React$Node {
         <div
             className={dragListStyle.drag_list}
             data-is={isDragOver}
-            onDragEnd={handleOnDragEnd}
-            onDragLeave={handleOnDragLeave}
-            onDragEnter={handleOnDragEnter}
-            onDragOver={handleOnDragOver}
-            onDrop={handleOnDrop}
+            // onDragEnd={handleOnDragEnd}
+            // onDragLeave={handleOnDragLeave}
+            // onDragEnter={handleOnDragEnter}
+            // onDragOver={handleOnDragOver}
+            // onDrop={handleOnDrop}
         >
             {dragItemIdList.map((dragItemId: string): React$Node => {
                 const dragListItem = getDragItemById(list, dragItemId);
 
-                console.log(isHiddenId)
-                console.log(dragItemIdList)
+                console.log(isHiddenId);
+                console.log(dragItemIdList);
 
                 if (dragItemId === isHiddenId) {
                     // return null;
                 }
 
                 if (!dragListItem) {
-                    return <DragListItem
-                        defaultIdList={getDragItemIdList(list)}
-                        dragList={dragItemIdList}
-                        isDragActive={isDragOver}
-                        item={{
-                            id: dragItemId,
-                            node: null,
-                        }}
-                        key={dragItemId}
-                        setDragList={setDragItemIdList}
-                    />
+                    return (
+                        <DragListItem
+                            defaultIdList={getDragItemIdList(list)}
+                            dragList={dragItemIdList}
+                            isDragActive={isDragOver}
+                            item={{
+                                id: dragItemId,
+                                node: 'no - node',
+                            }}
+                            key={dragItemId}
+                            setDragList={setDragItemIdList}
+                        />
+                    );
                 }
 
                 return (
@@ -162,20 +163,6 @@ export function DragList(props: PropsType): React$Node {
                     />
                 );
             })}
-{/*
-            <DragListItem
-                defaultIdList={getDragItemIdList(list)}
-                dragList={dragItemIdList}
-                isDragActive={isDragOver}
-                item={{
-                    id: 'dragItemId',
-                    node: null,
-                }}
-                key={'dragItemId'}
-                setDragList={setDragItemIdList}
-            />
-*/}
-
         </div>
     );
 }
