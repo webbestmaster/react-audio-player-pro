@@ -18,3 +18,11 @@ export const activeDragInfo = {
 export function getIsSpecialItemListById(id: string): boolean {
     return id === beforeListItemId || id === afterListItemId;
 }
+
+export function getIsNotSpecialItemListById(id: string): boolean {
+    return id !== beforeListItemId && id !== afterListItemId;
+}
+
+export function getFullItemIdList(itemIdList: Array<string>): Array<string> {
+    return [beforeListItemId, ...itemIdList.filter(getIsNotSpecialItemListById), afterListItemId];
+}

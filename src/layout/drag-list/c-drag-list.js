@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 
 import type {DragListItemType} from './drag-list-type';
 import {DragListItem} from './drag-list-item/c-drag-list-item';
-import {getDragItemById, getDragItemIdList} from './drag-list-helper';
+import {getDragItemById, getDragItemIdList, getFullItemIdList} from './drag-list-helper';
 
 import dragListStyle from './drag-list.scss';
 import {afterListItemId, beforeListItemId} from './drag-list-const';
@@ -16,19 +16,12 @@ type PropsType = {|
 
 export function DragList(props: PropsType): React$Node {
     const {list, onChange} = props;
-    const defaultIdList = [beforeListItemId, ...getDragItemIdList(list), afterListItemId];
-    const [dragItemIdList, setDragItemIdList] = useState<Array<string>>(defaultIdList);
-
-    const fullDragItemIdList = [...dragItemIdList].filter((id: string): boolean => {
-        return id !== beforeListItemId && id !== afterListItemId;
-    });
-
-    fullDragItemIdList.unshift(beforeListItemId);
-    fullDragItemIdList.push(afterListItemId);
+    const defaultItemIdList = [beforeListItemId, ...getDragItemIdList(list), afterListItemId];
+    const [itemIdList, setItemIdList] = useState<Array<string>>(defaultItemIdList);
 
     return (
         <div className={dragListStyle.drag_list}>
-            {fullDragItemIdList.map((dragItemId: string): React$Node => {
+            {getFullItemIdList(itemIdList).map((dragItemId: string): React$Node => {
                 const dragListItem = getDragItemById(list, dragItemId);
 
                 const foreignItem: DragListItemType = {
@@ -38,11 +31,11 @@ export function DragList(props: PropsType): React$Node {
 
                 return (
                     <DragListItem
-                        defaultIdList={defaultIdList}
-                        dragList={dragItemIdList}
+                        defaultIdList={defaultItemIdList}
+                        dragList={itemIdList}
                         item={dragListItem || foreignItem}
                         key={dragItemId}
-                        setDragList={setDragItemIdList}
+                        setDragList={setItemIdList}
                     />
                 );
             })}
