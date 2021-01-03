@@ -26,6 +26,7 @@ export function getDefaultPlayListContextData(): PlayListContextType {
 
         addTrackToDefaultList: (track: SavedTrackType) => {},
         removeTrack: (track: SavedTrackType) => {},
+        getTrackById: (trackId: string): SavedTrackType | null => null,
     };
 }
 
@@ -61,4 +62,14 @@ export function getTrackContentAsString(track: TrackType): string {
     }
 
     return '';
+}
+
+export function getTrackList(list: Array<PlayListType>): Array<SavedTrackType> {
+    const resultList: Array<SavedTrackType> = [];
+
+    list.forEach((playList: PlayListType) => {
+        resultList.push(...playList.trackList);
+    });
+
+    return resultList;
 }

@@ -5,7 +5,7 @@ import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import type {SavedTrackType} from '../../audio-player/audio-player-type';
 
 import type {PlayListContextType, PlayListType} from './play-list-context-type';
-import {getDefaultPlayListContextData} from './play-list-context-helper';
+import {getDefaultPlayListContextData, getTrackList} from './play-list-context-helper';
 import {getSavedPlayListContextData, savePlayListContextData} from './play-list-context-storage';
 
 const defaultPlayListContextData = getDefaultPlayListContextData();
@@ -21,6 +21,39 @@ type PropsType = {|
 export function PlayListProvider(props: PropsType): React$Node {
     const {children} = props;
     const [list, setList] = useState<Array<PlayListType>>(getSavedPlayListContextData());
+    const [fullTrackList, setFullTrackList] = useState<Array<SavedTrackType>>(getTrackList(list));
+
+    const pushToFullTrackList = useCallback(
+        function pushToFullTrackListInner(trackList: Array<SavedTrackType>) {
+            const fullList: Array<SavedTrackType> = [...fullTrackList];
+
+            trackList.forEach((track: SavedTrackType) => {
+                const trackId = track.id;
+
+                const isExists = fullList.some((trackInList: SavedTrackType): boolean => trackInList.id === trackId);
+
+                if (isExists) {
+                    return;
+                }
+
+                fullList.push(track);
+            });
+
+            setFullTrackList(fullList);
+        },
+        [fullTrackList, setFullTrackList]
+    );
+
+    const getTrackById = useCallback(
+        function getTrackByIdInner(trackId: string): SavedTrackType | null {
+            const track = fullTrackList.find(
+                (trackInFullList: SavedTrackType): boolean => trackInFullList.id === trackId
+            );
+
+            return track || null;
+        },
+        [fullTrackList]
+    );
 
     const createPlayList = useCallback(
         function createPlayListInner(): PlayListType {
@@ -58,11 +91,13 @@ export function PlayListProvider(props: PropsType): React$Node {
 
             newList[playListIndex] = newListPlayData;
 
+            pushToFullTrackList(newListPlayData.trackList);
+
             setList(newList);
 
             return newListPlayData;
         },
-        [list, setList]
+        [list, setList, pushToFullTrackList]
     );
 
     const deletePlayList = useCallback(
@@ -89,12 +124,14 @@ export function PlayListProvider(props: PropsType): React$Node {
             const defaultList = list[0];
             const newTrackList = [...defaultList.trackList, track];
 
+            pushToFullTrackList([track]);
+
             updatePlayList(defaultList, {
                 ...defaultList,
                 trackList: newTrackList,
             });
         },
-        [list, updatePlayList]
+        [list, updatePlayList, pushToFullTrackList]
     );
     const removeTrack = useCallback(
         function removeTrackInner(track: SavedTrackType) {
@@ -123,8 +160,17 @@ export function PlayListProvider(props: PropsType): React$Node {
 
             addTrackToDefaultList,
             removeTrack,
+            getTrackById,
         };
-    }, [createPlayList, getAllPlayLists, updatePlayList, deletePlayList, addTrackToDefaultList, removeTrack]);
+    }, [
+        createPlayList,
+        getAllPlayLists,
+        updatePlayList,
+        deletePlayList,
+        addTrackToDefaultList,
+        removeTrack,
+        getTrackById,
+    ]);
 
     useEffect(() => {
         savePlayListContextData(list);
