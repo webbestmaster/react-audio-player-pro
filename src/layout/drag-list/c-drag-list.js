@@ -5,9 +5,7 @@ import React, {useState} from 'react';
 import type {DragListItemType} from './drag-list-type';
 import {DragListItem} from './drag-list-item/c-drag-list-item';
 import {getDragItemById, getDragItemIdList, getFullItemIdList} from './drag-list-helper';
-
 import dragListStyle from './drag-list.scss';
-import {afterListItemId, beforeListItemId} from './drag-list-const';
 
 type PropsType = {|
     +list: Array<DragListItemType>,
@@ -16,7 +14,7 @@ type PropsType = {|
 
 export function DragList(props: PropsType): React$Node {
     const {list, onChange} = props;
-    const defaultItemIdList = [beforeListItemId, ...getDragItemIdList(list), afterListItemId];
+    const defaultItemIdList = getFullItemIdList(getDragItemIdList(list));
     const [itemIdList, setItemIdList] = useState<Array<string>>(defaultItemIdList);
 
     return (
@@ -32,10 +30,10 @@ export function DragList(props: PropsType): React$Node {
                 return (
                     <DragListItem
                         defaultIdList={defaultItemIdList}
-                        dragList={itemIdList}
                         item={dragListItem || foreignItem}
+                        itemIdList={itemIdList}
                         key={dragItemId}
-                        setDragList={setItemIdList}
+                        setItemIdList={setItemIdList}
                     />
                 );
             })}

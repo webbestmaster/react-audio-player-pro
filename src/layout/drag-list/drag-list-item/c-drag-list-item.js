@@ -10,13 +10,13 @@ import dragListItemStyle from './drag-list-item.scss';
 
 type PropsType = {|
     +defaultIdList: Array<string>,
-    +dragList: Array<string>,
+    +itemIdList: Array<string>,
     +item: DragListItemType,
-    +setDragList: (dragItemIdList: Array<string>) => void,
+    +setItemIdList: (dragItemIdList: Array<string>) => void,
 |};
 
 export function DragListItem(props: PropsType): React$Node {
-    const {item, setDragList, dragList, defaultIdList} = props;
+    const {item, setItemIdList, itemIdList, defaultIdList} = props;
     const {id, node} = item;
 
     const [isDragged, setIsDragged] = useState<boolean>(false);
@@ -38,14 +38,14 @@ export function DragListItem(props: PropsType): React$Node {
             return;
         }
 
-        const newDragList = [...dragList];
+        const newDragList = [...itemIdList];
 
         if (!newDragList.includes(activeDragInfo.itemId)) {
             const index = newDragList.indexOf(id);
 
             newDragList.splice(index, 0, activeDragInfo.itemId);
 
-            setDragList(newDragList);
+            setItemIdList(newDragList);
             return;
         }
 
@@ -60,7 +60,7 @@ export function DragListItem(props: PropsType): React$Node {
         newDragList[currentIndex + shift] = id;
         newDragList[currentIndex] = siblingElement;
 
-        setDragList(newDragList);
+        setItemIdList(newDragList);
     }
 
     function handleOnDragOverTop() {
@@ -73,7 +73,7 @@ export function DragListItem(props: PropsType): React$Node {
 
     function handleOnDragLeave() {
         if (getIsSpecialItemListById(id)) {
-            setDragList([...defaultIdList]);
+            setItemIdList([...defaultIdList]);
         }
     }
 
