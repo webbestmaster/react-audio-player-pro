@@ -97,7 +97,7 @@ export function PlayListContainer(props: PropsType): React$Node {
             </div>
 */}
 
-            <TrackList trackList={trackList}/>
+            <TrackList playList={playList}/>
         </div>
     );
 }
