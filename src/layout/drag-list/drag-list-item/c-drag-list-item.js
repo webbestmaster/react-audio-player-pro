@@ -11,13 +11,12 @@ import dragListItemStyle from './drag-list-item.scss';
 type PropsType = {|
     +defaultIdList: Array<string>,
     +dragList: Array<string>,
-    +isDragActive: boolean,
     +item: DragListItemType,
     +setDragList: (dragItemIdList: Array<string>) => void,
 |};
 
 export function DragListItem(props: PropsType): React$Node {
-    const {item, setDragList, dragList} = props;
+    const {item, setDragList, dragList, defaultIdList} = props;
     const {id, node} = item;
 
     const [isDragged, setIsDragged] = useState<boolean>(false);
@@ -71,12 +70,11 @@ export function DragListItem(props: PropsType): React$Node {
     }
 
     function handleOnDragLeave() {
-        if (id === activeDragInfo.itemId) {
-            if (props.defaultIdList.includes(activeDragInfo.itemId)) {
-                return;
-            }
-            setDragList([...props.defaultIdList]);
+        if (id !== activeDragInfo.itemId || defaultIdList.includes(activeDragInfo.itemId)) {
+            return;
         }
+
+        setDragList([...props.defaultIdList]);
     }
 
     return (

@@ -2,11 +2,11 @@
 
 import React, {useState} from 'react';
 
-import dragListStyle from './drag-list.scss';
-
 import type {DragListItemType} from './drag-list-type';
 import {DragListItem} from './drag-list-item/c-drag-list-item';
-import {getDragItemIdList, getDragItemById, activeDragInfo} from './drag-list-helper';
+import {getDragItemIdList, getDragItemById} from './drag-list-helper';
+
+import dragListStyle from './drag-list.scss';
 
 type PropsType = {|
     +list: Array<DragListItemType>,
@@ -15,7 +15,6 @@ type PropsType = {|
 
 export function DragList(props: PropsType): React$Node {
     const {list, onChange} = props;
-    const [isDragOver, setIsDragOver] = useState<boolean>(false);
     const defaultIdList = ['before', ...getDragItemIdList(list), 'after'];
     const [dragItemIdList, setDragItemIdList] = useState<Array<string>>(defaultIdList);
 
@@ -28,7 +27,7 @@ export function DragList(props: PropsType): React$Node {
     fullDragItemIdList.push('after');
 
     return (
-        <div className={dragListStyle.drag_list} data-is={isDragOver}>
+        <div className={dragListStyle.drag_list}>
             {fullDragItemIdList.map((dragItemId: string): React$Node => {
                 const dragListItem = getDragItemById(list, dragItemId);
 
@@ -41,7 +40,6 @@ export function DragList(props: PropsType): React$Node {
                     <DragListItem
                         defaultIdList={defaultIdList}
                         dragList={dragItemIdList}
-                        isDragActive={isDragOver}
                         item={dragListItem || foreignItem}
                         key={dragItemId}
                         setDragList={setDragItemIdList}
