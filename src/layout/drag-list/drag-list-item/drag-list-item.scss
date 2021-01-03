@@ -25,12 +25,15 @@
 
 .drag_hunter_top {
     @extend %drag_hunter;
+
+    background-color: #fff;
     top: 0;
 }
 
 .drag_hunter_bottom {
     @extend %drag_hunter;
 
+    background-color: #c00;
     bottom: 0;
 }
 
