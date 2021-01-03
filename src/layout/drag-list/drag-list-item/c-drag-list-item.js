@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 
 import type {DragListItemType} from '../drag-list-type';
 import {IsRender} from '../../is-render/c-is-render';
-import {activeDragInfo, getIsSpecialItemListById} from '../drag-list-helper';
+import {activeDragInfo, getIsNotSpecialItemListById, getIsSpecialItemListById} from '../drag-list-helper';
 
 import dragListItemStyle from './drag-list-item.scss';
 
@@ -80,8 +80,7 @@ export function DragListItem(props: PropsType): React$Node {
     return (
         <div
             className={dragListItemStyle.drag_list_item}
-            data-id={id}
-            draggable
+            draggable={getIsNotSpecialItemListById(id)}
             onDragEnd={handleOnDragEnd}
             onDragStart={handleOnDragStart}
         >
