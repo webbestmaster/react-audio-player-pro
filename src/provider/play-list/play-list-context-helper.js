@@ -73,3 +73,7 @@ export function getTrackList(list: Array<PlayListType>): Array<SavedTrackType> {
 
     return resultList;
 }
+
+export function getTrackListIdList(trackList: Array<SavedTrackType>): Array<string> {
+    return trackList.map<string>((track: SavedTrackType): string => track.id);
+}

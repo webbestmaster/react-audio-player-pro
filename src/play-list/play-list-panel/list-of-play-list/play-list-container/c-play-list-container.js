@@ -1,9 +1,10 @@
 // @flow
 
-import React, {useContext, useRef, useState} from 'react';
+import React, {useContext, useRef} from 'react';
 
 import type {PlayListType} from '../../../../provider/play-list/play-list-context-type';
 import {PlayListContext} from '../../../../provider/play-list/c-play-list-context';
+import {getTrackListIdList} from '../../../../provider/play-list/play-list-context-helper';
 
 import playListContainerStyle from './play-list-container.scss';
 import {TrackList} from './track-list/c-track-list';
@@ -15,20 +16,9 @@ type PropsType = {|
 export function PlayListContainer(props: PropsType): React$Node {
     const {playList} = props;
     const {trackList} = playList;
-    const [src, setSrc] = useState<string>('');
-    const inputSrcRef = useRef<?HTMLInputElement>();
     const inputPlayListNameRef = useRef<?HTMLInputElement>();
 
     const playListContextData = useContext(PlayListContext);
-
-    function getInputSrc(): HTMLInputElement {
-        return (
-            inputSrcRef.current
-            || (() => {
-                throw new Error('Can not get input of src');
-            })()
-        );
-    }
 
     function getInputPlayListName(): HTMLInputElement {
         return (
@@ -39,10 +29,6 @@ export function PlayListContainer(props: PropsType): React$Node {
         );
     }
 
-    function handleOnInputSrc() {
-        setSrc(getInputSrc().value);
-    }
-
     function handleOnInputPlayListName() {
         playListContextData.updatePlayList(playList, {
             name: getInputPlayListName().value.trim(),
@@ -50,22 +36,6 @@ export function PlayListContainer(props: PropsType): React$Node {
             isDefault: playList.isDefault,
         });
     }
-
-    /*
-    function handleAddSong() {
-        const newTrackList: Array<SavedTrackType> = [...playList.trackList];
-
-        newTrackList.push({src});
-
-        playListContextData.updatePlayList(playList, {
-            name: playList.name,
-            trackList: newTrackList,
-            isDefault: playList.isDefault,
-        });
-
-        getInputSrc().value = '';
-    }
-*/
 
     return (
         <div className={playListContainerStyle.play_list_container}>
@@ -82,22 +52,7 @@ export function PlayListContainer(props: PropsType): React$Node {
                 />
             </div>
 
-            {/*
-            <div>
-                <input
-                    onInput={handleOnInputSrc}
-                    placeholder="https://some/song/src.mp3"
-                    ref={inputSrcRef}
-                    type="text"
-                />
-
-                <button onClick={handleAddSong} type="button">
-                    + add your song +
-                </button>
-            </div>
-*/}
-
-            <TrackList playList={playList}/>
+            <TrackList key={getTrackListIdList(trackList).join('-')} playList={playList}/>
         </div>
     );
 }
