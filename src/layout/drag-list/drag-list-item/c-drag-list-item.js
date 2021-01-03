@@ -14,6 +14,8 @@ import {
 import dragListItemStyle from './drag-list-item.scss';
 
 type PropsType = {|
+    +onDragStart: () => void,
+    +onDragEnd: () => void,
     +defaultIdList: Array<string>,
     +itemIdList: Array<string>,
     +item: DragListItemType,
@@ -21,21 +23,20 @@ type PropsType = {|
 |};
 
 export function DragListItem(props: PropsType): React$Node {
-    const {item, setItemIdList, itemIdList, defaultIdList} = props;
+    const {item, setItemIdList, itemIdList, defaultIdList, onDragEnd, onDragStart} = props;
     const {id, node} = item;
-
     const [isDragged, setIsDragged] = useState<boolean>(false);
 
     function handleOnDragStart() {
         activeDragInfo.itemId = id;
-
+        onDragStart();
         setIsDragged(true);
     }
 
     function handleOnDragEnd() {
-        activeDragInfo.itemId = '';
-
         console.log('---- item handleOnDragEnd', id);
+
+        onDragEnd();
 
         setIsDragged(false);
     }
@@ -84,18 +85,20 @@ export function DragListItem(props: PropsType): React$Node {
         }
     }
 
+    /*
     function handleOnDrop() {
         console.log('---- item handleOnDrop', id, activeDragInfo.itemId);
     }
+*/
 
     return (
         <div
             className={dragListItemStyle.drag_list_item}
             draggable={getIsNotSpecialItemListById(id)}
             onDragEnd={handleOnDragEnd}
-            onDragOver={handlePreventDefault}
+            // onDragOver={handlePreventDefault}
             onDragStart={handleOnDragStart}
-            onDrop={handleOnDrop}
+            // onDrop={handleOnDrop}
         >
             <IsRender isRender={isDragged === false && id !== activeDragInfo.itemId}>
                 <div

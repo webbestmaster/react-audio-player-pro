@@ -17,7 +17,7 @@ export function TrackList(props: PropsType): React$Node {
     const {trackList} = props;
 
     function handleOnChange(idList: Array<string>) {
-        console.log('handleOnChange');
+        console.log('---- TrackList - handleOnChange');
         console.log(idList);
     }
 

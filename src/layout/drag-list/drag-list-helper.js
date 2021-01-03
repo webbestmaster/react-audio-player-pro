@@ -11,9 +11,19 @@ export function getDragItemById(dragItemList: Array<DragListItemType>, dragItemI
     return dragItemList.find((dragItem: DragListItemType): boolean => dragItem.id === dragItemId) || null;
 }
 
-export const activeDragInfo = {
+// create cached hook
+export const activeDragInfo: {[key: string]: string} = {
     itemId: '',
+    listFrom: '',
+    listTo: '',
 };
+
+// create cached hook
+export function resetActiveDragInfo() {
+    activeDragInfo.listFrom = '';
+    activeDragInfo.listTo = '';
+    activeDragInfo.itemId = '';
+}
 
 export function getIsSpecialItemListById(id: string): boolean {
     return id === beforeListItemId || id === afterListItemId;
