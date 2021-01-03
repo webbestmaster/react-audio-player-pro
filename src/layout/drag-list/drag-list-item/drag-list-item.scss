@@ -15,7 +15,8 @@
     position: absolute;
     //z-index: 0;
     opacity: 0.2;
-    width: 100%;
+    left: 50%;
+    width: 50%;
     height: 50%;
     background-color: #666;
     box-sizing: border-box;
@@ -37,6 +38,29 @@
     bottom: 0;
 }
 
+.drag_list_item:first-child {
+    height: 25px;
+    .drag_hunter_bottom {
+        height: 100%;
+    }
+    .drag_hunter_top {
+        display: none;
+    }
+}
+
+.drag_list_item:last-child {
+    //display: none;
+    height: 25px;
+    .drag_hunter_top {
+        display: none;
+        height: 100%;
+    }
+    .drag_hunter_bottom {
+        display: none;
+    }
+}
+
+/*
 .drag_list_item_over {
     @extend %drag-list-item;
 
@@ -47,4 +71,5 @@
         z-index: 2;
     }
 }
+*/
 

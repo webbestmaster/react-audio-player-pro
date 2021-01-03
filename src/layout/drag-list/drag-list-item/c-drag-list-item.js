@@ -79,11 +79,11 @@ export function DragListItem(props: PropsType): React$Node {
         handleOnDragOverOverflow(1);
     }
 
-    function handleOnDragLeave() {
-        if (getIsSpecialItemListById(id)) {
-            setItemIdList([...defaultIdList]);
-        }
-    }
+    // function handleOnDragLeave() {
+    // if (getIsSpecialItemListById(id)) {
+    //     setItemIdList([...defaultIdList]);
+    // }
+    // }
 
     /*
     function handleOnDrop() {
@@ -103,13 +103,13 @@ export function DragListItem(props: PropsType): React$Node {
             <IsRender isRender={isDragged === false && id !== activeDragInfo.itemId}>
                 <div
                     className={dragListItemStyle.drag_hunter_top}
-                    onDragLeave={handleOnDragLeave}
+                    // onDragLeave={handleOnDragLeave}
                     onDragOver={handleOnDragOverTop}
                 />
 
                 <div
                     className={dragListItemStyle.drag_hunter_bottom}
-                    onDragLeave={handleOnDragLeave}
+                    // onDragLeave={handleOnDragLeave}
                     onDragOver={handleOnDragOverBottom}
                 />
             </IsRender>

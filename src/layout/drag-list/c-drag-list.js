@@ -69,11 +69,26 @@ export function DragList(props: PropsType): React$Node {
     function onDragOver(evt: SyntheticEvent<EventTarget>) {
         handlePreventDefault(evt);
         activeDragInfo.listTo = listId;
-        console.log('list onDragOver', itemIdList);
+        // console.log('list onDragOver', itemIdList);
+    }
+
+    function handleDragLeave() {
+        console.log('handleDragLeave');
+        if (defaultItemIdShortList.includes(activeDragInfo.itemId)) {
+            return;
+        }
+
+        setItemIdList(defaultItemIdList);
     }
 
     return (
-        <div className={dragListStyle.drag_list} data-id={listId} onDragOver={onDragOver} onDrop={handleOnDrop}>
+        <div
+            className={dragListStyle.drag_list}
+            data-id={listId}
+            onDragLeave={handleDragLeave}
+            onDragOver={onDragOver}
+            onDrop={handleOnDrop}
+        >
             {getFullItemIdList(itemIdList).map((dragItemId: string): React$Node => {
                 const dragListItem = getDragItemById(list, dragItemId);
 

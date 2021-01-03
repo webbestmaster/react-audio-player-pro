@@ -28,7 +28,7 @@ export function TrackItem(props: PropsType): React$Node {
         <div className={trackItemStyle.track_item}>
             <div>track item: {track.src}</div>
 
-            <button onClick={handleRemoveTrack} type="button">
+            <button className={trackItemStyle.button_remove} onClick={handleRemoveTrack} type="button">
                 remove
             </button>
         </div>
