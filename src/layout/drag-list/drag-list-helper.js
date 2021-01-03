@@ -26,3 +26,7 @@ export function getIsNotSpecialItemListById(id: string): boolean {
 export function getFullItemIdList(itemIdList: Array<string>): Array<string> {
     return [beforeListItemId, ...itemIdList.filter(getIsNotSpecialItemListById), afterListItemId];
 }
+
+export function handlePreventDefault(evt: SyntheticEvent<EventTarget>) {
+    evt.preventDefault();
+}

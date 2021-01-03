@@ -4,7 +4,12 @@ import React, {useState} from 'react';
 
 import type {DragListItemType} from '../drag-list-type';
 import {IsRender} from '../../is-render/c-is-render';
-import {activeDragInfo, getIsNotSpecialItemListById, getIsSpecialItemListById} from '../drag-list-helper';
+import {
+    activeDragInfo,
+    getIsNotSpecialItemListById,
+    getIsSpecialItemListById,
+    handlePreventDefault,
+} from '../drag-list-helper';
 
 import dragListItemStyle from './drag-list-item.scss';
 
@@ -30,10 +35,12 @@ export function DragListItem(props: PropsType): React$Node {
     function handleOnDragEnd() {
         activeDragInfo.itemId = '';
 
+        console.log('---- item handleOnDragEnd', id);
+
         setIsDragged(false);
     }
 
-    function handleOnDragOver(shift: 1 | -1) {
+    function handleOnDragOverOverflow(shift: 1 | -1) {
         if (id === activeDragInfo.itemId) {
             return;
         }
@@ -64,11 +71,11 @@ export function DragListItem(props: PropsType): React$Node {
     }
 
     function handleOnDragOverTop() {
-        handleOnDragOver(-1);
+        handleOnDragOverOverflow(-1);
     }
 
     function handleOnDragOverBottom() {
-        handleOnDragOver(1);
+        handleOnDragOverOverflow(1);
     }
 
     function handleOnDragLeave() {
@@ -77,12 +84,18 @@ export function DragListItem(props: PropsType): React$Node {
         }
     }
 
+    function handleOnDrop() {
+        console.log('---- item handleOnDrop', id, activeDragInfo.itemId);
+    }
+
     return (
         <div
             className={dragListItemStyle.drag_list_item}
             draggable={getIsNotSpecialItemListById(id)}
             onDragEnd={handleOnDragEnd}
+            onDragOver={handlePreventDefault}
             onDragStart={handleOnDragStart}
+            onDrop={handleOnDrop}
         >
             <IsRender isRender={isDragged === false && id !== activeDragInfo.itemId}>
                 <div
