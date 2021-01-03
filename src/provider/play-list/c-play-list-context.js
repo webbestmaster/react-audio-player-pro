@@ -1,6 +1,6 @@
 // @flow
 
-import React, {useState, useMemo, useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 
 import type {SavedTrackType} from '../../audio-player/audio-player-type';
 

@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 
 import type {DragListItemType} from './drag-list-type';
 import {DragListItem} from './drag-list-item/c-drag-list-item';
-import {getDragItemIdList, getDragItemById} from './drag-list-helper';
+import {getDragItemById, getDragItemIdList} from './drag-list-helper';
 
 import dragListStyle from './drag-list.scss';
 

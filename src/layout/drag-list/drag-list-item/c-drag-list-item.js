@@ -1,6 +1,6 @@
 // @flow
 
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 
 import type {DragListItemType} from '../drag-list-type';
 import {IsRender} from '../../is-render/c-is-render';
@@ -28,6 +28,8 @@ export function DragListItem(props: PropsType): React$Node {
     }
 
     function handleOnDragEnd() {
+        activeDragInfo.itemId = '';
+
         setIsDragged(false);
     }
 
@@ -74,7 +76,7 @@ export function DragListItem(props: PropsType): React$Node {
             return;
         }
 
-        setDragList([...props.defaultIdList]);
+        setDragList([...defaultIdList]);
     }
 
     return (

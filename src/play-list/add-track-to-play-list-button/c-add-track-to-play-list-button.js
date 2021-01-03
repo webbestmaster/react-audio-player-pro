@@ -1,6 +1,6 @@
 // @flow
 
-import React, {useContext, useState, useCallback} from 'react';
+import React, {useCallback, useContext} from 'react';
 
 import {classNames} from '../../lib/css';
 

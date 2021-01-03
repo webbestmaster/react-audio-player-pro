@@ -2,7 +2,6 @@
 
 /* global navigator, MediaMetadata */
 
-import type {MediaMetadataControlNameType} from './media-meta-data-type';
 import {type MediaMetadataControlSettingType, type MediaMetadataType} from './media-meta-data-type';
 import {mediaMetadataControlNameMap} from './media-meta-data-const';
 

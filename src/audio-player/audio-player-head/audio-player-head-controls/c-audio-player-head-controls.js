@@ -1,15 +1,15 @@
 // @flow
 
-import React, {Component} from 'react';
+import React from 'react';
 
 import {AudioPlayerControlButton} from '../../../layout/audio-player-control-button/c-audio-player-control-button';
 
 import type {PlayerPlayingStateType, PlayerRepeatingStateType} from '../../audio-player-type';
 import {playerPlayingStateTypeMap, playerRepeatingStateTypeMap} from '../../audio-player-const';
 
-const {one: repeatOne, all: repeatAll} = playerRepeatingStateTypeMap;
-
 import AudioPlayerHeadControlsStyle from './audio-player-head-controls.scss';
+
+const {one: repeatOne, all: repeatAll} = playerRepeatingStateTypeMap;
 
 type PropsType = {|
     +onClickShuffle: () => void,
