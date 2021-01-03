@@ -10,12 +10,11 @@ import {activeDragInfo} from '../drag-list-helper';
 import dragListItemStyle from './drag-list-item.scss';
 
 type PropsType = {|
-    +item: DragListItemType,
-    +isDragActive: boolean,
-    +setDragList: (dragItemIdList: Array<string>) => void,
-    +dragList: Array<string>,
     +defaultIdList: Array<string>,
-    +index: number,
+    +dragList: Array<string>,
+    +isDragActive: boolean,
+    +item: DragListItemType,
+    +setDragList: (dragItemIdList: Array<string>) => void,
 |};
 
 export function DragListItem(props: PropsType): React$Node {

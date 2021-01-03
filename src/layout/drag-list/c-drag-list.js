@@ -18,9 +18,11 @@ type PropsType = {|
 export function DragList(props: PropsType): React$Node {
     const {list, onChange} = props;
     const [isDragOver, setIsDragOver] = useState<boolean>(false);
-    const [dragItemIdList, setDragItemIdList] = useState<Array<string>>(getDragItemIdList(list));
+    const defaultIdList = getDragItemIdList(list);
+    const [dragItemIdList, setDragItemIdList] = useState<Array<string>>(defaultIdList);
     const [isHiddenId, setIsHiddenId] = useState<string>('');
 
+    /*
     function handleOnDragOver(evt: SyntheticEvent<DragEvent>) {
         const newDragList = [...dragItemIdList];
 
@@ -88,6 +90,7 @@ export function DragList(props: PropsType): React$Node {
 
         // setIsDragged(false);
     }
+*/
 
     /*
         if (dragItemIdList.length === 0) {
@@ -129,35 +132,17 @@ export function DragList(props: PropsType): React$Node {
             {dragItemIdList.map((dragItemId: string): React$Node => {
                 const dragListItem = getDragItemById(list, dragItemId);
 
-                console.log(isHiddenId);
-                console.log(dragItemIdList);
-
-                if (dragItemId === isHiddenId) {
-                    // return null;
-                }
-
-                if (!dragListItem) {
-                    return (
-                        <DragListItem
-                            defaultIdList={getDragItemIdList(list)}
-                            dragList={dragItemIdList}
-                            isDragActive={isDragOver}
-                            item={{
-                                id: dragItemId,
-                                node: 'no - node',
-                            }}
-                            key={dragItemId}
-                            setDragList={setDragItemIdList}
-                        />
-                    );
-                }
+                const foreignItem: DragListItemType = {
+                    id: dragItemId,
+                    node: 'no - node',
+                };
 
                 return (
                     <DragListItem
-                        defaultIdList={getDragItemIdList(list)}
+                        defaultIdList={defaultIdList}
                         dragList={dragItemIdList}
                         isDragActive={isDragOver}
-                        item={dragListItem}
+                        item={dragListItem || foreignItem}
                         key={dragItemId}
                         setDragList={setDragItemIdList}
                     />
