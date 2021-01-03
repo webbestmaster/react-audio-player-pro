@@ -7,6 +7,7 @@ import {DragListItem} from './drag-list-item/c-drag-list-item';
 import {getDragItemById, getDragItemIdList} from './drag-list-helper';
 
 import dragListStyle from './drag-list.scss';
+import {afterListItemId, beforeListItemId} from './drag-list-const';
 
 type PropsType = {|
     +list: Array<DragListItemType>,
@@ -15,16 +16,15 @@ type PropsType = {|
 
 export function DragList(props: PropsType): React$Node {
     const {list, onChange} = props;
-    const defaultIdList = ['before', ...getDragItemIdList(list), 'after'];
+    const defaultIdList = [beforeListItemId, ...getDragItemIdList(list), afterListItemId];
     const [dragItemIdList, setDragItemIdList] = useState<Array<string>>(defaultIdList);
 
     const fullDragItemIdList = [...dragItemIdList].filter((id: string): boolean => {
-        return id !== 'before' && id !== 'after';
+        return id !== beforeListItemId && id !== afterListItemId;
     });
 
-    fullDragItemIdList.unshift('before');
-
-    fullDragItemIdList.push('after');
+    fullDragItemIdList.unshift(beforeListItemId);
+    fullDragItemIdList.push(afterListItemId);
 
     return (
         <div className={dragListStyle.drag_list}>

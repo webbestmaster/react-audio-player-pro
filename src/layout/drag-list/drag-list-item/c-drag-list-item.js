@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 
 import type {DragListItemType} from '../drag-list-type';
 import {IsRender} from '../../is-render/c-is-render';
-import {activeDragInfo} from '../drag-list-helper';
+import {activeDragInfo, getIsSpecialItemListById} from '../drag-list-helper';
 
 import dragListItemStyle from './drag-list-item.scss';
 
@@ -72,11 +72,9 @@ export function DragListItem(props: PropsType): React$Node {
     }
 
     function handleOnDragLeave() {
-        if (id !== activeDragInfo.itemId || defaultIdList.includes(activeDragInfo.itemId)) {
-            return;
+        if (getIsSpecialItemListById(id)) {
+            setDragList([...defaultIdList]);
         }
-
-        setDragList([...defaultIdList]);
     }
 
     return (
