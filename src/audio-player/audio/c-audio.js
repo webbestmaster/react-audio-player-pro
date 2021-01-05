@@ -14,6 +14,9 @@ import {setMediaMetadata} from '../../lib/media-meta-data/media-meta-data';
 import {IsRender} from '../../layout/is-render/c-is-render';
 import {getStopHandler} from '../audio-player-helper';
 import {PlayListMenuButton} from '../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button';
+import {SvgImage} from '../../layout/svg-image/c-svg-image';
+import {audioPlayerIconIdPrefix} from '../../layout/audio-player-control-sprite/c-audio-player-control-sprite';
+import audioPlayerControlStyle from '../../layout/audio-player-control-button/audio-player-control-button.scss';
 
 import audioStyle from './audio.scss';
 
@@ -226,7 +229,10 @@ export function Audio(props: PropsType): React$Node {
             </IsRender>
 
             <a className={audioStyle.download_button} download={downloadFileName || true} href={src}>
-                <AudioPlayerControlButton ariaLabel="download" imageId="button-download"/>
+                <SvgImage
+                    className={audioPlayerControlStyle.audio_player_control__button__image}
+                    imageId={'#' + audioPlayerIconIdPrefix + 'button-download'}
+                />
             </a>
 
             <PlayListMenuButton
