@@ -3,16 +3,16 @@
 }
 
 .audio {
+    align-items: center;
     background-color: #fff;
     border-radius: 4px;
     box-sizing: border-box;
-    //margin-bottom: 10px;
-    padding: 6px;
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: normal;
-    align-items: center;
+    //margin-bottom: 10px;
+    padding: 6px;
+    width: 100%;
 }
 
 .time {
@@ -20,8 +20,8 @@
 }
 
 .sound_range {
-    width: 76px;
     flex-shrink: 0;
+    width: 76px;
 }
 
 //.switch_sound_button {

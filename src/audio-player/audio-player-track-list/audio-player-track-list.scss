@@ -1,10 +1,10 @@
 .audio_player_track_list {
+    background-color: #f5f5f5;
     border-bottom: 4px solid #fff;
     border-top: 4px solid #fff;
+    box-sizing: border-box;
     display: block;
-    width: 100%;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    background-color: #f5f5f5;
+    width: 100%;
 }

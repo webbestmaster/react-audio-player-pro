@@ -1,11 +1,47 @@
 .content_wrapper {
     display: block;
+    flex-shrink: 0;
+    height: 38px;
     position: relative;
+    width: 38px;
 }
 
 .add_track_to_play_list_button {
-    display: block;
-    padding: 5px;
-    box-sizing: border-box;
+    background-color: #fff;
     border: 0;
+    box-sizing: border-box;
+    color: #5a5a5a;
+    display: block;
+    font-family: Tahoma, sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+    height: 100%;
+    line-height: 1;
+    padding: 4px 0 0;
+    pointer-events: none;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+}
+
+.select_play_list {
+    appearance: none;
+    background-color: #fff;
+    border: 0;
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    outline: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    &:focus {
+        option:first-child {
+            display: none;
+        }
+    }
 }

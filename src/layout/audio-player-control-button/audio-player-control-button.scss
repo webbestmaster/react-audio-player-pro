@@ -13,18 +13,18 @@ $button-image-active-background-color: #e5e5e5;
 }
 
 .audio_player_control__button {
-    border: 0;
     background-color: transparent;
-    margin: 0;
+    border: 0;
     border-radius: $border-radius;
     box-sizing: border-box;
+    cursor: pointer;
     display: block;
     flex-shrink: 0;
     height: $button-size;
+    margin: 0;
     outline: none;
     padding: ($button-size - $button-image-size) / 2;
     width: $button-size;
-    cursor: pointer;
 
     &:active,
     &.audio_player_control__button__active {

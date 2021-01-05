@@ -1,8 +1,8 @@
 %drag-list-item,
 .drag_list_item {
     display: block;
-    position: relative;
     min-height: 70px;
+    position: relative;
 }
 
 .content {
@@ -11,28 +11,28 @@
     z-index: 1;
 }
 
-%drag_hunter {
-    position: absolute;
+%drag-hunter {
+    background-color: #666;
+    border: 4px solid #c00;
+    box-sizing: border-box;
+    height: 50%;
+    left: 50%;
     //z-index: 0;
     opacity: 0.2;
-    left: 50%;
+    position: absolute;
     width: 50%;
-    height: 50%;
-    background-color: #666;
-    box-sizing: border-box;
-    border: 4px solid #c00;
     z-index: 2;
 }
 
 .drag_hunter_top {
-    @extend %drag_hunter;
+    @extend %drag-hunter;
 
     background-color: #fff;
     top: 0;
 }
 
 .drag_hunter_bottom {
-    @extend %drag_hunter;
+    @extend %drag-hunter;
 
     background-color: #c00;
     bottom: 0;
@@ -40,9 +40,11 @@
 
 .drag_list_item:first-child {
     height: 25px;
+
     .drag_hunter_bottom {
         height: 100%;
     }
+
     .drag_hunter_top {
         display: none;
     }
@@ -51,10 +53,12 @@
 .drag_list_item:last-child {
     //display: none;
     height: 25px;
+
     .drag_hunter_top {
         display: none;
         height: 100%;
     }
+
     .drag_hunter_bottom {
         display: none;
     }
@@ -72,4 +76,3 @@
     }
 }
 */
-

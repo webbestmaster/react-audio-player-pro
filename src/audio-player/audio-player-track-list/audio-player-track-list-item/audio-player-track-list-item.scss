@@ -1,13 +1,13 @@
 .audio_player_track_list_item {
-    display: flex;
-    font-family: verdana,geneva,sans-serif;
-    min-height: 48px;
-    padding: 0;
-    margin: 0;
-    flex-direction: row;
     align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-family: verdana, geneva, sans-serif;
     font-size: 14px;
     line-height: 1.4;
+    margin: 0;
+    min-height: 48px;
+    padding: 0;
 
     &:hover,
     &.audio_player_track_list_item__active {
@@ -16,22 +16,22 @@
 }
 
 .button {
-    //float: left;
-    height: 48px;
-    outline: none;
-    width: 48px;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    flex-shrink: 0;
+    align-items: center;
     background-color: transparent;
+    border: 0;
     cursor: pointer;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    flex-shrink: 0;
+    //float: left;
+    height: 48px;
     justify-content: center;
-    position: relative;
+    margin: 0;
+    outline: none;
     overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 48px;
 }
 
 %button--image,
@@ -40,10 +40,10 @@
     border: 3px solid #cbcbcb;
     border-radius: 100%;
     display: block;
-    height: 18px;
-    width: 18px;
     flex-shrink: 0;
+    height: 18px;
     position: relative;
+    width: 18px;
     z-index: 10;
 }
 
@@ -55,15 +55,15 @@
 }
 
 .content {
-    padding: 6px 8px 6px 0;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     justify-content: center;
     //margin-left: 48px;
     min-height: 48px;
-    box-sizing: border-box;
-    flex-grow: 1;
     overflow: hidden;
+    padding: 6px 8px 6px 0;
 }
 
 .track_title {
@@ -72,11 +72,11 @@
     font-size: inherit;
     font-weight: inherit;
     line-height: inherit;
+    margin: 0;
     overflow: hidden;
+    padding: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin: 0;
-    padding: 0;
 }
 
 .audio_tag {
@@ -84,6 +84,6 @@
 }
 
 .track_time {
-    padding-right: 8px;
     flex-shrink: 0;
+    padding-right: 8px;
 }

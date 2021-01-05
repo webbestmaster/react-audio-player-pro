@@ -6,11 +6,11 @@ $slider-thumb-radius: 6px;
 .range_bar {
     background-color: #fff;
     border-radius: 4px;
+    box-sizing: border-box;
+    display: block;
     height: 38px;
     padding: 0;
-    display: block;
     position: relative;
-    box-sizing: border-box;
     width: 100%;
 
     &.wrapper__active {
@@ -43,23 +43,23 @@ $slider-thumb-radius: 6px;
 }
 
 .point_bar__wrapper {
-    top: 0;
-    left: $slider-thumb-radius;
     height: 100%;
+    left: $slider-thumb-radius;
     position: absolute;
+    top: 0;
     width: calc(100% - #{$slider-thumb-radius * 4});
     z-index: 1;
 }
 
 .point_bar {
-    width: $slider-thumb-radius * 2;
-    height: $slider-thumb-radius * 2;
+    background-color: $slider-thumb-color;
+    border-radius: $slider-thumb-radius;
     display: block;
+    height: $slider-thumb-radius * 2;
+    margin-top: -$slider-thumb-radius;
     position: absolute;
     top: 50%;
-    margin-top: -$slider-thumb-radius;
-    border-radius: $slider-thumb-radius;
-    background-color: $slider-thumb-color;
+    width: $slider-thumb-radius * 2;
 }
 
 .wrapper__disable {
@@ -75,17 +75,17 @@ $slider-thumb-radius: 6px;
 }
 
 .input_range {
-    cursor: pointer;
-    position: absolute;
-    display: block;
-    opacity: 0;
-    top: 0;
-    left: $slider-thumb-radius;
-    width: calc(100% - #{$slider-thumb-radius * 2});
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    outline: none;
     border: 0;
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    left: $slider-thumb-radius;
+    margin: 0;
+    opacity: 0;
+    outline: none;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: calc(100% - #{$slider-thumb-radius * 2});
     z-index: 2;
 }
