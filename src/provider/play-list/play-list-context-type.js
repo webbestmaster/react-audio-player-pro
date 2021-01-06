@@ -16,8 +16,6 @@ export type PlayListContextType = {|
     +isInitialized: boolean,
 
     // helpers
-    // TODO: try to remove addTrackToDefaultList
-    +addTrackToDefaultList: (track: SavedTrackType) => void,
-    +removeTrack: (track: SavedTrackType) => void,
+    +removeTrackById: (trackId: string) => null | Error,
     +getTrackById: (trackId: string) => SavedTrackType | null,
 |};

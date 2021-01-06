@@ -19,13 +19,12 @@ export function getDefaultPlayListContextData(): PlayListContextType {
         createPlayList: (): PlayListType => defaultPlayList,
         getAllPlayLists: (): Array<PlayListType> => [defaultPlayList],
         updatePlayList: (oldPlayList: PlayListType, newListPlayData: PlayListType): PlayListType | Error => {
-            return new Error('Overwrite me');
+            return new Error('updatePlayList: overwrite me');
         },
-        deletePlayList: (playList: PlayListType): null | Error => new Error('Overwrite me'),
+        deletePlayList: (playList: PlayListType): null | Error => new Error('deletePlayList: overwrite me'),
         isInitialized: false,
 
-        addTrackToDefaultList: (track: SavedTrackType) => {},
-        removeTrack: (track: SavedTrackType) => {},
+        removeTrackById: (trackId: string): null | Error => new Error('removeTrack: overwrite me'),
         getTrackById: (trackId: string): SavedTrackType | null => null,
     };
 }

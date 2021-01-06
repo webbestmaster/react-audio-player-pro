@@ -15,13 +15,13 @@ export function TrackItem(props: PropsType): React$Node {
     const {track} = props;
 
     const playListContextData = useContext(PlayListContext);
-    const {removeTrack} = playListContextData;
+    const {removeTrackById} = playListContextData;
 
     const handleRemoveTrack = useCallback(
         function handleRemoveTrackInner() {
-            removeTrack(track);
+            removeTrackById(track.id);
         },
-        [removeTrack, track]
+        [removeTrackById, track]
     );
 
     return (

@@ -22,7 +22,7 @@ export function PlayListMenuButton(props: PropsType): React$Node {
     const {className, track} = props;
     const fullClassName = classNames(addTrackToPlayListButtonStyle.add_track_to_play_list_button, className);
     const playListContextData = useContext(PlayListContext);
-    const {addTrackToDefaultList, getAllPlayLists, updatePlayList} = playListContextData;
+    const {getAllPlayLists, updatePlayList} = playListContextData;
     const listOfPlayList = getAllPlayLists();
     const defaultSelectValue = '-1';
 
@@ -40,8 +40,6 @@ export function PlayListMenuButton(props: PropsType): React$Node {
             }
 
             console.log('---- handleAddTrackInner ----');
-            console.log(track);
-            console.log(track.content);
             console.log(React.isValidElement(track.content));
 
             let trackToSave: SavedTrackType = {
@@ -69,6 +67,10 @@ export function PlayListMenuButton(props: PropsType): React$Node {
             });
 
             selectNode.value = defaultSelectValue;
+
+            console.log('---> track added to list!');
+            console.log(trackToSave);
+            console.log(playList);
         },
         [listOfPlayList, updatePlayList, track, defaultSelectValue]
     );

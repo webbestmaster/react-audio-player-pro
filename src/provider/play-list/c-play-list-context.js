@@ -21,38 +21,29 @@ type PropsType = {|
 export function PlayListProvider(props: PropsType): React$Node {
     const {children} = props;
     const [list, setList] = useState<Array<PlayListType>>(getSavedPlayListContextData());
-    const [fullTrackList, setFullTrackList] = useState<Array<SavedTrackType>>(getTrackList(list));
-
-    const pushToFullTrackList = useCallback(
-        function pushToFullTrackListInner(trackList: Array<SavedTrackType>) {
-            const fullList: Array<SavedTrackType> = [...fullTrackList];
-
-            trackList.forEach((track: SavedTrackType) => {
-                const trackId = track.id;
-
-                const isExists = fullList.some((trackInList: SavedTrackType): boolean => trackInList.id === trackId);
-
-                if (isExists) {
-                    return;
-                }
-
-                fullList.push(track);
-            });
-
-            setFullTrackList(fullList);
-        },
-        [fullTrackList, setFullTrackList]
-    );
 
     const getTrackById = useCallback(
         function getTrackByIdInner(trackId: string): SavedTrackType | null {
-            const track = fullTrackList.find(
-                (trackInFullList: SavedTrackType): boolean => trackInFullList.id === trackId
-            );
+            const listLength = list.length;
 
-            return track || null;
+            // eslint-disable-next-line no-loops/no-loops
+            for (let playListIndex = 0; playListIndex < listLength; playListIndex += 1) {
+                const {trackList} = list[playListIndex];
+                const trackListLength = trackList.length;
+
+                // eslint-disable-next-line no-loops/no-loops
+                for (let trackIndex = 0; trackIndex < trackListLength; trackIndex += 1) {
+                    const track = trackList[trackIndex];
+
+                    if (track.id === trackId) {
+                        return track;
+                    }
+                }
+            }
+
+            return null;
         },
-        [fullTrackList]
+        [list]
     );
 
     const createPlayList = useCallback(
@@ -91,13 +82,11 @@ export function PlayListProvider(props: PropsType): React$Node {
 
             newList[playListIndex] = newListPlayData;
 
-            pushToFullTrackList(newListPlayData.trackList);
-
             setList(newList);
 
             return newListPlayData;
         },
-        [list, setList, pushToFullTrackList]
+        [list, setList]
     );
 
     const deletePlayList = useCallback(
@@ -119,33 +108,36 @@ export function PlayListProvider(props: PropsType): React$Node {
         [list, setList]
     );
 
-    const addTrackToDefaultList = useCallback(
-        function addTrackToDefaultListInner(track: SavedTrackType) {
-            const defaultList = list[0];
-            const newTrackList = [...defaultList.trackList, track];
+    const removeTrackById = useCallback(
+        function removeTrackInner(trackId: string): null | Error {
+            const listLength = list.length;
 
-            pushToFullTrackList([track]);
-
-            updatePlayList(defaultList, {
-                ...defaultList,
-                trackList: newTrackList,
-            });
-        },
-        [list, updatePlayList, pushToFullTrackList]
-    );
-    const removeTrack = useCallback(
-        function removeTrackInner(track: SavedTrackType) {
-            list.forEach((playList: PlayListType) => {
+            // eslint-disable-next-line no-loops/no-loops
+            for (let playListIndex = 0; playListIndex < listLength; playListIndex += 1) {
+                const playList = list[playListIndex];
                 const {trackList} = playList;
+                const trackListLength = trackList.length;
 
-                if (trackList.includes(track)) {
-                    trackList.splice(trackList.indexOf(track), 1);
-                    updatePlayList(playList, {
-                        ...playList,
-                        trackList: [...trackList],
-                    });
+                // eslint-disable-next-line no-loops/no-loops
+                for (let trackIndex = 0; trackIndex < trackListLength; trackIndex += 1) {
+                    const track = trackList[trackIndex];
+
+                    if (track.id === trackId) {
+                        const newTrackList = [...trackList];
+
+                        newTrackList.splice(trackIndex, 1);
+
+                        updatePlayList(playList, {
+                            ...playList,
+                            trackList: newTrackList,
+                        });
+
+                        return null;
+                    }
                 }
-            });
+            }
+
+            return new Error('Track is not exists.');
         },
         [list, updatePlayList]
     );
@@ -158,19 +150,10 @@ export function PlayListProvider(props: PropsType): React$Node {
             deletePlayList,
             isInitialized: true,
 
-            addTrackToDefaultList,
-            removeTrack,
+            removeTrackById,
             getTrackById,
         };
-    }, [
-        createPlayList,
-        getAllPlayLists,
-        updatePlayList,
-        deletePlayList,
-        addTrackToDefaultList,
-        removeTrack,
-        getTrackById,
-    ]);
+    }, [createPlayList, getAllPlayLists, updatePlayList, deletePlayList, removeTrackById, getTrackById]);
 
     useEffect(() => {
         savePlayListContextData(list);
