@@ -4,12 +4,7 @@ import React, {useState} from 'react';
 
 import type {DragListItemType} from '../drag-list-type';
 import {IsRender} from '../../is-render/c-is-render';
-import {
-    activeDragInfo,
-    getIsNotSpecialItemListById,
-    getIsSpecialItemListById,
-    handlePreventDefault,
-} from '../drag-list-helper';
+import {activeDragInfo, getIsNotSpecialItemListById} from '../drag-list-helper';
 
 import dragListItemStyle from './drag-list-item.scss';
 

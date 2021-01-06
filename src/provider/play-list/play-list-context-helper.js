@@ -29,6 +29,7 @@ export function getDefaultPlayListContextData(): PlayListContextType {
     };
 }
 
+/*
 export function countTrackInPlayList(playList: PlayListType, track: TrackType): number {
     let counter = 0;
     const {trackList} = playList;
@@ -42,6 +43,7 @@ export function countTrackInPlayList(playList: PlayListType, track: TrackType): 
 
     return counter;
 }
+*/
 
 export function getTrackContentAsString(track: TrackType): string {
     const {content} = track;

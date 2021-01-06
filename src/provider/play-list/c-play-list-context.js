@@ -5,7 +5,7 @@ import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import type {SavedTrackType} from '../../audio-player/audio-player-type';
 
 import type {PlayListContextType, PlayListType} from './play-list-context-type';
-import {getDefaultPlayListContextData, getTrackList} from './play-list-context-helper';
+import {getDefaultPlayListContextData} from './play-list-context-helper';
 import {getSavedPlayListContextData, savePlayListContextData} from './play-list-context-storage';
 
 const defaultPlayListContextData = getDefaultPlayListContextData();

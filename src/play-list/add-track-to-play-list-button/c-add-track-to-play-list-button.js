@@ -7,7 +7,7 @@ import React, {useCallback, useContext} from 'react';
 import {classNames} from '../../lib/css';
 import {PlayListContext} from '../../provider/play-list/c-play-list-context';
 import type {SavedTrackType, TrackType} from '../../audio-player/audio-player-type';
-import {countTrackInPlayList, getTrackContentAsString} from '../../provider/play-list/play-list-context-helper';
+import {getTrackContentAsString} from '../../provider/play-list/play-list-context-helper';
 import {getRandomString} from '../../lib/string';
 import type {PlayListType} from '../../provider/play-list/play-list-context-type';
 
@@ -79,8 +79,6 @@ export function PlayListMenuButton(props: PropsType): React$Node {
         return null;
     }
 
-    // const savedTrackCount = countTrackInPlayList(defaultPlayList, track);
-
     return (
         <label className={addTrackToPlayListButtonStyle.content_wrapper}>
             <div className={fullClassName}>+</div>
@@ -97,17 +95,11 @@ export function PlayListMenuButton(props: PropsType): React$Node {
                 {listOfPlayList.map((playList: PlayListType, index: number): React$Node => {
                     return (
                         <option key={String(index) + playList.name} value={index}>
-                            {playList.name}
+                            &nbsp;♫&nbsp;{playList.name}&nbsp;
                         </option>
                     );
                 })}
             </select>
-
-            {/* <button className={fullClassName} onClick={handleAddTrack} type="button">*/}
-
-            {/* +{savedTrackCount}*/}
-
-            {/* </button>*/}
         </label>
     );
 }
