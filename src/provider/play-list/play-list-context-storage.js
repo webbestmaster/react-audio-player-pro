@@ -11,7 +11,7 @@ type SavedDataType = Array<PlayListType>;
 function getDefaultPlayListContextData(): SavedDataType {
     return [
         {
-            name: 'List-1234',
+            name: 'Play list',
             isDefault: true,
             trackList: [],
         },
