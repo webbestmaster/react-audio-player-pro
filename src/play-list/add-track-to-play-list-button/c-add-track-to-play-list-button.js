@@ -80,7 +80,7 @@ export function PlayListMenuButton(props: PropsType): React$Node {
     // const savedTrackCount = countTrackInPlayList(defaultPlayList, track);
 
     return (
-        <div className={addTrackToPlayListButtonStyle.content_wrapper}>
+        <label className={addTrackToPlayListButtonStyle.content_wrapper}>
             <div className={fullClassName}>+</div>
 
             <select
@@ -106,6 +106,6 @@ export function PlayListMenuButton(props: PropsType): React$Node {
             {/* +{savedTrackCount}*/}
 
             {/* </button>*/}
-        </div>
+        </label>
     );
 }

@@ -32,6 +32,7 @@
     cursor: pointer;
     display: block;
     height: 100%;
+    opacity: 0;
     outline: none;
     position: absolute;
     right: 0;
@@ -40,6 +41,9 @@
     z-index: 1;
 
     &:focus {
+        min-width: 100%;
+        width: auto;
+
         option:first-child {
             display: none;
         }
