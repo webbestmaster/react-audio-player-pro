@@ -7,7 +7,7 @@ import React, {useCallback, useContext} from 'react';
 import {classNames} from '../../lib/css';
 import {PlayListContext} from '../../provider/play-list/c-play-list-context';
 import type {SavedTrackType, TrackType} from '../../audio-player/audio-player-type';
-import {getTrackContentAsString} from '../../provider/play-list/play-list-context-helper';
+import {getTrackContentAsString, isTracksEquals} from '../../provider/play-list/play-list-context-helper';
 import {getRandomString} from '../../lib/string';
 import type {PlayListType} from '../../provider/play-list/play-list-context-type';
 
@@ -22,11 +22,12 @@ export function PlayListMenuButton(props: PropsType): React$Node {
     const {className, track} = props;
     const fullClassName = classNames(addTrackToPlayListButtonStyle.add_track_to_play_list_button, className);
     const playListContextData = useContext(PlayListContext);
-    const {getAllPlayLists, updatePlayList} = playListContextData;
+    const {getAllPlayLists, updatePlayList, removeTrackById} = playListContextData;
     const listOfPlayList = getAllPlayLists();
     const defaultSelectValue = '-1';
 
     const handleAddTrack = useCallback(
+        // eslint-disable-next-line max-statements
         function handleAddTrackInner(evt: SyntheticEvent<HTMLSelectElement>) {
             const selectNode = evt.currentTarget;
             const listIndex = Number.parseInt(selectNode.value, 10);
@@ -39,8 +40,14 @@ export function PlayListMenuButton(props: PropsType): React$Node {
                 return;
             }
 
-            console.log('---- handleAddTrackInner ----');
-            console.log(React.isValidElement(track.content));
+            const existsSavedTrack = playList.trackList.find((savedTrack: SavedTrackType): boolean => {
+                return isTracksEquals(savedTrack, track);
+            });
+
+            if (existsSavedTrack) {
+                removeTrackById(existsSavedTrack.id);
+                return;
+            }
 
             let trackToSave: SavedTrackType = {
                 src,
@@ -72,7 +79,7 @@ export function PlayListMenuButton(props: PropsType): React$Node {
             console.log(trackToSave);
             console.log(playList);
         },
-        [listOfPlayList, updatePlayList, track, defaultSelectValue]
+        [listOfPlayList, updatePlayList, track, defaultSelectValue, removeTrackById]
     );
 
     if (!playListContextData.isInitialized) {
@@ -93,9 +100,17 @@ export function PlayListMenuButton(props: PropsType): React$Node {
                 </option>
 
                 {listOfPlayList.map((playList: PlayListType, index: number): React$Node => {
+                    const isTrackExistsInPlayList = playList.trackList.find((savedTrack: SavedTrackType): boolean =>
+                        isTracksEquals(savedTrack, track)
+                    );
+
+                    const {name} = playList;
+                    const actionSign = isTrackExistsInPlayList ? '✓' : ' ';
+                    const text = '[' + actionSign + ']' + ' ' + name;
+
                     return (
-                        <option key={String(index) + playList.name} value={index}>
-                            &nbsp;♫&nbsp;{playList.name}&nbsp;
+                        <option key={String(index) + name} value={index}>
+                            {text}
                         </option>
                     );
                 })}

@@ -29,22 +29,6 @@ export function getDefaultPlayListContextData(): PlayListContextType {
     };
 }
 
-/*
-export function countTrackInPlayList(playList: PlayListType, track: TrackType): number {
-    let counter = 0;
-    const {trackList} = playList;
-    const trackSrc = track.src;
-
-    trackList.forEach((trackInList: SavedTrackType) => {
-        if (trackInList.src === trackSrc) {
-            counter += 1;
-        }
-    });
-
-    return counter;
-}
-*/
-
 export function getTrackContentAsString(track: TrackType): string {
     const {content} = track;
 
@@ -77,4 +61,8 @@ export function getTrackList(list: Array<PlayListType>): Array<SavedTrackType> {
 
 export function getTrackListIdList(trackList: Array<SavedTrackType>): Array<string> {
     return trackList.map<string>((track: SavedTrackType): string => track.id);
+}
+
+export function isTracksEquals(trackA: TrackType | SavedTrackType, trackB: TrackType | SavedTrackType): boolean {
+    return trackA.src === trackB.src;
 }
