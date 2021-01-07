@@ -2,7 +2,7 @@
 
 /* eslint-disable jsx-a11y/no-onchange */
 
-import React, {useCallback, useContext} from 'react';
+import React, {useCallback, useContext, useState} from 'react';
 
 import {classNames} from '../../lib/css';
 import {PlayListContext} from '../../provider/play-list/c-play-list-context';
@@ -22,6 +22,7 @@ export function PlayListMenuButton(props: PropsType): React$Node {
     const {className, track} = props;
     const fullClassName = classNames(addTrackToPlayListButtonStyle.add_track_to_play_list_button, className);
     const playListContextData = useContext(PlayListContext);
+    const [selectKey, setSelectKey] = useState<number>(0);
     const {getAllPlayLists, updatePlayList, removeTrackById} = playListContextData;
     const listOfPlayList = getAllPlayLists();
     const defaultSelectValue = '-1';
@@ -34,6 +35,8 @@ export function PlayListMenuButton(props: PropsType): React$Node {
             const playList = listOfPlayList[listIndex];
             const {src, mediaMetadata} = track;
             const content = getTrackContentAsString(track);
+
+            setSelectKey(selectKey + 1);
 
             if (!playList) {
                 console.log('Can not get play list by index', listIndex);
@@ -79,7 +82,7 @@ export function PlayListMenuButton(props: PropsType): React$Node {
             console.log(trackToSave);
             console.log(playList);
         },
-        [listOfPlayList, updatePlayList, track, defaultSelectValue, removeTrackById]
+        [listOfPlayList, updatePlayList, track, defaultSelectValue, removeTrackById, setSelectKey, selectKey]
     );
 
     if (!playListContextData.isInitialized) {
@@ -93,6 +96,7 @@ export function PlayListMenuButton(props: PropsType): React$Node {
             <select
                 className={addTrackToPlayListButtonStyle.select_play_list}
                 defaultValue={defaultSelectValue}
+                key={selectKey}
                 onChange={handleAddTrack}
             >
                 <option disabled value={defaultSelectValue}>
