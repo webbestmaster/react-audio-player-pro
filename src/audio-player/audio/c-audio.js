@@ -18,6 +18,8 @@ import {SvgImage} from '../../layout/svg-image/c-svg-image';
 import {audioPlayerIconIdPrefix} from '../../layout/audio-player-control-sprite/c-audio-player-control-sprite';
 import audioPlayerControlStyle from '../../layout/audio-player-control-button/audio-player-control-button.scss';
 
+import {audioPlayerControlTagNameMap} from '../../layout/audio-player-control-button/audio-player-control-button-const';
+
 import audioStyle from './audio.scss';
 
 type PropsType = {|
@@ -229,9 +231,10 @@ export function Audio(props: PropsType): React$Node {
             </IsRender>
 
             <a className={audioStyle.download_button} download={downloadFileName || true} href={src}>
-                <SvgImage
-                    className={audioPlayerControlStyle.audio_player_control__button__image}
-                    imageId={'#' + audioPlayerIconIdPrefix + 'button-download'}
+                <AudioPlayerControlButton
+                    ariaLabel="download"
+                    imageId="button-download"
+                    tag={audioPlayerControlTagNameMap.span}
                 />
             </a>
 
