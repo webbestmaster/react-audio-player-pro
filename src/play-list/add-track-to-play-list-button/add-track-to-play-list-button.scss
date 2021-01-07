@@ -2,6 +2,7 @@
     display: block;
     flex-shrink: 0;
     height: 38px;
+    overflow-x: hidden;
     position: relative;
     width: 38px;
     z-index: 0;
@@ -42,13 +43,13 @@
 
 .select_play_list {
     appearance: none;
-    //background-color: #fff;
+    background-color: #fff;
     border: 0;
     cursor: pointer;
     display: block;
     font-family: monospace;
     height: 100%;
-    //opacity: 0;
+    opacity: 0;
     outline: none;
     position: absolute;
     right: 0;

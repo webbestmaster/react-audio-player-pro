@@ -14,10 +14,6 @@ import {setMediaMetadata} from '../../lib/media-meta-data/media-meta-data';
 import {IsRender} from '../../layout/is-render/c-is-render';
 import {getStopHandler} from '../audio-player-helper';
 import {PlayListMenuButton} from '../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button';
-import {SvgImage} from '../../layout/svg-image/c-svg-image';
-import {audioPlayerIconIdPrefix} from '../../layout/audio-player-control-sprite/c-audio-player-control-sprite';
-import audioPlayerControlStyle from '../../layout/audio-player-control-button/audio-player-control-button.scss';
-
 import {audioPlayerControlTagNameMap} from '../../layout/audio-player-control-button/audio-player-control-button-const';
 
 import audioStyle from './audio.scss';
