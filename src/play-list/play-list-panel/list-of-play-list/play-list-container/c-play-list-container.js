@@ -7,6 +7,7 @@ import {PlayListContext} from '../../../../provider/play-list/c-play-list-contex
 import {defaultPlayListName} from '../../../../provider/play-list/play-list-context-const';
 import {IsRender} from '../../../../layout/is-render/c-is-render';
 import {AudioPlayer} from '../../../../audio-player';
+import {savedTrackToTrack} from '../../../../provider/play-list/play-list-context-helper';
 
 import playListContainerStyle from './play-list-container.scss';
 
@@ -74,12 +75,7 @@ export function PlayListContainer(props: PropsType): React$Node {
             <IsRender isRender={!hasTrackInList}>animation how to add play list</IsRender>
 
             <IsRender isRender={hasTrackInList}>
-                <AudioPlayer
-                    defaultState={{
-                        isTrackListOpen: false,
-                    }}
-                    trackList={trackList}
-                />
+                <AudioPlayer defaultState={{isTrackListOpen: false}} trackList={trackList.map(savedTrackToTrack)}/>
             </IsRender>
         </div>
     );

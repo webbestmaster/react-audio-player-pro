@@ -49,6 +49,7 @@ export function getTrackContentAsString(track: TrackType): string {
     return '';
 }
 
+/*
 export function getTrackList(list: Array<PlayListType>): Array<SavedTrackType> {
     const resultList: Array<SavedTrackType> = [];
 
@@ -58,11 +59,36 @@ export function getTrackList(list: Array<PlayListType>): Array<SavedTrackType> {
 
     return resultList;
 }
+*/
 
+/*
 export function getTrackListIdList(trackList: Array<SavedTrackType>): Array<string> {
     return trackList.map<string>((track: SavedTrackType): string => track.id);
 }
+*/
 
 export function isTracksEquals(trackA: TrackType | SavedTrackType, trackB: TrackType | SavedTrackType): boolean {
     return trackA.src === trackB.src;
 }
+
+export function savedTrackToTrack(savedTrack: SavedTrackType): TrackType {
+    const {src, mediaMetadata, content} = savedTrack;
+
+    let track: TrackType = {src};
+
+    if (mediaMetadata) {
+        track = {...track, mediaMetadata};
+    }
+
+    if (content) {
+        track = {...track, content};
+    }
+
+    return track;
+}
+
+/*
+export function savedTrackListToTrackList(list: Array<SavedTrackType>): Array<TrackType> {
+    return list.map(savedTrackToTrack);
+}
+*/
