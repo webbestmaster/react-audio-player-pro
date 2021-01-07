@@ -1,10 +1,11 @@
 // @flow
 
-import React, {useContext, useRef} from 'react';
+import React, {useContext, useRef, useCallback} from 'react';
 
 import type {PlayListType} from '../../../../provider/play-list/play-list-context-type';
 import {PlayListContext} from '../../../../provider/play-list/c-play-list-context';
 import {getTrackListIdList} from '../../../../provider/play-list/play-list-context-helper';
+import {defaultPlayListName} from '../../../../provider/play-list/play-list-context-const';
 
 import playListContainerStyle from './play-list-container.scss';
 import {TrackList} from './track-list/c-track-list';
@@ -19,6 +20,7 @@ export function PlayListContainer(props: PropsType): React$Node {
     const inputPlayListNameRef = useRef<?HTMLInputElement>();
 
     const playListContextData = useContext(PlayListContext);
+    const {updatePlayList} = playListContextData;
 
     function getInputPlayListName(): HTMLInputElement {
         return (
@@ -30,27 +32,35 @@ export function PlayListContainer(props: PropsType): React$Node {
     }
 
     function handleOnInputPlayListName() {
-        playListContextData.updatePlayList(playList, {
+        updatePlayList(playList, {
             name: getInputPlayListName().value.trim(),
             trackList: playList.trackList,
             isDefault: playList.isDefault,
         });
     }
 
+    const handleRemovePlayList = useCallback(function handleRemovePlayListInner() {
+        console.log('handleRemovePlayList');
+    }, []);
+
     return (
         <div className={playListContainerStyle.play_list_container}>
-            <h1>play list container</h1>
+            <button
+                className={playListContainerStyle.remove_play_list_button}
+                onClick={handleRemovePlayList}
+                type="button"
+            >
+                remove play list
+            </button>
 
-            <div>
-                <span>play list name:</span>
-
-                <input
-                    defaultValue={playList.name}
-                    onInput={handleOnInputPlayListName}
-                    ref={inputPlayListNameRef}
-                    type="text"
-                />
-            </div>
+            <input
+                className={playListContainerStyle.header_input}
+                defaultValue={playList.name}
+                onInput={handleOnInputPlayListName}
+                placeholder={defaultPlayListName}
+                ref={inputPlayListNameRef}
+                type="text"
+            />
 
             <TrackList key={getTrackListIdList(trackList).join('-')} playList={playList}/>
         </div>

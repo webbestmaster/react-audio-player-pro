@@ -16,11 +16,8 @@ export function ListOfPlayList(props: PropsType): React$Node {
 
     return (
         <div>
-            <h1>ListOfPlayList</h1>
-
             {listOfPlayList.map((playList: PlayListType, index: number): React$Node => {
-                // eslint-disable-next-line react/no-array-index-key
-                return <PlayListContainer key={index} playList={playList}/>;
+                return <PlayListContainer key={String(index)} playList={playList}/>;
             })}
         </div>
     );

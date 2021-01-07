@@ -19,11 +19,15 @@ export function PlayListPanel(props: PropsType): React$Node {
         <div className={playListPanelStyle.play_list_panel}>
             <h1>Play List Panel</h1>
 
+            <ListOfPlayList/>
+
+            <br/>
+
+            <br/>
+
             <button onClick={handleCreateNewPlayList} type="button">
                 click here to create play list
             </button>
-
-            <ListOfPlayList/>
         </div>
     );
 }

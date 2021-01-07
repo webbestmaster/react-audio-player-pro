@@ -1,3 +1,14 @@
 .play_list_container {
     display: block;
 }
+
+.header_input {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+}
+
+.remove_play_list_button {
+    display: block;
+    float: right;
+}
