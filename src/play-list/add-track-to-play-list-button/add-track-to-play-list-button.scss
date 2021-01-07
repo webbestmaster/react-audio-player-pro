@@ -4,11 +4,13 @@
     height: 38px;
     position: relative;
     width: 38px;
+    z-index: 0;
 }
 
 .add_track_to_play_list_button {
     //margin-right: 10px;
     outline: initial;
+    pointer-events: none;
 }
 
 /*
@@ -40,19 +42,19 @@
 
 .select_play_list {
     appearance: none;
-    background-color: #fff;
+    //background-color: #fff;
     border: 0;
     cursor: pointer;
     display: block;
     font-family: monospace;
     height: 100%;
-    opacity: 0;
+    //opacity: 0;
     outline: none;
     position: absolute;
     right: 0;
     top: 0;
     width: 100%;
-    z-index: 1;
+    z-index: -1;
 
     &:focus {
         min-width: 100%;

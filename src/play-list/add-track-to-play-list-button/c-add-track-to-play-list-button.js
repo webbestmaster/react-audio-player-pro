@@ -4,15 +4,15 @@
 
 import React, {useCallback, useContext, useState} from 'react';
 
-import {classNames} from '../../lib/css';
+// import {classNames} from '../../lib/css';
 import {PlayListContext} from '../../provider/play-list/c-play-list-context';
 import type {SavedTrackType, TrackType} from '../../audio-player/audio-player-type';
 import {getTrackContentAsString, isTracksEquals} from '../../provider/play-list/play-list-context-helper';
 import {getRandomString} from '../../lib/string';
 import type {PlayListType} from '../../provider/play-list/play-list-context-type';
 import {noNamePlayListName} from '../../provider/play-list/play-list-context-const';
-
 import {AudioPlayerControlButton} from '../../layout/audio-player-control-button/c-audio-player-control-button';
+import {audioPlayerControlTagNameMap} from '../../layout/audio-player-control-button/audio-player-control-button-const';
 
 import addTrackToPlayListButtonStyle from './add-track-to-play-list-button.scss';
 
@@ -94,7 +94,12 @@ export function PlayListMenuButton(props: PropsType): React$Node {
 
     return (
         <label className={addTrackToPlayListButtonStyle.content_wrapper}>
-            <AudioPlayerControlButton ariaLabel="play list menu" imageId="play-list-menu"/>
+            <AudioPlayerControlButton
+                ariaLabel="play list menu"
+                className={addTrackToPlayListButtonStyle.add_track_to_play_list_button}
+                imageId="play-list-menu"
+                tag={audioPlayerControlTagNameMap.span}
+            />
 
             <select
                 className={addTrackToPlayListButtonStyle.select_play_list}

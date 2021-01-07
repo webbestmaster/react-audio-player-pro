@@ -7,6 +7,8 @@ import {SvgImage} from '../svg-image/c-svg-image';
 import {audioPlayerIconIdPrefix} from '../audio-player-control-sprite/c-audio-player-control-sprite';
 
 import audioPlayerControlStyle from './audio-player-control-button.scss';
+import type {AudioPlayerControlTagNameType} from './audio-player-control-button-type';
+import {audioPlayerControlTagNameMap} from './audio-player-control-button-const';
 
 const cssButton = audioPlayerControlStyle.audio_player_control__button;
 const cssActive = audioPlayerControlStyle.audio_player_control__button__active;
@@ -18,11 +20,22 @@ type PropsType = {|
     +imageId: string,
     +ariaLabel: string,
     +isActive?: boolean,
+    +tag?: AudioPlayerControlTagNameType,
 |};
 
 export function AudioPlayerControlButton(props: PropsType): React$Node {
-    const {onClick, imageId, isActive, ariaLabel, className} = props;
+    const {onClick, imageId, isActive, ariaLabel, className, tag} = props;
     const fullClassName = classNames(cssButton, {[cssActive]: isActive}, className);
+
+    const image = <SvgImage className={cssImage} imageId={'#' + audioPlayerIconIdPrefix + imageId}/>;
+
+    if (tag === audioPlayerControlTagNameMap.div) {
+        return <div className={fullClassName}>{image}</div>;
+    }
+
+    if (tag === audioPlayerControlTagNameMap.span) {
+        return <span className={fullClassName}>{image}</span>;
+    }
 
     return (
         <button aria-label={ariaLabel} className={fullClassName} onClick={onClick} type="button">
