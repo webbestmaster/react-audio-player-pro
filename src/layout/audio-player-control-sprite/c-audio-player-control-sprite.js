@@ -82,6 +82,11 @@ const iconList: Array<SymbolDataType> = [
         id: 'button-download',
         dPath: 'M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z',
     },
+    {
+        id: 'play-list-menu',
+        dPath:
+            'M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z',
+    },
 ];
 
 export function AudioPlayerControlSprite(): React$Node {

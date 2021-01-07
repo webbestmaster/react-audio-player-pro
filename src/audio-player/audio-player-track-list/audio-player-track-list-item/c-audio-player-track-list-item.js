@@ -154,11 +154,11 @@ export function AudioPlayerTrackListItem(props: PropsType): React$Node {
                 <div className={audioPlayerTrackListItemStyle.track_title}>{actualContent}</div>
             </div>
 
-            <PlayListMenuButton track={track}/>
-
             <div className={audioPlayerTrackListItemStyle.track_time}>
                 {`${trackFullTimeMinutes}:${trackFullTimeSeconds}`}
             </div>
+
+            <PlayListMenuButton track={track}/>
         </li>
     );
 }

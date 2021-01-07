@@ -12,16 +12,18 @@ import {getRandomString} from '../../lib/string';
 import type {PlayListType} from '../../provider/play-list/play-list-context-type';
 import {noNamePlayListName} from '../../provider/play-list/play-list-context-const';
 
+import {AudioPlayerControlButton} from '../../layout/audio-player-control-button/c-audio-player-control-button';
+
 import addTrackToPlayListButtonStyle from './add-track-to-play-list-button.scss';
 
 type PropsType = {|
     +track: TrackType,
-    +className?: string,
+    // +className?: string,
 |};
 
 export function PlayListMenuButton(props: PropsType): React$Node {
-    const {className, track} = props;
-    const fullClassName = classNames(addTrackToPlayListButtonStyle.add_track_to_play_list_button, className);
+    const {track} = props;
+    // const fullClassName = classNames(addTrackToPlayListButtonStyle.add_track_to_play_list_button, className);
     const playListContextData = useContext(PlayListContext);
     const [selectKey, setSelectKey] = useState<number>(0);
     const {getAllPlayLists, updatePlayList, removeTrackById} = playListContextData;
@@ -92,7 +94,7 @@ export function PlayListMenuButton(props: PropsType): React$Node {
 
     return (
         <label className={addTrackToPlayListButtonStyle.content_wrapper}>
-            <div className={fullClassName}>+</div>
+            <AudioPlayerControlButton ariaLabel="play list menu" imageId="play-list-menu"/>
 
             <select
                 className={addTrackToPlayListButtonStyle.select_play_list}
