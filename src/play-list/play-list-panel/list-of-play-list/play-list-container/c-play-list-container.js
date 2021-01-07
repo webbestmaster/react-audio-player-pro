@@ -4,12 +4,11 @@ import React, {useContext, useRef, useCallback} from 'react';
 
 import type {PlayListType} from '../../../../provider/play-list/play-list-context-type';
 import {PlayListContext} from '../../../../provider/play-list/c-play-list-context';
-import {getTrackListIdList} from '../../../../provider/play-list/play-list-context-helper';
 import {defaultPlayListName} from '../../../../provider/play-list/play-list-context-const';
 import {IsRender} from '../../../../layout/is-render/c-is-render';
+import {AudioPlayer} from '../../../../audio-player';
 
 import playListContainerStyle from './play-list-container.scss';
-import {TrackList} from './track-list/c-track-list';
 
 type PropsType = {|
     +playList: PlayListType,
@@ -23,6 +22,7 @@ export function PlayListContainer(props: PropsType): React$Node {
     const playListContextData = useContext(PlayListContext);
     const {updatePlayList, deletePlayList, getAllPlayLists} = playListContextData;
     const allPlayLists = getAllPlayLists();
+    const hasTrackInList = trackList.length > 0;
 
     function getInputPlayListName(): HTMLInputElement {
         return (
@@ -56,7 +56,7 @@ export function PlayListContainer(props: PropsType): React$Node {
                     onClick={handleRemovePlayList}
                     type="button"
                 >
-                    remove play list
+                    trash bin icon
                 </button>
             </IsRender>
 
@@ -69,7 +69,16 @@ export function PlayListContainer(props: PropsType): React$Node {
                 type="text"
             />
 
-            <TrackList key={getTrackListIdList(trackList).join('-')} playList={playList}/>
+            <IsRender isRender={!hasTrackInList}>animation how to add play list</IsRender>
+
+            <IsRender isRender={hasTrackInList}>
+                <AudioPlayer
+                    defaultState={{
+                        isTrackListOpen: false,
+                    }}
+                    trackList={trackList}
+                />
+            </IsRender>
         </div>
     );
 }
