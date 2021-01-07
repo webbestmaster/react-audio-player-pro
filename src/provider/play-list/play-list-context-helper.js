@@ -12,7 +12,7 @@ export function getDefaultPlayListContextData(): PlayListContextType {
     const defaultPlayList: PlayListType = {
         name: '',
         trackList: [],
-        isDefault: false,
+        // isDefault: false,
     };
 
     return {

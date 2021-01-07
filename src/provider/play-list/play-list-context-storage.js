@@ -13,7 +13,7 @@ function getDefaultPlayListContextData(): SavedDataType {
     return [
         {
             name: defaultPlayListName,
-            isDefault: true,
+            // isDefault: true,
             trackList: [],
         },
     ];

@@ -53,7 +53,7 @@ export function PlayListProvider(props: PropsType): React$Node {
             const newPlayList: PlayListType = {
                 name: defaultPlayListName + ' ' + getRandomStringBySize(4),
                 trackList: [],
-                isDefault: false,
+                // isDefault: false,
             };
 
             const newList = [...list, newPlayList];
