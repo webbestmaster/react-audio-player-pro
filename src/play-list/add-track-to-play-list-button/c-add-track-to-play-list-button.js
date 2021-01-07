@@ -10,6 +10,7 @@ import type {SavedTrackType, TrackType} from '../../audio-player/audio-player-ty
 import {getTrackContentAsString, isTracksEquals} from '../../provider/play-list/play-list-context-helper';
 import {getRandomString} from '../../lib/string';
 import type {PlayListType} from '../../provider/play-list/play-list-context-type';
+import {noNamePlayListName} from '../../provider/play-list/play-list-context-const';
 
 import addTrackToPlayListButtonStyle from './add-track-to-play-list-button.scss';
 
@@ -108,7 +109,7 @@ export function PlayListMenuButton(props: PropsType): React$Node {
                         isTracksEquals(savedTrack, track)
                     );
 
-                    const {name} = playList;
+                    const name = playList.name.trim() || noNamePlayListName;
                     const actionSign = isTrackExistsInPlayList ? '✓' : ' ';
                     const text = '[' + actionSign + ']' + ' ' + name;
 

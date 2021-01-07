@@ -3,10 +3,12 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 
 import type {SavedTrackType} from '../../audio-player/audio-player-type';
+import {getRandomStringBySize} from '../../lib/string';
 
 import type {PlayListContextType, PlayListType} from './play-list-context-type';
 import {getDefaultPlayListContextData} from './play-list-context-helper';
 import {getSavedPlayListContextData, savePlayListContextData} from './play-list-context-storage';
+import {defaultPlayListName} from './play-list-context-const';
 
 const defaultPlayListContextData = getDefaultPlayListContextData();
 
@@ -49,7 +51,7 @@ export function PlayListProvider(props: PropsType): React$Node {
     const createPlayList = useCallback(
         function createPlayListInner(): PlayListType {
             const newPlayList: PlayListType = {
-                name: '',
+                name: defaultPlayListName + ' ' + getRandomStringBySize(4),
                 trackList: [],
                 isDefault: false,
             };

@@ -17,10 +17,16 @@ export function extractText(html: string): string {
     );
 }
 
+// for 1e6 return string witch length 5 symbols, min - '0',  max - 'f4240'
 export function getRandomString(): string {
     return Math.round(1e6 * Math.random()).toString(16);
 }
 
-// export function generateId(): string {
-//     return '--id-' + Date.now().toString(32) + '-' + getRandomString();
-// }
+export function getRandomStringBySize(size: number): string {
+    return new Array(size)
+        .fill(0)
+        .map(getRandomString)
+        .sort((): number => Math.random() > 0.5 ? 1 : -1)
+        .join('')
+        .slice(0, size);
+}

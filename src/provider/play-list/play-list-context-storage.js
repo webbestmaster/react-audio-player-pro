@@ -3,6 +3,7 @@
 /* global localStorage */
 
 import type {PlayListType} from './play-list-context-type';
+import {defaultPlayListName} from './play-list-context-const';
 
 const localStorageKeyName = 'my-play-list-storage-key';
 
@@ -11,7 +12,7 @@ type SavedDataType = Array<PlayListType>;
 function getDefaultPlayListContextData(): SavedDataType {
     return [
         {
-            name: 'Play list',
+            name: defaultPlayListName,
             isDefault: true,
             trackList: [],
         },
