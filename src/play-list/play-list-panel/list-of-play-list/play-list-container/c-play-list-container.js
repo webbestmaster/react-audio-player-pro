@@ -33,13 +33,15 @@ export function PlayListContainer(props: PropsType): React$Node {
         );
     }
 
-    function handleOnInputPlayListName() {
-        updatePlayList(playList, {
-            name: getInputPlayListName().value.trim(),
-            trackList: playList.trackList,
-            // isDefault: playList.isDefault,
-        });
-    }
+    const handleOnInputPlayListName = useCallback(
+        function handleOnInputPlayListNameInner() {
+            updatePlayList(playList, {
+                name: getInputPlayListName().value.trim(),
+                trackList,
+            });
+        },
+        [updatePlayList, playList, trackList]
+    );
 
     const handleRemovePlayList = useCallback(
         function handleRemovePlayListInner() {
@@ -50,7 +52,7 @@ export function PlayListContainer(props: PropsType): React$Node {
 
     return (
         <div className={playListContainerStyle.play_list_container}>
-            <IsRender isRender={allPlayLists.length > 1}>
+            <IsRender isRender={allPlayLists.length > 1 && trackList.length === 0}>
                 <button
                     className={playListContainerStyle.remove_play_list_button}
                     onClick={handleRemovePlayList}
