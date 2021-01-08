@@ -8,7 +8,6 @@ import {defaultPlayListName} from '../../../../provider/play-list/play-list-cont
 import {IsRender} from '../../../../layout/is-render/c-is-render';
 import {AudioPlayer} from '../../../../audio-player';
 import {savedTrackToTrack} from '../../../../provider/play-list/play-list-context-helper';
-
 import {AudioPlayerControlButton} from '../../../../layout/audio-player-control-button/c-audio-player-control-button';
 
 import playListContainerStyle from './play-list-container.scss';
@@ -79,7 +78,9 @@ export function PlayListContainer(props: PropsType): React$Node {
             </div>
 
             <IsRender isRender={!hasTrackInList}>
-                <div>// TODO: animation how to add play list</div>
+                <div className={playListContainerStyle.no_track_here}>
+                    <AudioPlayerControlButton ariaLabel="" imageId="play-list-menu"/>
+                </div>
             </IsRender>
 
             <IsRender isRender={hasTrackInList}>
