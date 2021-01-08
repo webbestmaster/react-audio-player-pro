@@ -2,7 +2,11 @@
 
 .play_list_container {
     display: block;
-    padding-bottom: 50px;
+    padding-bottom: 48px;
+
+    &:last-child {
+        padding-bottom: 12px;
+    }
 }
 
 .header_input {

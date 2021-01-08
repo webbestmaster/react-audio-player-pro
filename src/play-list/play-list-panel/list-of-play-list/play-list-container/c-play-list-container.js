@@ -6,7 +6,7 @@ import type {PlayListType} from '../../../../provider/play-list/play-list-contex
 import {PlayListContext} from '../../../../provider/play-list/c-play-list-context';
 import {defaultPlayListName} from '../../../../provider/play-list/play-list-context-const';
 import {IsRender} from '../../../../layout/is-render/c-is-render';
-import {AudioPlayer} from '../../../../audio-player';
+import {AudioPlayer} from '../../../../audio-player/c-audio-player';
 import {savedTrackToTrack} from '../../../../provider/play-list/play-list-context-helper';
 import {AudioPlayerControlButton} from '../../../../layout/audio-player-control-button/c-audio-player-control-button';
 

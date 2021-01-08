@@ -1,10 +1,8 @@
 // @flow
 
-import React, {useState} from 'react';
+import React from 'react';
 
-import {PlayListProvider} from '../../../../src/provider/play-list/c-play-list-context';
-import {PlayListPanel} from '../../../../src/play-list/play-list-panel/c-play-list-panel';
-import {Audio, AudioPlayer} from '../../../../src/audio-player';
+import {Audio, AudioPlayer, PlayListPanel, PlayListProvider} from '../../../../src/audio-player';
 import {demoUrl} from '../../../const';
 import type {TrackType} from '../../../../src/audio-player/audio-player-type';
 import {CustomContent} from '../example-audio-player/c-custom-content';

@@ -7,6 +7,9 @@ import {Markdown} from '../layout/c-markdown';
 import type {TrackType} from '../../../../src/audio-player/audio-player-type';
 import {demoUrl} from '../../../const';
 
+import exampleAudioPlayer from './example-audio-player.md';
+import {CustomContent} from './c-custom-content';
+
 const icon64 = demoUrl + '/image-file/react-icon-64.png';
 const icon128 = demoUrl + '/image-file/react-icon-128.png';
 const icon256 = demoUrl + '/image-file/react-icon-256.png';
@@ -16,9 +19,6 @@ const lesserFaith = demoUrl + '/audio-file/j-syreus-bach-lesser-faith.mp3';
 const brothersAllegretto = demoUrl + '/audio-file/dee-yan-key-world-of-brothers-allegretto.mp3';
 const atLeastItIs = demoUrl + '/audio-file/mid-air-machine-at-least-it-is.mp3';
 const theGhostInYourPiano = demoUrl + '/audio-file/the-ghost-in-your-piano-climb.mp3';
-
-import exampleAudioPlayer from './example-audio-player.md';
-import {CustomContent} from './c-custom-content';
 
 const audioDataList: Array<TrackType> = [
     {
