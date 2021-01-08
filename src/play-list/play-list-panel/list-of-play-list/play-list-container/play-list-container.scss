@@ -1,14 +1,55 @@
+@import './../../../../css/var';
+
 .play_list_container {
     display: block;
+    padding-bottom: 50px;
 }
 
 .header_input {
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
     box-sizing: border-box;
+    color: $main-text-color;
+    cursor: pointer;
     display: block;
-    width: 100%;
+    flex-grow: 1;
+    font-family: $main-font-family;
+    font-size: 18px;
+    margin: 0 4px 0 0;
+    padding: 3px 11px;
+
+    &:hover,
+    &:active {
+        background-color: #f5f5f5;
+        border-color: $main-text-color;
+        cursor: text;
+    }
 }
 
+%remove-play-list-button,
 .remove_play_list_button {
+    background-color: #fff;
+    cursor: auto;
     display: block;
+    flex-shrink: 0;
     float: right;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.remove_play_list_button_active {
+    @extend %remove-play-list-button;
+
+    cursor: pointer;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.header_container {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-bottom: 4px;
 }

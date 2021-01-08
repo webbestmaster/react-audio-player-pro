@@ -1,8 +1,10 @@
+@import './../../../css/var';
+
 .audio_player_track_list_item {
     align-items: center;
     display: flex;
     flex-direction: row;
-    font-family: verdana, geneva, sans-serif;
+    font-family: $main-font-family;
     font-size: 14px;
     line-height: 1.4;
     margin: 0;

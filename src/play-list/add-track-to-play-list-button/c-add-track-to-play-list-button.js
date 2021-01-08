@@ -111,8 +111,8 @@ export function PlayListMenuButton(props: PropsType): React$Node {
                     );
 
                     const name = playList.name.trim() || noNamePlayListName;
-                    const actionSign = isTrackExistsInPlayList ? '✓' : ' ';
-                    const text = '[' + actionSign + ']' + ' ' + name;
+                    const actionSign = isTrackExistsInPlayList ? '[✓]' : '[_]';
+                    const text = actionSign + ' ' + name;
 
                     return (
                         <option key={String(index) + name} value={index}>

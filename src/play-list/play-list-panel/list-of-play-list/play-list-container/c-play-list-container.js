@@ -9,6 +9,8 @@ import {IsRender} from '../../../../layout/is-render/c-is-render';
 import {AudioPlayer} from '../../../../audio-player';
 import {savedTrackToTrack} from '../../../../provider/play-list/play-list-context-helper';
 
+import {AudioPlayerControlButton} from '../../../../layout/audio-player-control-button/c-audio-player-control-button';
+
 import playListContainerStyle from './play-list-container.scss';
 
 type PropsType = {|
@@ -51,31 +53,40 @@ export function PlayListContainer(props: PropsType): React$Node {
         [deletePlayList, playList]
     );
 
+    const useRemovePlayListButton = allPlayLists.length > 1 && trackList.length === 0;
+    const removePlayListButtonClassName = useRemovePlayListButton
+        ? playListContainerStyle.remove_play_list_button_active
+        : playListContainerStyle.remove_play_list_button;
+
     return (
         <div className={playListContainerStyle.play_list_container}>
-            <IsRender isRender={allPlayLists.length > 1 && trackList.length === 0}>
-                <button
-                    className={playListContainerStyle.remove_play_list_button}
+            <div className={playListContainerStyle.header_container}>
+                <input
+                    className={playListContainerStyle.header_input}
+                    defaultValue={playList.name}
+                    onInput={handleOnInputPlayListName}
+                    placeholder={defaultPlayListName}
+                    ref={inputPlayListNameRef}
+                    type="text"
+                />
+
+                <AudioPlayerControlButton
+                    ariaLabel="delete"
+                    className={removePlayListButtonClassName}
+                    imageId="trash-bin"
                     onClick={handleRemovePlayList}
-                    type="button"
-                >
-                    trash bin icon
-                </button>
+                />
+            </div>
+
+            <IsRender isRender={!hasTrackInList}>
+                <div>// TODO: animation how to add play list</div>
             </IsRender>
 
-            <input
-                className={playListContainerStyle.header_input}
-                defaultValue={playList.name}
-                onInput={handleOnInputPlayListName}
-                placeholder={defaultPlayListName}
-                ref={inputPlayListNameRef}
-                type="text"
-            />
-
-            <IsRender isRender={!hasTrackInList}>animation how to add play list</IsRender>
-
             <IsRender isRender={hasTrackInList}>
-                <AudioPlayer defaultState={{isTrackListOpen: false}} trackList={trackList.map(savedTrackToTrack)}/>
+                <AudioPlayer
+                    // defaultState={{isTrackListOpen: false}}
+                    trackList={trackList.map(savedTrackToTrack)}
+                />
             </IsRender>
         </div>
     );

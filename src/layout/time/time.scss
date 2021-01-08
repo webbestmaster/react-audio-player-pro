@@ -1,11 +1,10 @@
-$main-text-color: #333;
-$wrapper-font-family: verdana, geneva, sans-serif;
+@import './../../css/var';
 
 .time {
     color: $main-text-color;
     display: block;
     flex-shrink: 0;
-    font-family: $wrapper-font-family;
+    font-family: $main-font-family;
     font-size: 12px;
     line-height: 1;
     margin: 0;
