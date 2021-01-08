@@ -15,7 +15,14 @@ declare module 'react-audio-player-pro' {
     export interface TrackType {
         src: string,
         mediaMetadata?: MediaMetadataType,
-        content?: JSX.Element | Array<JSX.Element>,
+        content?: JSX.Element | Array<JSX.Element> | string,
+    }
+
+    export interface SavedTrackType {
+        src: string,
+        mediaMetadata?: MediaMetadataType,
+        content?: JSX.Element | Array<JSX.Element> | string,
+        id: string,
     }
 
     export type PlayerRepeatingStateType = 'none' | 'all' | 'one';
@@ -49,6 +56,33 @@ declare module 'react-audio-player-pro' {
     }
 
     export const AudioPlayer: React.FC<AudioPlayerPropsType>;
+
+    export const PlayListPanel: React.FC<{}>;
+
+    export interface PlayListProviderPropsType {
+        children: JSX.Element | Array<JSX.Element> | string
+    }
+
+    export const PlayListProvider: React.FC<PlayListProviderPropsType>;
+
+    export interface PlayListType {
+        name: string,
+        trackList: Array<SavedTrackType>,
+    }
+
+    export interface PlayListContextType {
+        getAllPlayLists: () => Array<PlayListType>,
+        createPlayList: () => PlayListType,
+        updatePlayList: (oldPlayList: PlayListType, newListPlayData: PlayListType) => PlayListType | Error,
+        deletePlayList: (playList: PlayListType) => null | Error,
+        isInitialized: boolean,
+
+        // helpers
+        removeTrackById: (trackId: string) => null | Error,
+        getTrackById: (trackId: string) => SavedTrackType | null,
+    }
+
+    export const PlayListContext: React.Context<PlayListContextType>;
 }
 
 declare module 'react-audio-player-pro/dist/style.css' {

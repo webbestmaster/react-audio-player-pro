@@ -17,8 +17,14 @@ declare module 'react-audio-player-pro' {
     declare export type TrackType = {|
         +src: string,
         +mediaMetadata?: MediaMetadataType,
-        // eslint-disable-next-line id-match
         +content?: React$Node,
+    |};
+
+    declare export type SavedTrackType = {|
+        +src: string,
+        +mediaMetadata?: MediaMetadataType,
+        +content?: React$Node,
+        +id: string,
     |};
 
     declare export type PlayerRepeatingStateType = 'none' | 'all' | 'one';
@@ -31,7 +37,6 @@ declare module 'react-audio-player-pro' {
         +repeatingState?: PlayerRepeatingStateType,
     |};
 
-    // eslint-disable-next-line id-match
     declare export var AudioPlayerControlSprite: React$ComponentType<{}>;
 
     declare export type AudioPropsType = {|
@@ -43,7 +48,6 @@ declare module 'react-audio-player-pro' {
         +useRepeatButton?: boolean,
     |};
 
-    // eslint-disable-next-line id-match
     declare export var Audio: React$ComponentType<AudioPropsType>;
 
     declare export type AudioPlayerPropsType = {|
@@ -53,8 +57,32 @@ declare module 'react-audio-player-pro' {
         +defaultState?: DefaultAudioPlayerStateType,
     |};
 
-    // eslint-disable-next-line id-match
     declare export var AudioPlayer: React$ComponentType<AudioPlayerPropsType>;
+
+    declare export var PlayListPanel: React$ComponentType<{}>;
+
+    declare export type PlayListProviderPropsType = {|+children: React$Node|};
+
+    declare export var PlayListProvider: React$ComponentType<PlayListProviderPropsType>;
+
+    declare export type PlayListType = {|
+        +name: string,
+        +trackList: Array<SavedTrackType>,
+    |};
+
+    declare export type PlayListContextType = {|
+        +getAllPlayLists: () => Array<PlayListType>,
+        +createPlayList: () => PlayListType,
+        +updatePlayList: (oldPlayList: PlayListType, newListPlayData: PlayListType) => PlayListType | Error,
+        +deletePlayList: (playList: PlayListType) => null | Error,
+        +isInitialized: boolean,
+
+        // helpers
+        +removeTrackById: (trackId: string) => null | Error,
+        +getTrackById: (trackId: string) => SavedTrackType | null,
+    |};
+
+    declare export var PlayListContext: React$Context<PlayListContextType>;
 }
 
 declare module 'react-audio-player-pro/dist/style.css' {

@@ -9,16 +9,14 @@ export type PlayerRepeatingStateType = 'none' | 'all' | 'one';
 export type TrackType = {|
     +src: string,
     +mediaMetadata?: MediaMetadataType,
-    // eslint-disable-next-line id-match
     +content?: React$Node,
 |};
 
 export type SavedTrackType = {|
     +src: string,
     +mediaMetadata?: MediaMetadataType,
-    // eslint-disable-next-line id-match
     +content?: React$Node,
-    +id: string, // recommended to use for play list
+    +id: string,
 |};
 
 export type DefaultAudioPlayerStateType = {|
