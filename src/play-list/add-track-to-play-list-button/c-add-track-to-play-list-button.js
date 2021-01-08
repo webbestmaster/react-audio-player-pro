@@ -5,7 +5,7 @@
 import React, {useCallback, useContext, useState} from 'react';
 
 import {classNames} from '../../lib/css';
-import {PlayListContext} from '../../provider/play-list/c-play-list-context';
+import {PlayListContext} from '../../provider/play-list/play-list-context';
 import type {SavedTrackType, TrackType} from '../../audio-player/audio-player-type';
 import {getTrackContentAsString, isTracksEquals} from '../../provider/play-list/play-list-context-helper';
 import {getRandomString} from '../../lib/string';

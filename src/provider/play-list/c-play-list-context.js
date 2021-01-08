@@ -6,15 +6,9 @@ import type {SavedTrackType} from '../../audio-player/audio-player-type';
 import {getRandomStringBySize} from '../../lib/string';
 
 import type {PlayListContextType, PlayListType} from './play-list-context-type';
-import {getDefaultPlayListContextData} from './play-list-context-helper';
 import {getSavedPlayListContextData, savePlayListContextData} from './play-list-context-storage';
 import {defaultPlayListName} from './play-list-context-const';
-
-const defaultPlayListContextData = getDefaultPlayListContextData();
-
-export const PlayListContext: React$Context<PlayListContextType> = React.createContext<PlayListContextType>(
-    defaultPlayListContextData
-);
+import {PlayListContext} from './play-list-context';
 
 type PropsType = {|
     +children: React$Node,

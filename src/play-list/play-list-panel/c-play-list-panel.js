@@ -2,7 +2,7 @@
 
 import React, {useContext, useCallback} from 'react';
 
-import {PlayListContext} from '../../provider/play-list/c-play-list-context';
+import {PlayListContext} from '../../provider/play-list/play-list-context';
 
 import {AudioPlayerControlButton} from '../../layout/audio-player-control-button/c-audio-player-control-button';
 

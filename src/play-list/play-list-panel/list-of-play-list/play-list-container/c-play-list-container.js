@@ -3,7 +3,7 @@
 import React, {useContext, useRef, useCallback} from 'react';
 
 import type {PlayListType} from '../../../../provider/play-list/play-list-context-type';
-import {PlayListContext} from '../../../../provider/play-list/c-play-list-context';
+import {PlayListContext} from '../../../../provider/play-list/play-list-context';
 import {defaultPlayListName} from '../../../../provider/play-list/play-list-context-const';
 import {IsRender} from '../../../../layout/is-render/c-is-render';
 import {AudioPlayer} from '../../../../audio-player/c-audio-player';

@@ -2,7 +2,7 @@
 
 import React, {useContext} from 'react';
 
-import {PlayListContext} from '../../../provider/play-list/c-play-list-context';
+import {PlayListContext} from '../../../provider/play-list/play-list-context';
 import type {PlayListType} from '../../../provider/play-list/play-list-context-type';
 
 import {PlayListContainer} from './play-list-container/c-play-list-container';
