@@ -78,9 +78,7 @@ export function PlayListContainer(props: PropsType): React$Node {
             </div>
 
             <IsRender isRender={!hasTrackInList}>
-                <div className={playListContainerStyle.no_track_here}>
-                    <AudioPlayerControlButton ariaLabel="" imageId="play-list-menu"/>
-                </div>
+                <p className={playListContainerStyle.no_track_here}>∅</p>
             </IsRender>
 
             <IsRender isRender={hasTrackInList}>
