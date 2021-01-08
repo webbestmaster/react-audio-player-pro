@@ -9,7 +9,7 @@ import {PlayList} from '../play-list/c-play-list';
 export function App(): React$Node {
     return (
         <>
-            <PlayList/>
+            {/*<PlayList/>*/}
 
             <ExampleAudio/>
 

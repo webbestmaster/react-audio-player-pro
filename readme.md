@@ -1,4 +1,4 @@
-# React Audio Player Pro (7kb gzip)
+# React Audio Player Pro
 
 [![Build Status](https://travis-ci.org/webbestmaster/react-audio-player-pro.svg?branch=master)](https://travis-ci.org/github/webbestmaster/react-audio-player-pro)
 [![GitHub license](https://img.shields.io/npm/l/react-audio-player-pro)](https://github.com/webbestmaster/react-audio-player-pro/blob/master/license)
