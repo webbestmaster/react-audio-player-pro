@@ -1,6 +1,8 @@
 $border-radius: 4px;
 $button-image-size: 28px;
 $button-size: 38px;
+$button-border-size: 1px;
+$button-border-color: #5a5a5a;
 $button-image-active-background-color: #e5e5e5;
 
 .audio_player_control__button__image {
@@ -14,7 +16,7 @@ $button-image-active-background-color: #e5e5e5;
 
 .audio_player_control__button {
     background-color: transparent;
-    border: 0;
+    border: $button-border-size solid transparent;
     border-radius: $border-radius;
     box-sizing: border-box;
     cursor: pointer;
@@ -23,7 +25,7 @@ $button-image-active-background-color: #e5e5e5;
     height: $button-size;
     margin: 0;
     outline: none;
-    padding: ($button-size - $button-image-size) / 2;
+    padding: ($button-size - $button-image-size) / 2 - $button-border-size;
     width: $button-size;
 
     &:active,
@@ -36,5 +38,9 @@ $button-image-active-background-color: #e5e5e5;
     &.audio_player_control__button__disabled {
         opacity: 0.75;
         pointer-events: none;
+    }
+
+    &.audio_player_control__button__bordered {
+        border: 1px solid $button-border-color;
     }
 }

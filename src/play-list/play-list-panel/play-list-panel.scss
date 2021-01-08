@@ -1,3 +1,15 @@
 .play_list_panel {
     display: block;
 }
+
+.add_play_list_wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 22px 6px;
+}
+
+.add_play_list_button {
+    background-color: #fff;
+}
