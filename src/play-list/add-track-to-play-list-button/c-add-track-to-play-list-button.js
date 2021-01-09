@@ -7,7 +7,7 @@ import React, {useCallback, useContext, useState} from 'react';
 import {classNames} from '../../lib/css';
 import {PlayListContext} from '../../provider/play-list/play-list-context';
 import type {SavedTrackType, TrackType} from '../../audio-player/audio-player-type';
-import {getTrackContentAsString, isTracksEquals} from '../../provider/play-list/play-list-context-helper';
+import {isTracksEquals} from '../../provider/play-list/play-list-context-helper';
 import {getRandomString} from '../../lib/string';
 import type {PlayListType} from '../../provider/play-list/play-list-context-type';
 import {noNamePlayListName} from '../../provider/play-list/play-list-context-const';
@@ -35,8 +35,8 @@ export function PlayListMenuButton(props: PropsType): React$Node {
             const selectNode = evt.currentTarget;
             const listIndex = Number.parseInt(selectNode.value, 10);
             const playList = listOfPlayList[listIndex];
-            const {src, mediaMetadata} = track;
-            const content = getTrackContentAsString(track);
+            const {src, mediaMetadata, content} = track;
+            // const content = getTrackContentAsString(track);
 
             setSelectKey(selectKey + 1);
 
@@ -66,7 +66,7 @@ export function PlayListMenuButton(props: PropsType): React$Node {
                 };
             }
 
-            if (content) {
+            if (typeof content === 'string') {
                 trackToSave = {
                     ...trackToSave,
                     content,

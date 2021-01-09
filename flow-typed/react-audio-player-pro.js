@@ -23,7 +23,7 @@ declare module 'react-audio-player-pro' {
     declare export type SavedTrackType = {|
         +src: string,
         +mediaMetadata?: MediaMetadataType,
-        +content?: React$Node,
+        +content?: string,
         +id: string,
     |};
 

@@ -13,6 +13,7 @@ import {getTrackHumanTime} from '../../../lib/time';
 import {PlayListMenuButton} from '../../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button';
 
 import audioPlayerTrackListItemStyle from './audio-player-track-list-item.scss';
+import {getActualContent} from './audio-player-track-list-item-helper';
 
 type PropsType = {|
     +isCurrentTrack: boolean,
@@ -40,9 +41,8 @@ export function AudioPlayerTrackListItem(props: PropsType): React$Node {
     const [trackFullTime, setTrackFullTime] = useState<number>(0);
     const {minutes: trackFullTimeMinutes, seconds: trackFullTimeSeconds} = getTrackHumanTime(trackFullTime);
     const refAudio = useRef<?HTMLAudioElement>();
-    const {content, mediaMetadata, src} = track;
-    const mediaTitle = mediaMetadata && mediaMetadata.title;
-    const actualContent = content || mediaTitle || src;
+    const {src} = track;
+    const actualContent = getActualContent(track);
 
     const spinner = <Spinner isShow={isLoading} lineWidth={4} position="absolute" size={30} wrapperPadding={0}/>;
 

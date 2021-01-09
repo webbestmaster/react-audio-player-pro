@@ -21,7 +21,7 @@ declare module 'react-audio-player-pro' {
     export interface SavedTrackType {
         src: string,
         mediaMetadata?: MediaMetadataType,
-        content?: JSX.Element | Array<JSX.Element> | string,
+        content?: string,
         id: string,
     }
 

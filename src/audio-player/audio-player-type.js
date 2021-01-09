@@ -15,7 +15,7 @@ export type TrackType = {|
 export type SavedTrackType = {|
     +src: string,
     +mediaMetadata?: MediaMetadataType,
-    +content?: React$Node,
+    +content?: string,
     +id: string,
 |};
 

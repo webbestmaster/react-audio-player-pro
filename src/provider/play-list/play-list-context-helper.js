@@ -28,6 +28,7 @@ export function getDefaultPlayListContextData(): PlayListContextType {
     };
 }
 
+/*
 export function getTrackContentAsString(track: TrackType): string {
     const {content, mediaMetadata} = track;
 
@@ -41,6 +42,7 @@ export function getTrackContentAsString(track: TrackType): string {
 
     return track.src;
 }
+*/
 
 /*
 export function getTrackList(list: Array<PlayListType>): Array<SavedTrackType> {
