@@ -1,9 +1,10 @@
 // @flow
 
-const openTagRegExp = /<\w[\S\s]*?>/g;
-const closeTagRegExp = /<\/\w*?>/g;
-const selfCloseTagRegExp = /<\w[\S\s]*?\/>/g;
+// const openTagRegExp = /<\w[\S\s]*?>/g;
+// const closeTagRegExp = /<\/\w*?>/g;
+// const selfCloseTagRegExp = /<\w[\S\s]*?\/>/g;
 
+/*
 export function extractText(html: string): string {
     return (
         html
@@ -16,6 +17,7 @@ export function extractText(html: string): string {
             .trim()
     );
 }
+*/
 
 // for 1e6 return string witch length 5 symbols, min - '0',  max - 'f4240'
 export function getRandomString(): string {

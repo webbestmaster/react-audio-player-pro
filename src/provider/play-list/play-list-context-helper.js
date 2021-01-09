@@ -1,10 +1,9 @@
 // @flow
 
 import React from 'react';
-import {renderToString} from 'react-dom/server';
 
 import type {SavedTrackType, TrackType} from '../../audio-player/audio-player-type';
-import {extractText} from '../../lib/string';
+// import {extractText} from '../../lib/string';
 
 import type {PlayListContextType, PlayListType} from './play-list-context-type';
 
@@ -30,23 +29,17 @@ export function getDefaultPlayListContextData(): PlayListContextType {
 }
 
 export function getTrackContentAsString(track: TrackType): string {
-    const {content} = track;
+    const {content, mediaMetadata} = track;
 
-    if (!content) {
-        return '';
+    if (typeof content === 'string') {
+        return content;
     }
 
-    const contentType = typeof content;
-
-    if (['string', 'number'].includes(contentType)) {
-        return String(content).trim();
+    if (mediaMetadata) {
+        return mediaMetadata.title;
     }
 
-    if (React.isValidElement(content)) {
-        return extractText(renderToString(content));
-    }
-
-    return '';
+    return track.src;
 }
 
 /*
