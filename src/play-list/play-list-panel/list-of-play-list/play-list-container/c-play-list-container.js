@@ -1,6 +1,6 @@
 // @flow
 
-import React, {useContext, useRef, useCallback} from 'react';
+import React, {useCallback, useContext, useRef} from 'react';
 
 import type {PlayListType} from '../../../../provider/play-list/play-list-context-type';
 import {PlayListContext} from '../../../../provider/play-list/play-list-context';
