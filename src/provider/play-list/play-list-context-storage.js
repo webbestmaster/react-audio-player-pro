@@ -20,10 +20,18 @@ function getDefaultPlayListContextData(): SavedDataType {
 }
 
 export function savePlayListContextData(data: SavedDataType) {
+    if (typeof localStorage === 'undefined') {
+        return;
+    }
+
     localStorage.setItem(localStorageKeyName, JSON.stringify(data));
 }
 
 export function getSavedPlayListContextData(): SavedDataType {
+    if (typeof localStorage === 'undefined') {
+        return getDefaultPlayListContextData();
+    }
+
     const rawData = localStorage.getItem(localStorageKeyName);
 
     if (rawData) {
