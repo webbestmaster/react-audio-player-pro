@@ -24,11 +24,10 @@ export function getRandomString(): string {
     return Math.round(1e6 * Math.random()).toString(16);
 }
 
+function getRandomOne(): 1 | -1 {
+    return Math.random() > 0.5 ? 1 : -1;
+}
+
 export function getRandomStringBySize(size: number): string {
-    return new Array(size)
-        .fill(0)
-        .map(getRandomString)
-        .sort((): number => Math.random() > 0.5 ? 1 : -1)
-        .join('')
-        .slice(0, size);
+    return Array.from({length: size}).map(getRandomString).sort(getRandomOne).join('').slice(0, size);
 }

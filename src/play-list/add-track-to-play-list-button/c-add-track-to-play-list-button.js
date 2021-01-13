@@ -25,7 +25,12 @@ export function PlayListMenuButton(props: PropsType): React$Node {
     const fullClassName = classNames(addTrackToPlayListButtonStyle.add_track_to_play_list_button, className);
     const playListContextData = useContext(PlayListContext);
     const [selectKey, setSelectKey] = useState<number>(0);
-    const {getAllPlayLists, updatePlayList, removeTrackById} = playListContextData;
+    const {
+        getAllPlayLists,
+        updatePlayList,
+        removeTrackById,
+        isInitialized: isPlayListContextInitialized,
+    } = playListContextData;
     const listOfPlayList = getAllPlayLists();
     const defaultSelectValue = '-1';
 
@@ -87,7 +92,7 @@ export function PlayListMenuButton(props: PropsType): React$Node {
         [listOfPlayList, updatePlayList, track, defaultSelectValue, removeTrackById, setSelectKey, selectKey]
     );
 
-    if (!playListContextData.isInitialized) {
+    if (!isPlayListContextInitialized) {
         return null;
     }
 

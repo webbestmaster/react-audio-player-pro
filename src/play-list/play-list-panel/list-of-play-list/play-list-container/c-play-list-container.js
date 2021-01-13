@@ -18,7 +18,7 @@ type PropsType = {|
 
 export function PlayListContainer(props: PropsType): React$Node {
     const {playList} = props;
-    const {trackList} = playList;
+    const {trackList, name: playListName} = playList;
     const inputPlayListNameRef = useRef<?HTMLInputElement>();
 
     const playListContextData = useContext(PlayListContext);
@@ -62,7 +62,7 @@ export function PlayListContainer(props: PropsType): React$Node {
             <div className={playListContainerStyle.header_container}>
                 <input
                     className={playListContainerStyle.header_input}
-                    defaultValue={playList.name}
+                    defaultValue={playListName}
                     onInput={handleOnInputPlayListName}
                     placeholder={defaultPlayListName}
                     ref={inputPlayListNameRef}

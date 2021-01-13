@@ -37,5 +37,5 @@ export const defaultAudioPlayerState: DefaultDefinedAudioPlayerStateType = {
     activeIndex: 0,
     isShuffleOn: false,
     isMuted: false,
-    repeatingState: playerRepeatingStateTypeMap.none,
+    repeatingState: none,
 };
