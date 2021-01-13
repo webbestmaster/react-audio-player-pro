@@ -152,3 +152,55 @@ export function ExampleAudioPlayer() {
     );
 }
 ```
+
+## Usage example &lt;PlayListPanel/&gt; and &lt;PlayListProvider/&gt;
+
+```javascript
+import React from 'react';
+import {AudioPlayerControlSprite, PlayListPanel, PlayListProvider, AudioPlayer, type TrackType} from 'react-audio-player-pro';
+import reactAudioPlayerProStyle from 'react-audio-player-pro/dist/style.css';
+
+const audioTrackList: Array<TrackType> = [
+    {
+        // string - path to audio file, required
+        src: '/path/to/audio/file',
+
+        // React$Node - custom content instead of title, optional, deafult: <title> or <src>
+        content: <CustomContent/>,
+
+        // MediaMetadata - media meta data, see `mediaMetadata` above
+        // https://developer.mozilla.org/en-US/docs/Web/API/MediaMetadata/MediaMetadata
+        // optional
+        mediaMetadata: {
+            title: 'Lesser Faith',
+            artist: 'J. Syreus Bach',
+            album: 'Ability to Break ~ Energetic Tracks',
+            artwork: [
+                {src: '/path/to/image/64px/64px', sizes: '64x64', type: 'image/png'},
+                {src: '/path/to/image/128px/128px', sizes: '128x128', type: 'image/png'},
+            ],
+        },
+    },
+    // other tracks here...
+];
+
+export function PlayListProvider() {
+    return (
+        <>
+            <AudioPlayerControlSprite/>
+
+            // No props
+            <PlayListProvider>
+
+                // PlayListProvider provide a button to add track to play list
+                <AudioPlayer trackList={audioTrackList}/>
+
+                // No props
+                <PlayListPanel/>
+
+            </PlayListProvider>
+        </>
+    );
+}
+```
+
