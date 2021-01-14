@@ -4,7 +4,7 @@ import React, {useCallback, useContext, useRef} from 'react';
 
 import type {PlayListType} from '../../../../provider/play-list/play-list-context-type';
 import {PlayListContext} from '../../../../provider/play-list/play-list-context';
-import {defaultPlayListName} from '../../../../provider/play-list/play-list-context-const';
+import {defaultPlayListName, noNamePlayListName} from '../../../../provider/play-list/play-list-context-const';
 import {IsRender} from '../../../../layout/is-render/c-is-render';
 import {AudioPlayer} from '../../../../audio-player/c-audio-player';
 import {savedTrackToTrack} from '../../../../provider/play-list/play-list-context-helper';
@@ -35,8 +35,8 @@ export function PlayListContainer(props: PropsType): React$Node {
         );
     }
 
-    const handleOnInputPlayListName = useCallback(
-        function handleOnInputPlayListNameInner() {
+    const handleOnBlurPlayListName = useCallback(
+        function handleOnBlurPlayListNameInner() {
             updatePlayList(playList, {
                 name: getInputPlayListName().value.trim(),
                 trackList,
@@ -63,8 +63,8 @@ export function PlayListContainer(props: PropsType): React$Node {
                 <input
                     className={playListContainerStyle.header_input}
                     defaultValue={playListName}
-                    onInput={handleOnInputPlayListName}
-                    placeholder={defaultPlayListName}
+                    onBlur={handleOnBlurPlayListName}
+                    placeholder={noNamePlayListName}
                     ref={inputPlayListNameRef}
                     type="text"
                 />

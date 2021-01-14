@@ -1,6 +1,6 @@
 {
   "name": "react-audio-player-pro",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "React Audio Player Pro",
   "keywords": [
     "react",
@@ -118,7 +118,7 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-scss": "^3.18.0",
     "terser-webpack-plugin": "^5.1.1",
-    "webpack": "^5.13.0",
+    "webpack": "^5.14.0",
     "webpack-bundle-analyzer": "^4.3.0",
     "webpack-cli": "^4.3.1",
     "webpack-dev-server": "^3.11.2"
