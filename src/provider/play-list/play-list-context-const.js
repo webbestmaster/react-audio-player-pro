@@ -1,4 +1,4 @@
 // @flow
 
 export const defaultPlayListName = 'Play list';
-export const noNamePlayListName = 'Play list name';
+export const noNamePlayListName = 'No name playlist';
