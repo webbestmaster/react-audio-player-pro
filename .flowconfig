@@ -20,4 +20,3 @@ module.file_ext=.css
 module.file_ext=.scss
 module.file_ext=.mp3
 module.file_ext=.md
-well_formed_exports=true
