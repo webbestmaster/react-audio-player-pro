@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/prefer-module */
+
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 

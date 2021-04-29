@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/prefer-module */
+
 const path = require('path');
 
 const {cwd, pathToDist, ssrServerPort, isBuildServer, webpackDevServerPort} = require('./../config');

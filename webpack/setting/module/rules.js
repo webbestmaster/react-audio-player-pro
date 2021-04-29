@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/prefer-module */
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const {isProduction, isDevelopment, fileRegExp, pathToLoadedFileFolder} = require('./../../config');

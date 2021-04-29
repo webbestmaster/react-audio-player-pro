@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/prefer-module */
+
 const path = require('path');
 
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer'); // eslint-disable-line no-unused-vars

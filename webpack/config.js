@@ -1,6 +1,6 @@
 /* global process */
 
-/* eslint no-process-env: 0, id-match: 0, optimize-regex/optimize-regex: 0 */
+/* eslint no-process-env: 0, id-match: 0, optimize-regex/optimize-regex: 0, unicorn/prefer-module: 0 */
 
 const modeDevelopmentName = 'development';
 const modeProductionName = 'production';
