@@ -27,16 +27,8 @@ type PropsType = {|
 |};
 
 export function AudioPlayerTrackListItem(props: PropsType): React$Node {
-    const {
-        isCurrentTrack,
-        activeIndex,
-        track,
-        playingState,
-        onClickPlay,
-        setActiveIndex,
-        isLoading,
-        playByIndex,
-    } = props;
+    const {isCurrentTrack, activeIndex, track, playingState, onClickPlay, setActiveIndex, isLoading, playByIndex}
+        = props;
 
     const [trackFullTime, setTrackFullTime] = useState<number>(0);
     const {minutes: trackFullTimeMinutes, seconds: trackFullTimeSeconds} = getTrackHumanTime(trackFullTime);
