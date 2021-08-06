@@ -1,6 +1,6 @@
 {
   "name": "react-audio-player-pro",
-  "version": "1.1.13",
+  "version": "1.1.14",
   "description": "React Audio Player Pro",
   "keywords": [
     "react",
@@ -17,6 +17,9 @@
   ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "start-demo": "cross-env NODE_ENV=development BUILD_TYPE=site webpack-cli serve --progress",
     "start-demo:hot": "cross-env NODE_ENV=development BUILD_TYPE=site webpack-cli serve --progress --hot",
