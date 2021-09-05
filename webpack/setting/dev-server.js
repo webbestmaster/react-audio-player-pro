@@ -17,18 +17,38 @@ const mainProxyUrlSetting = {
 module.exports.devServer = {
     host,
     port: webpackDevServerPort,
-    contentBase: path.join(cwd, pathToDist),
+    // contentBase: pathToDist,
     historyApiFallback: {
         disableDotRule: true,
     },
-    writeToDisk: isBuildServer,
+    // writeToDisk: isBuildServer,
     // inline: false,
-    // hot: true,
+    hot: true,
     // hotOnly: false,
-    disableHostCheck: true,
+    // disableHostCheck: true,
+    // proxy: {
+    //     '/reports/': mainProxyUrlSetting,
+    // },
+    /*
     proxy: {
-        '/manifest.json': mainProxyUrlSetting,
-        '/api/': mainProxyUrlSetting,
-        '/upload-file/': mainProxyUrlSetting,
+        '/op/api': {
+            secure: false,
+            target: 'https://my-best-web-site-ever.io',
+            changeOrigin: true,
+            cookieDomainRewrite: 'localhost',
+            onProxyRes: proxyResponse => {
+                if (proxyResponse.headers['set-cookie']) {
+                    // Safari doesn't pass secure cookies from localhost origin
+                    proxyResponse.headers['set-cookie'] = proxyResponse.headers['set-cookie'].map(cookie =>
+                        cookie.replace(/; secure/gi, '')
+                    );
+                    // Safari doesn't pass SameSite=None cookies from localhost origin
+                    proxyResponse.headers['set-cookie'] = proxyResponse.headers['set-cookie'].map(cookie =>
+                        cookie.replace(/; SameSite=None/gi, '; SameSite=Strict')
+                    );
+                }
+            },
+        },
     },
+*/
 };
