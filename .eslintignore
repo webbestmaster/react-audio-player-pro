@@ -1,16 +1,21 @@
 # dist
-/dist
-
-# report
-/flow-coverage
+/dist/
 
 # npm
-node_modules
+/node_modules/
 
-# flow
-flow-typed/npm
-dev/backstop-js/data/
+# webpack
+/webpack/
+/webpack.config.js
 
+# report
+/coverage-ts/
+/tsc-check/
+/coverage/
+
+# style's d.ts
+*.scss.d.ts
+*.css.d.ts
 
 # example
 

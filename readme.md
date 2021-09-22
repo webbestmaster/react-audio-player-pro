@@ -1,6 +1,6 @@
 # React Audio Player Pro
 
-[![Build Status](https://travis-ci.org/webbestmaster/react-audio-player-pro.svg?branch=master)](https://travis-ci.org/github/webbestmaster/react-audio-player-pro)
+[comment]: <> ([![Build Status]&#40;https://travis-ci.org/webbestmaster/react-audio-player-pro.svg?branch=master&#41;]&#40;https://travis-ci.org/github/webbestmaster/react-audio-player-pro&#41;)
 [![GitHub license](https://img.shields.io/npm/l/react-audio-player-pro)](https://github.com/webbestmaster/react-audio-player-pro/blob/master/license)
 [![npm version](https://img.shields.io/npm/v/react-audio-player-pro.svg?style=flat)](https://www.npmjs.com/package/react-audio-player-pro)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-audio-player-pro)
@@ -20,11 +20,6 @@ npm i react-audio-player-pro
 ### Typing Flow
 
 Use `./flow-typed/react-audio-player-pro.js`.
-
-
-### Typing TypeScript
-
-Use `./@types/index.d.ts`.
 
 
 ## Usage example &lt;Audio/&gt;
@@ -89,7 +84,7 @@ export function ExampleAudio() {
 
 ```javascript
 import React from 'react';
-import {AudioPlayerControlSprite, AudioPlayer, type TrackType} from 'react-audio-player-pro';
+import {AudioPlayerControlSprite, AudioPlayer, TrackType} from 'react-audio-player-pro';
 import 'react-audio-player-pro/dist/style.css';
 
 const audioTrackList: Array<TrackType> = [
@@ -97,7 +92,7 @@ const audioTrackList: Array<TrackType> = [
         // string - path to audio file, required
         src: '/path/to/audio/file',
 
-        // React$Node - custom content instead of title, optional, deafult: <title> or <src>
+        // JSX.Element - custom content instead of title, optional, deafult: <title> or <src>
         content: <CustomContent/>,
 
         // MediaMetadata - media meta data, see `mediaMetadata` above
@@ -157,7 +152,7 @@ export function ExampleAudioPlayer() {
 
 ```javascript
 import React from 'react';
-import {AudioPlayerControlSprite, PlayListPanel, PlayListProvider, AudioPlayer, type TrackType} from 'react-audio-player-pro';
+import {AudioPlayerControlSprite, PlayListPanel, PlayListProvider, AudioPlayer, TrackType} from 'react-audio-player-pro';
 import 'react-audio-player-pro/dist/style.css';
 
 const audioTrackList: Array<TrackType> = [
@@ -165,7 +160,7 @@ const audioTrackList: Array<TrackType> = [
         // string - path to audio file, required
         src: '/path/to/audio/file',
 
-        // React$Node - custom content instead of title, optional, deafult: <title> or <src>
+        // JSX.Element - custom content instead of title, optional, deafult: <title> or <src>
         content: <CustomContent/>,
 
         // MediaMetadata - media meta data, see `mediaMetadata` above

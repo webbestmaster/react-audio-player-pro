@@ -1,38 +1,50 @@
-/* eslint-disable unicorn/prefer-module */
-
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const {isProduction, isDevelopment, fileRegExp, pathToLoadedFileFolder} = require('./../../config');
+const {isProduction, isDevelopment, isTsTranspileOnly, fileRegExp, cwd} = require('./../../config');
 
 const styleLoader = {
     loader: 'style-loader',
-    options: {attributes: {'class': 'my-css-module'}},
+    options: {attributes: {class: 'my-css-module'}},
 };
 
 const cssLoader = isProduction ? MiniCssExtractPlugin.loader : styleLoader;
+const fileNameMask = isProduction ? '[md5:hash:hex:7].[ext]' : '[name]-[md5:hash:hex:7].[ext]';
+const fileLoader = {loader: 'file-loader', options: {name: fileNameMask, limit: 0}};
 
 module.exports.rules = [
     {
-        test: /\.js$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-    },
-    {
-        test: fileRegExp,
         use: [
             {
-                loader: 'file-loader',
+                loader: 'ts-loader',
                 options: {
-                    name: pathToLoadedFileFolder.replace(/^\//, '') + '/[name]-[md5:hash:hex:7].[ext]',
+                    configFile: isProduction ? path.join(cwd, 'tsconfig.json') : path.join(cwd, 'tsconfig.dev.json'),
+                    // disable type checker for building
+                    transpileOnly: isTsTranspileOnly || isProduction,
                 },
             },
         ],
     },
     {
+        test: fileRegExp,
+        type: 'asset',
+        parser: {
+            dataUrlCondition: {
+                maxSize: 0, // 0 byte
+            },
+        },
+    },
+    {
+        test: /\.svg$/,
+        use: ['@svgr/webpack', fileLoader],
+    },
+    {
         test: /\.scss$/,
         use: [
             cssLoader,
-            'css-modules-flow-types-loader',
+            'css-modules-typescript-loader',
             {
                 loader: 'css-loader',
                 options: {
@@ -50,7 +62,7 @@ module.exports.rules = [
         test: /\.css$/,
         use: [
             cssLoader,
-            'css-modules-flow-types-loader',
+            'css-modules-typescript-loader',
             {
                 loader: 'css-loader',
                 options: {

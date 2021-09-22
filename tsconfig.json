@@ -1,0 +1,48 @@
+{
+    "compilerOptions": {
+        "outDir": "./tsc-check/",
+
+        "target": "es2019",
+        "jsx": "react-jsx",
+        "module": "es2020",
+        "moduleResolution": "node",
+
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictPropertyInitialization": true,
+        "strictBindCallApply": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "useDefineForClassFields": false,
+        "alwaysStrict": true,
+        "allowUnreachableCode": true,
+        "allowUnusedLabels": false,
+        "downlevelIteration": false,
+        "noEmitHelpers": false,
+        "noEmit": false,
+        "noLib": false,
+        "noStrictGenericChecks": false,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "esModuleInterop": true,
+        "preserveConstEnums": true,
+        "removeComments": false,
+        "skipLibCheck": true,
+        "checkJs": false,
+        "allowJs": true,
+        "declaration": false,
+        "experimentalDecorators": false,
+        "useUnknownInCatchVariables": true,
+        // exactOptionalPropertyTypes is false cause React typing has non-suitable types
+        // TODO: exactOptionalPropertyTypes turn to true after React typing has been changed\fixed
+        "exactOptionalPropertyTypes": false,
+        "emitDecoratorMetadata": false,
+        "sourceMap": true,
+    },
+    "exclude": [
+        "./dist/",
+        "./tsc-check/",
+        "./node_modules/",
+    ]
+}

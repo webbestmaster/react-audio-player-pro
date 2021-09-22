@@ -1,35 +1,27 @@
 /* global process */
 
-/* eslint no-process-env: 0, id-match: 0, optimize-regex/optimize-regex: 0, unicorn/prefer-module: 0 */
+/* eslint no-process-env: 0, id-match: 0, optimize-regex/optimize-regex: 0 */
 
 const modeDevelopmentName = 'development';
 const modeProductionName = 'production';
 
-const buildTypeLibrary = 'lib';
-const buildTypeSite = 'site';
-
 const nodeEnvironment = process.env.NODE_ENV || modeDevelopmentName;
-const buildType = process.env.BUILD_TYPE || buildTypeLibrary;
+const pathToStaticFileFolder = '/static/'; // '/static';
 
-// module.exports.NODE_ENV = process.env.NODE_ENV || DEVELOPMENT;
-module.exports.isBuildServer = process.env.IS_BUILD_SERVER === 'YES';
 module.exports.nodeEnvironment = nodeEnvironment;
 
 module.exports.isDevelopment = nodeEnvironment === modeDevelopmentName;
 module.exports.isProduction = nodeEnvironment === modeProductionName;
-module.exports.isBuildLib = buildType === buildTypeLibrary;
-module.exports.isBuildSite = buildType === buildTypeSite;
+module.exports.isBuildLibrary = process.env.IS_BUILD_LIBRARY === 'true';
 
 module.exports.cwd = process.cwd();
 
-module.exports.fileRegExp = /\.(webp|png|jpg|jpeg|gif|svg|otf|ttf|woff2?|mp3)$/;
+module.exports.fileRegExp = /\.(webp|png|jpg|jpeg|gif|otf|ttf|woff|woff2|eot|mp3)$/;
 
-module.exports.pathToDist = '/dist';
+module.exports.pathToStaticFileFolder = pathToStaticFileFolder;
 
-module.exports.pathToStaticFileFolder = '/static';
-module.exports.pathToLoadedFileFolder = '/file';
+module.exports.pathToDist = '/dist' + pathToStaticFileFolder;
 
-module.exports.webpackDevServerPort = 3333;
-module.exports.ssrServerPort = 9091;
-module.exports.ssrHttpServerPortProduction = 80;
-module.exports.ssrHttpsServerPortProduction = 443;
+module.exports.webpackDevServerPort = 9090;
+
+module.exports.isTsTranspileOnly = process.env.TS_TRANSPILE_ONLY === 'true';

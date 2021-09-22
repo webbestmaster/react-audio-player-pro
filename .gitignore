@@ -1,13 +1,6 @@
 #IDE
-/.idea
-
-# keys
-/server/key/file
-
-# user's files
-/upload-file-cache
-/upload-file-temp
-/db-dump
+/.idea/
+/.vscode/
 
 # Logs
 logs
@@ -19,20 +12,17 @@ node_modules
 package-lock.json
 
 # dist
-#/dist
-
-# flow css
-*.css.flow
-*.scss.flow
+# /dist/
 
 # report
-/flow-coverage
-/dev/backstop-js/data/
+/coverage-ts/
+/tsc-check/
+/coverage/
 
-# data base
-/db
+# style's d.ts
+*.scss.d.ts
 
 # other
 .DS_Store
-__delete_and_no_commit__
 
+.env

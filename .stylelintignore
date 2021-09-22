@@ -1,5 +1,6 @@
 # dist
 /dist
+/tsc-check
 
 # example
 # /* eslint-disable no-unused-vars */

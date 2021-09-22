@@ -1,18 +1,16 @@
-/* eslint-disable unicorn/prefer-module */
-
-const path = require('path');
-
-const {cwd, pathToDist, ssrServerPort, isBuildServer, webpackDevServerPort} = require('./../config');
+const {pathToDist, webpackDevServerPort} = require('./../config');
 
 const host = 'localhost';
 // const host = '192.168.147.45';
 
+/*
 const mainProxyUrlSetting = {
-    // pathRewrite: {'^/*': ''},
+    // pathRewrite: {'^/!*': ''},
     secure: false,
-    target: `http://${host}:${ssrServerPort}/`,
+    target: 'https://api.site.io/',
     changeOrigin: true, // for this option only: see documentations here https://github.com/chimurai/http-proxy-middleware#http-proxy-middleware-options
 };
+*/
 
 module.exports.devServer = {
     host,

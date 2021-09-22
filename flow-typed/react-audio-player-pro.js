@@ -1,5 +1,8 @@
 // @flow
 
+// TODO: you should uncomment this
+
+/*
 declare module 'react-audio-player-pro' {
     declare export type AudioPlayerListItemArtworkType = {|
         +src: string, // 'https://dummyimage.com/96x96',
@@ -92,3 +95,4 @@ declare module 'react-audio-player-pro/dist/style.css' {
 
     declare export default typeof style;
 }
+*/

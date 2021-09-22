@@ -1,0 +1,21 @@
+COPY .\..\typescript-project\update-environment.bat .\
+COPY .\..\typescript-project\.babelrc .\
+COPY .\..\typescript-project\.dockerignore .\
+COPY .\..\typescript-project\.editorconfig .\
+COPY .\..\typescript-project\.eslintignore .\
+COPY .\..\typescript-project\.eslintrc.json .\
+COPY .\..\typescript-project\.gitignore .\
+COPY .\..\typescript-project\.npmrc .\
+COPY .\..\typescript-project\.prettierignore .\
+COPY .\..\typescript-project\.prettierrc.js .\
+COPY .\..\typescript-project\.stylelintignore .\
+COPY .\..\typescript-project\.stylelintrc.json .\
+COPY .\..\typescript-project\declaration.d.ts .\
+COPY .\..\typescript-project\Dockerfile .\
+COPY .\..\typescript-project\license .\
+COPY .\..\typescript-project\tsconfig.dev.json .\
+COPY .\..\typescript-project\tsconfig.json .\
+COPY .\..\typescript-project\tsconfig.library.json .\
+COPY .\..\typescript-project\tsconfig.test.json .\
+COPY .\..\typescript-project\webpack.config.js .\
+XCOPY .\..\typescript-project\webpack .\webpack\ /e /y

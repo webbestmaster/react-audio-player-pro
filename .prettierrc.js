@@ -1,5 +1,3 @@
-// @flow
-
 module.exports = {
     printWidth: 120,
     tabWidth: 4,
@@ -7,10 +5,11 @@ module.exports = {
     semi: true,
     singleQuote: true,
     bracketSpacing: false,
-    jsxBracketSameLine: false,
+    bracketSameLine: false,
     jsxSingleQuote: false,
     htmlWhitespaceSensitivity: 'strict',
     proseWrap: 'never',
     arrowParens: 'avoid',
-    trailingComma: 'all',
+    trailingComma: 'es5',
+    quoteProps: 'preserve',
 };
