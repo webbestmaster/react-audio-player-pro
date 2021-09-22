@@ -1,4 +1,4 @@
-/* global HTMLAudioElement */
+/* global HTMLAudioElement, MediaMetadataInit */
 
 import {useEffect, useRef, useState} from 'react';
 
@@ -8,7 +8,6 @@ import {AudioPlayerControlButton} from '../../layout/audio-player-control-button
 import {Time} from '../../layout/time/c-time';
 import {hasVolumeBar} from '../../lib/system';
 import {PlayerPlayingStateType} from '../../../library';
-import {MediaMetadataType} from '../../lib/media-meta-data/media-meta-data-type';
 import {RangeBar} from '../../layout/range-bar/c-range-bar';
 import {setMediaMetadata} from '../../lib/media-meta-data/media-meta-data';
 import {getStopHandler} from '../audio-player-helper';
@@ -20,7 +19,7 @@ import audioStyle from './audio.scss';
 type PropsType = {
     className?: string;
     downloadFileName?: string;
-    mediaMetadata?: MediaMetadataType;
+    mediaMetadata?: MediaMetadataInit;
     onDidMount?: (audioNode: HTMLAudioElement | null) => void;
     src: string;
     useRepeatButton?: boolean;
@@ -28,7 +27,7 @@ type PropsType = {
 
 // eslint-disable-next-line complexity, max-statements, sonarjs/cognitive-complexity
 export function Audio(props: PropsType): JSX.Element {
-    const {src, mediaMetadata, className, onDidMount, downloadFileName, useRepeatButton} = props;
+    const {src, mediaMetadata, className, onDidMount, downloadFileName, useRepeatButton = false} = props;
 
     const refAudio = useRef<HTMLAudioElement | null>(null);
     const [trackCurrentTime, setTrackCurrentTime] = useState<number>(0);
@@ -49,8 +48,6 @@ export function Audio(props: PropsType): JSX.Element {
 
         throw new Error('Audio tag is not exists');
     }
-
-    // useEffect(() => {}, []);
 
     function handleClickPlay() {
         const audioTag = getAudioTag();
@@ -196,7 +193,7 @@ export function Audio(props: PropsType): JSX.Element {
                 <AudioPlayerControlButton ariaLabel="play" imageId="button-play" onClick={handleClickPlay} />
             )}
 
-            {useRepeatButton === true ? (
+            {useRepeatButton ? (
                 <AudioPlayerControlButton
                     ariaLabel="repeat"
                     imageId="button-repeat"

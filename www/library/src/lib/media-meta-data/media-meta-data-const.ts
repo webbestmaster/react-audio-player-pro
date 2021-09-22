@@ -1,10 +1,10 @@
-import {MediaMetadataControlNameType} from './media-meta-data-type';
+/* global MediaSessionAction */
 
-export const mediaMetadataControlNameMap: {[key in MediaMetadataControlNameType]: MediaMetadataControlNameType} = {
-    nexttrack: 'nexttrack',
-    pause: 'pause',
-    play: 'play',
-    previoustrack: 'previoustrack',
-    seekbackward: 'seekbackward',
-    seekforward: 'seekforward',
-};
+export const mediaMetadataControlNameList: Array<MediaSessionAction> = [
+    'nexttrack',
+    'pause',
+    'play',
+    'previoustrack',
+    'seekbackward',
+    'seekforward',
+];
