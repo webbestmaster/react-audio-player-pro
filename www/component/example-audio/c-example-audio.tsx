@@ -13,18 +13,18 @@ const icon512 = demoUrl + '/image-file/react-icon-512.png';
 
 export function ExampleAudio(): JSX.Element {
     const singleAudioData = {
-        src: meydnPureWater,
         mediaMetadata: {
-            title: 'Pure Water',
-            artist: 'Meydän',
             album: 'Interplanetary Forest',
+            artist: 'Meydän',
             artwork: [
-                {src: icon64, sizes: '64x64', type: 'image/png'},
-                {src: icon128, sizes: '128x128', type: 'image/png'},
-                {src: icon256, sizes: '256x256', type: 'image/png'},
-                {src: icon512, sizes: '512x512', type: 'image/png'},
+                {sizes: '64x64', src: icon64, type: 'image/png'},
+                {sizes: '128x128', src: icon128, type: 'image/png'},
+                {sizes: '256x256', src: icon256, type: 'image/png'},
+                {sizes: '512x512', src: icon512, type: 'image/png'},
             ],
+            title: 'Pure Water',
         },
+        src: meydnPureWater,
     };
 
     return (

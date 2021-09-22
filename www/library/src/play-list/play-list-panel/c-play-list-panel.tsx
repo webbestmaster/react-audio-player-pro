@@ -6,9 +6,7 @@ import {AudioPlayerControlButton} from '../../layout/audio-player-control-button
 import playListPanelStyle from './play-list-panel.scss';
 import {renderPlayListContainer} from './play-list-panel-helper';
 
-type PropsType = {};
-
-export function PlayListPanel(props: PropsType): JSX.Element {
+export function PlayListPanel(): JSX.Element {
     const playListContextData = useContext(PlayListContext);
     const {createPlayList, getAllPlayLists} = playListContextData;
     const listOfPlayList = getAllPlayLists();

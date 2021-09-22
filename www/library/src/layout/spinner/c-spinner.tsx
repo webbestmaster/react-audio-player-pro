@@ -2,7 +2,7 @@ import {classNames} from '../../lib/css';
 
 import spinnerStyle from './spinner.scss';
 import {defaultData, positionValueMap} from './spinner-const';
-import type {PositionType} from './spinner-type';
+import {PositionType} from './spinner-type';
 
 const {size: defaultSize} = defaultData;
 
@@ -29,7 +29,7 @@ type PropsType = Readonly<{
     wrapperWidth?: number | string; // default = ''
 }>;
 
-export function Spinner(props: PropsType): JSX.Element {
+export function Spinner(props: PropsType): JSX.Element | null {
     const {
         size: rawSize,
         lineWidth,
@@ -52,21 +52,21 @@ export function Spinner(props: PropsType): JSX.Element {
     const size = rawSize || defaultSize;
 
     const spinnerImageStyle = {
-        borderWidth: lineWidth,
-        width: size,
-        height: size,
         borderColor: circleColor,
         borderTopColor: arcColor,
+        borderWidth: lineWidth,
+        height: size,
+        width: size,
     };
 
     const spinnerWrapperStyle = {
+        backgroundColor: wrapperColor,
+        height: wrapperHeight,
         minHeight: size,
         minWidth: size,
-        position,
-        backgroundColor: wrapperColor,
-        width: wrapperWidth,
-        height: wrapperHeight,
         padding: wrapperPadding,
+        position,
+        width: wrapperWidth,
     };
 
     return (

@@ -3,7 +3,7 @@
 import {MediaMetadataControlSettingType, MediaMetadataType} from './media-meta-data-type';
 import {mediaMetadataControlNameMap} from './media-meta-data-const';
 
-export function clearMediaMetadata() {
+export function clearMediaMetadata(): void {
     // @ts-ignore
     if (typeof navigator === 'undefined' || typeof MediaMetadata === 'undefined') {
         return;
@@ -27,7 +27,7 @@ export function clearMediaMetadata() {
 export function setMediaMetadata(
     mediaMetadata: MediaMetadataType,
     mediaMetadataControlSetting?: MediaMetadataControlSettingType
-) {
+): void {
     // @ts-ignore
     if (typeof navigator === 'undefined' || typeof MediaMetadata === 'undefined') {
         return;

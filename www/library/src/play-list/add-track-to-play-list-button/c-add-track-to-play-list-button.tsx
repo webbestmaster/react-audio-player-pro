@@ -1,3 +1,5 @@
+/* global HTMLSelectElement */
+
 /* eslint-disable jsx-a11y/no-onchange */
 
 import {useCallback, useContext, useState, SyntheticEvent} from 'react';
@@ -58,8 +60,8 @@ export function PlayListMenuButton(props: PropsType): JSX.Element {
             }
 
             let trackToSave: SavedTrackType = {
-                src,
                 id: getRandomString(),
+                src,
             };
 
             if (mediaMetadata) {
@@ -76,9 +78,11 @@ export function PlayListMenuButton(props: PropsType): JSX.Element {
                 };
             }
 
+            const newTrackList: Array<SavedTrackType> = [trackToSave, ...playList.trackList];
+
             updatePlayList(playList, {
                 ...playList,
-                trackList: [trackToSave, ...playList.trackList],
+                trackList: newTrackList,
             });
 
             selectNode.value = defaultSelectValue;

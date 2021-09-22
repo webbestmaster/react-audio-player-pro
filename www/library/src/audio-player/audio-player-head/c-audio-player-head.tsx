@@ -1,4 +1,4 @@
-import type {PlayerPlayingStateType, PlayerRepeatingStateType} from '../audio-player-type';
+import {PlayerPlayingStateType, PlayerRepeatingStateType} from '../../../library';
 import {Spinner} from '../../layout/spinner/c-spinner';
 
 import {AudioPlayerHeadPlayingBar} from './audio-player-head-playing-bar/c-audio-player-head-playing-bar';

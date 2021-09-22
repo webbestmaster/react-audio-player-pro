@@ -2,7 +2,6 @@ import {Time} from '../../../layout/time/c-time';
 import {RangeBar} from '../../../layout/range-bar/c-range-bar';
 import {hasVolumeBar} from '../../../lib/system';
 import {AudioPlayerControlButton} from '../../../layout/audio-player-control-button/c-audio-player-control-button';
-import {IsRender} from '../../../layout/is-render/c-is-render';
 
 import audioPlayerHeadPlayingBarStyle from './audio-player-head-playing-bar.scss';
 
@@ -45,21 +44,23 @@ export function AudioPlayerHeadPlayingBar(props: PropsType): JSX.Element {
                 progress={isTrackInitialized ? trackCurrentTime / trackFullTime : 0}
             />
 
-            <IsRender isRender={hasVolumeBar}>
-                <AudioPlayerControlButton
-                    ariaLabel="switch-sound"
-                    className=""
-                    imageId={soundImageSrc}
-                    onClick={onClickMuteVolume}
-                />
+            {hasVolumeBar ? (
+                <>
+                    <AudioPlayerControlButton
+                        ariaLabel="switch-sound"
+                        className=""
+                        imageId={soundImageSrc}
+                        onClick={onClickMuteVolume}
+                    />
 
-                <RangeBar
-                    ariaLabel="volume bar"
-                    className={audioPlayerHeadPlayingBarStyle.volume_bar}
-                    onChange={onChangeVolumeBar}
-                    progress={trackVolume}
-                />
-            </IsRender>
+                    <RangeBar
+                        ariaLabel="volume bar"
+                        className={audioPlayerHeadPlayingBarStyle.volume_bar}
+                        onChange={onChangeVolumeBar}
+                        progress={trackVolume}
+                    />
+                </>
+            ) : null}
         </div>
     );
 }

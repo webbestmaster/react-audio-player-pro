@@ -1,20 +1,14 @@
-/* global document */
+/* global document, HTMLAudioElement */
 
 import {useEffect, useRef, useState} from 'react';
 
 import {setMediaMetadata} from '../lib/media-meta-data/media-meta-data';
 import {getRandom, getShiftIndex} from '../lib/number';
 import {hasVolumeBar} from '../lib/system';
-import {IsRender} from '../layout/is-render/c-is-render';
+import {AudioPlayerPropsType, PlayerPlayingStateType, PlayerRepeatingStateType, TrackType} from '../../library';
 
 import {AudioPlayerHead} from './audio-player-head/c-audio-player-head';
 import {AudioPlayerTrackList} from './audio-player-track-list/c-audio-player-track-list';
-import type {
-    AudioPlayerPropsType,
-    PlayerPlayingStateType,
-    PlayerRepeatingStateType,
-    TrackType,
-} from './audio-player-type';
 
 import {
     playerPlayingStateTypeMap,
@@ -45,7 +39,7 @@ export function AudioPlayer(props: PropsType): JSX.Element {
     const [isTrackListOpen, setIsTrackListOpen] = useState<boolean>(defaultDefinedState.isTrackListOpen);
     const [isLoadingMetadata, setIsLoadingMetadata] = useState<boolean>(false);
     const [isOnEndState, setIsOnEndState] = useState<boolean>(false);
-    const refAudio = useRef<?HTMLAudioElement>();
+    const refAudio = useRef<HTMLAudioElement | null>(null);
 
     function getAudioTag(): HTMLAudioElement {
         const audioTag = refAudio.current;
@@ -67,12 +61,45 @@ export function AudioPlayer(props: PropsType): JSX.Element {
         }
     }, [onDidMount]);
 
+    function getTrackByIndex(trackIndex: number): TrackType | null {
+        return trackList[trackIndex] || null;
+    }
+
     function getCurrentTrack(): TrackType | null {
         return getTrackByIndex(activeIndex);
     }
 
-    function getTrackByIndex(trackIndex: number): TrackType | null {
-        return trackList[trackIndex] || null;
+    function updateMediaMetadata() {
+        const track = getCurrentTrack();
+
+        if (!track) {
+            return;
+        }
+
+        const {mediaMetadata} = track;
+
+        if (mediaMetadata) {
+            setMediaMetadata(mediaMetadata, {
+                // eslint-disable-next-line @typescript-eslint/no-use-before-define
+                nexttrack: handleClickNextTrack,
+                // eslint-disable-next-line @typescript-eslint/no-use-before-define
+                previoustrack: handleClickPrevTrack,
+                // eslint-disable-next-line @typescript-eslint/no-use-before-define
+                seekbackward: seekBackward,
+                // eslint-disable-next-line @typescript-eslint/no-use-before-define
+                seekforward: seekForward,
+                stop: getStopHandler(getAudioTag()),
+            });
+        }
+    }
+
+    function setActiveTrackIndex(newActiveIndex: number) {
+        setActiveIndex(newActiveIndex);
+        setIsLoadingMetadata(true);
+        setTrackCurrentTime(0);
+        setTrackFullTime(0);
+
+        updateMediaMetadata();
     }
 
     function getCurrentTrackSrcAsString(): string {
@@ -100,8 +127,25 @@ export function AudioPlayer(props: PropsType): JSX.Element {
         setTrackVolume(audioTag.volume);
     }
 
+    function handleClickPlay() {
+        const audioTag = getAudioTag();
+
+        if (audioTag.paused) {
+            audioTag.play();
+        } else {
+            audioTag.pause();
+        }
+    }
+
+    function handleClickNextTrack() {
+        const nextIndex = getShiftIndex(trackList.length, activeIndex, 1);
+
+        setActiveTrackIndex(nextIndex);
+    }
+
     // eslint-disable-next-line complexity, max-statements
     function handleAudioTagOnEnded() {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
         const {one: repeatOne, all: repeatAll, none: repeatNone} = playerRepeatingStateTypeMap;
         const trackListLength = trackList.length;
 
@@ -143,26 +187,6 @@ export function AudioPlayer(props: PropsType): JSX.Element {
         setActiveTrackIndex(0);
     }
 
-    function updateMediaMetadata() {
-        const track = getCurrentTrack();
-
-        if (!track) {
-            return;
-        }
-
-        const {mediaMetadata} = track;
-
-        if (mediaMetadata) {
-            setMediaMetadata(mediaMetadata, {
-                seekforward: seekForward,
-                seekbackward: seekBackward,
-                previoustrack: handleClickPrevTrack,
-                nexttrack: handleClickNextTrack,
-                stop: getStopHandler(getAudioTag()),
-            });
-        }
-    }
-
     function handleAudioTagOnPlay() {
         setPlayingState(playerPlayingStateTypeMap.playing);
         updateMediaMetadata();
@@ -193,16 +217,6 @@ export function AudioPlayer(props: PropsType): JSX.Element {
         audioTag.currentTime -= seekStepSecond;
     }
 
-    function handleClickPlay() {
-        const audioTag = getAudioTag();
-
-        if (audioTag.paused) {
-            audioTag.play();
-        } else {
-            audioTag.pause();
-        }
-    }
-
     function handleClickMute() {
         const audioTag = getAudioTag();
 
@@ -211,12 +225,6 @@ export function AudioPlayer(props: PropsType): JSX.Element {
         audioTag.muted = isNewMuted;
 
         setIsMuted(isNewMuted);
-    }
-
-    function handleClickNextTrack() {
-        const nextIndex = getShiftIndex(trackList.length, activeIndex, 1);
-
-        setActiveTrackIndex(nextIndex);
     }
 
     function handleClickPrevTrack() {
@@ -250,15 +258,6 @@ export function AudioPlayer(props: PropsType): JSX.Element {
         const audioTag = getAudioTag();
 
         audioTag.volume = VolumeBarValue;
-    }
-
-    function setActiveTrackIndex(newActiveIndex: number) {
-        setActiveIndex(newActiveIndex);
-        setIsLoadingMetadata(true);
-        setTrackCurrentTime(0);
-        setTrackFullTime(0);
-
-        updateMediaMetadata();
     }
 
     function playByIndex(trackIndex: number) {
@@ -295,6 +294,7 @@ export function AudioPlayer(props: PropsType): JSX.Element {
                 preload="metadata"
                 ref={refAudio}
                 src={getCurrentTrackSrcAsString()}
+                // @ts-ignore
                 volume={trackVolume}
             >
                 <track kind="captions" src={getCurrentTrackSrcAsString()} />
@@ -321,7 +321,7 @@ export function AudioPlayer(props: PropsType): JSX.Element {
                 trackVolume={trackVolume}
             />
 
-            <IsRender isRender={isTrackListOpen}>
+            {isTrackListOpen ? (
                 <AudioPlayerTrackList
                     activeIndex={activeIndex}
                     isLoading={isLoadingMetadata}
@@ -331,7 +331,7 @@ export function AudioPlayer(props: PropsType): JSX.Element {
                     setActiveIndex={setActiveTrackIndex}
                     trackList={trackList}
                 />
-            </IsRender>
+            ) : null}
         </div>
     );
 }

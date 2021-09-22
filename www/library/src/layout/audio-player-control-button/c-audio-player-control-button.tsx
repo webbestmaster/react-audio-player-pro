@@ -3,7 +3,7 @@ import {SvgImage} from '../svg-image/c-svg-image';
 import {audioPlayerIconIdPrefix} from '../audio-player-control-sprite/c-audio-player-control-sprite';
 
 import audioPlayerControlStyle from './audio-player-control-button.scss';
-import type {AudioPlayerControlTagNameType} from './audio-player-control-button-type';
+import {AudioPlayerControlTagNameType} from './audio-player-control-button-type';
 import {audioPlayerControlTagNameMap} from './audio-player-control-button-const';
 
 const cssButton = audioPlayerControlStyle.audio_player_control__button;

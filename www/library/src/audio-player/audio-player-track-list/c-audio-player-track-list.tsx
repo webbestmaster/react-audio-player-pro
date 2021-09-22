@@ -1,4 +1,4 @@
-import type {PlayerPlayingStateType, TrackType} from '../audio-player-type';
+import {PlayerPlayingStateType, TrackType} from '../../../library';
 
 import audioPlayerTrackListStyle from './audio-player-track-list.scss';
 import {AudioPlayerTrackListItem} from './audio-player-track-list-item/c-audio-player-track-list-item';

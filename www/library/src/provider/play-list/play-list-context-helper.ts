@@ -1,7 +1,7 @@
 import {SavedTrackType, TrackType} from '../../../library';
 // import {extractText} from '../../lib/string';
 
-import type {PlayListContextType, PlayListType} from './play-list-context-type';
+import {PlayListContextType, PlayListType} from './play-list-context-type';
 
 export function getDefaultPlayListContextData(): PlayListContextType {
     const defaultPlayList: PlayListType = {
@@ -12,15 +12,18 @@ export function getDefaultPlayListContextData(): PlayListContextType {
 
     return {
         createPlayList: (): PlayListType => defaultPlayList,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+        deletePlayList: (playList: PlayListType): Error | null => new Error('deletePlayList: overwrite me'),
         getAllPlayLists: (): Array<PlayListType> => [defaultPlayList],
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+        getTrackById: (trackId: string): SavedTrackType | null => null,
+        isInitialized: false,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+        removeTrackById: (trackId: string): Error | null => new Error('removeTrack: overwrite me'),
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
         updatePlayList: (oldPlayList: PlayListType, newListPlayData: PlayListType): Error | PlayListType => {
             return new Error('updatePlayList: overwrite me');
         },
-        deletePlayList: (playList: PlayListType): Error | null => new Error('deletePlayList: overwrite me'),
-        isInitialized: false,
-
-        removeTrackById: (trackId: string): Error | null => new Error('removeTrack: overwrite me'),
-        getTrackById: (trackId: string): SavedTrackType | null => null,
     };
 }
 

@@ -1,9 +1,11 @@
+/* global HTMLInputElement */
+
 import {useCallback, useContext, useRef} from 'react';
 
-import type {PlayListType} from '../../../../provider/play-list/play-list-context-type';
+import {PlayListType} from '../../../../provider/play-list/play-list-context-type';
 import {PlayListContext} from '../../../../provider/play-list/play-list-context';
-import {defaultPlayListName, noNamePlayListName} from '../../../../provider/play-list/play-list-context-const';
-import {IsRender} from '../../../../layout/is-render/c-is-render';
+import {noNamePlayListName} from '../../../../provider/play-list/play-list-context-const';
+// import {IsRender} from '../../../../layout/is-render/c-is-render';
 import {AudioPlayer} from '../../../../audio-player/c-audio-player';
 import {savedTrackToTrack} from '../../../../provider/play-list/play-list-context-helper';
 import {AudioPlayerControlButton} from '../../../../layout/audio-player-control-button/c-audio-player-control-button';
@@ -75,16 +77,14 @@ export function PlayListContainer(props: PropsType): JSX.Element {
                 />
             </div>
 
-            <IsRender isRender={!hasTrackInList}>
-                <p className={playListContainerStyle.no_track_here}>∅</p>
-            </IsRender>
-
-            <IsRender isRender={hasTrackInList}>
+            {hasTrackInList ? (
                 <AudioPlayer
                     // defaultState={{isTrackListOpen: false}}
                     trackList={trackList.map(savedTrackToTrack)}
                 />
-            </IsRender>
+            ) : (
+                <p className={playListContainerStyle.no_track_here}>∅</p>
+            )}
         </div>
     );
 }

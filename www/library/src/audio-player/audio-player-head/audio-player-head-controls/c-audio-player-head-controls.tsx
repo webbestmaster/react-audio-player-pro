@@ -1,6 +1,6 @@
 import {AudioPlayerControlButton} from '../../../layout/audio-player-control-button/c-audio-player-control-button';
 
-import type {PlayerPlayingStateType, PlayerRepeatingStateType} from '../../audio-player-type';
+import {PlayerPlayingStateType, PlayerRepeatingStateType} from '../../../../library';
 import {playerPlayingStateTypeMap, playerRepeatingStateTypeMap} from '../../audio-player-const';
 
 import AudioPlayerHeadControlsStyle from './audio-player-head-controls.scss';

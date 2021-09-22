@@ -17,61 +17,61 @@ const theGhostInYourPiano = demoUrl + '/audio-file/the-ghost-in-your-piano-climb
 
 const audioDataList: Array<TrackType> = [
     {
-        src: lesserFaith,
         mediaMetadata: {
-            title: 'Lesser Faith',
-            artist: 'J. Syreus Bach',
             album: 'Ability to Break ~ Energetic Tracks',
+            artist: 'J. Syreus Bach',
             artwork: [
-                {src: icon64, sizes: '64x64', type: 'image/png'},
-                {src: icon128, sizes: '128x128', type: 'image/png'},
-                {src: icon256, sizes: '256x256', type: 'image/png'},
-                {src: icon512, sizes: '512x512', type: 'image/png'},
+                {sizes: '64x64', src: icon64, type: 'image/png'},
+                {sizes: '128x128', src: icon128, type: 'image/png'},
+                {sizes: '256x256', src: icon256, type: 'image/png'},
+                {sizes: '512x512', src: icon512, type: 'image/png'},
             ],
+            title: 'Lesser Faith',
         },
+        src: lesserFaith,
     },
     {
-        src: brothersAllegretto,
         content: <CustomContent />,
         mediaMetadata: {
-            title: 'World of Brothers (Allegretto)',
-            artist: 'Dee Yan-Key',
             album: 'Perpetual Peace',
+            artist: 'Dee Yan-Key',
             artwork: [
-                {src: icon64, sizes: '64x64', type: 'image/png'},
-                {src: icon128, sizes: '128x128', type: 'image/png'},
-                {src: icon256, sizes: '256x256', type: 'image/png'},
-                {src: icon512, sizes: '512x512', type: 'image/png'},
+                {sizes: '64x64', src: icon64, type: 'image/png'},
+                {sizes: '128x128', src: icon128, type: 'image/png'},
+                {sizes: '256x256', src: icon256, type: 'image/png'},
+                {sizes: '512x512', src: icon512, type: 'image/png'},
             ],
+            title: 'World of Brothers (Allegretto)',
         },
+        src: brothersAllegretto,
     },
     {
-        src: atLeastItIs,
         mediaMetadata: {
-            title: 'At Least It Is',
-            artist: 'Mid-Air Machine',
             album: 'Everywhere Outside ~ World Music',
+            artist: 'Mid-Air Machine',
             artwork: [
-                {src: icon64, sizes: '64x64', type: 'image/png'},
-                {src: icon128, sizes: '128x128', type: 'image/png'},
-                {src: icon256, sizes: '256x256', type: 'image/png'},
-                {src: icon512, sizes: '512x512', type: 'image/png'},
+                {sizes: '64x64', src: icon64, type: 'image/png'},
+                {sizes: '128x128', src: icon128, type: 'image/png'},
+                {sizes: '256x256', src: icon256, type: 'image/png'},
+                {sizes: '512x512', src: icon512, type: 'image/png'},
             ],
+            title: 'At Least It Is',
         },
+        src: atLeastItIs,
     },
     {
-        src: theGhostInYourPiano,
         mediaMetadata: {
-            title: 'Climb',
-            artist: 'The Ghost in Your Piano',
             album: 'The Ghost in Your Piano',
+            artist: 'The Ghost in Your Piano',
             artwork: [
-                {src: icon64, sizes: '64x64', type: 'image/png'},
-                {src: icon128, sizes: '128x128', type: 'image/png'},
-                {src: icon256, sizes: '256x256', type: 'image/png'},
-                {src: icon512, sizes: '512x512', type: 'image/png'},
+                {sizes: '64x64', src: icon64, type: 'image/png'},
+                {sizes: '128x128', src: icon128, type: 'image/png'},
+                {sizes: '256x256', src: icon256, type: 'image/png'},
+                {sizes: '512x512', src: icon512, type: 'image/png'},
             ],
+            title: 'Climb',
         },
+        src: theGhostInYourPiano,
     },
 ];
 
@@ -82,8 +82,8 @@ export function ExamplePlayer(): JSX.Element {
 
             <AudioPlayer
                 defaultState={{
-                    isMuted: false,
                     activeIndex: 0,
+                    isMuted: false,
                     isShuffleOn: false,
                     isTrackListOpen: true,
                     repeatingState: 'none',

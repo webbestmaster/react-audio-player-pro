@@ -3,13 +3,13 @@ import {useCallback, useEffect, useMemo, useState} from 'react';
 import {SavedTrackType} from '../../../library';
 import {getRandomStringBySize} from '../../lib/string';
 
-import type {PlayListContextType, PlayListType} from './play-list-context-type';
+import {PlayListContextType, PlayListType} from './play-list-context-type';
 import {getSavedPlayListContextData, savePlayListContextData} from './play-list-context-storage';
 import {defaultPlayListName} from './play-list-context-const';
 import {PlayListContext} from './play-list-context';
 
 type PropsType = Readonly<{
-    children: JSX.Element;
+    children: Array<JSX.Element> | JSX.Element;
 }>;
 
 export function PlayListProvider(props: PropsType): JSX.Element {
@@ -139,13 +139,12 @@ export function PlayListProvider(props: PropsType): JSX.Element {
     const providedData: PlayListContextType = useMemo<PlayListContextType>((): PlayListContextType => {
         return {
             createPlayList,
-            getAllPlayLists,
-            updatePlayList,
             deletePlayList,
-            isInitialized: true,
-
-            removeTrackById,
+            getAllPlayLists,
             getTrackById,
+            isInitialized: true,
+            removeTrackById,
+            updatePlayList,
         };
     }, [createPlayList, getAllPlayLists, updatePlayList, deletePlayList, removeTrackById, getTrackById]);
 

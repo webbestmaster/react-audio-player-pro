@@ -1,5 +1,4 @@
-import type {DefaultDefinedAudioPlayerStateType} from './audio-player-type';
-import {PlayerPlayingStateType, PlayerRepeatingStateType} from './audio-player-type';
+import {DefaultDefinedAudioPlayerStateType, PlayerPlayingStateType, PlayerRepeatingStateType} from '../../library';
 
 /*
 import type {
@@ -13,14 +12,14 @@ import type {
 export const seekStepSecond = 10;
 
 export const playerPlayingStateTypeMap: {[key in PlayerPlayingStateType]: PlayerPlayingStateType} = {
-    playing: 'playing',
     paused: 'paused',
+    playing: 'playing',
     stopped: 'stopped',
 };
 
 export const playerRepeatingStateTypeMap: {[key in PlayerRepeatingStateType]: PlayerRepeatingStateType} = {
-    none: 'none',
     all: 'all',
+    none: 'none',
     one: 'one',
 };
 
@@ -29,9 +28,9 @@ const {none, all, one} = playerRepeatingStateTypeMap;
 export const playerRepeatingStateTypeList: Array<PlayerRepeatingStateType> = [none, all, one];
 
 export const defaultAudioPlayerState: DefaultDefinedAudioPlayerStateType = {
-    isTrackListOpen: true,
     activeIndex: 0,
-    isShuffleOn: false,
     isMuted: false,
+    isShuffleOn: false,
+    isTrackListOpen: true,
     repeatingState: none,
 };

@@ -1,3 +1,5 @@
+/* global HTMLInputElement */
+
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import {useRef, useState} from 'react';
@@ -17,7 +19,7 @@ type PropsType = Readonly<{
 
 export function RangeBar(props: PropsType): JSX.Element {
     const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
-    const inputRef = useRef<?HTMLInputElement>();
+    const inputRef = useRef<HTMLInputElement | null>(null);
     const {className, isDisable, progress, onChange, ariaLabel} = props;
 
     function getCurrentValue(): number {

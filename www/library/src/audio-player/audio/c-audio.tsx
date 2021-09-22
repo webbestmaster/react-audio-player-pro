@@ -1,3 +1,5 @@
+/* global HTMLAudioElement */
+
 import {useEffect, useRef, useState} from 'react';
 
 import {classNames} from '../../lib/css';
@@ -5,11 +7,10 @@ import {playerPlayingStateTypeMap, seekStepSecond} from '../audio-player-const';
 import {AudioPlayerControlButton} from '../../layout/audio-player-control-button/c-audio-player-control-button';
 import {Time} from '../../layout/time/c-time';
 import {hasVolumeBar} from '../../lib/system';
-import {PlayerPlayingStateType} from '../audio-player-type';
+import {PlayerPlayingStateType} from '../../../library';
 import {MediaMetadataType} from '../../lib/media-meta-data/media-meta-data-type';
 import {RangeBar} from '../../layout/range-bar/c-range-bar';
 import {setMediaMetadata} from '../../lib/media-meta-data/media-meta-data';
-import {IsRender} from '../../layout/is-render/c-is-render';
 import {getStopHandler} from '../audio-player-helper';
 import {PlayListMenuButton} from '../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button';
 import {audioPlayerControlTagNameMap} from '../../layout/audio-player-control-button/audio-player-control-button-const';
@@ -29,7 +30,7 @@ type PropsType = {
 export function Audio(props: PropsType): JSX.Element {
     const {src, mediaMetadata, className, onDidMount, downloadFileName, useRepeatButton} = props;
 
-    const refAudio = useRef<?HTMLAudioElement>();
+    const refAudio = useRef<HTMLAudioElement | null>(null);
     const [trackCurrentTime, setTrackCurrentTime] = useState<number>(0);
     const [trackFullTime, setTrackFullTime] = useState<number>(0);
     const [trackVolume, setTrackVolume] = useState<number>(hasVolumeBar ? 0.5 : 1);
@@ -49,7 +50,13 @@ export function Audio(props: PropsType): JSX.Element {
         throw new Error('Audio tag is not exists');
     }
 
-    useEffect(() => {}, []);
+    // useEffect(() => {}, []);
+
+    function handleClickPlay() {
+        const audioTag = getAudioTag();
+
+        audioTag.play();
+    }
 
     function handleOnEnded() {
         const audioTag = getAudioTag();
@@ -95,8 +102,8 @@ export function Audio(props: PropsType): JSX.Element {
         setPlayingState(playerPlayingStateTypeMap.playing);
 
         const seek = {
-            seekforward: seekForward,
             seekbackward: seekBackward,
+            seekforward: seekForward,
             stop: getStopHandler(getAudioTag()),
         };
 
@@ -125,12 +132,6 @@ export function Audio(props: PropsType): JSX.Element {
         const audioTag = getAudioTag();
 
         audioTag.pause();
-    }
-
-    function handleClickPlay() {
-        const audioTag = getAudioTag();
-
-        audioTag.play();
     }
 
     function handleClickRepeat() {
@@ -183,6 +184,7 @@ export function Audio(props: PropsType): JSX.Element {
                 preload="metadata"
                 ref={refAudio}
                 src={src}
+                // @ts-ignore
                 volume={trackVolume}
             >
                 <track kind="captions" src={src} />
@@ -194,14 +196,14 @@ export function Audio(props: PropsType): JSX.Element {
                 <AudioPlayerControlButton ariaLabel="play" imageId="button-play" onClick={handleClickPlay} />
             )}
 
-            <IsRender isRender={useRepeatButton === true}>
+            {useRepeatButton === true ? (
                 <AudioPlayerControlButton
                     ariaLabel="repeat"
                     imageId="button-repeat"
                     isActive={isRepeatOn}
                     onClick={handleClickRepeat}
                 />
-            </IsRender>
+            ) : null}
 
             <Time className={audioStyle.time} currentTime={trackCurrentTime} fullTime={trackFullTime} />
 
@@ -211,20 +213,22 @@ export function Audio(props: PropsType): JSX.Element {
                 progress={trackCurrentTime / trackFullTime}
             />
 
-            <IsRender isRender={hasVolumeBar}>
-                <AudioPlayerControlButton
-                    ariaLabel="switch-sound"
-                    imageId={soundImageId}
-                    onClick={handleClickToggleMute}
-                />
+            {hasVolumeBar ? (
+                <>
+                    <AudioPlayerControlButton
+                        ariaLabel="switch-sound"
+                        imageId={soundImageId}
+                        onClick={handleClickToggleMute}
+                    />
 
-                <RangeBar
-                    ariaLabel="volume bar"
-                    className={audioStyle.sound_range}
-                    onChange={handleChangeVolumeBar}
-                    progress={trackVolume}
-                />
-            </IsRender>
+                    <RangeBar
+                        ariaLabel="volume bar"
+                        className={audioStyle.sound_range}
+                        onChange={handleChangeVolumeBar}
+                        progress={trackVolume}
+                    />
+                </>
+            ) : null}
 
             <a className={audioStyle.download_button} download={downloadFileName || true} href={src}>
                 <AudioPlayerControlButton
@@ -236,8 +240,8 @@ export function Audio(props: PropsType): JSX.Element {
 
             <PlayListMenuButton
                 track={{
-                    src,
                     mediaMetadata,
+                    src,
                 }}
             />
         </div>

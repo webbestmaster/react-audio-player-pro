@@ -1,7 +1,9 @@
+/* global HTMLAudioElement */
+
 import {useRef, useState} from 'react';
 
 import {classNames} from '../../../lib/css';
-import type {PlayerPlayingStateType, TrackType} from '../../audio-player-type';
+import {PlayerPlayingStateType, TrackType} from '../../../../library';
 import {playerPlayingStateTypeMap} from '../../audio-player-const';
 import {SvgImage} from '../../../layout/svg-image/c-svg-image';
 import {audioPlayerIconIdPrefix} from '../../../layout/audio-player-control-sprite/c-audio-player-control-sprite';
@@ -30,7 +32,7 @@ export function AudioPlayerTrackListItem(props: PropsType): JSX.Element {
 
     const [trackFullTime, setTrackFullTime] = useState<number>(0);
     const {minutes: trackFullTimeMinutes, seconds: trackFullTimeSeconds} = getTrackHumanTime(trackFullTime);
-    const refAudio = useRef<?HTMLAudioElement>();
+    const refAudio = useRef<HTMLAudioElement | null>(null);
     const {src} = track;
     const actualContent = getActualContent(track);
 

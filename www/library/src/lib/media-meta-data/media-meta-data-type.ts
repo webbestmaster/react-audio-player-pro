@@ -1,5 +1,10 @@
 export type MediaMetadataControlNameType =
-    'nexttrack' | 'pause' | 'play' | 'previoustrack' | 'seekbackward' | 'seekforward';
+    | 'nexttrack'
+    | 'pause'
+    | 'play'
+    | 'previoustrack'
+    | 'seekbackward'
+    | 'seekforward';
 
 /*
 export type MediaMetadataControlSettingType = {

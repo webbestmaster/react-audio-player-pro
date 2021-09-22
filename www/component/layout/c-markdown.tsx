@@ -1,7 +1,8 @@
-import {markdown, MarkdownConfigType} from 'markdown-pro';
+import {markdown, MarkdownConfigShallowType} from 'markdown-pro';
+import 'markdown-pro/dist/style.css';
 
 type PropsType = {
-    config?: MarkdownConfigType;
+    config?: MarkdownConfigShallowType;
     mdInput: string;
 };
 
