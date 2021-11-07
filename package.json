@@ -10,7 +10,7 @@
   "homepage": "https://github.com/webbestmaster/react-audio-player-pro#readme",
   "license": "MIT",
   "author": "",
-  "version": "1.1.17",
+  "version": "1.1.18",
   "description": "React Audio Player Pro",
   "keywords": [
     "react",
@@ -59,7 +59,7 @@
     "_postinstall": "cp ./git-hooks/pre-commit ./.git/hooks",
     "zip": "zip -9 --exclude=*node_modules* --exclude=*.git* -r my-project_`git symbolic-ref --short HEAD`-`date +%Y-%m-%d--%H-%M-%S` ./"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
     "markdown-pro": "^1.0.21",
