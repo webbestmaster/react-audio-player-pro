@@ -1,4 +1,5 @@
 const {pathToDist, webpackDevServerPort} = require('./../config');
+const {isBack} = require('../config');
 
 const host = 'localhost';
 // const host = '192.168.147.45';
@@ -19,7 +20,7 @@ module.exports.devServer = {
     historyApiFallback: {
         disableDotRule: true,
     },
-    // writeToDisk: isBuildServer,
+    // writeToDisk: isBack,
     // inline: false,
     hot: true,
     // hotOnly: false,

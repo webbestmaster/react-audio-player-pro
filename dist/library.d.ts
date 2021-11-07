@@ -1,10 +1,4 @@
 /// <reference types="react" />
-import { AudioPlayerControlSprite } from './src/layout/audio-player-control-sprite/c-audio-player-control-sprite';
-import { Audio } from './src/audio-player/audio/c-audio';
-import { AudioPlayer } from './src/audio-player/c-audio-player';
-import { PlayListContext } from './src/provider/play-list/play-list-context';
-import { PlayListProvider } from './src/provider/play-list/c-play-list-context';
-import { PlayListPanel } from './src/play-list/play-list-panel/c-play-list-panel';
 export declare type PlayerPlayingStateType = 'paused' | 'playing' | 'stopped';
 export declare type PlayerRepeatingStateType = 'all' | 'none' | 'one';
 export declare type TrackType = Readonly<{
@@ -38,7 +32,12 @@ export declare type AudioPlayerPropsType = Readonly<{
     onDidMount?: (audioNode: HTMLAudioElement | null) => void;
     trackList: Array<TrackType>;
 }>;
-export { AudioPlayerControlSprite, Audio, AudioPlayer, PlayListContext, PlayListProvider, PlayListPanel, };
+export { AudioPlayerControlSprite } from './src/layout/audio-player-control-sprite/c-audio-player-control-sprite';
+export { Audio } from './src/audio-player/audio/c-audio';
+export { AudioPlayer } from './src/audio-player/c-audio-player';
+export { PlayListContext } from './src/provider/play-list/play-list-context';
+export { PlayListProvider } from './src/provider/play-list/c-play-list-context';
+export { PlayListPanel } from './src/play-list/play-list-panel/c-play-list-panel';
 
 declare module 'react-audio-player-pro/dist/style.css' {
     type StyleType = Record<string, string>;

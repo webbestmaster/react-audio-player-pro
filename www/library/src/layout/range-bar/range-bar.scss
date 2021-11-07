@@ -1,5 +1,5 @@
-$slider-thumb-color: rgba(64, 138, 240, 1);
-$slider-thumb-color-active-outline: rgba(64, 138, 240, 0.2);
+$slider-thumb-color: rgb(64 138 240 / 100%);
+$slider-thumb-color-active-outline: rgb(64 138 240 / 20%);
 $slider-background-line-color: #dadada;
 $slider-thumb-radius: 6px;
 
@@ -81,7 +81,7 @@ $slider-thumb-radius: 6px;
     height: 100%;
     left: $slider-thumb-radius;
     margin: 0;
-    opacity: 0;
+    opacity: 0%;
     outline: none;
     padding: 0;
     position: absolute;

@@ -36,7 +36,7 @@
     display: block;
     flex-shrink: 0;
     float: right;
-    opacity: 0.5;
+    opacity: 50%;
     pointer-events: none;
 }
 
@@ -44,7 +44,7 @@
     @extend %remove-play-list-button;
 
     cursor: pointer;
-    opacity: 1;
+    opacity: 100%;
     pointer-events: auto;
 }
 
