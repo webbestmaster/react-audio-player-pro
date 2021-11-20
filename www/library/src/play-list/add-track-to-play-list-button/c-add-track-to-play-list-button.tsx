@@ -20,7 +20,7 @@ type PropsType = Readonly<{
     track: TrackType;
 }>;
 
-export function PlayListMenuButton(props: PropsType): JSX.Element {
+export function PlayListMenuButton(props: PropsType): JSX.Element | null {
     const {className, track} = props;
     const fullClassName = classNames(addTrackToPlayListButtonStyle.add_track_to_play_list_button, className);
     const playListContextData = useContext(PlayListContext);
@@ -95,7 +95,7 @@ export function PlayListMenuButton(props: PropsType): JSX.Element {
     );
 
     if (!isPlayListContextInitialized) {
-        return <div />;
+        return null;
     }
 
     return (
