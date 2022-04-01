@@ -6,7 +6,6 @@ import {classNames} from '../../lib/css';
 import {playerPlayingStateTypeMap, seekStepSecond} from '../audio-player-const';
 import {AudioPlayerControlButton} from '../../layout/audio-player-control-button/c-audio-player-control-button';
 import {Time} from '../../layout/time/c-time';
-import {hasVolumeBar} from '../../lib/system';
 import {PlayerPlayingStateType} from '../../../library';
 import {RangeBar} from '../../layout/range-bar/c-range-bar';
 import {setMediaMetadata} from '../../lib/media-meta-data/media-meta-data';
@@ -32,7 +31,7 @@ export function Audio(props: PropsType): JSX.Element {
     const refAudio = useRef<HTMLAudioElement | null>(null);
     const [trackCurrentTime, setTrackCurrentTime] = useState<number>(0);
     const [trackFullTime, setTrackFullTime] = useState<number>(0);
-    const [trackVolume, setTrackVolume] = useState<number>(hasVolumeBar ? 0.5 : 1);
+    const [trackVolume, setTrackVolume] = useState<number>(1);
     const [isMuted, setIsMuted] = useState<boolean>(false);
     const [playingState, setPlayingState] = useState<PlayerPlayingStateType>(playerPlayingStateTypeMap.paused);
     const [isRepeatOn, setIsRepeatOn] = useState<boolean>(false);
@@ -210,22 +209,20 @@ export function Audio(props: PropsType): JSX.Element {
                 progress={trackCurrentTime / trackFullTime}
             />
 
-            {hasVolumeBar ? (
-                <>
-                    <AudioPlayerControlButton
-                        ariaLabel="switch-sound"
-                        imageId={soundImageId}
-                        onClick={handleClickToggleMute}
-                    />
+            <AudioPlayerControlButton
+                ariaLabel="switch-sound"
+                imageId={soundImageId}
+                isHideForNarrow
+                onClick={handleClickToggleMute}
+            />
 
-                    <RangeBar
-                        ariaLabel="volume bar"
-                        className={audioStyle.sound_range}
-                        onChange={handleChangeVolumeBar}
-                        progress={trackVolume}
-                    />
-                </>
-            ) : null}
+            <RangeBar
+                ariaLabel="volume bar"
+                className={audioStyle.sound_range}
+                isHideForNarrow
+                onChange={handleChangeVolumeBar}
+                progress={trackVolume}
+            />
 
             <a className={audioStyle.download_button} download={downloadFileName || true} href={src}>
                 <AudioPlayerControlButton

@@ -6,6 +6,7 @@ declare type PropsType = Readonly<{
     hasBorder?: boolean;
     imageId: string;
     isActive?: boolean;
+    isHideForNarrow?: boolean;
     onClick?: () => unknown;
     tag?: AudioPlayerControlTagNameType;
 }>;

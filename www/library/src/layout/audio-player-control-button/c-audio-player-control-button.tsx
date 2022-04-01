@@ -10,6 +10,7 @@ const cssButton = audioPlayerControlStyle.audio_player_control__button;
 const cssActive = audioPlayerControlStyle.audio_player_control__button__active;
 const cssWidthBorder = audioPlayerControlStyle.audio_player_control__button__bordered;
 const cssImage = audioPlayerControlStyle.audio_player_control__button__image;
+const hideForNarrow = audioPlayerControlStyle.audio_player_control__hide_for_narrow;
 
 type PropsType = Readonly<{
     ariaLabel: string;
@@ -17,17 +18,19 @@ type PropsType = Readonly<{
     hasBorder?: boolean;
     imageId: string;
     isActive?: boolean;
+    isHideForNarrow?: boolean;
     onClick?: () => unknown;
     tag?: AudioPlayerControlTagNameType;
 }>;
 
 export function AudioPlayerControlButton(props: PropsType): JSX.Element {
-    const {onClick, imageId, isActive, ariaLabel, className, tag, hasBorder} = props;
+    const {onClick, imageId, isActive, ariaLabel, className, tag, hasBorder, isHideForNarrow} = props;
     const fullClassName = classNames(
         cssButton,
         {
             [cssActive]: isActive,
             [cssWidthBorder]: hasBorder,
+            [hideForNarrow]: isHideForNarrow,
         },
         className
     );

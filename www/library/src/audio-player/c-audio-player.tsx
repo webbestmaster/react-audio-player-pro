@@ -4,7 +4,6 @@ import {useEffect, useRef, useState} from 'react';
 
 import {setMediaMetadata} from '../lib/media-meta-data/media-meta-data';
 import {getRandom, getShiftIndex} from '../lib/number';
-import {hasVolumeBar} from '../lib/system';
 import {AudioPlayerPropsType, PlayerPlayingStateType, PlayerRepeatingStateType, TrackType} from '../../library';
 
 import {AudioPlayerHead} from './audio-player-head/c-audio-player-head';
@@ -30,7 +29,7 @@ export function AudioPlayer(props: PropsType): JSX.Element {
 
     const [trackCurrentTime, setTrackCurrentTime] = useState<number>(0);
     const [trackFullTime, setTrackFullTime] = useState<number>(0);
-    const [trackVolume, setTrackVolume] = useState<number>(hasVolumeBar ? 0.5 : 1);
+    const [trackVolume, setTrackVolume] = useState<number>(1);
     const [isMuted, setIsMuted] = useState<boolean>(defaultDefinedState.isMuted);
     const [playingState, setPlayingState] = useState<PlayerPlayingStateType>(playerPlayingStateTypeMap.paused);
     const [activeIndex, setActiveIndex] = useState<number>(defaultDefinedState.activeIndex);

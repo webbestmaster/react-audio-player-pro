@@ -1,6 +1,5 @@
 import {Time} from '../../../layout/time/c-time';
 import {RangeBar} from '../../../layout/range-bar/c-range-bar';
-import {hasVolumeBar} from '../../../lib/system';
 import {AudioPlayerControlButton} from '../../../layout/audio-player-control-button/c-audio-player-control-button';
 
 import audioPlayerHeadPlayingBarStyle from './audio-player-head-playing-bar.scss';
@@ -44,23 +43,21 @@ export function AudioPlayerHeadPlayingBar(props: PropsType): JSX.Element {
                 progress={isTrackInitialized ? trackCurrentTime / trackFullTime : 0}
             />
 
-            {hasVolumeBar ? (
-                <>
-                    <AudioPlayerControlButton
-                        ariaLabel="switch-sound"
-                        className=""
-                        imageId={soundImageSrc}
-                        onClick={onClickMuteVolume}
-                    />
+            <AudioPlayerControlButton
+                ariaLabel="switch-sound"
+                className=""
+                imageId={soundImageSrc}
+                isHideForNarrow
+                onClick={onClickMuteVolume}
+            />
 
-                    <RangeBar
-                        ariaLabel="volume bar"
-                        className={audioPlayerHeadPlayingBarStyle.volume_bar}
-                        onChange={onChangeVolumeBar}
-                        progress={trackVolume}
-                    />
-                </>
-            ) : null}
+            <RangeBar
+                ariaLabel="volume bar"
+                className={audioPlayerHeadPlayingBarStyle.volume_bar}
+                isHideForNarrow
+                onChange={onChangeVolumeBar}
+                progress={trackVolume}
+            />
         </div>
     );
 }

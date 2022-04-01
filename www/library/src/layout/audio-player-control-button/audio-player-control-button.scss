@@ -1,3 +1,5 @@
+@import './../../css/var';
+
 $border-radius: 4px;
 $button-image-size: 28px;
 $button-size: 38px;
@@ -43,5 +45,11 @@ $button-image-active-background-color: #e5e5e5;
 
     &.audio_player_control__button__bordered {
         border: 1px solid $button-border-color;
+    }
+}
+
+@media screen and (max-width: $narrow-screen-width) {
+    .audio_player_control__hide_for_narrow {
+        display: none;
     }
 }

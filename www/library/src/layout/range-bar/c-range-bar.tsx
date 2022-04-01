@@ -13,6 +13,7 @@ type PropsType = Readonly<{
     ariaLabel: string;
     className?: string;
     isDisable?: boolean;
+    isHideForNarrow?: boolean;
     onChange: (value: number) => void;
     progress: number;
 }>;
@@ -20,7 +21,7 @@ type PropsType = Readonly<{
 export function RangeBar(props: PropsType): JSX.Element {
     const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement | null>(null);
-    const {className, isDisable, progress, onChange, ariaLabel} = props;
+    const {className, isDisable, progress, onChange, ariaLabel, isHideForNarrow} = props;
 
     function getCurrentValue(): number {
         const {current} = inputRef;
@@ -47,6 +48,7 @@ export function RangeBar(props: PropsType): JSX.Element {
     const fullClassName = classNames(rangeBarStyle.range_bar, className, {
         [rangeBarStyle.wrapper__active]: isMouseDown,
         [rangeBarStyle.wrapper__disable]: isDisable === true,
+        [rangeBarStyle.range_bar__hide_for_narrow]: isHideForNarrow,
     });
 
     return (
