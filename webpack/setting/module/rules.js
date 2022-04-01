@@ -37,10 +37,6 @@ module.exports.rules = [
         },
     },
     {
-        test: /\.svg$/,
-        use: ['@svgr/webpack', fileLoader],
-    },
-    {
         test: /\.scss$/,
         use: [
             cssLoader,

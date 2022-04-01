@@ -1,6 +1,6 @@
 /* global document */
 
-import {render} from 'react-dom';
+import {createRoot} from 'react-dom/client';
 
 import {selector} from './const';
 import {App} from './component/app/app';
@@ -8,7 +8,7 @@ import {App} from './component/app/app';
 const nodeWrapper = document.querySelector(selector.appWrapper);
 
 if (nodeWrapper !== null) {
-    render(<App />, nodeWrapper);
+    createRoot(nodeWrapper).render(<App />);
 } else {
     console.error('Can not find nodeWrapper');
 }
