@@ -4,7 +4,7 @@ import {useEffect, useRef, useState} from 'react';
 
 import {setMediaMetadata} from '../lib/media-meta-data/media-meta-data';
 import {getRandom, getShiftIndex} from '../lib/number';
-import {AudioPlayerPropsType, PlayerPlayingStateType, PlayerRepeatingStateType, TrackType} from '../../library';
+import {DefaultAudioPlayerStateType, PlayerPlayingStateType, PlayerRepeatingStateType, TrackType} from '../../library';
 
 import {AudioPlayerHead} from './audio-player-head/c-audio-player-head';
 import {AudioPlayerTrackList} from './audio-player-track-list/c-audio-player-track-list';
@@ -19,10 +19,15 @@ import {
 import {getDefaultState, getStopHandler} from './audio-player-helper';
 import audioPlayerStyle from './audio-player.scss';
 
-type PropsType = AudioPlayerPropsType;
+export type AudioPlayerPropsType = Readonly<{
+    className?: string;
+    defaultState?: DefaultAudioPlayerStateType;
+    onDidMount?: (audioNode: HTMLAudioElement | null) => void;
+    trackList: Array<TrackType>;
+}>;
 
 // eslint-disable-next-line complexity, max-statements, sonarjs/cognitive-complexity
-export function AudioPlayer(props: PropsType): JSX.Element {
+export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
     const {defaultState, className, onDidMount, trackList} = props;
 
     const defaultDefinedState = getDefaultState(defaultState);

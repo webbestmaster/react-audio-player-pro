@@ -1,5 +1,9 @@
 /// <reference types="react" />
-import { AudioPlayerPropsType } from '../../library';
-declare type PropsType = AudioPlayerPropsType;
-export declare function AudioPlayer(props: PropsType): JSX.Element;
-export {};
+import { DefaultAudioPlayerStateType, TrackType } from '../../library';
+export declare type AudioPlayerPropsType = Readonly<{
+    className?: string;
+    defaultState?: DefaultAudioPlayerStateType;
+    onDidMount?: (audioNode: HTMLAudioElement | null) => void;
+    trackList: Array<TrackType>;
+}>;
+export declare function AudioPlayer(props: AudioPlayerPropsType): JSX.Element;

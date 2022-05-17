@@ -15,7 +15,7 @@ import {audioPlayerControlTagNameMap} from '../../layout/audio-player-control-bu
 
 import audioStyle from './audio.scss';
 
-type PropsType = {
+export type AudioPropsType = {
     className?: string;
     downloadFileName?: string;
     mediaMetadata?: MediaMetadataInit;
@@ -25,7 +25,7 @@ type PropsType = {
 };
 
 // eslint-disable-next-line complexity, max-statements, sonarjs/cognitive-complexity
-export function Audio(props: PropsType): JSX.Element {
+export function Audio(props: AudioPropsType): JSX.Element {
     const {src, mediaMetadata, className, onDidMount, downloadFileName, useRepeatButton = false} = props;
 
     const refAudio = useRef<HTMLAudioElement | null>(null);

@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useMemo, useState} from 'react';
+import {useCallback, useEffect, useMemo, useState, ReactNode} from 'react';
 
 import {SavedTrackType} from '../../../library';
 import {getRandomStringBySize} from '../../lib/string';
@@ -8,11 +8,9 @@ import {getSavedPlayListContextData, savePlayListContextData} from './play-list-
 import {defaultPlayListName} from './play-list-context-const';
 import {PlayListContext} from './play-list-context';
 
-type PropsType = Readonly<{
-    children: Array<JSX.Element> | JSX.Element;
-}>;
+export type PlayListProviderPropsType = Readonly<{children: ReactNode}>;
 
-export function PlayListProvider(props: PropsType): JSX.Element {
+export function PlayListProvider(props: PlayListProviderPropsType): JSX.Element {
     const {children} = props;
     const [list, setList] = useState<Array<PlayListType>>(getSavedPlayListContextData());
 

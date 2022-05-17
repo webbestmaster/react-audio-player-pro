@@ -1,5 +1,5 @@
 /// <reference types="react" />
-declare type PropsType = {
+export declare type AudioPropsType = {
     className?: string;
     downloadFileName?: string;
     mediaMetadata?: MediaMetadataInit;
@@ -7,5 +7,4 @@ declare type PropsType = {
     src: string;
     useRepeatButton?: boolean;
 };
-export declare function Audio(props: PropsType): JSX.Element;
-export {};
+export declare function Audio(props: AudioPropsType): JSX.Element;

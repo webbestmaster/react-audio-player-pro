@@ -1,6 +1,5 @@
-/// <reference types="react" />
-declare type PropsType = Readonly<{
-    children: Array<JSX.Element> | JSX.Element;
+import { ReactNode } from 'react';
+export declare type PlayListProviderPropsType = Readonly<{
+    children: ReactNode;
 }>;
-export declare function PlayListProvider(props: PropsType): JSX.Element;
-export {};
+export declare function PlayListProvider(props: PlayListProviderPropsType): JSX.Element;
