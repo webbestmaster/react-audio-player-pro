@@ -224,7 +224,12 @@ export function Audio(props: AudioPropsType): JSX.Element {
                 progress={trackVolume}
             />
 
-            <a className={audioStyle.download_button} download={downloadFileName || true} href={src}>
+            <a
+                aria-label="download"
+                className={audioStyle.download_button}
+                download={downloadFileName || true}
+                href={src}
+            >
                 <AudioPlayerControlButton
                     ariaLabel="download"
                     imageId="button-download"

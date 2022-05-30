@@ -25,7 +25,7 @@ export function AudioPlayerTrackList(props: PropsType): JSX.Element {
                     <AudioPlayerTrackListItem
                         activeIndex={index}
                         isCurrentTrack={isCurrentTrack}
-                        isLoading={isLoading && isCurrentTrack}
+                        isLoading={isLoading ? isCurrentTrack : false}
                         key={track.src}
                         onClickPlay={onClickPlay}
                         playByIndex={playByIndex}
