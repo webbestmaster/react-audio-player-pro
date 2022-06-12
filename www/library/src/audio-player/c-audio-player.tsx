@@ -31,9 +31,10 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
     const {defaultState, className, onDidMount, trackList} = props;
 
     const defaultDefinedState = getDefaultState(defaultState);
+    const duration: number = trackList[0]?.duration || 0;
 
     const [trackCurrentTime, setTrackCurrentTime] = useState<number>(0);
-    const [trackFullTime, setTrackFullTime] = useState<number>(0);
+    const [trackFullTime, setTrackFullTime] = useState<number>(duration);
     const [trackVolume, setTrackVolume] = useState<number>(1);
     const [isMuted, setIsMuted] = useState<boolean>(defaultDefinedState.isMuted);
     const [playingState, setPlayingState] = useState<PlayerPlayingStateType>(playerPlayingStateTypeMap.paused);

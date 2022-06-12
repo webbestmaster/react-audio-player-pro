@@ -4,13 +4,17 @@ export declare type PlayerRepeatingStateType = 'all' | 'none' | 'one';
 export declare type AudioPreloadValueType = 'auto' | 'metadata' | 'none';
 export declare type TrackType = Readonly<{
     content?: JSX.Element | string;
+    duration?: number;
     mediaMetadata?: MediaMetadataInit;
+    preload?: AudioPreloadValueType;
     src: string;
 }>;
 export declare type SavedTrackType = Readonly<{
     content?: string;
+    duration?: number;
     id: string;
     mediaMetadata?: MediaMetadataInit;
+    preload?: AudioPreloadValueType;
     src: string;
 }>;
 export declare type DefaultAudioPlayerStateType = Readonly<{

@@ -30,10 +30,10 @@ export function AudioPlayerTrackListItem(props: PropsType): JSX.Element {
     const {isCurrentTrack, activeIndex, track, playingState, onClickPlay, setActiveIndex, isLoading, playByIndex} =
         props;
 
-    const [trackFullTime, setTrackFullTime] = useState<number>(0);
+    const {src, duration = 0, preload = 'auto'} = track;
+    const [trackFullTime, setTrackFullTime] = useState<number>(duration);
     const {minutes: trackFullTimeMinutes, seconds: trackFullTimeSeconds} = getTrackHumanTime(trackFullTime);
     const refAudio = useRef<HTMLAudioElement | null>(null);
-    const {src} = track;
     const actualContent = getActualContent(track);
 
     const spinner = <Spinner isShow={isLoading} lineWidth={4} position="absolute" size={30} wrapperPadding={0} />;
@@ -135,7 +135,7 @@ export function AudioPlayerTrackListItem(props: PropsType): JSX.Element {
                 className={audioPlayerTrackListItemStyle.audio_tag}
                 muted
                 onLoadedMetadata={handleOnLoadedMetadata}
-                preload="metadata"
+                preload={preload}
                 ref={refAudio}
                 src={src}
             />

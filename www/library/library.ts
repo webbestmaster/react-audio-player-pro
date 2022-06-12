@@ -8,14 +8,18 @@ export type AudioPreloadValueType = 'auto' | 'metadata' | 'none';
 
 export type TrackType = Readonly<{
     content?: JSX.Element | string;
+    duration?: number;
     mediaMetadata?: MediaMetadataInit;
+    preload?: AudioPreloadValueType;
     src: string;
 }>;
 
 export type SavedTrackType = Readonly<{
     content?: string;
+    duration?: number;
     id: string;
     mediaMetadata?: MediaMetadataInit;
+    preload?: AudioPreloadValueType;
     src: string;
 }>;
 

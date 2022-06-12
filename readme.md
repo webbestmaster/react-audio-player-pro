@@ -98,6 +98,13 @@ const audioTrackList: Array<TrackType> = [
         // string - path to audio file, required
         src: '/path/to/audio/file',
 
+        // string - 'none' | 'metadata' | 'auto', default: 'auto', optional
+        preload: 'auto',
+
+        // duration - number, default: 0, optional
+        // will updated automatically when track started or metadata loaded
+        duration: 100,
+
         // JSX.Element - custom content instead of title, optional, deafult: <title> or <src>
         content: <CustomContent/>,
 

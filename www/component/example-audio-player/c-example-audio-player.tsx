@@ -17,6 +17,7 @@ const theGhostInYourPiano = demoUrl + '/audio-file/the-ghost-in-your-piano-climb
 
 const audioDataList: Array<TrackType> = [
     {
+        duration: 100,
         mediaMetadata: {
             album: 'Ability to Break ~ Energetic Tracks',
             artist: 'J. Syreus Bach',
@@ -28,10 +29,12 @@ const audioDataList: Array<TrackType> = [
             ],
             title: 'Lesser Faith',
         },
+        preload: 'none',
         src: lesserFaith,
     },
     {
         content: <CustomContent />,
+        duration: 100,
         mediaMetadata: {
             album: 'Perpetual Peace',
             artist: 'Dee Yan-Key',
@@ -43,6 +46,7 @@ const audioDataList: Array<TrackType> = [
             ],
             title: 'World of Brothers (Allegretto)',
         },
+        preload: 'none',
         src: brothersAllegretto,
     },
     {

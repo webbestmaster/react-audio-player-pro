@@ -35,12 +35,12 @@ export function PlayListMenuButton(props: PropsType): JSX.Element | null {
     const defaultSelectValue = '-1';
 
     const handleAddTrack = useCallback(
-        // eslint-disable-next-line max-statements
+        // eslint-disable-next-line max-statements, complexity
         function handleAddTrackInner(evt: SyntheticEvent<HTMLSelectElement>) {
             const selectNode = evt.currentTarget;
             const listIndex = Number.parseInt(selectNode.value, 10);
             const playList = listOfPlayList[listIndex];
-            const {src, mediaMetadata, content} = track;
+            const {src, mediaMetadata, content, preload, duration} = track;
             // const content = getTrackContentAsString(track);
 
             setSelectKey(selectKey + 1);
@@ -75,6 +75,20 @@ export function PlayListMenuButton(props: PropsType): JSX.Element | null {
                 trackToSave = {
                     ...trackToSave,
                     content,
+                };
+            }
+
+            if (typeof preload === 'string') {
+                trackToSave = {
+                    ...trackToSave,
+                    preload,
+                };
+            }
+
+            if (typeof duration === 'number') {
+                trackToSave = {
+                    ...trackToSave,
+                    duration,
                 };
             }
 
