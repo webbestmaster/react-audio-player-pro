@@ -68,16 +68,16 @@ export function ExampleAudio() {
                 // https://developer.mozilla.org/en-US/docs/Web/API/MediaMetadata/MediaMetadata
                 mediaMetadata={mediaMetadata}
 
-                // string - wrapper's class name, optional, deafult: '', optional
+                // string - wrapper's class name, optional, deafult: ''
                 className="my-class-name"
 
-                // callback function - called on did mount, optional, default: noop, optional
+                // callback function - called on did mount, optional, default: noop
                 onDidMount={console.log}
 
-                // string - name for download file, optional, deafult: <src>, optional
+                // string - name for download file, optional, deafult: <src>
                 downloadFileName="my-file.mp3"
 
-                // boolean - show repeat button, optional, deafult: false, optional
+                // boolean - show repeat button, optional, deafult: false
                 useRepeatButton={true}
             />
         </>
