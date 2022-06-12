@@ -11,13 +11,13 @@ import type {
 
 export const seekStepSecond = 10;
 
-export const playerPlayingStateTypeMap: {[key in PlayerPlayingStateType]: PlayerPlayingStateType} = {
+export const playerPlayingStateTypeMap: Record<PlayerPlayingStateType, PlayerPlayingStateType> = {
     paused: 'paused',
     playing: 'playing',
     stopped: 'stopped',
 };
 
-export const playerRepeatingStateTypeMap: {[key in PlayerRepeatingStateType]: PlayerRepeatingStateType} = {
+export const playerRepeatingStateTypeMap: Record<PlayerRepeatingStateType, PlayerRepeatingStateType> = {
     all: 'all',
     none: 'none',
     one: 'one',

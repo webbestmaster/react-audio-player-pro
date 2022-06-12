@@ -1,6 +1,6 @@
 import {AudioPlayerControlTagNameType} from './audio-player-control-button-type';
 
-export const audioPlayerControlTagNameMap: {[key in AudioPlayerControlTagNameType]: AudioPlayerControlTagNameType} = {
+export const audioPlayerControlTagNameMap: Record<AudioPlayerControlTagNameType, AudioPlayerControlTagNameType> = {
     div: 'div',
     span: 'span',
 };

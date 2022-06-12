@@ -4,7 +4,7 @@ export const defaultData = {
     size: 48,
 };
 
-export const positionValueMap: {[key in PositionType]: PositionType} = {
+export const positionValueMap: Record<PositionType, PositionType> = {
     absolute: 'absolute',
     fixed: 'fixed',
     relative: 'relative',
