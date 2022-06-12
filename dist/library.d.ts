@@ -1,6 +1,7 @@
 /// <reference types="react" />
 export declare type PlayerPlayingStateType = 'paused' | 'playing' | 'stopped';
 export declare type PlayerRepeatingStateType = 'all' | 'none' | 'one';
+export declare type AudioPreloadValueType = 'auto' | 'metadata' | 'none';
 export declare type TrackType = Readonly<{
     content?: JSX.Element | string;
     mediaMetadata?: MediaMetadataInit;

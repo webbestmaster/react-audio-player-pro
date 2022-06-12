@@ -6,7 +6,7 @@ import {classNames} from '../../lib/css';
 import {playerPlayingStateTypeMap, seekStepSecond} from '../audio-player-const';
 import {AudioPlayerControlButton} from '../../layout/audio-player-control-button/c-audio-player-control-button';
 import {Time} from '../../layout/time/c-time';
-import {PlayerPlayingStateType} from '../../../library';
+import {AudioPreloadValueType, PlayerPlayingStateType} from '../../../library';
 import {RangeBar} from '../../layout/range-bar/c-range-bar';
 import {setMediaMetadata} from '../../lib/media-meta-data/media-meta-data';
 import {getStopHandler} from '../audio-player-helper';
@@ -18,19 +18,30 @@ import audioStyle from './audio.scss';
 export type AudioPropsType = {
     className?: string;
     downloadFileName?: string;
+    duration?: number;
     mediaMetadata?: MediaMetadataInit;
     onDidMount?: (audioNode: HTMLAudioElement | null) => void;
+    preload?: AudioPreloadValueType;
     src: string;
     useRepeatButton?: boolean;
 };
 
 // eslint-disable-next-line complexity, max-statements, sonarjs/cognitive-complexity
 export function Audio(props: AudioPropsType): JSX.Element {
-    const {src, mediaMetadata, className, onDidMount, downloadFileName, useRepeatButton = false} = props;
+    const {
+        className,
+        downloadFileName,
+        duration = 0,
+        mediaMetadata,
+        onDidMount,
+        preload = 'auto',
+        src,
+        useRepeatButton = false,
+    } = props;
 
     const refAudio = useRef<HTMLAudioElement | null>(null);
     const [trackCurrentTime, setTrackCurrentTime] = useState<number>(0);
-    const [trackFullTime, setTrackFullTime] = useState<number>(0);
+    const [trackFullTime, setTrackFullTime] = useState<number>(duration);
     const [trackVolume, setTrackVolume] = useState<number>(1);
     const [isMuted, setIsMuted] = useState<boolean>(false);
     const [playingState, setPlayingState] = useState<PlayerPlayingStateType>(playerPlayingStateTypeMap.paused);
@@ -177,7 +188,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
                 onPlay={handleOnPlay}
                 onTimeUpdate={handleOnTimeUpdate}
                 onVolumeChange={handleOnVolumeChange}
-                preload="metadata"
+                preload={preload}
                 ref={refAudio}
                 src={src}
                 // @ts-ignore

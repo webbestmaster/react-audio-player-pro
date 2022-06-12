@@ -31,7 +31,13 @@ export function ExampleAudio(): JSX.Element {
         <div className="example-wrapper">
             <Markdown config={{useWrapper: false}} mdInput={exampleAudio} />
 
-            <Audio mediaMetadata={singleAudioData.mediaMetadata} src={singleAudioData.src} useRepeatButton />
+            <Audio
+                duration={100}
+                mediaMetadata={singleAudioData.mediaMetadata}
+                preload="none"
+                src={singleAudioData.src}
+                useRepeatButton
+            />
 
             <AudioPlayerControlSprite />
         </div>

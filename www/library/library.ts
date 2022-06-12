@@ -4,6 +4,8 @@ export type PlayerPlayingStateType = 'paused' | 'playing' | 'stopped';
 
 export type PlayerRepeatingStateType = 'all' | 'none' | 'one';
 
+export type AudioPreloadValueType = 'auto' | 'metadata' | 'none';
+
 export type TrackType = Readonly<{
     content?: JSX.Element | string;
     mediaMetadata?: MediaMetadataInit;

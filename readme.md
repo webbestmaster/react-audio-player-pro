@@ -57,21 +57,27 @@ export function ExampleAudio() {
                 // string - path to audio file, required
                 src="/path/to/audio/file"
 
-                // MediaMetadata - media meta data
+                // string - 'none' | 'metadata' | 'auto', default: 'auto', optional
+                preload="none"
+
+                // duration - number, default: 0, optional
+                // will updated automatically when track started or metadata loaded
+                duration={100}
+
+                // MediaMetadata - media meta data, optional
                 // https://developer.mozilla.org/en-US/docs/Web/API/MediaMetadata/MediaMetadata
-                // optional
                 mediaMetadata={mediaMetadata}
 
-                // string - wrapper's class name, optional, deafult: ''
+                // string - wrapper's class name, optional, deafult: '', optional
                 className="my-class-name"
 
-                // callback function - called on did mount, optional, default: noop
+                // callback function - called on did mount, optional, default: noop, optional
                 onDidMount={console.log}
 
-                // string - name for download file, optional, deafult: <src>
+                // string - name for download file, optional, deafult: <src>, optional
                 downloadFileName="my-file.mp3"
 
-                // boolean - show repeat button, optional, deafult: false
+                // boolean - show repeat button, optional, deafult: false, optional
                 useRepeatButton={true}
             />
         </>

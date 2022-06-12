@@ -1,9 +1,12 @@
 /// <reference types="react" />
+import { AudioPreloadValueType } from '../../../library';
 export declare type AudioPropsType = {
     className?: string;
     downloadFileName?: string;
+    duration?: number;
     mediaMetadata?: MediaMetadataInit;
     onDidMount?: (audioNode: HTMLAudioElement | null) => void;
+    preload?: AudioPreloadValueType;
     src: string;
     useRepeatButton?: boolean;
 };
