@@ -29,7 +29,7 @@ const audioDataList: Array<TrackType> = [
             ],
             title: 'Lesser Faith',
         },
-        preload: 'none',
+        preload: 'auto',
         src: lesserFaith,
     },
     {
@@ -46,7 +46,7 @@ const audioDataList: Array<TrackType> = [
             ],
             title: 'World of Brothers (Allegretto)',
         },
-        preload: 'none',
+        preload: 'auto',
         src: brothersAllegretto,
     },
     {

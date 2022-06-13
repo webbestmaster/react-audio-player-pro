@@ -34,7 +34,7 @@ export function ExampleAudio(): JSX.Element {
             <Audio
                 duration={100}
                 mediaMetadata={singleAudioData.mediaMetadata}
-                preload="none"
+                preload="auto"
                 src={singleAudioData.src}
                 useRepeatButton
             />
