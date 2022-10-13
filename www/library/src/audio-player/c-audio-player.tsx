@@ -300,7 +300,7 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
                 ref={refAudio}
                 src={getCurrentTrackSrcAsString()}
                 // @ts-ignore
-                volume={trackVolume}
+                volume={trackVolume} // eslint-disable-line react/no-unknown-property
             >
                 <track kind="captions" src={getCurrentTrackSrcAsString()} />
             </audio>

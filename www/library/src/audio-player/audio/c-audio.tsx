@@ -192,7 +192,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
                 ref={refAudio}
                 src={src}
                 // @ts-ignore
-                volume={trackVolume}
+                volume={trackVolume} // eslint-disable-line react/no-unknown-property
             >
                 <track kind="captions" src={src} />
             </audio>
