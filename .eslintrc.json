@@ -66,7 +66,7 @@
                 "default": "generic"
             }
         ],
-        "@typescript-eslint/ban-ts-comment": 0,
+        "@typescript-eslint/ban-ts-comment": 1,
         "@typescript-eslint/naming-convention": [
             "error",
             {
@@ -95,7 +95,7 @@
                 "hoist": "all"
             }
         ],
-        "@typescript-eslint/no-unused-vars": 1,
+        "@typescript-eslint/no-unused-vars": [1, { "varsIgnorePattern": "[iI]gnored" }],
         "@typescript-eslint/no-use-before-define": 2,
         "promise/always-return": 0,
         "unicorn/prefer-node-protocol": 0,
@@ -254,7 +254,7 @@
         "no-console": 0,
         "no-empty-label": 0,
         "no-warning-comments": 0,
-        "no-unused-vars": 1,
+        "no-unused-vars": [1, { "varsIgnorePattern": "[iI]gnored" }],
         "consistent-this": 2,
         "no-inline-comments": 0,
         "no-ternary": 0,

@@ -1,5 +1,5 @@
 /// <reference types="react" />
-declare type PropsType = Readonly<{
+type PropsType = Readonly<{
     ariaLabel: string;
     className?: string;
     isDisable?: boolean;

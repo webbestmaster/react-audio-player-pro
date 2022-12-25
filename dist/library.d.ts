@@ -1,15 +1,15 @@
 /// <reference types="react" />
-export declare type PlayerPlayingStateType = 'paused' | 'playing' | 'stopped';
-export declare type PlayerRepeatingStateType = 'all' | 'none' | 'one';
-export declare type AudioPreloadValueType = 'auto' | 'metadata' | 'none';
-export declare type TrackType = Readonly<{
+export type PlayerPlayingStateType = 'paused' | 'playing' | 'stopped';
+export type PlayerRepeatingStateType = 'all' | 'none' | 'one';
+export type AudioPreloadValueType = 'auto' | 'metadata' | 'none';
+export type TrackType = Readonly<{
     content?: JSX.Element | string;
     duration?: number;
     mediaMetadata?: MediaMetadataInit;
     preload?: AudioPreloadValueType;
     src: string;
 }>;
-export declare type SavedTrackType = Readonly<{
+export type SavedTrackType = Readonly<{
     content?: string;
     duration?: number;
     id: string;
@@ -17,14 +17,14 @@ export declare type SavedTrackType = Readonly<{
     preload?: AudioPreloadValueType;
     src: string;
 }>;
-export declare type DefaultAudioPlayerStateType = Readonly<{
+export type DefaultAudioPlayerStateType = Readonly<{
     activeIndex?: number;
     isMuted?: boolean;
     isShuffleOn?: boolean;
     isTrackListOpen?: boolean;
     repeatingState?: PlayerRepeatingStateType;
 }>;
-export declare type DefaultDefinedAudioPlayerStateType = Readonly<{
+export type DefaultDefinedAudioPlayerStateType = Readonly<{
     activeIndex: number;
     isMuted: boolean;
     isShuffleOn: boolean;

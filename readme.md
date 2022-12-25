@@ -1,11 +1,17 @@
 # React Audio Player Pro
 
-[comment]: <> ([![Build Status]&#40;https://travis-ci.org/webbestmaster/react-audio-player-pro.svg?branch=master&#41;]&#40;https://travis-ci.org/github/webbestmaster/react-audio-player-pro&#41;)
 [![GitHub license](https://img.shields.io/npm/l/react-audio-player-pro)](https://github.com/webbestmaster/react-audio-player-pro/blob/master/license)
 [![npm version](https://img.shields.io/npm/v/react-audio-player-pro.svg?style=flat)](https://www.npmjs.com/package/react-audio-player-pro)
+![Known Vulnerabilities](https://snyk.io/test/github/webbestmaster/react-audio-player-pro/badge.svg)
+[![Github CI](https://github.com/webbestmaster/react-audio-player-pro/actions/workflows/github-ci.yml/badge.svg)](https://github.com/webbestmaster/react-audio-player-pro/actions/workflows/github-ci.yml)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/webbestmaster/react-audio-player-pro/github-ci.yml)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-audio-player-pro)
-[![GitHub stars](https://img.shields.io/github/stars/webbestmaster/react-audio-player-pro?style=social&maxAge=2592000)](https://github.com/webbestmaster/react-audio-player-pro/)
-
+![node-current](https://img.shields.io/node/v/react-audio-player-pro)
+[![Website](https://img.shields.io/website?url=http%3A%2F%2Fwebbestmaster.github.io%2F)](https://webbestmaster.github.io/)
+![npm type definitions](https://img.shields.io/npm/types/react-audio-player-pro)
+[![GitHub stars](https://img.shields.io/github/stars/webbestmaster/react-audio-player-pro?style=social)](https://github.com/webbestmaster/react-audio-player-pro/)
+<!-- ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/webbestmaster/react-audio-player-pro) -->
+<!-- [![codecov](https://codecov.io/gh/webbestmaster/react-audio-player-pro/branch/master/graph/badge.svg?token=X5SNICUPUQ)](https://codecov.io/gh/webbestmaster/react-audio-player-pro) -->
 
 **[Live demo](http://webbestmaster.github.io/react-audio-player-pro)**
 
@@ -212,3 +218,6 @@ export function PlayListProvider() {
 }
 ```
 
+## License
+
+See [license](license).

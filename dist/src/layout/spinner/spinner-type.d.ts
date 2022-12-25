@@ -1,1 +1,1 @@
-export declare type PositionType = 'absolute' | 'fixed' | 'relative' | 'static';
+export type PositionType = 'absolute' | 'fixed' | 'relative' | 'static';

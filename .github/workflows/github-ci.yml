@@ -1,0 +1,41 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Github CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [latest]
+#        node-version: [16.x, 18.x, latest]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+#    - run: npm i @types/react
+#    - run: npm i @types/react-dom
+    - run: npm i -D react
+    - run: npm i -D react-dom
+    - run: npm i -D markdown-pro
+    - run: npm install
+
+    - run: npm run front:build
+    - run: npm run front:build-library
+    - run: npm run check
+    - run: npm run test:unit
+#    - name: Upload coverage to Codecov
+#      uses: codecov/codecov-action@v3

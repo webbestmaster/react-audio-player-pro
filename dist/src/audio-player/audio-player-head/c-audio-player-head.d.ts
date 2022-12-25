@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { PlayerPlayingStateType, PlayerRepeatingStateType } from '../../../library';
-declare type PropsType = Readonly<{
+type PropsType = Readonly<{
     isLoading: boolean;
     isMuted: boolean;
     isShuffleOn: boolean;

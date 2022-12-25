@@ -1,4 +1,6 @@
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+
+// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const {isDevelopment} = require('./../config');

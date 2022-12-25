@@ -1,1 +1,1 @@
-export declare type MediaMetadataControlSettingType = Readonly<Partial<Record<MediaSessionAction, MediaSessionActionHandler>>>;
+export type MediaMetadataControlSettingType = Readonly<Partial<Record<MediaSessionAction, MediaSessionActionHandler>>>;

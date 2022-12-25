@@ -1,4 +1,4 @@
-declare type TrackHumanTimeType = Readonly<{
+type TrackHumanTimeType = Readonly<{
     minutes: string;
     seconds: string;
 }>;

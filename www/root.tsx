@@ -7,8 +7,8 @@ import {App} from './component/app/app';
 
 const nodeWrapper = document.querySelector(selector.appWrapper);
 
-if (nodeWrapper !== null) {
-    createRoot(nodeWrapper).render(<App />);
-} else {
+if (nodeWrapper === null) {
     console.error('Can not find nodeWrapper');
+} else {
+    createRoot(nodeWrapper).render(<App />);
 }

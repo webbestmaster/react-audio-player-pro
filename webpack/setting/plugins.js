@@ -24,11 +24,16 @@ const definePluginParameters = {
 };
 
 const staticFilesSiteList = [
-    {
-        from: './www/favicon.ico',
-        to: filePathPrefix + 'favicon.ico',
-    },
-];
+    'favicon.ico',
+    // 'robots.txt',
+    // 'ads.txt',
+    // 'gss-0.9.xsl',
+    // 'manifest.json',
+    // 'index-500.html',
+].map(fileName => ({
+    from: `./www/${fileName}`,
+    to: `${filePathPrefix}${fileName}`,
+}));
 
 const pluginList = [
     new CircularDependencyPlugin({exclude: /node_modules/}),

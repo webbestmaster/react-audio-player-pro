@@ -1,9 +1,9 @@
 import { SavedTrackType } from '../../../library';
-export declare type PlayListType = Readonly<{
+export type PlayListType = Readonly<{
     name: string;
     trackList: Array<SavedTrackType>;
 }>;
-export declare type PlayListContextType = Readonly<{
+export type PlayListContextType = Readonly<{
     createPlayList: () => PlayListType;
     deletePlayList: (playList: PlayListType) => Error | null;
     getAllPlayLists: () => Array<PlayListType>;

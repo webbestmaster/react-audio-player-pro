@@ -16,7 +16,7 @@ const isBack = process.env.SIDE === 'back';
 const isServerProdBuild = process.env.IS_SERVER_PROD_BUILD === 'true';
 const isTsTranspileOnly = process.env.TS_TRANSPILE_ONLY === 'true';
 
-module.exports.fileRegExp = /\.(webp|png|jpg|jpeg|gif|otf|ttf|woff|woff2|eot|mp3)$/;
+module.exports.fileRegExp = /\.(svg|webp|png|jpg|jpeg|gif|otf|ttf|woff|woff2|eot|mp3)$/;
 
 module.exports.pathToStaticFileFolder = pathToStaticFileFolder;
 

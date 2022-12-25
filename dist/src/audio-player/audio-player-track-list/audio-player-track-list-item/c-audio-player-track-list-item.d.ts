@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { PlayerPlayingStateType, TrackType } from '../../../../library';
-declare type PropsType = Readonly<{
+type PropsType = Readonly<{
     activeIndex: number;
     isCurrentTrack: boolean;
     isLoading: boolean;

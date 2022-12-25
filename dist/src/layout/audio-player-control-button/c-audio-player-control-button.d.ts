@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { AudioPlayerControlTagNameType } from './audio-player-control-button-type';
-declare type PropsType = Readonly<{
+type PropsType = Readonly<{
     ariaLabel: string;
     className?: string;
     hasBorder?: boolean;

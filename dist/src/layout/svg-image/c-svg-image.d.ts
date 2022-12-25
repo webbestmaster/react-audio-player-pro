@@ -1,5 +1,5 @@
 /// <reference types="react" />
-declare type PropsType = Readonly<{
+type PropsType = Readonly<{
     className: string;
     imageId: string;
 }>;

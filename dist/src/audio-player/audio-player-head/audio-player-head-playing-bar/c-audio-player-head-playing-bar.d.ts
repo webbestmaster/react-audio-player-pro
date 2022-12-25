@@ -1,5 +1,5 @@
 /// <reference types="react" />
-declare type PropsType = Readonly<{
+type PropsType = Readonly<{
     isMuted: boolean;
     onChangeProgressBar: (progress: number) => void;
     onChangeVolumeBar: (volume: number) => void;

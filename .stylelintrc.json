@@ -8,6 +8,7 @@
     ],
     "customSyntax": "postcss-scss",
     "rules": {
+        "import-notation": "string",
         "indentation": 4,
         "selector-pseudo-element-colon-notation": "single",
         "max-nesting-depth": 2,

@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { AudioPreloadValueType } from '../../../library';
-export declare type AudioPropsType = {
+export type AudioPropsType = {
     className?: string;
     downloadFileName?: string;
     duration?: number;

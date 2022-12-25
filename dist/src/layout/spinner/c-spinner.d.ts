@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { PositionType } from './spinner-type';
-declare type PropsType = Readonly<{
+type PropsType = Readonly<{
     arcColor?: string;
     circleColor?: string;
     className?: string;

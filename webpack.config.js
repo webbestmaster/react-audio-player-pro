@@ -9,6 +9,7 @@ const {alias} = require('./webpack/setting/resolve/alias');
 const {extensions} = require('./webpack/setting/resolve/extensions');
 const {plugins} = require('./webpack/setting/plugins');
 const {devServer} = require('./webpack/setting/dev-server');
+const {watchOptions} = require('./webpack/setting/watch-options');
 
 const {
     pathToStaticFileFolder,
@@ -24,7 +25,12 @@ const {
 } = require('./webpack/config');
 
 const configFront = {
-    entry: ['./www/css/root.scss', 'markdown-pro/dist/style.css', './www/root.tsx'],
+    entry: [
+        './www/css/root.scss',
+        // 'markdown-pro/dist/style.css',
+        // 'react-audio-player-pro/dist/style.css',
+        './www/root.tsx',
+    ],
     output: {
         pathinfo: false,
         path: path.join(cwd, pathToDist),
@@ -37,20 +43,21 @@ const configFront = {
     },
 
     mode: nodeEnvironment,
-    devtool: isDevelopment ? 'source-map' : false,
+    devtool: 'source-map', // isDevelopment ? 'source-map' : false,
     optimization,
     module: {rules},
     resolve: {alias, extensions},
     plugins,
     devServer,
+    watchOptions,
 };
 
 const configBack = {
     ...configFront,
     entry: ['./server/server.tsx'],
-    optimization: isServerProdBuild ? optimization : {minimize: false},
+    optimization: {minimize: false}, // isServerProdBuild ? optimization : {minimize: false},
     target: 'node',
-    devtool: isServerProdBuild ? false : 'source-map',
+    devtool: 'source-map', // isServerProdBuild ? false : 'source-map',
     externalsPresets,
     externals,
 };
@@ -74,6 +81,7 @@ const configLibraryFront = {
     devServer,
     externalsPresets,
     externals,
+    watchOptions,
 
     /*
     externals: {

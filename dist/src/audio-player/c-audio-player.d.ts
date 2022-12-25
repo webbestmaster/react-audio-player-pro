@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { DefaultAudioPlayerStateType, TrackType } from '../../library';
-export declare type AudioPlayerPropsType = Readonly<{
+export type AudioPlayerPropsType = Readonly<{
     className?: string;
     defaultState?: DefaultAudioPlayerStateType;
     onDidMount?: (audioNode: HTMLAudioElement | null) => void;
