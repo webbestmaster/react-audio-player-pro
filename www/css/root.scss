@@ -1,4 +1,4 @@
-/* stylelint-disable selector-pseudo-class-no-unknown */
+/* stylelint-disable selector-pseudo-class-no-unknown, selector-no-qualifying-type */
 
 $main-font-family: 'Helvetica Neue', helvetica, arial, sans-serif;
 $main-font-family-monospace: 'Lucida Console', 'Monaco', monospace;
@@ -61,5 +61,9 @@ body {
 
     .example-wrapper {
         padding-bottom: 80px;
+    }
+
+    div.md-pro {
+        background-color: transparent;
     }
 }

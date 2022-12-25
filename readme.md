@@ -7,13 +7,13 @@
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/webbestmaster/react-audio-player-pro/github-ci.yml)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-audio-player-pro)
 ![node-current](https://img.shields.io/node/v/react-audio-player-pro)
-[![Website](https://img.shields.io/website?url=http%3A%2F%2Fwebbestmaster.github.io%2F)](https://webbestmaster.github.io/)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fwebbestmaster.github.io%2Freact-audio-player-pro%2F)](https://webbestmaster.github.io/react-audio-player-pro/)
 ![npm type definitions](https://img.shields.io/npm/types/react-audio-player-pro)
 [![GitHub stars](https://img.shields.io/github/stars/webbestmaster/react-audio-player-pro?style=social)](https://github.com/webbestmaster/react-audio-player-pro/)
 <!-- ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/webbestmaster/react-audio-player-pro) -->
 <!-- [![codecov](https://codecov.io/gh/webbestmaster/react-audio-player-pro/branch/master/graph/badge.svg?token=X5SNICUPUQ)](https://codecov.io/gh/webbestmaster/react-audio-player-pro) -->
 
-**[Live demo](http://webbestmaster.github.io/react-audio-player-pro)**
+**[Live demo](https://webbestmaster.github.io/react-audio-player-pro)**
 
 
 ## Install
