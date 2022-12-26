@@ -13,6 +13,8 @@
 <!-- ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/webbestmaster/react-audio-player-pro) -->
 <!-- [![codecov](https://codecov.io/gh/webbestmaster/react-audio-player-pro/branch/master/graph/badge.svg?token=X5SNICUPUQ)](https://codecov.io/gh/webbestmaster/react-audio-player-pro) -->
 
+React Audio Player Pro provides: single audio, playlist and playlist provider.
+
 **[Live demo](https://webbestmaster.github.io/react-audio-player-pro)**
 
 

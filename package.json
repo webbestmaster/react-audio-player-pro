@@ -14,19 +14,16 @@
     "email": "web.best.master@gmail.com"
   },
   "version": "1.2.4",
-  "description": "React Audio Player Pro",
+  "description": "React Audio Player Pro provides: single audio, playlist and playlist provider",
   "keywords": [
-    "react",
     "audio",
+    "music",
     "player",
-    "react-audio-player",
-    "react-audio-player-pro",
-    "track list",
-    "play list",
-    "typescript",
-    "ts",
-    "flow",
-    "flowjs"
+    "list",
+    "track",
+    "tracklist",
+    "playlist",
+    "react"
   ],
   "main": "dist/index.js",
   "types": "dist/library.d.ts",
