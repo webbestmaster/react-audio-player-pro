@@ -16,6 +16,5 @@ COPY .\..\typescript-project\license .\
 COPY .\..\typescript-project\tsconfig.dev.json .\
 COPY .\..\typescript-project\tsconfig.json .\
 COPY .\..\typescript-project\tsconfig.library.json .\
-COPY .\..\typescript-project\tsconfig.test.json .\
 COPY .\..\typescript-project\webpack.config.js .\
 XCOPY .\..\typescript-project\webpack .\webpack\ /e /y

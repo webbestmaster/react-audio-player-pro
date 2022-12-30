@@ -95,16 +95,16 @@
                 "hoist": "all"
             }
         ],
-        "@typescript-eslint/no-unused-vars": [1, { "varsIgnorePattern": "[iI]gnored" }],
+        "@typescript-eslint/no-unused-vars": [2, { "varsIgnorePattern": "[iI]gnored" }],
         "@typescript-eslint/no-use-before-define": 2,
         "promise/always-return": 0,
-        "unicorn/prefer-node-protocol": 0,
+        "unicorn/prefer-node-protocol": 2,
         "unicorn/no-array-callback-reference": 0,
         "unicorn/no-array-for-each": 0,
-        "unicorn/filename-case": 0,
+        "unicorn/filename-case": 2,
         "unicorn/no-array-reduce": 0,
         "unicorn/no-null": 0,
-        "unicorn/no-fn-reference-in-iterator": 0,
+        "unicorn/no-fn-reference-in-iterator": 2,
         "unicorn/prevent-abbreviations": [
             2,
             {
@@ -131,15 +131,17 @@
                     "single"
                 ],
         */
-        "babel/quotes": "off",
+        "babel/quotes": [2,
+            "single"
+        ],
         "babel/semi": 2,
         "babel/no-unused-expressions": 2,
         "babel/valid-typeof": 2,
         // deprecated
         "jsx-a11y/label-has-for": 0,
-        "jsx-a11y/no-access-key": 0,
-        "jsx-a11y/no-autofocus": 0,
-        "jsx-a11y/no-onchange": 0,
+        "jsx-a11y/no-access-key": 2,
+        "jsx-a11y/no-autofocus": 2,
+        "jsx-a11y/no-onchange": 2,
         "filenames/no-index": 2,
         "filenames/match-regex": [
             2,
@@ -148,7 +150,7 @@
         ],
         "filenames/match-exported": 0,
         "import/no-named-as-default-member": 0,
-        "import/default": 0,
+        "import/default": 2,
         "import/no-unused-modules": 2,
         "import/no-useless-path-segments": 2,
         "import/no-default-export": 2,
@@ -169,10 +171,10 @@
         "no-loops/no-loops": 2,
         "optimize-regex/optimize-regex": 2,
         "no-use-extend-native/no-use-extend-native": 2,
-        "react/jsx-uses-react": 0,
+        "react/jsx-uses-react": 2,
         "react/react-in-jsx-scope": 0,
         "react/jsx-no-bind": 0,
-        "react/jsx-newline": "off",
+        "react/jsx-newline": 0,
         "react/jsx-filename-extension": [
             2,
             {
@@ -252,9 +254,8 @@
         ],
         "no-return-await": 2,
         "no-console": 0,
-        "no-empty-label": 0,
         "no-warning-comments": 0,
-        "no-unused-vars": [1, { "varsIgnorePattern": "[iI]gnored" }],
+        "no-unused-vars": [2, { "varsIgnorePattern": "[iI]gnored" }],
         "consistent-this": 2,
         "no-inline-comments": 0,
         "no-ternary": 0,
@@ -433,11 +434,12 @@
         "no-delete-var": 2,
         "no-label-var": 2,
         "no-shadow-restricted-names": 2,
+        // see @typescript-eslint/no-shadow
         "no-shadow": 0,
         "no-undef-init": 2,
         "no-undef": 2,
         "no-undefined": 2,
-        "no-use-before-define": 0,
+        "no-use-before-define": 2,
         "callback-return": 2,
         "handle-callback-err": [
             2,
@@ -655,8 +657,8 @@
             "avoid-escape"
         ],
         "id-match": [
-            0,
-            "^\\[a-zA-Z0-9\\$]+$",
+            2,
+            "^[a-zA-Z0-9$]+$|^[A-Z0-9_]+$",
             {
                 "onlyDeclarations": false,
                 "properties": true

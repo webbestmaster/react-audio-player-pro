@@ -6,7 +6,7 @@ import {classNames} from '../../lib/css';
 import {playerPlayingStateTypeMap, seekStepSecond} from '../audio-player-const';
 import {AudioPlayerControlButton} from '../../layout/audio-player-control-button/c-audio-player-control-button';
 import {Time} from '../../layout/time/c-time';
-import {AudioPreloadValueType, PlayerPlayingStateType} from '../../../library';
+import {AudioPreloadValueType, PlayerPlayingStateType, TrackType} from '../../../library';
 import {RangeBar} from '../../layout/range-bar/c-range-bar';
 import {setMediaMetadata} from '../../lib/media-meta-data/media-meta-data';
 import {getStopHandler} from '../audio-player-helper';
@@ -178,6 +178,8 @@ export function Audio(props: AudioPropsType): JSX.Element {
         }
     }, [onDidMount]);
 
+    const track: TrackType = mediaMetadata ? {mediaMetadata, src} : {src};
+
     return (
         <div className={classNames(audioStyle.audio, className)}>
             <audio
@@ -248,12 +250,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
                 />
             </a>
 
-            <PlayListMenuButton
-                track={{
-                    mediaMetadata,
-                    src,
-                }}
-            />
+            <PlayListMenuButton track={track} />
         </div>
     );
 }

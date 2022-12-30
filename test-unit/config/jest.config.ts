@@ -4,7 +4,7 @@ const config: Config = {
     bail: false, // true - stop after first failing test
     collectCoverage: true,
     errorOnDeprecated: true,
-    injectGlobals: true,
+    injectGlobals: false,
     maxConcurrency: 1,
     maxWorkers: 1,
     moduleNameMapper: {

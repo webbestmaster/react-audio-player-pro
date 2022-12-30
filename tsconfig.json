@@ -7,6 +7,9 @@
         "module": "es2020",
         "moduleResolution": "node",
 
+        "strict": true,
+        "alwaysStrict": true,
+        "emitDeclarationOnly": false,
         "noImplicitAny": true,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
@@ -15,7 +18,6 @@
         "noImplicitThis": true,
         "noImplicitReturns": true,
         "useDefineForClassFields": false,
-        "alwaysStrict": true,
         "allowUnreachableCode": true,
         "allowUnusedLabels": false,
         "downlevelIteration": false,
@@ -34,11 +36,9 @@
         "declaration": false,
         "experimentalDecorators": false,
         "useUnknownInCatchVariables": true,
-        // exactOptionalPropertyTypes is false cause React typing has non-suitable types
-        // TODO: exactOptionalPropertyTypes turn to true after React typing has been changed\fixed
-        "exactOptionalPropertyTypes": false,
+        "exactOptionalPropertyTypes": true,
         "emitDecoratorMetadata": false,
-        "sourceMap": true,
+        "sourceMap": true
     },
     "exclude": [
         "./dist/",
