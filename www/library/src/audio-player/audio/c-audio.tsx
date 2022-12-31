@@ -193,6 +193,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
                 preload={preload}
                 ref={refAudio}
                 src={src}
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 volume={trackVolume} // eslint-disable-line react/no-unknown-property
             >

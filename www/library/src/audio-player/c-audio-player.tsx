@@ -300,6 +300,7 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
                 preload="metadata"
                 ref={refAudio}
                 src={getCurrentTrackSrcAsString()}
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 volume={trackVolume} // eslint-disable-line react/no-unknown-property
             >
