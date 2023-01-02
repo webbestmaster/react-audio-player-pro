@@ -12,6 +12,7 @@
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/webbestmaster/react-audio-player-pro/github-ci.yml)](https://github.com/webbestmaster/react-audio-player-pro/actions/workflows/github-ci.yml)
 [![Type definitions](https://img.shields.io/npm/types/react-audio-player-pro)](https://www.typescriptlang.org)
 [![Website](https://img.shields.io/website?url=https://webbestmaster.github.io/react-audio-player-pro)](https://webbestmaster.github.io/react-audio-player-pro)
+[![Package Quality](https://packagequality.com/shield/react-audio-player-pro.svg)](https://packagequality.com/#?package=react-audio-player-pro)
 [![GitHub stars](https://img.shields.io/github/stars/webbestmaster/react-audio-player-pro?style=social)](https://github.com/webbestmaster/react-audio-player-pro)
 
 
