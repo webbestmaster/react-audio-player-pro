@@ -1,7 +1,6 @@
 # React Audio Player Pro
 
 [![GitHub license](https://img.shields.io/npm/l/react-audio-player-pro)](https://github.com/webbestmaster/react-audio-player-pro/blob/master/license)
-[![codecov](https://codecov.io/gh/webbestmaster/react-audio-player-pro/branch/master/graph/badge.svg)](https://codecov.io/gh/webbestmaster/react-audio-player-pro)
 [![npm version](https://img.shields.io/npm/v/react-audio-player-pro.svg)](https://www.npmjs.com/package/react-audio-player-pro)
 [![Known Vulnerabilities](https://snyk.io/test/github/webbestmaster/react-audio-player-pro/badge.svg)](https://snyk.io/test/github/webbestmaster/react-audio-player-pro)
 [![Dependency count](https://badgen.net/bundlephobia/dependency-count/react-audio-player-pro)](https://libraries.io/npm/react-audio-player-pro)
@@ -15,6 +14,10 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/webbestmaster/react-audio-player-pro/badge)](https://www.codefactor.io/repository/github/webbestmaster/react-audio-player-pro)
 [![Package Quality](https://packagequality.com/shield/react-audio-player-pro.svg)](https://packagequality.com/#?package=react-audio-player-pro)
 [![GitHub stars](https://img.shields.io/github/stars/webbestmaster/react-audio-player-pro?style=social)](https://github.com/webbestmaster/react-audio-player-pro)
+
+<!--
+[![codecov](https://codecov.io/gh/webbestmaster/react-audio-player-pro/branch/master/graph/badge.svg)](https://codecov.io/gh/webbestmaster/react-audio-player-pro)
+-->
 
 
 React Audio Player Pro provides: single audio, playlist and playlist provider.
