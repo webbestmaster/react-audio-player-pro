@@ -6,7 +6,6 @@
         "stylelint-config-standard",
         "stylelint-config-sass-guidelines"
     ],
-    "customSyntax": "postcss-scss",
     "rules": {
         "import-notation": "string",
         "indentation": 4,

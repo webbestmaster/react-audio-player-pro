@@ -4,7 +4,6 @@
 [![npm version](https://img.shields.io/npm/v/react-audio-player-pro.svg)](https://www.npmjs.com/package/react-audio-player-pro)
 [![Known Vulnerabilities](https://snyk.io/test/github/webbestmaster/react-audio-player-pro/badge.svg)](https://snyk.io/test/github/webbestmaster/react-audio-player-pro)
 [![Dependency count](https://badgen.net/bundlephobia/dependency-count/react-audio-player-pro)](https://libraries.io/npm/react-audio-player-pro)
-[![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/webbestmaster/react-audio-player-pro)](https://libraries.io/npm/react-audio-player-pro)
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-audio-player-pro)](https://bundlephobia.com/package/react-audio-player-pro)
 [![nodejs version](https://img.shields.io/node/v/react-audio-player-pro)](https://nodejs.org/en/docs)
 [![Github CI](https://github.com/webbestmaster/react-audio-player-pro/actions/workflows/github-ci.yml/badge.svg)](https://github.com/webbestmaster/react-audio-player-pro/actions/workflows/github-ci.yml)
@@ -17,6 +16,7 @@
 
 <!--
 [![codecov](https://codecov.io/gh/webbestmaster/react-audio-player-pro/branch/master/graph/badge.svg)](https://codecov.io/gh/webbestmaster/react-audio-player-pro)
+[![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/webbestmaster/react-audio-player-pro)](https://libraries.io/npm/react-audio-player-pro)
 -->
 
 
