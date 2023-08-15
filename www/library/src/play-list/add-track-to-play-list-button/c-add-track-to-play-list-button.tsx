@@ -4,7 +4,7 @@
 
 import {useCallback, useContext, useState, SyntheticEvent} from 'react';
 
-import {classNames} from '../../lib/css';
+import {cls} from '../../lib/css';
 import {PlayListContext} from '../../provider/play-list/play-list-context';
 import {SavedTrackType, TrackType} from '../../../library';
 import {isTracksEquals} from '../../provider/play-list/play-list-context-helper';
@@ -15,14 +15,16 @@ import {AudioPlayerControlButton} from '../../layout/audio-player-control-button
 
 import addTrackToPlayListButtonStyle from './add-track-to-play-list-button.scss';
 
-type PropsType = Readonly<{
-    className?: string;
-    track: TrackType;
-}>;
+interface PropsType {
+    // eslint-disable-next-line unicorn/no-keyword-prefix
+    readonly className?: string;
+    readonly track: TrackType;
+}
 
 export function PlayListMenuButton(props: PropsType): JSX.Element | null {
+    // eslint-disable-next-line unicorn/no-keyword-prefix
     const {className, track} = props;
-    const fullClassName = classNames(addTrackToPlayListButtonStyle.add_track_to_play_list_button, className);
+    const fullClassName = cls(addTrackToPlayListButtonStyle.add_track_to_play_list_button, className);
     const playListContextData = useContext(PlayListContext);
     const [selectKey, setSelectKey] = useState<number>(0);
     const {
@@ -36,12 +38,11 @@ export function PlayListMenuButton(props: PropsType): JSX.Element | null {
 
     const handleAddTrack = useCallback(
         // eslint-disable-next-line max-statements, complexity
-        function handleAddTrackInner(evt: SyntheticEvent<HTMLSelectElement>) {
+        (evt: SyntheticEvent<HTMLSelectElement>) => {
             const selectNode = evt.currentTarget;
             const listIndex = Number.parseInt(selectNode.value, 10);
-            const playList = listOfPlayList[listIndex];
+            const playList = listOfPlayList.at(listIndex);
             const {src, mediaMetadata, content, preload, duration} = track;
-            // const content = getTrackContentAsString(track);
 
             setSelectKey(selectKey + 1);
 
@@ -92,11 +93,11 @@ export function PlayListMenuButton(props: PropsType): JSX.Element | null {
                 };
             }
 
-            const newTrackList: Array<SavedTrackType> = [trackToSave, ...playList.trackList];
+            const updatedTrackList: Array<SavedTrackType> = [trackToSave, ...playList.trackList];
 
             updatePlayList(playList, {
                 ...playList,
-                trackList: newTrackList,
+                trackList: updatedTrackList,
             });
 
             selectNode.value = defaultSelectValue;
@@ -127,13 +128,13 @@ export function PlayListMenuButton(props: PropsType): JSX.Element | null {
                 </option>
 
                 {listOfPlayList.map((playList: PlayListType, index: number): JSX.Element => {
-                    const isTrackExistsInPlayList = playList.trackList.find((savedTrack: SavedTrackType): boolean =>
-                        isTracksEquals(savedTrack, track)
-                    );
+                    const isTrackExistsInPlayList = playList.trackList.find((savedTrack: SavedTrackType): boolean => {
+                        return isTracksEquals(savedTrack, track);
+                    });
 
                     const name = playList.name.trim() || noNamePlayListName;
                     const actionSign = isTrackExistsInPlayList ? '[✓]' : '[_]';
-                    const text = actionSign + ' ' + name;
+                    const text = `${actionSign} ${name}`;
 
                     return (
                         <option key={String(index) + name} value={index}>

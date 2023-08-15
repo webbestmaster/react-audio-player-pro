@@ -1,18 +1,20 @@
 import {getProgressHumanTime} from '../../lib/time';
-import {classNames} from '../../lib/css';
+import {cls} from '../../lib/css';
 
 import timeStyle from './time.scss';
 
-type PropsType = Readonly<{
-    className?: string;
-    currentTime: number;
-    fullTime: number;
-}>;
+interface PropsType {
+    // eslint-disable-next-line unicorn/no-keyword-prefix
+    readonly className?: string;
+    readonly currentTime: number;
+    readonly fullTime: number;
+}
 
 export function Time(props: PropsType): JSX.Element {
+    // eslint-disable-next-line unicorn/no-keyword-prefix
     const {currentTime, fullTime, className} = props;
 
-    const fullClassName = classNames(timeStyle.time, className);
+    const fullClassName = cls(timeStyle.time, className);
     const timeProgress = getProgressHumanTime(currentTime, fullTime);
 
     return <span className={fullClassName}>{timeProgress}</span>;

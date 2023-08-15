@@ -4,13 +4,14 @@
 
 import {useRef, useState} from 'react';
 
-import {classNames} from '../../lib/css';
+import {cls} from '../../lib/css';
 
 import rangeBarStyle from './range-bar.scss';
 import {inputData} from './range-bar-const';
 
 type PropsType = Readonly<{
     ariaLabel: string;
+    // eslint-disable-next-line unicorn/no-keyword-prefix
     className?: string;
     isDisable?: boolean;
     isHideForNarrow?: boolean;
@@ -21,6 +22,7 @@ type PropsType = Readonly<{
 export function RangeBar(props: PropsType): JSX.Element {
     const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement | null>(null);
+    // eslint-disable-next-line unicorn/no-keyword-prefix
     const {className, isDisable, progress, onChange, ariaLabel, isHideForNarrow} = props;
 
     function getCurrentValue(): number {
@@ -45,7 +47,7 @@ export function RangeBar(props: PropsType): JSX.Element {
         onChange(getCurrentValue());
     }
 
-    const fullClassName = classNames(rangeBarStyle.range_bar, className, {
+    const fullClassName = cls(rangeBarStyle.range_bar, className, {
         [rangeBarStyle.wrapper__active]: isMouseDown,
         [rangeBarStyle.wrapper__disable]: isDisable === true,
         [rangeBarStyle.range_bar__hide_for_narrow]: isHideForNarrow,

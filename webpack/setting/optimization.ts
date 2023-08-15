@@ -1,7 +1,7 @@
 import {Configuration} from 'webpack';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
-// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+// ignored const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 import TerserPlugin from 'terser-webpack-plugin';
 
 import {isDevelopment} from '../config';
@@ -25,7 +25,7 @@ const optimizationDevelopment: Configuration['optimization'] = {
                 name: 'assets',
                 priority: -26,
                 reuseExistingChunk: true,
-                test: /www\/assets/,
+                test: /www\/assets/u,
             },
             // eslint-disable-next-line sort-keys
             util: {
@@ -33,7 +33,7 @@ const optimizationDevelopment: Configuration['optimization'] = {
                 name: 'util',
                 priority: -25,
                 reuseExistingChunk: true,
-                test: /www\/util/,
+                test: /www\/util/u,
             },
             // eslint-disable-next-line sort-keys
             page: {
@@ -41,7 +41,7 @@ const optimizationDevelopment: Configuration['optimization'] = {
                 name: 'page',
                 priority: -24,
                 reuseExistingChunk: true,
-                test: /www\/page/,
+                test: /www\/page/u,
             },
             // eslint-disable-next-line sort-keys
             layout: {
@@ -49,7 +49,7 @@ const optimizationDevelopment: Configuration['optimization'] = {
                 name: 'layout',
                 priority: -23,
                 reuseExistingChunk: true,
-                test: /www\/layout/,
+                test: /www\/layout/u,
             },
             // eslint-disable-next-line sort-keys
             provider: {
@@ -57,7 +57,7 @@ const optimizationDevelopment: Configuration['optimization'] = {
                 name: 'provider',
                 priority: -22,
                 reuseExistingChunk: true,
-                test: /www\/provider/,
+                test: /www\/provider/u,
             },
             // eslint-disable-next-line sort-keys
             service: {
@@ -65,7 +65,7 @@ const optimizationDevelopment: Configuration['optimization'] = {
                 name: 'service',
                 priority: -21,
                 reuseExistingChunk: true,
-                test: /www\/service/,
+                test: /www\/service/u,
             },
 
             // eslint-disable-next-line sort-keys
@@ -74,22 +74,15 @@ const optimizationDevelopment: Configuration['optimization'] = {
                 name: 'style',
                 priority: -20,
                 reuseExistingChunk: true,
-                test: /\.s?css$/,
+                test: /\.s?css$/u,
             },
-            // files: {
-            //     chunks: 'all',
-            //     name: 'files',
-            //     priority: -15,
-            //     test: fileRegExp,
-            //     reuseExistingChunk: true,
-            // },
             // eslint-disable-next-line sort-keys
             vendor: {
                 chunks: 'all',
                 name: 'vendor',
                 priority: -10,
                 reuseExistingChunk: true,
-                test: /node_modules/,
+                test: /node_modules/u,
             },
         },
     },

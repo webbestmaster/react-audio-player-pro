@@ -2,7 +2,7 @@
 
 import {useRef, useState} from 'react';
 
-import {classNames} from '../../../lib/css';
+import {cls} from '../../../lib/css';
 import {PlayerPlayingStateType, TrackType} from '../../../../library';
 import {playerPlayingStateTypeMap} from '../../audio-player-const';
 import {SvgImage} from '../../../layout/svg-image/c-svg-image';
@@ -38,7 +38,8 @@ export function AudioPlayerTrackListItem(props: PropsType): JSX.Element {
 
     const spinner = <Spinner isShow={isLoading} lineWidth={4} position="absolute" size={30} wrapperPadding={0} />;
 
-    const className = classNames(audioPlayerTrackListItemStyle.audio_player_track_list_item, {
+    // eslint-disable-next-line unicorn/no-keyword-prefix
+    const className = cls(audioPlayerTrackListItemStyle.audio_player_track_list_item, {
         [audioPlayerTrackListItemStyle.audio_player_track_list_item__active]: isCurrentTrack,
     });
 
@@ -67,8 +68,8 @@ export function AudioPlayerTrackListItem(props: PropsType): JSX.Element {
     }
 
     function renderButton(): JSX.Element {
-        const playImageId = '#' + audioPlayerIconIdPrefix + 'button-play';
-        const pauseImageId = '#' + audioPlayerIconIdPrefix + 'button-pause-playlist';
+        const playImageId = `#${audioPlayerIconIdPrefix}button-play`;
+        const pauseImageId = `#${audioPlayerIconIdPrefix}button-pause-playlist`;
         const accessibleName = 'play';
 
         if (playingState === playerPlayingStateTypeMap.playing) {
@@ -130,6 +131,7 @@ export function AudioPlayerTrackListItem(props: PropsType): JSX.Element {
     }
 
     return (
+        // eslint-disable-next-line unicorn/no-keyword-prefix
         <li className={className}>
             <audio
                 className={audioPlayerTrackListItemStyle.audio_tag}

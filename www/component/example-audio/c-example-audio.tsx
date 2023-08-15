@@ -4,12 +4,12 @@ import {Markdown} from '../layout/c-markdown';
 
 import exampleAudio from './example-audio.md';
 
-const meydnPureWater = demoUrl + '/audio-file/meydn-pure-water.mp3';
+const meydnPureWater = `${demoUrl}/audio-file/meydn-pure-water.mp3`;
 
-const icon64 = demoUrl + '/image-file/react-icon-64.png';
-const icon128 = demoUrl + '/image-file/react-icon-128.png';
-const icon256 = demoUrl + '/image-file/react-icon-256.png';
-const icon512 = demoUrl + '/image-file/react-icon-512.png';
+const icon64 = `${demoUrl}/image-file/react-icon-64.png`;
+const icon128 = `${demoUrl}/image-file/react-icon-128.png`;
+const icon256 = `${demoUrl}/image-file/react-icon-256.png`;
+const icon512 = `${demoUrl}/image-file/react-icon-512.png`;
 
 export function ExampleAudio(): JSX.Element {
     const singleAudioData = {

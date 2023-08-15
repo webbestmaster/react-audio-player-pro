@@ -20,6 +20,7 @@ import {getDefaultState, getStopHandler} from './audio-player-helper';
 import audioPlayerStyle from './audio-player.scss';
 
 export type AudioPlayerPropsType = Readonly<{
+    // eslint-disable-next-line unicorn/no-keyword-prefix
     className?: string;
     defaultState?: DefaultAudioPlayerStateType;
     onDidMount?: (audioNode: HTMLAudioElement | null) => void;
@@ -28,10 +29,11 @@ export type AudioPlayerPropsType = Readonly<{
 
 // eslint-disable-next-line complexity, max-statements, sonarjs/cognitive-complexity
 export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
+    // eslint-disable-next-line unicorn/no-keyword-prefix
     const {defaultState, className, onDidMount, trackList} = props;
 
     const defaultDefinedState = getDefaultState(defaultState);
-    const duration: number = trackList[0]?.duration || 0;
+    const duration: number = trackList.at(0)?.duration ?? 0;
 
     const [trackCurrentTime, setTrackCurrentTime] = useState<number>(0);
     const [trackFullTime, setTrackFullTime] = useState<number>(duration);
@@ -74,8 +76,8 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
         return getTrackByIndex(activeIndex);
     }
 
-    function setActiveTrackIndex(newActiveIndex: number) {
-        setActiveIndex(newActiveIndex);
+    function setActiveTrackIndex(updatedActiveIndex: number) {
+        setActiveIndex(updatedActiveIndex);
         setIsLoadingMetadata(true);
         setTrackCurrentTime(0);
         setTrackFullTime(0);
@@ -161,6 +163,7 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
         const audioTag = getAudioTag();
 
         if (audioTag.paused) {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             audioTag.play();
         } else {
             audioTag.pause();
@@ -200,13 +203,13 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
             return;
         }
 
-        // repeatingState === repeatNone, no last track
+        // The repeatingState === repeatNone, no last track
         if (activeIndex < trackListLength - 1) {
             handleClickNextTrack();
             return;
         }
 
-        // repeatingState === repeatNone, last track
+        // The repeatingState === repeatNone, last track
         setIsOnEndState(false);
         setActiveTrackIndex(0);
     }
@@ -277,6 +280,7 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
 
             audioTag.removeEventListener('canplay', handleOnCanPlay, false);
 
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             audioTag.play();
         }
 
@@ -284,7 +288,8 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
     }
 
     return (
-        <div className={className || ''}>
+        // eslint-disable-next-line unicorn/no-keyword-prefix
+        <div className={className ?? ''}>
             <audio
                 autoPlay={playingState === playerPlayingStateTypeMap.playing}
                 className={audioPlayerStyle.audio_tag}
@@ -300,7 +305,7 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
                 preload="metadata"
                 ref={refAudio}
                 src={getCurrentTrackSrcAsString()}
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
                 // @ts-ignore
                 volume={trackVolume} // eslint-disable-line react/no-unknown-property
             >

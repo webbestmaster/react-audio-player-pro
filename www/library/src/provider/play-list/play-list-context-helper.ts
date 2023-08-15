@@ -1,3 +1,5 @@
+/* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
+
 import {SavedTrackType, TrackType} from '../../../library';
 // import {extractText} from '../../lib/string';
 
@@ -11,17 +13,27 @@ export function getDefaultPlayListContextData(): PlayListContextType {
     };
 
     return {
-        createPlayList: (): PlayListType => defaultPlayList,
+        createPlayList: (): PlayListType => {
+            return defaultPlayList;
+        },
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-        deletePlayList: (playList: PlayListType): Error | null => new Error('deletePlayList: overwrite me'),
-        getAllPlayLists: (): Array<PlayListType> => [defaultPlayList],
+        deletePlayList: (playList: PlayListType): Error | null => {
+            return new Error('deletePlayList: overwrite me');
+        },
+        getAllPlayLists: (): Array<PlayListType> => {
+            return [defaultPlayList];
+        },
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-        getTrackById: (trackId: string): SavedTrackType | null => null,
+        getTrackById: (trackId: string): SavedTrackType | null => {
+            return null;
+        },
         isInitialized: false,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-        removeTrackById: (trackId: string): Error | null => new Error('removeTrack: overwrite me'),
+        removeTrackById: (trackId: string): Error | null => {
+            return new Error('removeTrack: overwrite me');
+        },
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-        updatePlayList: (oldPlayList: PlayListType, newListPlayData: PlayListType): Error | PlayListType => {
+        updatePlayList: (oldPlayList: PlayListType, updatedListPlayData: PlayListType): Error | PlayListType => {
             return new Error('updatePlayList: overwrite me');
         },
     };

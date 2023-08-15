@@ -1,3 +1,5 @@
+/* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
+
 // const openTagRegExp = /<\w[\S\s]*?>/g;
 // const closeTagRegExp = /<\/\w*?>/g;
 // const selfCloseTagRegExp = /<\w[\S\s]*?\/>/g;
@@ -27,5 +29,6 @@ function getRandomOne(): -1 | 1 {
 }
 
 export function getRandomStringBySize(size: number): string {
+    // eslint-disable-next-line newline-per-chained-call
     return Array.from({length: size}).map(getRandomString).sort(getRandomOne).join('').slice(0, size);
 }

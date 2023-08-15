@@ -1,56 +1,185 @@
 {
-    "compilerOptions": {
-        "outDir": "./tsc-check/",
+    // https://www.typescriptlang.org/tsconfig
 
-        "target": "es2019",
-        "jsx": "react-jsx",
-        "module": "es2020",
-        "moduleResolution": "node",
-
-        "strict": true,
-        "alwaysStrict": true,
-        "emitDeclarationOnly": false,
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        "strictFunctionTypes": true,
-        "strictPropertyInitialization": true,
-        "strictBindCallApply": true,
-        "noImplicitThis": true,
-        "noImplicitReturns": true,
-        "useDefineForClassFields": false,
-        "allowUnreachableCode": true,
-        "allowUnusedLabels": false,
-        "downlevelIteration": false,
-        "noEmitHelpers": false,
-        "noEmit": false,
-        "noLib": false,
-        "noStrictGenericChecks": false,
-        "noUnusedLocals": false,
-        "noUnusedParameters": false,
-        "esModuleInterop": true,
-        "preserveConstEnums": true,
-        "removeComments": false,
-        "skipLibCheck": true,
-        "checkJs": false,
-        "allowJs": true,
-        "declaration": false,
-        "experimentalDecorators": false,
-        "useUnknownInCatchVariables": true,
-        "exactOptionalPropertyTypes": true,
-        "emitDecoratorMetadata": false,
-        "sourceMap": true
-    },
-    "ts-node": {
-        "compilerOptions": {
-            "module": "CommonJS",
-            "exactOptionalPropertyTypes": false,
-        }
-    },
+    // "files": ["fie.ts"], // Specifies an allowlist of files to include in the program. An error occurs if any of the files can’t be found.
+    // "extends": "./tsconfig.json", // The value of extends is a string which contains a path to another configuration file to inherit from. The path may use Node.js style resolution.
+    // "include": ["src/**/*", "tests/**/*"], // Specifies an array of filenames or patterns to include in the program. These filenames are resolved relative to the directory containing the tsconfig.json file.
+    // "references": [{ "path": "../src" }], // It’s an array of objects that specifies projects to reference.
     "exclude": [
+        // Specifies an array of filenames or patterns that should be skipped when resolving include.
         "./dist/",
         "./dist-server/",
         "./tsc-check/",
         "./storybook-static/",
-        "./node_modules/",
-    ]
+        "./node_modules/"
+    ],
+    "compilerOptions": {
+        // -=-=-=- Type Checking -=-=-=-
+        "allowUnreachableCode": true,
+        "allowUnusedLabels": false,
+        "alwaysStrict": true,
+        "exactOptionalPropertyTypes": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "strict": true,
+        "strictBindCallApply": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "useUnknownInCatchVariables": true,
+        "noFallthroughCasesInSwitch": false,
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": false,
+        "noUncheckedIndexedAccess": false,
+
+        // -=-=-=- Modules -=-=-=-
+        "module": "es2020",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        // no defined my config
+        // "allowArbitraryExtensions": false,
+        // "allowImportingTsExtensions": false,
+        // "allowUmdGlobalAccess": false,
+        // "baseUrl": false,
+        // "customConditions": false,
+        // "moduleSuffixes": false,
+        // "noResolve": false,
+        // "paths": false,
+        // "resolvePackageJsonExports": false,
+        // "resolvePackageJsonImports": false,
+        // "rootDir": false,
+        // "rootDirs": false,
+        // "typeRoots": false,
+        // "types": false,
+
+        // -=-=-=- Emit -=-=-=-
+        "declaration": false,
+        "downlevelIteration": false,
+        "emitDeclarationOnly": false,
+        "noEmit": false,
+        "noEmitHelpers": false,
+        "outDir": "./tsc-check/",
+        "preserveConstEnums": true,
+        "removeComments": false,
+        "sourceMap": true,
+        "newLine": "lf",
+        "importHelpers": false,
+        "emitBOM": false,
+        // no defined my config
+        // "declarationDir": false,
+        // "declarationMap": false,
+        // "importsNotUsedAsValues": false,
+        // "inlineSourceMap": false,
+        // "inlineSources": false,
+        // "mapRoot": false,
+        // "noEmitOnError": false,
+        // "outFile": false,
+        // "preserveValueImports": false,
+        // "sourceRoot": false,
+        // "stripInternal": false,
+
+        // -=-=-=- JavaScript Support -=-=-=-
+        "allowJs": false,
+        "checkJs": false,
+        // no defined my config
+        // "maxNodeModuleJsDepth": false,
+
+        // -=-=-=- Editor Support -=-=-=-
+        "disableSizeLimit": true,
+        // no defined my config
+        // "plugins": false,
+
+        // -=-=-=- Interop Constraints -=-=-=-
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        // no defined my config
+        // "forceConsistentCasingInFileNames": false,
+        // "isolatedModules": false,
+        // "preserveSymlinks": false,
+        // "verbatimModuleSyntax": false,
+
+        // -=-=-=- Backwards Compatibility -=-=-=-
+        "noStrictGenericChecks": false,
+        // no defined my config
+        // "charset": false,
+        // "keyofStringsOnly": false,
+        // "noImplicitUseStrict": false,
+        // "out": false,
+        // "suppressExcessPropertyErrors": false,
+        // "suppressImplicitAnyIndexErrors": false,
+
+        // -=-=-=- Language and Environment -=-=-=-
+        "emitDecoratorMetadata": false,
+        "experimentalDecorators": true,
+        "jsx": "react-jsx",
+        "noLib": false,
+        "target": "es2019",
+        "useDefineForClassFields": false,
+        // no defined my config
+        // "jsxFactory": false,
+        // "jsxFragmentFactory": false,
+        // "jsxImportSource": false,
+        // "lib": false,
+        // "moduleDetection": false,
+        // "reactNamespace": false,
+
+        // -=-=-=- Compiler Diagnostics -=-=-=-
+        // no defined my config
+        // "diagnostics": false,
+        // "explainFiles": false,
+        // "extendedDiagnostics": false,
+        // "generateCpuProfile": false,
+        // "listEmittedFiles": false,
+        // "listFiles": false,
+        // "traceResolution": false,
+
+        // -=-=-=- Projects -=-=-=-
+        // no defined my config
+        // "composite": false,
+        // "disableReferencedProjectLoad": false,
+        // "disableSolutionSearching": false,
+        // "disableSourceOfProjectReferenceRedirect": false,
+        // "incremental": false,
+        // "tsBuildInfoFile": false,
+
+        // -=-=-=- Output Formatting -=-=-=-
+        "pretty": true,
+        "noErrorTruncation": true,
+        "preserveWatchOutput": false,
+
+        // -=-=-=- Command Line -=-=-=-
+        // no properties yet
+
+        // -=-=-=- Completeness -=-=-=-
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+
+        // -=-=-=- Watch Options -=-=-=-
+        "assumeChangesOnlyAffectDirectDependencies": false
+    },
+    "watchOptions": {
+        // no defined my config
+        // "watchFile": false,
+        // "watchDirectory": false,
+        // "fallbackPolling": false,
+        // "synchronousWatchDirectory": false,
+        // "excludeDirectories": false,
+        // "excludeFiles": false,
+    },
+    "typeAcquisition": {
+        // no defined my config
+        // "enable": false,
+        // "include": false,
+        // "exclude": false,
+        // "disableFilenameBasedTypeAcquisition": false,
+    },
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS",
+            "exactOptionalPropertyTypes": false
+        }
+    }
 }

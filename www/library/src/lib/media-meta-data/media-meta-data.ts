@@ -43,6 +43,6 @@ export function setMediaMetadata(
 
     // eslint-disable-next-line no-loops/no-loops
     for (const controlName of mediaMetadataControlNameList) {
-        navigator.mediaSession.setActionHandler(controlName, mediaMetadataControlSetting[controlName] || null);
+        navigator.mediaSession.setActionHandler(controlName, mediaMetadataControlSetting[controlName] ?? null);
     }
 }

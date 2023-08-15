@@ -1,3 +1,5 @@
+/* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
+
 /* global MediaMetadataInit */
 
 export type PlayerPlayingStateType = 'paused' | 'playing' | 'stopped';

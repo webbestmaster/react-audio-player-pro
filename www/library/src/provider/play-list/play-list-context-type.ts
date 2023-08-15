@@ -12,7 +12,7 @@ export type PlayListContextType = Readonly<{
     getTrackById: (trackId: string) => SavedTrackType | null;
     isInitialized: boolean;
 
-    // helpers
+    // Helpers
     removeTrackById: (trackId: string) => Error | null;
-    updatePlayList: (oldPlayList: PlayListType, newListPlayData: PlayListType) => Error | PlayListType;
+    updatePlayList: (oldPlayList: PlayListType, updatedListPlayData: PlayListType) => Error | PlayListType;
 }>;

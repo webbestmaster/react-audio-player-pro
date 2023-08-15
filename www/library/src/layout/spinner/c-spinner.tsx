@@ -1,4 +1,6 @@
-import {classNames} from '../../lib/css';
+/* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
+
+import {cls} from '../../lib/css';
 
 import spinnerStyle from './spinner.scss';
 import {defaultData, positionValueMap} from './spinner-const';
@@ -12,6 +14,7 @@ type PropsType = Readonly<{
     // default - $color-border
     circleColor?: string;
     // default - 100%
+    // eslint-disable-next-line unicorn/no-keyword-prefix
     className?: string;
     // default - $light-gray
     isShow?: boolean;
@@ -41,6 +44,7 @@ export function Spinner(props: PropsType): JSX.Element | null {
         position: rawPosition,
         wrapperColor,
         wrapperPadding,
+        // eslint-disable-next-line unicorn/no-keyword-prefix
         className,
     } = props;
 
@@ -48,8 +52,8 @@ export function Spinner(props: PropsType): JSX.Element | null {
         return null;
     }
 
-    const position = rawPosition || positionValueMap.static;
-    const size = rawSize || defaultSize;
+    const position = rawPosition ?? positionValueMap.static;
+    const size = rawSize ?? defaultSize;
 
     const spinnerImageStyle = {
         borderColor: circleColor,
@@ -71,7 +75,7 @@ export function Spinner(props: PropsType): JSX.Element | null {
 
     return (
         <div
-            className={classNames(spinnerStyle.spinner_wrapper, className, {
+            className={cls(spinnerStyle.spinner_wrapper, className, {
                 [spinnerStyle.spinner_wrapper__static]: position === positionValueMap.static,
             })}
             style={spinnerWrapperStyle}

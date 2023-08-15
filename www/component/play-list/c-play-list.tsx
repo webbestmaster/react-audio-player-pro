@@ -2,17 +2,17 @@ import {Audio, AudioPlayer, PlayListPanel, PlayListProvider, TrackType} from '..
 import {demoUrl} from '../../const';
 import {CustomContent} from '../example-audio-player/c-custom-content';
 
-const icon64 = demoUrl + '/image-file/react-icon-64.png';
-const icon128 = demoUrl + '/image-file/react-icon-128.png';
-const icon256 = demoUrl + '/image-file/react-icon-256.png';
-const icon512 = demoUrl + '/image-file/react-icon-512.png';
+const icon64 = `${demoUrl}/image-file/react-icon-64.png`;
+const icon128 = `${demoUrl}/image-file/react-icon-128.png`;
+const icon256 = `${demoUrl}/image-file/react-icon-256.png`;
+const icon512 = `${demoUrl}/image-file/react-icon-512.png`;
 
-const lesserFaith = demoUrl + '/audio-file/j-syreus-bach-lesser-faith.mp3';
-const brothersAllegretto = demoUrl + '/audio-file/dee-yan-key-world-of-brothers-allegretto.mp3';
-const atLeastItIs = demoUrl + '/audio-file/mid-air-machine-at-least-it-is.mp3';
-const theGhostInYourPiano = demoUrl + '/audio-file/the-ghost-in-your-piano-climb.mp3';
+const lesserFaith = `${demoUrl}/audio-file/j-syreus-bach-lesser-faith.mp3`;
+const brothersAllegretto = `${demoUrl}/audio-file/dee-yan-key-world-of-brothers-allegretto.mp3`;
+const atLeastItIs = `${demoUrl}/audio-file/mid-air-machine-at-least-it-is.mp3`;
+const theGhostInYourPiano = `${demoUrl}/audio-file/the-ghost-in-your-piano-climb.mp3`;
 
-const meydnPureWater = demoUrl + '/audio-file/meydn-pure-water.mp3';
+const meydnPureWater = `${demoUrl}/audio-file/meydn-pure-water.mp3`;
 
 const audioDataList: Array<TrackType> = [
     {

@@ -11,5 +11,6 @@
     "proseWrap": "never",
     "arrowParens": "avoid",
     "trailingComma": "es5",
-    "quoteProps": "preserve"
+    "quoteProps": "preserve",
+    "endOfLine": "lf"
 }

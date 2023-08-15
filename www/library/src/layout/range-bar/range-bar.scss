@@ -92,7 +92,8 @@ $slider-thumb-radius: 6px;
     z-index: 2;
 }
 
-@media screen and (max-width: $narrow-screen-width) {
+/* stylelint-disable-next-line media-query-no-invalid */
+@media #{$media-narrow-screen-width} {
     .range_bar__hide_for_narrow {
         display: none;
     }

@@ -4,6 +4,9 @@
 {
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
+        "project": [
+            "./tsconfig.json"
+        ],
         "ecmaVersion": 2020,
         "sourceType": "module",
         "ecmaFeatures": {
@@ -11,18 +14,32 @@
         }
     },
     "extends": [
-        "eslint:recommended",
+        "prettier",
+        "plugin:prettier/recommended",
+        "plugin:jest/all",
+        "eslint:all",
+        // TODO: try to uncomment
+        // "plugin:@typescript-eslint/all",
+
+        // typescript begin
         "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-type-checked",
+        "plugin:@typescript-eslint/strict",
+        "plugin:@typescript-eslint/strict-type-checked",
+        "plugin:@typescript-eslint/stylistic",
+        "plugin:@typescript-eslint/stylistic-type-checked",
+        // typescript end
+
         "plugin:typescript-sort-keys/recommended",
         "plugin:jsx-a11y/recommended",
         "plugin:react/all",
         "plugin:import/errors",
         "plugin:import/warnings",
+        "plugin:import/recommended",
+        "plugin:import/typescript",
         "plugin:promise/recommended",
         "plugin:sonarjs/recommended",
-        "plugin:unicorn/recommended",
-        "plugin:import/recommended",
-        "plugin:import/typescript"
+        "plugin:unicorn/all"
     ],
     "globals": {
         "JSX": true,
@@ -31,6 +48,9 @@
         "console": true
     },
     "plugins": [
+        "prettier",
+        "@typescript-eslint",
+        "jest",
         "jsx-a11y",
         "no-use-extend-native",
         "import",
@@ -59,16 +79,25 @@
         }
     },
     "rules": {
-        "@typescript-eslint/sort-type-union-intersection-members": 2,
+        "jest/require-hook": [
+            2,
+            {
+                "allowedFunctionCalls": [
+                    "innerInitialization"
+                ]
+            }
+        ],
+        "prettier/prettier": 2,
+        // "@typescript-eslint/sort-type-union-intersection-members": 2,
         "@typescript-eslint/array-type": [
-            "error",
+            2,
             {
                 "default": "generic"
             }
         ],
         "@typescript-eslint/ban-ts-comment": 1,
         "@typescript-eslint/naming-convention": [
-            "error",
+            2,
             {
                 "selector": "typeAlias",
                 "format": [
@@ -91,13 +120,38 @@
         "@typescript-eslint/no-shadow": [
             2,
             {
-                "builtinGlobals": true,
+                "builtinGlobals": false,
                 "hoist": "all"
             }
         ],
-        "@typescript-eslint/no-unused-vars": [2, { "varsIgnorePattern": "[iI]gnored" }],
+        "@typescript-eslint/no-unused-vars": [
+            2,
+            {
+                "varsIgnorePattern": "[iI]gnored"
+            }
+        ],
         "@typescript-eslint/no-use-before-define": 2,
+        "@typescript-eslint/no-misused-promises": [
+            2,
+            {
+                "checksVoidReturn": {
+                    "arguments": true,
+                    "attributes": true,
+                    "properties": true,
+                    "returns": true,
+                    "variables": true
+                }
+            }
+        ],
+        "@typescript-eslint/no-floating-promises": [
+            2,
+            {
+                "ignoreIIFE": true
+            }
+        ],
+        "@typescript-eslint/no-unnecessary-boolean-literal-compare": 0,
         "promise/always-return": 0,
+        "unicorn/prefer-string-replace-all": 0,
         "unicorn/prefer-node-protocol": 2,
         "unicorn/no-array-callback-reference": 0,
         "unicorn/no-array-for-each": 0,
@@ -126,12 +180,8 @@
         "babel/new-cap": 2,
         "babel/no-invalid-this": 2,
         "babel/object-curly-spacing": 2,
-        /*
-                "babel/quotes": [2,
-                    "single"
-                ],
-        */
-        "babel/quotes": [2,
+        "babel/quotes": [
+            2,
             "single"
         ],
         "babel/semi": 2,
@@ -233,11 +283,56 @@
         //        "react/destructuring-assignment": [2, "never"],
         "react/state-in-constructor": 0,
         "react/no-set-state": 0,
-        "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "error",
+        "react-hooks/rules-of-hooks": 2,
+        "react-hooks/exhaustive-deps": 2,
+        "function-call-argument-newline": [
+            2,
+            "consistent"
+        ],
+        "array-element-newline": [
+            2,
+            "consistent"
+        ],
+        "object-property-newline": [
+            2,
+            {
+                "allowAllPropertiesOnSameLine": true
+            }
+        ],
+        "multiline-ternary": 0,
+        "max-lines": [
+            2,
+            1000
+        ],
+        "max-lines-per-function": [
+            2,
+            600
+        ],
+        "no-magic-numbers": 0,
         "sort-keys": 2,
+        "sort-imports": 0,
+        "newline-per-chained-call": [
+            2,
+            {
+                "ignoreChainWithDepth": 4
+            }
+        ],
+        "function-paren-newline": 0,
+        "capitalized-comments": [
+            2,
+            "always",
+            {
+                "ignorePattern": "ignored|webpackChunkName",
+                "ignoreInlineComments": true
+            }
+        ],
+        "arrow-body-style": [
+            2,
+            "always"
+        ],
+        "prefer-named-capture-group": 0,
         "prefer-destructuring": [
-            "error",
+            2,
             {
                 "VariableDeclarator": {
                     "array": true,
@@ -255,7 +350,12 @@
         "no-return-await": 2,
         "no-console": 0,
         "no-warning-comments": 0,
-        "no-unused-vars": [2, { "varsIgnorePattern": "[iI]gnored" }],
+        "no-unused-vars": [
+            2,
+            {
+                "varsIgnorePattern": "[iI]gnored"
+            }
+        ],
         "consistent-this": 2,
         "no-inline-comments": 0,
         "no-ternary": 0,
@@ -300,12 +400,7 @@
         "no-empty": 2,
         "no-ex-assign": 2,
         "no-extra-boolean-cast": 2,
-        /*
-                "no-extra-parens": [2,
-                    "all"
-                ],
-        */
-        "no-extra-parens": "off",
+        "no-extra-parens": 0,
         "no-extra-semi": 2,
         "no-func-assign": 2,
         "no-inner-declarations": [
@@ -526,31 +621,7 @@
                 ]
             }
         ],
-        /*
-                "indent": [2,
-                    4,
-                    {
-                        "SwitchCase": 2,
-                        "VariableDeclarator": 2,
-                        "outerIIFEBody": 2,
-                        "MemberExpression": 2,
-                        "FunctionDeclaration": {
-                            "body": 2,
-                            "parameters": "first"
-                        },
-                        "FunctionExpression": {
-                            "body": 2,
-                            "parameters": "first"
-                        },
-                        "CallExpression": {
-                            "arguments": 1
-                        },
-                        "ArrayExpression": 2,
-                        "ObjectExpression": 1
-                    }
-                ],
-        */
-        "indent": "off",
+        "indent": 0,
         "key-spacing": [
             2,
             {
@@ -565,19 +636,7 @@
                 "after": true
             }
         ],
-        /*
-                "lines-around-comment": [2,
-                    {
-                        "beforeBlockComment": true,
-                        "afterBlockComment": false,
-                        "beforeLineComment": false,
-                        "afterLineComment": false,
-                        "allowBlockStart": false,
-                        "allowBlockEnd": false
-                    }
-                ],
-        */
-        "lines-around-comment": "off",
+        "lines-around-comment": 0,
         "linebreak-style": [
             2,
             "unix"
@@ -628,12 +687,7 @@
             2,
             "always"
         ],
-        /*
-                "operator-linebreak": [2,
-                    "before"
-                ],
-        */
-        "operator-linebreak": "off",
+        "operator-linebreak": 0,
         "padded-blocks": [
             2,
             {

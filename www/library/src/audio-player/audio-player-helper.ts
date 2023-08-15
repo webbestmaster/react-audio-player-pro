@@ -23,7 +23,7 @@ export function getStopHandler(audioTag: HTMLAudioElement): () => void {
         function handleCanPlay() {
             audioTag.removeEventListener('canplay', handleCanPlay, false);
 
-            // eslint-disable-next-line promise/catch-or-return
+            // eslint-disable-next-line promise/catch-or-return, @typescript-eslint/no-floating-promises
             audioTag
                 .play()
                 // eslint-disable-next-line promise/always-return

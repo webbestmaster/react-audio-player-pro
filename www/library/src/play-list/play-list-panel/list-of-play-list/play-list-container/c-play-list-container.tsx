@@ -5,7 +5,6 @@ import {useCallback, useContext, useRef} from 'react';
 import {PlayListType} from '../../../../provider/play-list/play-list-context-type';
 import {PlayListContext} from '../../../../provider/play-list/play-list-context';
 import {noNamePlayListName} from '../../../../provider/play-list/play-list-context-const';
-// import {IsRender} from '../../../../layout/is-render/c-is-render';
 import {AudioPlayer} from '../../../../audio-player/c-audio-player';
 import {savedTrackToTrack} from '../../../../provider/play-list/play-list-context-helper';
 import {AudioPlayerControlButton} from '../../../../layout/audio-player-control-button/c-audio-player-control-button';
@@ -28,29 +27,23 @@ export function PlayListContainer(props: PropsType): JSX.Element {
 
     function getInputPlayListName(): HTMLInputElement {
         return (
-            inputPlayListNameRef.current ||
+            inputPlayListNameRef.current ??
             (() => {
                 throw new Error('Can not get input of play list name');
             })()
         );
     }
 
-    const handleOnBlurPlayListName = useCallback(
-        function handleOnBlurPlayListNameInner() {
-            updatePlayList(playList, {
-                name: getInputPlayListName().value.trim(),
-                trackList,
-            });
-        },
-        [updatePlayList, playList, trackList]
-    );
+    const handleOnBlurPlayListName = useCallback(() => {
+        updatePlayList(playList, {
+            name: getInputPlayListName().value.trim(),
+            trackList,
+        });
+    }, [updatePlayList, playList, trackList]);
 
-    const handleRemovePlayList = useCallback(
-        function handleRemovePlayListInner() {
-            deletePlayList(playList);
-        },
-        [deletePlayList, playList]
-    );
+    const handleRemovePlayList = useCallback(() => {
+        deletePlayList(playList);
+    }, [deletePlayList, playList]);
 
     const useRemovePlayListButton = allPlayLists.length > 1 && trackList.length === 0;
     const removePlayListButtonClassName = useRemovePlayListButton
@@ -78,10 +71,7 @@ export function PlayListContainer(props: PropsType): JSX.Element {
             </div>
 
             {hasTrackInList ? (
-                <AudioPlayer
-                    // defaultState={{isTrackListOpen: false}}
-                    trackList={trackList.map(savedTrackToTrack)}
-                />
+                <AudioPlayer trackList={trackList.map(savedTrackToTrack)} />
             ) : (
                 <p className={playListContainerStyle.no_track_here}>∅</p>
             )}

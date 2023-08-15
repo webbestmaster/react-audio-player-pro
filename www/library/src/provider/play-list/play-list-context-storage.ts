@@ -11,7 +11,7 @@ function getDefaultPlayListContextData(): SavedDataType {
     return [
         {
             name: defaultPlayListName,
-            // isDefault: true,
+            // IsDefault: true,
             trackList: [],
         },
     ];
@@ -33,7 +33,8 @@ export function getSavedPlayListContextData(): SavedDataType {
     const rawData = localStorage.getItem(localStorageKeyName);
 
     if (rawData) {
-        // TODO: add type chek here
+        // TODO: add type check here
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return JSON.parse(rawData);
     }
 

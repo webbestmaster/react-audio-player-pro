@@ -15,7 +15,7 @@ export function PlayListProvider(props: PlayListProviderPropsType): JSX.Element 
     const [list, setList] = useState<Array<PlayListType>>(getSavedPlayListContextData());
 
     const getTrackById = useCallback(
-        function getTrackByIdInner(trackId: string): SavedTrackType | null {
+        (trackId: string): SavedTrackType | null => {
             const listLength = list.length;
 
             // eslint-disable-next-line no-loops/no-loops
@@ -38,62 +38,56 @@ export function PlayListProvider(props: PlayListProviderPropsType): JSX.Element 
         [list]
     );
 
-    const createPlayList = useCallback(
-        function createPlayListInner(): PlayListType {
-            const newPlayList: PlayListType = {
-                name: defaultPlayListName + ' ' + getRandomStringBySize(4),
-                trackList: [],
-                // isDefault: false,
-            };
+    const createPlayList = useCallback((): PlayListType => {
+        const updatedPlayList: PlayListType = {
+            name: `${defaultPlayListName} ${getRandomStringBySize(4)}`,
+            trackList: [],
+            // IsDefault: false,
+        };
 
-            const newList = [...list, newPlayList];
+        const updatedList = [...list, updatedPlayList];
 
-            setList(newList);
+        setList(updatedList);
 
-            return newPlayList;
-        },
-        [list, setList]
-    );
+        return updatedPlayList;
+    }, [list, setList]);
 
-    const getAllPlayLists = useCallback(
-        function getAllPlayListsInner(): Array<PlayListType> {
-            return [...list];
-        },
-        [list]
-    );
+    const getAllPlayLists = useCallback((): Array<PlayListType> => {
+        return [...list];
+    }, [list]);
 
     const updatePlayList = useCallback(
-        function updatePlayListInner(oldPlayList: PlayListType, newListPlayData: PlayListType): Error | PlayListType {
-            const newList = [...list];
+        (oldPlayList: PlayListType, updatedListPlayData: PlayListType): Error | PlayListType => {
+            const updatedList = [...list];
 
-            const playListIndex = newList.indexOf(oldPlayList);
+            const playListIndex = updatedList.indexOf(oldPlayList);
 
             if (playListIndex < 0) {
                 return new Error('Old Play List is not exists.');
             }
 
-            newList[playListIndex] = newListPlayData;
+            updatedList[playListIndex] = updatedListPlayData;
 
-            setList(newList);
+            setList(updatedList);
 
-            return newListPlayData;
+            return updatedListPlayData;
         },
         [list, setList]
     );
 
     const deletePlayList = useCallback(
-        function deletePlayListInner(playList: PlayListType): Error | null {
-            const newList = [...list];
+        (playList: PlayListType): Error | null => {
+            const updatedList = [...list];
 
-            const playListIndex = newList.indexOf(playList);
+            const playListIndex = updatedList.indexOf(playList);
 
             if (playListIndex < 0) {
                 return new Error('Play List is not exists.');
             }
 
-            newList.splice(playListIndex, 1);
+            updatedList.splice(playListIndex, 1);
 
-            setList(newList);
+            setList(updatedList);
 
             return null;
         },
@@ -101,7 +95,7 @@ export function PlayListProvider(props: PlayListProviderPropsType): JSX.Element 
     );
 
     const removeTrackById = useCallback(
-        function removeTrackInner(trackId: string): Error | null {
+        (trackId: string): Error | null => {
             const listLength = list.length;
 
             // eslint-disable-next-line no-loops/no-loops
@@ -115,13 +109,13 @@ export function PlayListProvider(props: PlayListProviderPropsType): JSX.Element 
                     const track = trackList[trackIndex];
 
                     if (track.id === trackId) {
-                        const newTrackList = [...trackList];
+                        const updatedTrackList = [...trackList];
 
-                        newTrackList.splice(trackIndex, 1);
+                        updatedTrackList.splice(trackIndex, 1);
 
                         updatePlayList(playList, {
                             ...playList,
-                            trackList: newTrackList,
+                            trackList: updatedTrackList,
                         });
 
                         return null;

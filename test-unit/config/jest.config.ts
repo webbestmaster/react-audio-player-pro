@@ -1,7 +1,8 @@
 import type {Config} from 'jest';
 
 const config: Config = {
-    bail: false, // true - stop after first failing test
+    // Use true - stop after first failing test
+    bail: false,
     collectCoverage: true,
     errorOnDeprecated: true,
     injectGlobals: false,

@@ -2,7 +2,7 @@
 
 import {useEffect, useRef, useState} from 'react';
 
-import {classNames} from '../../lib/css';
+import {cls} from '../../lib/css';
 import {playerPlayingStateTypeMap, seekStepSecond} from '../audio-player-const';
 import {AudioPlayerControlButton} from '../../layout/audio-player-control-button/c-audio-player-control-button';
 import {Time} from '../../layout/time/c-time';
@@ -15,20 +15,22 @@ import {audioPlayerControlTagNameMap} from '../../layout/audio-player-control-bu
 
 import audioStyle from './audio.scss';
 
-export type AudioPropsType = {
-    className?: string;
-    downloadFileName?: string;
-    duration?: number;
-    mediaMetadata?: MediaMetadataInit;
-    onDidMount?: (audioNode: HTMLAudioElement | null) => void;
-    preload?: AudioPreloadValueType;
-    src: string;
-    useRepeatButton?: boolean;
-};
+export interface AudioPropsType {
+    // eslint-disable-next-line unicorn/no-keyword-prefix
+    readonly className?: string;
+    readonly downloadFileName?: string;
+    readonly duration?: number;
+    readonly mediaMetadata?: MediaMetadataInit;
+    readonly onDidMount?: (audioNode: HTMLAudioElement | null) => void;
+    readonly preload?: AudioPreloadValueType;
+    readonly src: string;
+    readonly useRepeatButton?: boolean;
+}
 
 // eslint-disable-next-line complexity, max-statements, sonarjs/cognitive-complexity
 export function Audio(props: AudioPropsType): JSX.Element {
     const {
+        // eslint-disable-next-line unicorn/no-keyword-prefix
         className,
         downloadFileName,
         duration = 0,
@@ -62,6 +64,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
     function handleClickPlay() {
         const audioTag = getAudioTag();
 
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         audioTag.play();
     }
 
@@ -181,7 +184,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
     const track: TrackType = mediaMetadata ? {mediaMetadata, src} : {src};
 
     return (
-        <div className={classNames(audioStyle.audio, className)}>
+        <div className={cls(audioStyle.audio, className)}>
             <audio
                 className={audioStyle.audio_tag}
                 onEnded={handleOnEnded}
@@ -193,7 +196,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
                 preload={preload}
                 ref={refAudio}
                 src={src}
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
                 // @ts-ignore
                 volume={trackVolume} // eslint-disable-line react/no-unknown-property
             >
@@ -241,7 +244,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
             <a
                 aria-label="download"
                 className={audioStyle.download_button}
-                download={downloadFileName || true}
+                download={downloadFileName ?? true}
                 href={src}
             >
                 <AudioPlayerControlButton

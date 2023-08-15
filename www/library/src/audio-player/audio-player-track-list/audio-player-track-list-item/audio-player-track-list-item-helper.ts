@@ -8,7 +8,7 @@ export function getActualContent(track: SavedTrackType | TrackType): JSX.Element
         return content;
     }
 
-    const mediaTitle = mediaMetadata && mediaMetadata.title;
+    const mediaTitle = mediaMetadata?.title;
 
     if (mediaTitle) {
         return mediaTitle;
