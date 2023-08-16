@@ -1,14 +1,12 @@
 // There is real dirt workaround, but I do not know way better (((
 
-import {cwd} from 'node:process';
+import {cwd, env} from 'node:process';
 import path from 'node:path';
 import fileSystem from 'node:fs/promises';
 
 import {pathToDistribution} from '../../config';
 
-// eslint-disable-next-line unicorn/prefer-module, @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-assignment
-const packageJsonData: Record<string, unknown> = require(path.join(cwd(), 'package.json'));
-const packageName = String(packageJsonData.name);
+const packageName = String(env.npm_package_name);
 
 const rootPathToStyle: string = path.join(pathToDistribution, '..', 'style.css');
 const rootPathToTyping: string = path.join(pathToDistribution, '..', 'library.d.ts');
