@@ -1,15 +1,15 @@
 /* global HTMLInputElement */
 
-import {useCallback, useContext, useRef} from 'react';
+import {useCallback, useContext, useRef} from "react";
 
-import {PlayListType} from '../../../../provider/play-list/play-list-context-type';
-import {PlayListContext} from '../../../../provider/play-list/play-list-context';
-import {noNamePlayListName} from '../../../../provider/play-list/play-list-context-const';
-import {AudioPlayer} from '../../../../audio-player/c-audio-player';
-import {savedTrackToTrack} from '../../../../provider/play-list/play-list-context-helper';
-import {AudioPlayerControlButton} from '../../../../layout/audio-player-control-button/c-audio-player-control-button';
+import {PlayListType} from "../../../../provider/play-list/play-list-context-type";
+import {PlayListContext} from "../../../../provider/play-list/play-list-context";
+import {noNamePlayListName} from "../../../../provider/play-list/play-list-context-const";
+import {AudioPlayer} from "../../../../audio-player/c-audio-player";
+import {savedTrackToTrack} from "../../../../provider/play-list/play-list-context-helper";
+import {AudioPlayerControlButton} from "../../../../layout/audio-player-control-button/c-audio-player-control-button";
 
-import playListContainerStyle from './play-list-container.scss';
+import playListContainerStyle from "./play-list-container.scss";
 
 type PropsType = Readonly<{
     playList: PlayListType;
@@ -29,7 +29,7 @@ export function PlayListContainer(props: PropsType): JSX.Element {
         return (
             inputPlayListNameRef.current ??
             (() => {
-                throw new Error('Can not get input of play list name');
+                throw new Error("Can not get input of play list name");
             })()
         );
     }

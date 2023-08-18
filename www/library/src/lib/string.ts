@@ -30,5 +30,5 @@ function getRandomOne(): -1 | 1 {
 
 export function getRandomStringBySize(size: number): string {
     // eslint-disable-next-line newline-per-chained-call
-    return Array.from({length: size}).map(getRandomString).sort(getRandomOne).join('').slice(0, size);
+    return Array.from({length: size}).map(getRandomString).sort(getRandomOne).join("").slice(0, size);
 }

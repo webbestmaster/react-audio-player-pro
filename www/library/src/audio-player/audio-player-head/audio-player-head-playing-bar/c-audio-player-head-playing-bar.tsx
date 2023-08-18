@@ -1,8 +1,8 @@
-import {Time} from '../../../layout/time/c-time';
-import {RangeBar} from '../../../layout/range-bar/c-range-bar';
-import {AudioPlayerControlButton} from '../../../layout/audio-player-control-button/c-audio-player-control-button';
+import {Time} from "../../../layout/time/c-time";
+import {RangeBar} from "../../../layout/range-bar/c-range-bar";
+import {AudioPlayerControlButton} from "../../../layout/audio-player-control-button/c-audio-player-control-button";
 
-import audioPlayerHeadPlayingBarStyle from './audio-player-head-playing-bar.scss';
+import audioPlayerHeadPlayingBarStyle from "./audio-player-head-playing-bar.scss";
 
 type PropsType = Readonly<{
     isMuted: boolean;
@@ -25,7 +25,7 @@ export function AudioPlayerHeadPlayingBar(props: PropsType): JSX.Element {
         onChangeVolumeBar,
     } = props;
     const isActualMuted = isMuted || trackVolume === 0;
-    const soundImageSrc = isActualMuted ? 'button-sound-off' : 'button-sound-on';
+    const soundImageSrc = isActualMuted ? "button-sound-off" : "button-sound-on";
     const isTrackInitialized = trackFullTime !== 0;
 
     return (

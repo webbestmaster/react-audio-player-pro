@@ -1,10 +1,10 @@
-import {PlayerPlayingStateType, PlayerRepeatingStateType} from '../../../library';
-import {Spinner} from '../../layout/spinner/c-spinner';
+import {PlayerPlayingStateType, PlayerRepeatingStateType} from "../../../library";
+import {Spinner} from "../../layout/spinner/c-spinner";
 
-import {AudioPlayerHeadPlayingBar} from './audio-player-head-playing-bar/c-audio-player-head-playing-bar';
-import {AudioPlayerHeadControls} from './audio-player-head-controls/c-audio-player-head-controls';
+import {AudioPlayerHeadPlayingBar} from "./audio-player-head-playing-bar/c-audio-player-head-playing-bar";
+import {AudioPlayerHeadControls} from "./audio-player-head-controls/c-audio-player-head-controls";
 
-import audioPlayerHeadStyle from './audio-player-head.scss';
+import audioPlayerHeadStyle from "./audio-player-head.scss";
 
 type PropsType = Readonly<{
     isLoading: boolean;

@@ -1,18 +1,18 @@
 /* eslint-disable import/no-default-export, init-declarations */
 
-declare module '*.png' {
+declare module "*.png" {
     const content: string;
 
     export default content;
 }
 
-declare module '*.md' {
+declare module "*.md" {
     const content: string;
 
     export default content;
 }
 
-declare module '*.txt' {
+declare module "*.txt" {
     const content: string;
 
     export default content;

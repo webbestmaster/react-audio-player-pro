@@ -2,11 +2,11 @@
 
 /* global MediaMetadataInit */
 
-export type PlayerPlayingStateType = 'paused' | 'playing' | 'stopped';
+export type PlayerPlayingStateType = "paused" | "playing" | "stopped";
 
-export type PlayerRepeatingStateType = 'all' | 'none' | 'one';
+export type PlayerRepeatingStateType = "all" | "none" | "one";
 
-export type AudioPreloadValueType = 'auto' | 'metadata' | 'none';
+export type AudioPreloadValueType = "auto" | "metadata" | "none";
 
 export type TrackType = Readonly<{
     content?: JSX.Element | string;
@@ -56,13 +56,13 @@ export type AudioPlayerStateType = Readonly<{
 }>;
 */
 
-export {Audio} from './src/audio-player/audio/c-audio';
-export {type AudioPropsType} from './src/audio-player/audio/c-audio';
-export {AudioPlayer} from './src/audio-player/c-audio-player';
-export {type AudioPlayerPropsType} from './src/audio-player/c-audio-player';
-export {PlayListProvider} from './src/provider/play-list/c-play-list-context';
-export {type PlayListProviderPropsType} from './src/provider/play-list/c-play-list-context';
-export {AudioPlayerControlSprite} from './src/layout/audio-player-control-sprite/c-audio-player-control-sprite';
+export {Audio} from "./src/audio-player/audio/c-audio";
+export {type AudioPropsType} from "./src/audio-player/audio/c-audio";
+export {AudioPlayer} from "./src/audio-player/c-audio-player";
+export {type AudioPlayerPropsType} from "./src/audio-player/c-audio-player";
+export {PlayListProvider} from "./src/provider/play-list/c-play-list-context";
+export {type PlayListProviderPropsType} from "./src/provider/play-list/c-play-list-context";
+export {AudioPlayerControlSprite} from "./src/layout/audio-player-control-sprite/c-audio-player-control-sprite";
 
-export {PlayListPanel} from './src/play-list/play-list-panel/c-play-list-panel';
-export {PlayListContext} from './src/provider/play-list/play-list-context';
+export {PlayListPanel} from "./src/play-list/play-list-panel/c-play-list-panel";
+export {PlayListContext} from "./src/provider/play-list/play-list-context";

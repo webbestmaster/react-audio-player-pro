@@ -1,1 +1,1 @@
-export const extensions: Array<string> = ['.tsx', '.ts', '.js'];
+export const extensions: Array<string> = [".tsx", ".ts", ".js"];

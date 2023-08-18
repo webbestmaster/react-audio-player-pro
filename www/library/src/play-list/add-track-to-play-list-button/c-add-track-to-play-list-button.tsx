@@ -2,18 +2,18 @@
 
 /* eslint-disable jsx-a11y/no-onchange */
 
-import {useCallback, useContext, useState, SyntheticEvent} from 'react';
+import {useCallback, useContext, useState, SyntheticEvent} from "react";
 
-import {cls} from '../../lib/css';
-import {PlayListContext} from '../../provider/play-list/play-list-context';
-import {SavedTrackType, TrackType} from '../../../library';
-import {isTracksEquals} from '../../provider/play-list/play-list-context-helper';
-import {getRandomString} from '../../lib/string';
-import {PlayListType} from '../../provider/play-list/play-list-context-type';
-import {noNamePlayListName} from '../../provider/play-list/play-list-context-const';
-import {AudioPlayerControlButton} from '../../layout/audio-player-control-button/c-audio-player-control-button';
+import {cls} from "../../lib/css";
+import {PlayListContext} from "../../provider/play-list/play-list-context";
+import {SavedTrackType, TrackType} from "../../../library";
+import {isTracksEquals} from "../../provider/play-list/play-list-context-helper";
+import {getRandomString} from "../../lib/string";
+import {PlayListType} from "../../provider/play-list/play-list-context-type";
+import {noNamePlayListName} from "../../provider/play-list/play-list-context-const";
+import {AudioPlayerControlButton} from "../../layout/audio-player-control-button/c-audio-player-control-button";
 
-import addTrackToPlayListButtonStyle from './add-track-to-play-list-button.scss';
+import addTrackToPlayListButtonStyle from "./add-track-to-play-list-button.scss";
 
 interface PropsType {
     // eslint-disable-next-line unicorn/no-keyword-prefix
@@ -34,7 +34,7 @@ export function PlayListMenuButton(props: PropsType): JSX.Element | null {
         isInitialized: isPlayListContextInitialized,
     } = playListContextData;
     const listOfPlayList = getAllPlayLists();
-    const defaultSelectValue = '-1';
+    const defaultSelectValue = "-1";
 
     const handleAddTrack = useCallback(
         // eslint-disable-next-line max-statements, complexity
@@ -47,7 +47,7 @@ export function PlayListMenuButton(props: PropsType): JSX.Element | null {
             setSelectKey(selectKey + 1);
 
             if (!playList) {
-                console.log('Can not get play list by index', listIndex);
+                console.log("Can not get play list by index", listIndex);
                 return;
             }
 
@@ -72,21 +72,21 @@ export function PlayListMenuButton(props: PropsType): JSX.Element | null {
                 };
             }
 
-            if (typeof content === 'string') {
+            if (typeof content === "string") {
                 trackToSave = {
                     ...trackToSave,
                     content,
                 };
             }
 
-            if (typeof preload === 'string') {
+            if (typeof preload === "string") {
                 trackToSave = {
                     ...trackToSave,
                     preload,
                 };
             }
 
-            if (typeof duration === 'number') {
+            if (typeof duration === "number") {
                 trackToSave = {
                     ...trackToSave,
                     duration,
@@ -102,7 +102,7 @@ export function PlayListMenuButton(props: PropsType): JSX.Element | null {
 
             selectNode.value = defaultSelectValue;
 
-            console.log('---> track added to list!');
+            console.log("---> track added to list!");
             console.log(trackToSave);
             console.log(playList);
         },
@@ -133,7 +133,7 @@ export function PlayListMenuButton(props: PropsType): JSX.Element | null {
                     });
 
                     const name = playList.name.trim() || noNamePlayListName;
-                    const actionSign = isTrackExistsInPlayList ? '[✓]' : '[_]';
+                    const actionSign = isTrackExistsInPlayList ? "[✓]" : "[_]";
                     const text = `${actionSign} ${name}`;
 
                     return (

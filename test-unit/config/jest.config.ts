@@ -1,4 +1,4 @@
-import type {Config} from 'jest';
+import type {Config} from "jest";
 
 const config: Config = {
     // Use true - stop after first failing test
@@ -9,15 +9,15 @@ const config: Config = {
     maxConcurrency: 1,
     maxWorkers: 1,
     moduleNameMapper: {
-        '^\\S+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
+        "^\\S+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
     },
-    modulePathIgnorePatterns: ['<rootDir>/tsc-check/'],
+    modulePathIgnorePatterns: ["<rootDir>/tsc-check/"],
     passWithNoTests: true,
-    preset: 'ts-jest',
-    rootDir: '../../',
+    preset: "ts-jest",
+    rootDir: "../../",
     setupFilesAfterEnv: [],
     silent: true,
-    testEnvironment: 'jsdom',
+    testEnvironment: "jsdom",
     testTimeout: 10e3,
 };
 

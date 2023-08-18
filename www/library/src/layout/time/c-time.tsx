@@ -1,7 +1,7 @@
-import {getProgressHumanTime} from '../../lib/time';
-import {cls} from '../../lib/css';
+import {getProgressHumanTime} from "../../lib/time";
+import {cls} from "../../lib/css";
 
-import timeStyle from './time.scss';
+import timeStyle from "./time.scss";
 
 interface PropsType {
     // eslint-disable-next-line unicorn/no-keyword-prefix

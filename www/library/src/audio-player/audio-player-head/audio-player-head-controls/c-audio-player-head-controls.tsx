@@ -1,9 +1,9 @@
-import {AudioPlayerControlButton} from '../../../layout/audio-player-control-button/c-audio-player-control-button';
+import {AudioPlayerControlButton} from "../../../layout/audio-player-control-button/c-audio-player-control-button";
 
-import {PlayerPlayingStateType, PlayerRepeatingStateType} from '../../../../library';
-import {playerPlayingStateTypeMap, playerRepeatingStateTypeMap} from '../../audio-player-const';
+import {PlayerPlayingStateType, PlayerRepeatingStateType} from "../../../../library";
+import {playerPlayingStateTypeMap, playerRepeatingStateTypeMap} from "../../audio-player-const";
 
-import AudioPlayerHeadControlsStyle from './audio-player-head-controls.scss';
+import AudioPlayerHeadControlsStyle from "./audio-player-head-controls.scss";
 
 const {one: repeatOne, all: repeatAll} = playerRepeatingStateTypeMap;
 
@@ -48,7 +48,7 @@ export function AudioPlayerHeadControls(props: PropsType): JSX.Element {
 
             <AudioPlayerControlButton
                 ariaLabel="repeat"
-                imageId={repeatingState === repeatOne ? 'button-repeat-one' : 'button-repeat'}
+                imageId={repeatingState === repeatOne ? "button-repeat-one" : "button-repeat"}
                 isActive={repeatingState === repeatOne || repeatingState === repeatAll}
                 onClick={onClickRepeat}
             />

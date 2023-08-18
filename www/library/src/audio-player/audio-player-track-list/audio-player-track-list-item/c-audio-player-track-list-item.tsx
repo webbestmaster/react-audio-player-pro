@@ -1,19 +1,19 @@
 /* global HTMLAudioElement */
 
-import {useRef, useState} from 'react';
+import {useRef, useState} from "react";
 
-import {cls} from '../../../lib/css';
-import {PlayerPlayingStateType, TrackType} from '../../../../library';
-import {playerPlayingStateTypeMap} from '../../audio-player-const';
-import {SvgImage} from '../../../layout/svg-image/c-svg-image';
-import {audioPlayerIconIdPrefix} from '../../../layout/audio-player-control-sprite/c-audio-player-control-sprite';
-import {Spinner} from '../../../layout/spinner/c-spinner';
-import {getTrackHumanTime} from '../../../lib/time';
+import {cls} from "../../../lib/css";
+import {PlayerPlayingStateType, TrackType} from "../../../../library";
+import {playerPlayingStateTypeMap} from "../../audio-player-const";
+import {SvgImage} from "../../../layout/svg-image/c-svg-image";
+import {audioPlayerIconIdPrefix} from "../../../layout/audio-player-control-sprite/c-audio-player-control-sprite";
+import {Spinner} from "../../../layout/spinner/c-spinner";
+import {getTrackHumanTime} from "../../../lib/time";
 
-import {PlayListMenuButton} from '../../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button';
+import {PlayListMenuButton} from "../../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button";
 
-import audioPlayerTrackListItemStyle from './audio-player-track-list-item.scss';
-import {getActualContent} from './audio-player-track-list-item-helper';
+import audioPlayerTrackListItemStyle from "./audio-player-track-list-item.scss";
+import {getActualContent} from "./audio-player-track-list-item-helper";
 
 type PropsType = Readonly<{
     activeIndex: number;
@@ -30,7 +30,7 @@ export function AudioPlayerTrackListItem(props: PropsType): JSX.Element {
     const {isCurrentTrack, activeIndex, track, playingState, onClickPlay, setActiveIndex, isLoading, playByIndex} =
         props;
 
-    const {src, duration = 0, preload = 'auto'} = track;
+    const {src, duration = 0, preload = "auto"} = track;
     const [trackFullTime, setTrackFullTime] = useState<number>(duration);
     const {minutes: trackFullTimeMinutes, seconds: trackFullTimeSeconds} = getTrackHumanTime(trackFullTime);
     const refAudio = useRef<HTMLAudioElement | null>(null);
@@ -50,7 +50,7 @@ export function AudioPlayerTrackListItem(props: PropsType): JSX.Element {
             return audioTag;
         }
 
-        throw new Error('Audio tag is not exists');
+        throw new Error("Audio tag is not exists");
     }
 
     function handleSetActiveIndex() {
@@ -70,7 +70,7 @@ export function AudioPlayerTrackListItem(props: PropsType): JSX.Element {
     function renderButton(): JSX.Element {
         const playImageId = `#${audioPlayerIconIdPrefix}button-play`;
         const pauseImageId = `#${audioPlayerIconIdPrefix}button-pause-playlist`;
-        const accessibleName = 'play';
+        const accessibleName = "play";
 
         if (playingState === playerPlayingStateTypeMap.playing) {
             if (isCurrentTrack) {

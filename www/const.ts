@@ -2,10 +2,10 @@
 /* eslint-disable id-match */
 
 export const selector = {
-    appWrapper: '.js-app-wrapper',
+    appWrapper: ".js-app-wrapper",
 };
 
-export const demoUrl = 'http://webbestmaster.github.io/react-audio-player-pro';
+export const demoUrl = "http://webbestmaster.github.io/react-audio-player-pro";
 
 function sayHi() {
     const {log} = console;
@@ -40,8 +40,8 @@ function sayHi() {
 
     log(hiString);
 
-    log('Build date:', BUILD_DATE_H);
-    log('Is production:', IS_PRODUCTION);
+    log("Build date:", BUILD_DATE_H);
+    log("Is production:", IS_PRODUCTION);
 }
 
 // eslint-disable-next-line jest/require-hook

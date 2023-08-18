@@ -1,12 +1,12 @@
-import {useCallback, useEffect, useMemo, useState, ReactNode} from 'react';
+import {useCallback, useEffect, useMemo, useState, ReactNode} from "react";
 
-import {SavedTrackType} from '../../../library';
-import {getRandomStringBySize} from '../../lib/string';
+import {SavedTrackType} from "../../../library";
+import {getRandomStringBySize} from "../../lib/string";
 
-import {PlayListContextType, PlayListType} from './play-list-context-type';
-import {getSavedPlayListContextData, savePlayListContextData} from './play-list-context-storage';
-import {defaultPlayListName} from './play-list-context-const';
-import {PlayListContext} from './play-list-context';
+import {PlayListContextType, PlayListType} from "./play-list-context-type";
+import {getSavedPlayListContextData, savePlayListContextData} from "./play-list-context-storage";
+import {defaultPlayListName} from "./play-list-context-const";
+import {PlayListContext} from "./play-list-context";
 
 export type PlayListProviderPropsType = Readonly<{children: ReactNode}>;
 
@@ -63,7 +63,7 @@ export function PlayListProvider(props: PlayListProviderPropsType): JSX.Element 
             const playListIndex = updatedList.indexOf(oldPlayList);
 
             if (playListIndex < 0) {
-                return new Error('Old Play List is not exists.');
+                return new Error("Old Play List is not exists.");
             }
 
             updatedList[playListIndex] = updatedListPlayData;
@@ -82,7 +82,7 @@ export function PlayListProvider(props: PlayListProviderPropsType): JSX.Element 
             const playListIndex = updatedList.indexOf(playList);
 
             if (playListIndex < 0) {
-                return new Error('Play List is not exists.');
+                return new Error("Play List is not exists.");
             }
 
             updatedList.splice(playListIndex, 1);
@@ -123,7 +123,7 @@ export function PlayListProvider(props: PlayListProviderPropsType): JSX.Element 
                 }
             }
 
-            return new Error('Track is not exists.');
+            return new Error("Track is not exists.");
         },
         [list, updatePlayList]
     );

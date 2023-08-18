@@ -1,15 +1,15 @@
 // There is real dirt workaround, but I do not know way better (((
 
-import {cwd, env} from 'node:process';
-import path from 'node:path';
-import fileSystem from 'node:fs/promises';
+import {cwd, env} from "node:process";
+import path from "node:path";
+import fileSystem from "node:fs/promises";
 
-import {pathToDistribution} from '../../config';
+import {pathToDistribution} from "../../config";
 
 const packageName = String(env.npm_package_name);
 
-const rootPathToStyle: string = path.join(pathToDistribution, '..', 'style.css');
-const rootPathToTyping: string = path.join(pathToDistribution, '..', 'library.d.ts');
+const rootPathToStyle: string = path.join(pathToDistribution, "..", "style.css");
+const rootPathToTyping: string = path.join(pathToDistribution, "..", "library.d.ts");
 
 const pathToStyle: string = path.join(cwd(), rootPathToStyle);
 const pathToTyping: string = path.join(cwd(), rootPathToTyping);
@@ -44,7 +44,7 @@ async function innerInitialization() {
 
     await fileSystem.appendFile(pathToTyping, styleDeclaration);
 
-    console.log('[css util] declaration for css has been added.');
+    console.log("[css util] declaration for css has been added.");
 }
 
 // eslint-disable-next-line unicorn/prefer-top-level-await, @typescript-eslint/no-floating-promises

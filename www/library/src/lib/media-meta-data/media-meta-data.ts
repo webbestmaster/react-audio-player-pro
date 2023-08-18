@@ -1,14 +1,14 @@
 /* global navigator, MediaMetadata, MediaMetadataInit */
 
-import {MediaMetadataControlSettingType} from './media-meta-data-type';
-import {mediaMetadataControlNameList} from './media-meta-data-const';
+import {MediaMetadataControlSettingType} from "./media-meta-data-type";
+import {mediaMetadataControlNameList} from "./media-meta-data-const";
 
 export function clearMediaMetadata(): void {
-    if (typeof navigator === 'undefined' || typeof MediaMetadata === 'undefined') {
+    if (typeof navigator === "undefined" || typeof MediaMetadata === "undefined") {
         return;
     }
 
-    if (!('mediaSession' in navigator)) {
+    if (!("mediaSession" in navigator)) {
         return;
     }
 
@@ -25,11 +25,11 @@ export function setMediaMetadata(
     mediaMetadata: MediaMetadataInit,
     mediaMetadataControlSetting?: MediaMetadataControlSettingType
 ): void {
-    if (typeof navigator === 'undefined' || typeof MediaMetadata === 'undefined') {
+    if (typeof navigator === "undefined" || typeof MediaMetadata === "undefined") {
         return;
     }
 
-    if (!('mediaSession' in navigator)) {
+    if (!("mediaSession" in navigator)) {
         return;
     }
 

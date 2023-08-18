@@ -1,2 +1,2 @@
-export const defaultPlayListName = 'Play list';
-export const noNamePlayListName = 'No name playlist';
+export const defaultPlayListName = "Play list";
+export const noNamePlayListName = "No name playlist";

@@ -1,4 +1,4 @@
-import {SavedTrackType} from '../../../library';
+import {SavedTrackType} from "../../../library";
 
 export type PlayListType = Readonly<{
     name: string;

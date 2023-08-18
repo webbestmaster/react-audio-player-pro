@@ -1,11 +1,11 @@
 /* eslint-disable max-len */
 
-import audioPlayerControlSpriteStyle from './audio-player-control-sprite.scss';
+import audioPlayerControlSpriteStyle from "./audio-player-control-sprite.scss";
 
-export const audioPlayerIconIdPrefix = 'audio-player-icon-id-prefix-';
-const mainFillColor = '#5a5a5a';
-const defaultViewBox = '0 0 24 24';
-const xmlns = 'http://www.w3.org/2000/svg';
+export const audioPlayerIconIdPrefix = "audio-player-icon-id-prefix-";
+const mainFillColor = "#5a5a5a";
+const defaultViewBox = "0 0 24 24";
+const xmlns = "http://www.w3.org/2000/svg";
 
 export function AudioPlayerControlSprite(): JSX.Element {
     return (

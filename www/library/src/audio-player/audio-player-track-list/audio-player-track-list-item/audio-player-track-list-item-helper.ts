@@ -1,4 +1,4 @@
-import {SavedTrackType, TrackType} from '../../../../library';
+import {SavedTrackType, TrackType} from "../../../../library";
 
 // eslint-disable-next-line complexity
 export function getActualContent(track: SavedTrackType | TrackType): JSX.Element | string {
@@ -14,13 +14,13 @@ export function getActualContent(track: SavedTrackType | TrackType): JSX.Element
         return mediaTitle;
     }
 
-    const fileName = src.split('/').pop();
+    const fileName = src.split("/").pop();
 
     if (!fileName) {
-        return '';
+        return "";
     }
 
-    const indexOfExtension = fileName.lastIndexOf('.');
+    const indexOfExtension = fileName.lastIndexOf(".");
 
     if (indexOfExtension > 0) {
         return fileName.slice(0, indexOfExtension);

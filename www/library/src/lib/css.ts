@@ -16,7 +16,7 @@ export function cls(...argumentList: Array<ClassNamesArgumentType>): string {
         }
 
         // eslint-disable-next-line unicorn/no-keyword-prefix
-        if (typeof classNameData === 'string') {
+        if (typeof classNameData === "string") {
             // eslint-disable-next-line unicorn/no-keyword-prefix
             classNameList.push(classNameData);
             // eslint-disable-next-line no-continue
@@ -34,5 +34,5 @@ export function cls(...argumentList: Array<ClassNamesArgumentType>): string {
     }
 
     // eslint-disable-next-line unicorn/no-keyword-prefix
-    return classNameList.join(' ');
+    return classNameList.join(" ");
 }

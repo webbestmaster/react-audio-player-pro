@@ -1,10 +1,10 @@
 /* eslint-disable multiline-comment-style, capitalized-comments */
-import {WebpackOptionsNormalized} from 'webpack';
+import {WebpackOptionsNormalized} from "webpack";
 
-import {webpackDevServerPort} from '../config';
+import {webpackDevServerPort} from "../config";
 
 const serverPort = 3011;
-const host = 'localhost';
+const host = "localhost";
 // const host = '192.168.147.45';
 
 /*
@@ -16,7 +16,7 @@ const mainProxyUrlSetting = {
 };
 */
 
-export const devServer: WebpackOptionsNormalized['devServer'] = {
+export const devServer: WebpackOptionsNormalized["devServer"] = {
     historyApiFallback: {
         disableDotRule: true,
     },
@@ -28,14 +28,14 @@ export const devServer: WebpackOptionsNormalized['devServer'] = {
     port: webpackDevServerPort,
     proxy: {
         // TODO: need watch nginx
-        '/api-image/': {
+        "/api-image/": {
             target: `http://127.0.0.1:${serverPort}/`,
         },
-        '/api/': {
+        "/api/": {
             target: `http://127.0.0.1:${serverPort}/`,
         },
         // TODO: need watch nginx
-        '/static-file/': {
+        "/static-file/": {
             target: `http://127.0.0.1:${serverPort}/`,
         },
     },

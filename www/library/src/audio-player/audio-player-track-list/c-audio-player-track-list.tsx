@@ -1,7 +1,7 @@
-import {PlayerPlayingStateType, TrackType} from '../../../library';
+import {PlayerPlayingStateType, TrackType} from "../../../library";
 
-import audioPlayerTrackListStyle from './audio-player-track-list.scss';
-import {AudioPlayerTrackListItem} from './audio-player-track-list-item/c-audio-player-track-list-item';
+import audioPlayerTrackListStyle from "./audio-player-track-list.scss";
+import {AudioPlayerTrackListItem} from "./audio-player-track-list-item/c-audio-player-track-list-item";
 
 type PropsType = Readonly<{
     activeIndex: number;

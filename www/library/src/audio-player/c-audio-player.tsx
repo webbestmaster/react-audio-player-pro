@@ -1,23 +1,23 @@
 /* global document, HTMLAudioElement */
 
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from "react";
 
-import {setMediaMetadata} from '../lib/media-meta-data/media-meta-data';
-import {getRandom, getShiftIndex} from '../lib/number';
-import {DefaultAudioPlayerStateType, PlayerPlayingStateType, PlayerRepeatingStateType, TrackType} from '../../library';
+import {setMediaMetadata} from "../lib/media-meta-data/media-meta-data";
+import {getRandom, getShiftIndex} from "../lib/number";
+import {DefaultAudioPlayerStateType, PlayerPlayingStateType, PlayerRepeatingStateType, TrackType} from "../../library";
 
-import {AudioPlayerHead} from './audio-player-head/c-audio-player-head';
-import {AudioPlayerTrackList} from './audio-player-track-list/c-audio-player-track-list';
+import {AudioPlayerHead} from "./audio-player-head/c-audio-player-head";
+import {AudioPlayerTrackList} from "./audio-player-track-list/c-audio-player-track-list";
 
 import {
     playerPlayingStateTypeMap,
     playerRepeatingStateTypeList,
     playerRepeatingStateTypeMap,
     seekStepSecond,
-} from './audio-player-const';
+} from "./audio-player-const";
 
-import {getDefaultState, getStopHandler} from './audio-player-helper';
-import audioPlayerStyle from './audio-player.scss';
+import {getDefaultState, getStopHandler} from "./audio-player-helper";
+import audioPlayerStyle from "./audio-player.scss";
 
 export type AudioPlayerPropsType = Readonly<{
     // eslint-disable-next-line unicorn/no-keyword-prefix
@@ -55,9 +55,9 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
             return audioTag;
         }
 
-        console.error('Audio tag is not exists');
+        console.error("Audio tag is not exists");
 
-        return document.createElement('audio');
+        return document.createElement("audio");
     }
 
     useEffect(() => {
@@ -137,7 +137,7 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
     function getCurrentTrackSrcAsString(): string {
         const track = getCurrentTrack();
 
-        return track ? track.src : '';
+        return track ? track.src : "";
     }
 
     function handleAudioTagOnLoadedMetadata() {
@@ -278,18 +278,18 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
         function handleOnCanPlay() {
             setIsLoadingMetadata(false);
 
-            audioTag.removeEventListener('canplay', handleOnCanPlay, false);
+            audioTag.removeEventListener("canplay", handleOnCanPlay, false);
 
             // eslint-disable-next-line @typescript-eslint/no-floating-promises
             audioTag.play();
         }
 
-        audioTag.addEventListener('canplay', handleOnCanPlay, false);
+        audioTag.addEventListener("canplay", handleOnCanPlay, false);
     }
 
     return (
         // eslint-disable-next-line unicorn/no-keyword-prefix
-        <div className={className ?? ''}>
+        <div className={className ?? ""}>
             <audio
                 autoPlay={playingState === playerPlayingStateTypeMap.playing}
                 className={audioPlayerStyle.audio_tag}

@@ -2,12 +2,12 @@
 
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
-import {useRef, useState} from 'react';
+import {useRef, useState} from "react";
 
-import {cls} from '../../lib/css';
+import {cls} from "../../lib/css";
 
-import rangeBarStyle from './range-bar.scss';
-import {inputData} from './range-bar-const';
+import rangeBarStyle from "./range-bar.scss";
+import {inputData} from "./range-bar-const";
 
 type PropsType = Readonly<{
     ariaLabel: string;

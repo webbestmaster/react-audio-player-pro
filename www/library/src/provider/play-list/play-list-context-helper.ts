@@ -1,13 +1,13 @@
 /* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
 
-import {SavedTrackType, TrackType} from '../../../library';
+import {SavedTrackType, TrackType} from "../../../library";
 // import {extractText} from '../../lib/string';
 
-import {PlayListContextType, PlayListType} from './play-list-context-type';
+import {PlayListContextType, PlayListType} from "./play-list-context-type";
 
 export function getDefaultPlayListContextData(): PlayListContextType {
     const defaultPlayList: PlayListType = {
-        name: '',
+        name: "",
         trackList: [],
         // isDefault: false,
     };
@@ -18,7 +18,7 @@ export function getDefaultPlayListContextData(): PlayListContextType {
         },
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
         deletePlayList: (playList: PlayListType): Error | null => {
-            return new Error('deletePlayList: overwrite me');
+            return new Error("deletePlayList: overwrite me");
         },
         getAllPlayLists: (): Array<PlayListType> => {
             return [defaultPlayList];
@@ -30,11 +30,11 @@ export function getDefaultPlayListContextData(): PlayListContextType {
         isInitialized: false,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
         removeTrackById: (trackId: string): Error | null => {
-            return new Error('removeTrack: overwrite me');
+            return new Error("removeTrack: overwrite me");
         },
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
         updatePlayList: (oldPlayList: PlayListType, updatedListPlayData: PlayListType): Error | PlayListType => {
-            return new Error('updatePlayList: overwrite me');
+            return new Error("updatePlayList: overwrite me");
         },
     };
 }

@@ -1,19 +1,19 @@
 /* global HTMLAudioElement, MediaMetadataInit */
 
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from "react";
 
-import {cls} from '../../lib/css';
-import {playerPlayingStateTypeMap, seekStepSecond} from '../audio-player-const';
-import {AudioPlayerControlButton} from '../../layout/audio-player-control-button/c-audio-player-control-button';
-import {Time} from '../../layout/time/c-time';
-import {AudioPreloadValueType, PlayerPlayingStateType, TrackType} from '../../../library';
-import {RangeBar} from '../../layout/range-bar/c-range-bar';
-import {setMediaMetadata} from '../../lib/media-meta-data/media-meta-data';
-import {getStopHandler} from '../audio-player-helper';
-import {PlayListMenuButton} from '../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button';
-import {audioPlayerControlTagNameMap} from '../../layout/audio-player-control-button/audio-player-control-button-const';
+import {cls} from "../../lib/css";
+import {playerPlayingStateTypeMap, seekStepSecond} from "../audio-player-const";
+import {AudioPlayerControlButton} from "../../layout/audio-player-control-button/c-audio-player-control-button";
+import {Time} from "../../layout/time/c-time";
+import {AudioPreloadValueType, PlayerPlayingStateType, TrackType} from "../../../library";
+import {RangeBar} from "../../layout/range-bar/c-range-bar";
+import {setMediaMetadata} from "../../lib/media-meta-data/media-meta-data";
+import {getStopHandler} from "../audio-player-helper";
+import {PlayListMenuButton} from "../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button";
+import {audioPlayerControlTagNameMap} from "../../layout/audio-player-control-button/audio-player-control-button-const";
 
-import audioStyle from './audio.scss';
+import audioStyle from "./audio.scss";
 
 export interface AudioPropsType {
     // eslint-disable-next-line unicorn/no-keyword-prefix
@@ -36,7 +36,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
         duration = 0,
         mediaMetadata,
         onDidMount,
-        preload = 'auto',
+        preload = "auto",
         src,
         useRepeatButton = false,
     } = props;
@@ -49,7 +49,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
     const [playingState, setPlayingState] = useState<PlayerPlayingStateType>(playerPlayingStateTypeMap.paused);
     const [isRepeatOn, setIsRepeatOn] = useState<boolean>(false);
     const isActualMuted = isMuted || trackVolume === 0;
-    const soundImageId = isActualMuted ? 'button-sound-off' : 'button-sound-on';
+    const soundImageId = isActualMuted ? "button-sound-off" : "button-sound-on";
 
     function getAudioTag(): HTMLAudioElement {
         const audioTag = refAudio.current;
@@ -58,7 +58,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
             return audioTag;
         }
 
-        throw new Error('Audio tag is not exists');
+        throw new Error("Audio tag is not exists");
     }
 
     function handleClickPlay() {

@@ -1,10 +1,10 @@
 /* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
 
-import {cls} from '../../lib/css';
+import {cls} from "../../lib/css";
 
-import spinnerStyle from './spinner.scss';
-import {defaultData, positionValueMap} from './spinner-const';
-import {PositionType} from './spinner-type';
+import spinnerStyle from "./spinner.scss";
+import {defaultData, positionValueMap} from "./spinner-const";
+import {PositionType} from "./spinner-type";
 
 const {size: defaultSize} = defaultData;
 

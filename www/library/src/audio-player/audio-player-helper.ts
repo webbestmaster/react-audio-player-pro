@@ -1,8 +1,8 @@
 /* global HTMLAudioElement*/
 
-import {DefaultAudioPlayerStateType, DefaultDefinedAudioPlayerStateType} from '../../library';
+import {DefaultAudioPlayerStateType, DefaultDefinedAudioPlayerStateType} from "../../library";
 
-import {defaultAudioPlayerState} from './audio-player-const';
+import {defaultAudioPlayerState} from "./audio-player-const";
 
 export function getDefaultState(defaultState?: DefaultAudioPlayerStateType): DefaultDefinedAudioPlayerStateType {
     if (defaultState) {
@@ -21,7 +21,7 @@ export function getStopHandler(audioTag: HTMLAudioElement): () => void {
         audioTag.currentTime = 0;
 
         function handleCanPlay() {
-            audioTag.removeEventListener('canplay', handleCanPlay, false);
+            audioTag.removeEventListener("canplay", handleCanPlay, false);
 
             // eslint-disable-next-line promise/catch-or-return, @typescript-eslint/no-floating-promises
             audioTag
@@ -34,6 +34,6 @@ export function getStopHandler(audioTag: HTMLAudioElement): () => void {
                 });
         }
 
-        audioTag.addEventListener('canplay', handleCanPlay, false);
+        audioTag.addEventListener("canplay", handleCanPlay, false);
     };
 }

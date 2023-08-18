@@ -18,18 +18,15 @@
         "plugin:prettier/recommended",
         "plugin:jest/all",
         "eslint:all",
-        // TODO: try to uncomment
-        // "plugin:@typescript-eslint/all",
-
+        "plugin:@typescript-eslint/all",
         // typescript begin
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-type-checked",
-        "plugin:@typescript-eslint/strict",
-        "plugin:@typescript-eslint/strict-type-checked",
-        "plugin:@typescript-eslint/stylistic",
-        "plugin:@typescript-eslint/stylistic-type-checked",
+        // "plugin:@typescript-eslint/recommended",
+        // "plugin:@typescript-eslint/recommended-type-checked",
+        // "plugin:@typescript-eslint/strict",
+        // "plugin:@typescript-eslint/strict-type-checked",
+        // "plugin:@typescript-eslint/stylistic",
+        // "plugin:@typescript-eslint/stylistic-type-checked",
         // typescript end
-
         "plugin:typescript-sort-keys/recommended",
         "plugin:jsx-a11y/recommended",
         "plugin:react/all",
@@ -79,6 +76,7 @@
         }
     },
     "rules": {
+        // Small, one rule only
         "jest/require-hook": [
             2,
             {
@@ -88,7 +86,14 @@
             }
         ],
         "prettier/prettier": 2,
-        // "@typescript-eslint/sort-type-union-intersection-members": 2,
+        "promise/always-return": 0,
+        "no-loops/no-loops": 2,
+        "optimize-regex/optimize-regex": 2,
+        "no-use-extend-native/no-use-extend-native": 2,
+        // React-hooks
+        "react-hooks/rules-of-hooks": 2,
+        "react-hooks/exhaustive-deps": 2,
+        // Typescript
         "@typescript-eslint/array-type": [
             2,
             {
@@ -150,7 +155,29 @@
             }
         ],
         "@typescript-eslint/no-unnecessary-boolean-literal-compare": 0,
-        "promise/always-return": 0,
+        // Typescript - defined by eslint
+        "@typescript-eslint/space-before-function-paren": 0,
+        "@typescript-eslint/indent": 0,
+        "@typescript-eslint/comma-dangle": 0,
+        "@typescript-eslint/no-magic-numbers": 0,
+        "@typescript-eslint/no-extra-parens": 0,
+        "@typescript-eslint/lines-around-comment": 0,
+        "@typescript-eslint/lines-between-class-members": 0,
+        "@typescript-eslint/block-spacing": 0,
+        "@typescript-eslint/quotes": 0,
+        // TODO: enable this
+        "@typescript-eslint/consistent-type-imports": 0,
+        "@typescript-eslint/prefer-readonly-parameter-types": 0,
+        "@typescript-eslint/strict-boolean-expressions": 0,
+        "@typescript-eslint/promise-function-async": 0,
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/prefer-readonly": 0,
+        "@typescript-eslint/prefer-regexp-exec": 0,
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+        "@typescript-eslint/explicit-member-accessibility": 0,
+        "@typescript-eslint/sort-type-constituents": 0,
+        "@typescript-eslint/member-ordering": 0,
+        // Unicorn
         "unicorn/prefer-string-replace-all": 0,
         "unicorn/prefer-node-protocol": 2,
         "unicorn/no-array-callback-reference": 0,
@@ -177,21 +204,22 @@
                 }
             }
         ],
+        // Babel
         "babel/new-cap": 2,
+        "babel/camelcase": 2,
         "babel/no-invalid-this": 2,
         "babel/object-curly-spacing": 2,
-        "babel/quotes": [
-            2,
-            "single"
-        ],
+        "babel/quotes": 0,
         "babel/semi": 2,
         "babel/no-unused-expressions": 2,
         "babel/valid-typeof": 2,
+        // JSX-a11y
         // deprecated
         "jsx-a11y/label-has-for": 0,
         "jsx-a11y/no-access-key": 2,
         "jsx-a11y/no-autofocus": 2,
         "jsx-a11y/no-onchange": 2,
+        // Filenames
         "filenames/no-index": 2,
         "filenames/match-regex": [
             2,
@@ -199,6 +227,7 @@
             true
         ],
         "filenames/match-exported": 0,
+        // Import
         "import/no-named-as-default-member": 0,
         "import/default": 2,
         "import/no-unused-modules": 2,
@@ -218,9 +247,7 @@
                 ]
             }
         ],
-        "no-loops/no-loops": 2,
-        "optimize-regex/optimize-regex": 2,
-        "no-use-extend-native/no-use-extend-native": 2,
+        // React
         "react/jsx-uses-react": 2,
         "react/react-in-jsx-scope": 0,
         "react/jsx-no-bind": 0,
@@ -280,11 +307,9 @@
             }
         ],
         "react/jsx-one-expression-per-line": 0,
-        //        "react/destructuring-assignment": [2, "never"],
         "react/state-in-constructor": 0,
         "react/no-set-state": 0,
-        "react-hooks/rules-of-hooks": 2,
-        "react-hooks/exhaustive-deps": 2,
+        // eslint
         "function-call-argument-newline": [
             2,
             "consistent"
@@ -604,10 +629,7 @@
             2,
             "declaration"
         ],
-        "jsx-quotes": [
-            2,
-            "prefer-double"
-        ],
+        "jsx-quotes": 2,
         "id-length": [
             2,
             {
@@ -705,11 +727,7 @@
                 "numbers": true
             }
         ],
-        "quotes": [
-            2,
-            "single",
-            "avoid-escape"
-        ],
+        "quotes": 0,
         "id-match": [
             2,
             "^[a-zA-Z0-9$]+$|^[A-Z0-9_]+$",
