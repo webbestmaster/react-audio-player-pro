@@ -8,7 +8,7 @@ export function getShiftIndex(listLength: number, currentIndex: number, shift: n
     return rawIndex;
 }
 
-export function getRandom(fromInclude: number, toExclude: number, excludeList?: Array<number>): number {
+export function getRandom(fromInclude: number, toExclude: number, excludeList?: ReadonlyArray<number>): number {
     if (toExclude - fromInclude < 1) {
         return fromInclude;
     }

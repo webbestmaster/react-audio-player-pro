@@ -29,7 +29,7 @@ export type AudioPlayerPropsType = Readonly<{
     className?: string;
     defaultState?: DefaultAudioPlayerStateType;
     onDidMount?: (audioNode: HTMLAudioElement | null) => void;
-    trackList: Array<TrackType>;
+    trackList: ReadonlyArray<TrackType>;
 }>;
 
 // eslint-disable-next-line complexity, max-statements, sonarjs/cognitive-complexity

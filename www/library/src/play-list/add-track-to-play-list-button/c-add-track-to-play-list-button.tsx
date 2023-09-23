@@ -15,11 +15,11 @@ import {AudioPlayerControlButton} from "../../layout/audio-player-control-button
 
 import addTrackToPlayListButtonStyle from "./add-track-to-play-list-button.scss";
 
-interface PropsType {
+type PropsType = Readonly<{
     // eslint-disable-next-line unicorn/no-keyword-prefix
-    readonly className?: string;
-    readonly track: TrackType;
-}
+    className?: string;
+    track: TrackType;
+}>;
 
 export function PlayListMenuButton(props: PropsType): JSX.Element | null {
     // eslint-disable-next-line unicorn/no-keyword-prefix

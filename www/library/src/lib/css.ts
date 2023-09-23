@@ -3,7 +3,7 @@ type ClassNamesArgumentValueType = string | null | undefined;
 type ClassNamesArgumentType = ClassNamesArgumentValueType | Record<string, ClassNamesArgumentValueType | boolean>;
 
 // eslint-disable-next-line complexity
-export function cls(...argumentList: Array<ClassNamesArgumentType>): string {
+export function cls(...argumentList: ReadonlyArray<ClassNamesArgumentType>): string {
     // eslint-disable-next-line unicorn/no-keyword-prefix
     const classNameList: Array<string> = [];
 

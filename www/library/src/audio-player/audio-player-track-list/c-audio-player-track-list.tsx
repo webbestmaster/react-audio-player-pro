@@ -10,7 +10,7 @@ type PropsType = Readonly<{
     playByIndex: (trackIndex: number) => void;
     playingState: PlayerPlayingStateType;
     setActiveIndex: (activeIndex: number) => void;
-    trackList: Array<TrackType>;
+    trackList: ReadonlyArray<TrackType>;
 }>;
 
 export function AudioPlayerTrackList(props: PropsType): JSX.Element {

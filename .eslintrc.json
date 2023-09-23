@@ -166,20 +166,6 @@
         "@typescript-eslint/block-spacing": 0,
         "@typescript-eslint/quotes": 0,
         "@typescript-eslint/prefer-readonly-parameter-types": 0,
-
-        //        "@typescript-eslint/prefer-readonly-parameter-types": [
-//            2,
-//            {
-//                "allow": [
-//                    "MediaMetadataInit",
-//                    {
-//                        "from": "package",
-//                        "name": "Compiler",
-//                        "package": "webpack"
-//                    }
-//                ]
-//            }
-//        ],
         // Unicorn
         "unicorn/prefer-string-replace-all": 0,
         "unicorn/prefer-node-protocol": 2,
