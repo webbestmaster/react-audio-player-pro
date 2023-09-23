@@ -1,6 +1,6 @@
 /* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
 
-import {DefaultDefinedAudioPlayerStateType, PlayerPlayingStateType, PlayerRepeatingStateType} from "../../library";
+import type {DefaultDefinedAudioPlayerStateType, PlayerPlayingStateType, PlayerRepeatingStateType} from "../../library";
 
 /*
 import type {

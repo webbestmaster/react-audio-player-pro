@@ -1,4 +1,4 @@
-import {PositionType} from "./spinner-type";
+import type {PositionType} from "./spinner-type";
 
 export const defaultData = {
     size: 48,

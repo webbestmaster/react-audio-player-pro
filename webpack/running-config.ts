@@ -3,7 +3,7 @@
 import {cwd} from "node:process";
 import path from "node:path";
 
-import {Configuration} from "webpack";
+import type {Configuration} from "webpack";
 import nodeExternals from "webpack-node-externals";
 // import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 

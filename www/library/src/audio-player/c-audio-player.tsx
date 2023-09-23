@@ -4,7 +4,12 @@ import {useEffect, useRef, useState} from "react";
 
 import {setMediaMetadata} from "../lib/media-meta-data/media-meta-data";
 import {getRandom, getShiftIndex} from "../lib/number";
-import {DefaultAudioPlayerStateType, PlayerPlayingStateType, PlayerRepeatingStateType, TrackType} from "../../library";
+import type {
+    DefaultAudioPlayerStateType,
+    PlayerPlayingStateType,
+    PlayerRepeatingStateType,
+    TrackType,
+} from "../../library";
 
 import {AudioPlayerHead} from "./audio-player-head/c-audio-player-head";
 import {AudioPlayerTrackList} from "./audio-player-track-list/c-audio-player-track-list";
@@ -69,6 +74,7 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
     }, [onDidMount]);
 
     function getTrackByIndex(trackIndex: number): TrackType | null {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         return trackList[trackIndex] || null;
     }
 
@@ -76,7 +82,7 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
         return getTrackByIndex(activeIndex);
     }
 
-    function setActiveTrackIndex(updatedActiveIndex: number) {
+    function setActiveTrackIndex(updatedActiveIndex: number): void {
         setActiveIndex(updatedActiveIndex);
         setIsLoadingMetadata(true);
         setTrackCurrentTime(0);
@@ -86,31 +92,31 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
         updateMediaMetadata();
     }
 
-    function handleClickNextTrack() {
+    function handleClickNextTrack(): void {
         const nextIndex = getShiftIndex(trackList.length, activeIndex, 1);
 
         setActiveTrackIndex(nextIndex);
     }
 
-    function handleClickPrevTrack() {
+    function handleClickPrevTrack(): void {
         const nextIndex = getShiftIndex(trackList.length, activeIndex, -1);
 
         setActiveTrackIndex(nextIndex);
     }
 
-    function seekForward() {
+    function seekForward(): void {
         const audioTag = getAudioTag();
 
         audioTag.currentTime += seekStepSecond;
     }
 
-    function seekBackward() {
+    function seekBackward(): void {
         const audioTag = getAudioTag();
 
         audioTag.currentTime -= seekStepSecond;
     }
 
-    function updateMediaMetadata() {
+    function updateMediaMetadata(): void {
         const track = getCurrentTrack();
 
         if (!track) {
@@ -140,7 +146,7 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
         return track ? track.src : "";
     }
 
-    function handleAudioTagOnLoadedMetadata() {
+    function handleAudioTagOnLoadedMetadata(): void {
         const audioTag = getAudioTag();
 
         setIsLoadingMetadata(false);
@@ -148,18 +154,18 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
         audioTag.volume = trackVolume;
     }
 
-    function handleAudioTagOnPause() {
+    function handleAudioTagOnPause(): void {
         setPlayingState(playerPlayingStateTypeMap.paused);
     }
 
-    function handleAudioTagOnVolumeChange() {
+    function handleAudioTagOnVolumeChange(): void {
         const audioTag = getAudioTag();
 
         setIsMuted(audioTag.muted);
         setTrackVolume(audioTag.volume);
     }
 
-    function handleClickPlay() {
+    function handleClickPlay(): void {
         const audioTag = getAudioTag();
 
         if (audioTag.paused) {
@@ -171,7 +177,7 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
     }
 
     // eslint-disable-next-line complexity, max-statements
-    function handleAudioTagOnEnded() {
+    function handleAudioTagOnEnded(): void {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
         const {one: repeatOne, all: repeatAll, none: repeatNone} = playerRepeatingStateTypeMap;
         const trackListLength = trackList.length;
@@ -214,25 +220,25 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
         setActiveTrackIndex(0);
     }
 
-    function handleAudioTagOnPlay() {
+    function handleAudioTagOnPlay(): void {
         setPlayingState(playerPlayingStateTypeMap.playing);
         updateMediaMetadata();
     }
 
-    function handleAudioTagCanOnPlay() {
+    function handleAudioTagCanOnPlay(): void {
         if (isOnEndState) {
             setIsOnEndState(false);
             handleClickPlay();
         }
     }
 
-    function handleAudioTagOnTimeUpdate() {
+    function handleAudioTagOnTimeUpdate(): void {
         const audioTag = getAudioTag();
 
         setTrackCurrentTime(audioTag.currentTime);
     }
 
-    function handleClickMute() {
+    function handleClickMute(): void {
         const audioTag = getAudioTag();
 
         const isNewMuted = !audioTag.muted;
@@ -242,40 +248,40 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
         setIsMuted(isNewMuted);
     }
 
-    function handleClickShuffle() {
+    function handleClickShuffle(): void {
         setIsShuffleOn(!isShuffleOn);
     }
 
-    function handleClickRepeat() {
+    function handleClickRepeat(): void {
         const currentIndex = playerRepeatingStateTypeList.indexOf(repeatingState);
         const nextIndex = (currentIndex + 1) % playerRepeatingStateTypeList.length;
 
         setRepeatingState(playerRepeatingStateTypeList[nextIndex]);
     }
 
-    function handleClickShowHideTrackList() {
+    function handleClickShowHideTrackList(): void {
         setIsTrackListOpen(!isTrackListOpen);
     }
 
-    function handleChangeProgressBar(trackCurrentProgress: number) {
+    function handleChangeProgressBar(trackCurrentProgress: number): void {
         const audioTag = getAudioTag();
 
         audioTag.currentTime = trackCurrentProgress * trackFullTime;
     }
 
-    function handleChangeVolumeBar(VolumeBarValue: number) {
+    function handleChangeVolumeBar(VolumeBarValue: number): void {
         const audioTag = getAudioTag();
 
         audioTag.volume = VolumeBarValue;
     }
 
-    function playByIndex(trackIndex: number) {
+    function playByIndex(trackIndex: number): void {
         setActiveIndex(trackIndex);
         setIsLoadingMetadata(true);
 
         const audioTag = getAudioTag();
 
-        function handleOnCanPlay() {
+        function handleOnCanPlay(): void {
             setIsLoadingMetadata(false);
 
             audioTag.removeEventListener("canplay", handleOnCanPlay, false);

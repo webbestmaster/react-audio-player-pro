@@ -1,4 +1,4 @@
-import { DefaultDefinedAudioPlayerStateType, PlayerPlayingStateType, PlayerRepeatingStateType } from '../../library';
+import type { DefaultDefinedAudioPlayerStateType, PlayerPlayingStateType, PlayerRepeatingStateType } from "../../library";
 export declare const seekStepSecond = 10;
 export declare const playerPlayingStateTypeMap: Record<PlayerPlayingStateType, PlayerPlayingStateType>;
 export declare const playerRepeatingStateTypeMap: Record<PlayerRepeatingStateType, PlayerRepeatingStateType>;

@@ -1,8 +1,8 @@
 /// <reference types="react" />
-type PropsType = Readonly<{
-    className?: string;
-    currentTime: number;
-    fullTime: number;
-}>;
+interface PropsType {
+    readonly className?: string;
+    readonly currentTime: number;
+    readonly fullTime: number;
+}
 export declare function Time(props: PropsType): JSX.Element;
 export {};

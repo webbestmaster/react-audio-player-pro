@@ -24,7 +24,7 @@ declare module '${packageName}/dist/style.css' {
 }
 `;
 
-async function innerInitialization() {
+async function innerInitialization(): Promise<void> {
     const isStyleFileExists: boolean = await fileSystem
         .access(pathToStyle)
         .then((): true => {

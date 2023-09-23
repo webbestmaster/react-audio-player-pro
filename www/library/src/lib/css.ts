@@ -9,7 +9,7 @@ export function cls(...argumentList: Array<ClassNamesArgumentType>): string {
 
     // eslint-disable-next-line no-loops/no-loops, unicorn/no-keyword-prefix
     for (const classNameData of argumentList) {
-        // eslint-disable-next-line unicorn/no-keyword-prefix
+        // eslint-disable-next-line unicorn/no-keyword-prefix, @typescript-eslint/strict-boolean-expressions
         if (!classNameData) {
             // eslint-disable-next-line no-continue
             continue;
@@ -25,7 +25,7 @@ export function cls(...argumentList: Array<ClassNamesArgumentType>): string {
 
         // eslint-disable-next-line no-loops/no-loops, unicorn/no-keyword-prefix
         for (const key in classNameData) {
-            // eslint-disable-next-line unicorn/no-keyword-prefix
+            // eslint-disable-next-line unicorn/no-keyword-prefix, @typescript-eslint/strict-boolean-expressions
             if (classNameData[key]) {
                 // eslint-disable-next-line unicorn/no-keyword-prefix
                 classNameList.push(key);

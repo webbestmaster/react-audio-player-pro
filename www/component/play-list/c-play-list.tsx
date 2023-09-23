@@ -1,4 +1,4 @@
-import {Audio, AudioPlayer, PlayListPanel, PlayListProvider, TrackType} from "../../library/library";
+import {Audio, AudioPlayer, PlayListPanel, PlayListProvider, type TrackType} from "../../library/library";
 import {demoUrl} from "../../const";
 import {CustomContent} from "../example-audio-player/c-custom-content";
 

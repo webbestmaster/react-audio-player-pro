@@ -165,18 +165,21 @@
         "@typescript-eslint/lines-between-class-members": 0,
         "@typescript-eslint/block-spacing": 0,
         "@typescript-eslint/quotes": 0,
-        // TODO: enable this
-        "@typescript-eslint/consistent-type-imports": 0,
         "@typescript-eslint/prefer-readonly-parameter-types": 0,
-        "@typescript-eslint/strict-boolean-expressions": 0,
-        "@typescript-eslint/promise-function-async": 0,
-        "@typescript-eslint/explicit-function-return-type": 0,
-        "@typescript-eslint/prefer-readonly": 0,
-        "@typescript-eslint/prefer-regexp-exec": 0,
-        "@typescript-eslint/explicit-module-boundary-types": 0,
-        "@typescript-eslint/explicit-member-accessibility": 0,
-        "@typescript-eslint/sort-type-constituents": 0,
-        "@typescript-eslint/member-ordering": 0,
+
+        //        "@typescript-eslint/prefer-readonly-parameter-types": [
+//            2,
+//            {
+//                "allow": [
+//                    "MediaMetadataInit",
+//                    {
+//                        "from": "package",
+//                        "name": "Compiler",
+//                        "package": "webpack"
+//                    }
+//                ]
+//            }
+//        ],
         // Unicorn
         "unicorn/prefer-string-replace-all": 0,
         "unicorn/prefer-node-protocol": 2,

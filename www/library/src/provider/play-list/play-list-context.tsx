@@ -1,6 +1,6 @@
-import {Context, createContext} from "react";
+import {type Context, createContext} from "react";
 
-import {PlayListContextType} from "./play-list-context-type";
+import type {PlayListContextType} from "./play-list-context-type";
 import {getDefaultPlayListContextData} from "./play-list-context-helper";
 
 const defaultPlayListContextData = getDefaultPlayListContextData();

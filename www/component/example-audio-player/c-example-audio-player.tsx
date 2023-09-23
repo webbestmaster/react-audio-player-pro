@@ -1,4 +1,4 @@
-import {AudioPlayer, AudioPlayerControlSprite, TrackType} from "../../library/library";
+import {AudioPlayer, AudioPlayerControlSprite, type TrackType} from "../../library/library";
 import {Markdown} from "../layout/c-markdown";
 import {demoUrl} from "../../const";
 

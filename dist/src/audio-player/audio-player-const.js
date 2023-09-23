@@ -1,3 +1,4 @@
+/* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
 /*
 import type {
     AudioPlayerContextType,
@@ -8,14 +9,14 @@ import type {
 */
 export const seekStepSecond = 10;
 export const playerPlayingStateTypeMap = {
-    paused: 'paused',
-    playing: 'playing',
-    stopped: 'stopped',
+    paused: "paused",
+    playing: "playing",
+    stopped: "stopped",
 };
 export const playerRepeatingStateTypeMap = {
-    all: 'all',
-    none: 'none',
-    one: 'one',
+    all: "all",
+    none: "none",
+    one: "one",
 };
 const { none, all, one } = playerRepeatingStateTypeMap;
 export const playerRepeatingStateTypeList = [none, all, one];

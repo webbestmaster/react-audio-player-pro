@@ -1,6 +1,6 @@
 /* global HTMLAudioElement*/
 
-import {DefaultAudioPlayerStateType, DefaultDefinedAudioPlayerStateType} from "../../library";
+import type {DefaultAudioPlayerStateType, DefaultDefinedAudioPlayerStateType} from "../../library";
 
 import {defaultAudioPlayerState} from "./audio-player-const";
 
@@ -20,7 +20,7 @@ export function getStopHandler(audioTag: HTMLAudioElement): () => void {
         // eslint-disable-next-line no-param-reassign
         audioTag.currentTime = 0;
 
-        function handleCanPlay() {
+        function handleCanPlay(): void {
             audioTag.removeEventListener("canplay", handleCanPlay, false);
 
             // eslint-disable-next-line promise/catch-or-return, @typescript-eslint/no-floating-promises

@@ -7,7 +7,7 @@ export const selector = {
 
 export const demoUrl = "http://webbestmaster.github.io/react-audio-player-pro";
 
-function sayHi() {
+function sayHi(): void {
     const {log} = console;
 
     // http://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=Empty, font: ANSI Shadow

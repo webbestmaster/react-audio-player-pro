@@ -1,13 +1,13 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { getRandomStringBySize } from '../../lib/string';
-import { getSavedPlayListContextData, savePlayListContextData } from './play-list-context-storage';
-import { defaultPlayListName } from './play-list-context-const';
-import { PlayListContext } from './play-list-context';
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { getRandomStringBySize } from "../../lib/string";
+import { getSavedPlayListContextData, savePlayListContextData } from "./play-list-context-storage";
+import { defaultPlayListName } from "./play-list-context-const";
+import { PlayListContext } from "./play-list-context";
 export function PlayListProvider(props) {
     const { children } = props;
     const [list, setList] = useState(getSavedPlayListContextData());
-    const getTrackById = useCallback(function getTrackByIdInner(trackId) {
+    const getTrackById = useCallback((trackId) => {
         const listLength = list.length;
         // eslint-disable-next-line no-loops/no-loops
         for (let playListIndex = 0; playListIndex < listLength; playListIndex += 1) {
@@ -23,40 +23,40 @@ export function PlayListProvider(props) {
         }
         return null;
     }, [list]);
-    const createPlayList = useCallback(function createPlayListInner() {
-        const newPlayList = {
-            name: defaultPlayListName + ' ' + getRandomStringBySize(4),
+    const createPlayList = useCallback(() => {
+        const updatedPlayList = {
+            name: `${defaultPlayListName} ${getRandomStringBySize(4)}`,
             trackList: [],
-            // isDefault: false,
+            // IsDefault: false,
         };
-        const newList = [...list, newPlayList];
-        setList(newList);
-        return newPlayList;
+        const updatedList = [...list, updatedPlayList];
+        setList(updatedList);
+        return updatedPlayList;
     }, [list, setList]);
-    const getAllPlayLists = useCallback(function getAllPlayListsInner() {
+    const getAllPlayLists = useCallback(() => {
         return [...list];
     }, [list]);
-    const updatePlayList = useCallback(function updatePlayListInner(oldPlayList, newListPlayData) {
-        const newList = [...list];
-        const playListIndex = newList.indexOf(oldPlayList);
+    const updatePlayList = useCallback((oldPlayList, updatedListPlayData) => {
+        const updatedList = [...list];
+        const playListIndex = updatedList.indexOf(oldPlayList);
         if (playListIndex < 0) {
-            return new Error('Old Play List is not exists.');
+            return new Error("Old Play List is not exists.");
         }
-        newList[playListIndex] = newListPlayData;
-        setList(newList);
-        return newListPlayData;
+        updatedList[playListIndex] = updatedListPlayData;
+        setList(updatedList);
+        return updatedListPlayData;
     }, [list, setList]);
-    const deletePlayList = useCallback(function deletePlayListInner(playList) {
-        const newList = [...list];
-        const playListIndex = newList.indexOf(playList);
+    const deletePlayList = useCallback((playList) => {
+        const updatedList = [...list];
+        const playListIndex = updatedList.indexOf(playList);
         if (playListIndex < 0) {
-            return new Error('Play List is not exists.');
+            return new Error("Play List is not exists.");
         }
-        newList.splice(playListIndex, 1);
-        setList(newList);
+        updatedList.splice(playListIndex, 1);
+        setList(updatedList);
         return null;
     }, [list, setList]);
-    const removeTrackById = useCallback(function removeTrackInner(trackId) {
+    const removeTrackById = useCallback((trackId) => {
         const listLength = list.length;
         // eslint-disable-next-line no-loops/no-loops
         for (let playListIndex = 0; playListIndex < listLength; playListIndex += 1) {
@@ -67,17 +67,17 @@ export function PlayListProvider(props) {
             for (let trackIndex = 0; trackIndex < trackListLength; trackIndex += 1) {
                 const track = trackList[trackIndex];
                 if (track.id === trackId) {
-                    const newTrackList = [...trackList];
-                    newTrackList.splice(trackIndex, 1);
+                    const updatedTrackList = [...trackList];
+                    updatedTrackList.splice(trackIndex, 1);
                     updatePlayList(playList, {
                         ...playList,
-                        trackList: newTrackList,
+                        trackList: updatedTrackList,
                     });
                     return null;
                 }
             }
         }
-        return new Error('Track is not exists.');
+        return new Error("Track is not exists.");
     }, [list, updatePlayList]);
     const providedData = useMemo(() => {
         return {

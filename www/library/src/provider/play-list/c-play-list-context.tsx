@@ -1,9 +1,9 @@
-import {useCallback, useEffect, useMemo, useState, ReactNode} from "react";
+import {useCallback, useEffect, useMemo, useState, type ReactNode} from "react";
 
-import {SavedTrackType} from "../../../library";
+import type {SavedTrackType} from "../../../library";
 import {getRandomStringBySize} from "../../lib/string";
 
-import {PlayListContextType, PlayListType} from "./play-list-context-type";
+import type {PlayListContextType, PlayListType} from "./play-list-context-type";
 import {getSavedPlayListContextData, savePlayListContextData} from "./play-list-context-storage";
 import {defaultPlayListName} from "./play-list-context-const";
 import {PlayListContext} from "./play-list-context";
@@ -12,7 +12,7 @@ export type PlayListProviderPropsType = Readonly<{children: ReactNode}>;
 
 export function PlayListProvider(props: PlayListProviderPropsType): JSX.Element {
     const {children} = props;
-    const [list, setList] = useState<Array<PlayListType>>(getSavedPlayListContextData());
+    const [list, setList] = useState<ReadonlyArray<PlayListType>>(getSavedPlayListContextData());
 
     const getTrackById = useCallback(
         (trackId: string): SavedTrackType | null => {

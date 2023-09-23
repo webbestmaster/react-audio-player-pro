@@ -1,22 +1,33 @@
+/* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
 export function getDefaultPlayListContextData() {
     const defaultPlayList = {
-        name: '',
+        name: "",
         trackList: [],
         // isDefault: false,
     };
     return {
-        createPlayList: () => defaultPlayList,
+        createPlayList: () => {
+            return defaultPlayList;
+        },
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-        deletePlayList: (playList) => new Error('deletePlayList: overwrite me'),
-        getAllPlayLists: () => [defaultPlayList],
+        deletePlayList: (playList) => {
+            return new Error("deletePlayList: overwrite me");
+        },
+        getAllPlayLists: () => {
+            return [defaultPlayList];
+        },
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-        getTrackById: (trackId) => null,
+        getTrackById: (trackId) => {
+            return null;
+        },
         isInitialized: false,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-        removeTrackById: (trackId) => new Error('removeTrack: overwrite me'),
+        removeTrackById: (trackId) => {
+            return new Error("removeTrack: overwrite me");
+        },
         // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-        updatePlayList: (oldPlayList, newListPlayData) => {
-            return new Error('updatePlayList: overwrite me');
+        updatePlayList: (oldPlayList, updatedListPlayData) => {
+            return new Error("updatePlayList: overwrite me");
         },
     };
 }
@@ -60,6 +71,7 @@ export function savedTrackToTrack(savedTrack) {
     if (mediaMetadata) {
         track = { ...track, mediaMetadata };
     }
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (content) {
         track = { ...track, content };
     }

@@ -1,4 +1,10 @@
-import {Configuration, ContextReplacementPlugin, DefinePlugin, WebpackPluginInstance, Compiler} from "webpack";
+import {
+    type Configuration,
+    ContextReplacementPlugin,
+    DefinePlugin,
+    type WebpackPluginInstance,
+    type Compiler,
+} from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ScriptExtHtmlWebpackPlugin from "script-ext-html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";

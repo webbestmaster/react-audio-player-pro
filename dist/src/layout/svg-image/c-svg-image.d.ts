@@ -1,7 +1,7 @@
 /// <reference types="react" />
-type PropsType = Readonly<{
-    className: string;
-    imageId: string;
-}>;
+interface PropsType {
+    readonly className: string;
+    readonly imageId: string;
+}
 export declare function SvgImage(props: PropsType): JSX.Element;
 export {};

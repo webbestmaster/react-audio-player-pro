@@ -1,7 +1,7 @@
 import {cwd} from "node:process";
 import path from "node:path";
 
-import {RuleSetRule} from "webpack";
+import type {RuleSetRule} from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 import {isProduction, isDevelopment, isTsTranspileOnly, fileRegExp} from "../../config";

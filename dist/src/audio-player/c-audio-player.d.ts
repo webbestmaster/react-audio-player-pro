@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { DefaultAudioPlayerStateType, TrackType } from '../../library';
+import type { DefaultAudioPlayerStateType, TrackType } from "../../library";
 export type AudioPlayerPropsType = Readonly<{
     className?: string;
     defaultState?: DefaultAudioPlayerStateType;

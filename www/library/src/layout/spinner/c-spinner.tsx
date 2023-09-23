@@ -4,7 +4,7 @@ import {cls} from "../../lib/css";
 
 import spinnerStyle from "./spinner.scss";
 import {defaultData, positionValueMap} from "./spinner-const";
-import {PositionType} from "./spinner-type";
+import type {PositionType} from "./spinner-type";
 
 const {size: defaultSize} = defaultData;
 

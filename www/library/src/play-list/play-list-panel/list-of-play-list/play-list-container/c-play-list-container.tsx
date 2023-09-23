@@ -2,7 +2,7 @@
 
 import {useCallback, useContext, useRef} from "react";
 
-import {PlayListType} from "../../../../provider/play-list/play-list-context-type";
+import type {PlayListType} from "../../../../provider/play-list/play-list-context-type";
 import {PlayListContext} from "../../../../provider/play-list/play-list-context";
 import {noNamePlayListName} from "../../../../provider/play-list/play-list-context-const";
 import {AudioPlayer} from "../../../../audio-player/c-audio-player";
@@ -28,7 +28,7 @@ export function PlayListContainer(props: PropsType): JSX.Element {
     function getInputPlayListName(): HTMLInputElement {
         return (
             inputPlayListNameRef.current ??
-            (() => {
+            ((): HTMLInputElement => {
                 throw new Error("Can not get input of play list name");
             })()
         );

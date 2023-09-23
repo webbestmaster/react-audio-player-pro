@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { AudioPlayerControlTagNameType } from './audio-player-control-button-type';
+import type { AudioPlayerControlTagNameType } from "./audio-player-control-button-type";
 type PropsType = Readonly<{
     ariaLabel: string;
     className?: string;

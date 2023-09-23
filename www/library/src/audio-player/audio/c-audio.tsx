@@ -6,7 +6,7 @@ import {cls} from "../../lib/css";
 import {playerPlayingStateTypeMap, seekStepSecond} from "../audio-player-const";
 import {AudioPlayerControlButton} from "../../layout/audio-player-control-button/c-audio-player-control-button";
 import {Time} from "../../layout/time/c-time";
-import {AudioPreloadValueType, PlayerPlayingStateType, TrackType} from "../../../library";
+import type {AudioPreloadValueType, PlayerPlayingStateType, TrackType} from "../../../library";
 import {RangeBar} from "../../layout/range-bar/c-range-bar";
 import {setMediaMetadata} from "../../lib/media-meta-data/media-meta-data";
 import {getStopHandler} from "../audio-player-helper";
@@ -61,14 +61,14 @@ export function Audio(props: AudioPropsType): JSX.Element {
         throw new Error("Audio tag is not exists");
     }
 
-    function handleClickPlay() {
+    function handleClickPlay(): void {
         const audioTag = getAudioTag();
 
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         audioTag.play();
     }
 
-    function handleOnEnded() {
+    function handleOnEnded(): void {
         const audioTag = getAudioTag();
 
         audioTag.currentTime = 0;
@@ -83,7 +83,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
         setTrackCurrentTime(0);
     }
 
-    function handleOnLoadedMetadata() {
+    function handleOnLoadedMetadata(): void {
         const audioTag = getAudioTag();
 
         setTrackCurrentTime(0);
@@ -92,23 +92,23 @@ export function Audio(props: AudioPropsType): JSX.Element {
         audioTag.volume = trackVolume;
     }
 
-    function handleOnPause() {
+    function handleOnPause(): void {
         setPlayingState(playerPlayingStateTypeMap.paused);
     }
 
-    function seekForward() {
+    function seekForward(): void {
         const audioTag = getAudioTag();
 
         audioTag.currentTime += seekStepSecond;
     }
 
-    function seekBackward() {
+    function seekBackward(): void {
         const audioTag = getAudioTag();
 
         audioTag.currentTime -= seekStepSecond;
     }
 
-    function handleOnPlay() {
+    function handleOnPlay(): void {
         setPlayingState(playerPlayingStateTypeMap.playing);
 
         const seek = {
@@ -125,30 +125,30 @@ export function Audio(props: AudioPropsType): JSX.Element {
         setMediaMetadata({title: src}, seek);
     }
 
-    function handleOnTimeUpdate() {
+    function handleOnTimeUpdate(): void {
         const audioTag = getAudioTag();
 
         setTrackCurrentTime(audioTag.currentTime);
     }
 
-    function handleOnVolumeChange() {
+    function handleOnVolumeChange(): void {
         const audioTag = getAudioTag();
 
         setIsMuted(audioTag.muted);
         setTrackVolume(audioTag.volume);
     }
 
-    function handleClickPause() {
+    function handleClickPause(): void {
         const audioTag = getAudioTag();
 
         audioTag.pause();
     }
 
-    function handleClickRepeat() {
+    function handleClickRepeat(): void {
         setIsRepeatOn(!isRepeatOn);
     }
 
-    function handleOnChangeProgressBar(progress: number) {
+    function handleOnChangeProgressBar(progress: number): void {
         const audioTag = getAudioTag();
         const audioTagTrackCurrentTime = progress * trackFullTime;
 
@@ -157,7 +157,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
         setTrackCurrentTime(audioTagTrackCurrentTime);
     }
 
-    function handleClickToggleMute() {
+    function handleClickToggleMute(): void {
         const audioTag = getAudioTag();
         const audioTagIsMuted = !audioTag.muted;
 
@@ -165,7 +165,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
         setIsMuted(audioTagIsMuted);
     }
 
-    function handleChangeVolumeBar(volumeBarValue: number) {
+    function handleChangeVolumeBar(volumeBarValue: number): void {
         const audioTag = getAudioTag();
 
         audioTag.volume = volumeBarValue;

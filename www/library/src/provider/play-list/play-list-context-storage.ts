@@ -1,11 +1,11 @@
 /* global localStorage */
 
-import {PlayListType} from "./play-list-context-type";
+import type {PlayListType} from "./play-list-context-type";
 import {defaultPlayListName} from "./play-list-context-const";
 
 const localStorageKeyName = "react-audio-player-play-list-storage-key-v.1.0.0";
 
-type SavedDataType = Array<PlayListType>;
+type SavedDataType = ReadonlyArray<PlayListType>;
 
 function getDefaultPlayListContextData(): SavedDataType {
     return [
@@ -32,7 +32,7 @@ export function getSavedPlayListContextData(): SavedDataType {
 
     const rawData = localStorage.getItem(localStorageKeyName);
 
-    if (rawData) {
+    if (typeof rawData === "string" && rawData.trim()) {
         // TODO: add type check here
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return JSON.parse(rawData);

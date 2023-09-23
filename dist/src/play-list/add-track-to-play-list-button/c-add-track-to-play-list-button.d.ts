@@ -1,8 +1,8 @@
 /// <reference types="react" />
-import { TrackType } from '../../../library';
-type PropsType = Readonly<{
-    className?: string;
-    track: TrackType;
-}>;
+import type { TrackType } from "../../../library";
+interface PropsType {
+    readonly className?: string;
+    readonly track: TrackType;
+}
 export declare function PlayListMenuButton(props: PropsType): JSX.Element | null;
 export {};

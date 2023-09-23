@@ -1,10 +1,10 @@
 /* global navigator, MediaMetadata, MediaMetadataInit */
-import { mediaMetadataControlNameList } from './media-meta-data-const';
+import { mediaMetadataControlNameList } from "./media-meta-data-const";
 export function clearMediaMetadata() {
-    if (typeof navigator === 'undefined' || typeof MediaMetadata === 'undefined') {
+    if (typeof navigator === "undefined" || typeof MediaMetadata === "undefined") {
         return;
     }
-    if (!('mediaSession' in navigator)) {
+    if (!("mediaSession" in navigator)) {
         return;
     }
     navigator.mediaSession.metadata = null;
@@ -15,10 +15,11 @@ export function clearMediaMetadata() {
 }
 // eslint-disable-next-line complexity
 export function setMediaMetadata(mediaMetadata, mediaMetadataControlSetting) {
-    if (typeof navigator === 'undefined' || typeof MediaMetadata === 'undefined') {
+    var _a;
+    if (typeof navigator === "undefined" || typeof MediaMetadata === "undefined") {
         return;
     }
-    if (!('mediaSession' in navigator)) {
+    if (!("mediaSession" in navigator)) {
         return;
     }
     clearMediaMetadata();
@@ -28,7 +29,7 @@ export function setMediaMetadata(mediaMetadata, mediaMetadataControlSetting) {
     }
     // eslint-disable-next-line no-loops/no-loops
     for (const controlName of mediaMetadataControlNameList) {
-        navigator.mediaSession.setActionHandler(controlName, mediaMetadataControlSetting[controlName] || null);
+        navigator.mediaSession.setActionHandler(controlName, (_a = mediaMetadataControlSetting[controlName]) !== null && _a !== void 0 ? _a : null);
     }
 }
 //# sourceMappingURL=media-meta-data.js.map

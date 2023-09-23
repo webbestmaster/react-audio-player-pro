@@ -35,15 +35,15 @@ export function RangeBar(props: PropsType): JSX.Element {
         return Number.parseFloat(current.value);
     }
 
-    function handleMouseDown() {
+    function handleMouseDown(): void {
         setIsMouseDown(true);
     }
 
-    function handleMouseUp() {
+    function handleMouseUp(): void {
         setIsMouseDown(false);
     }
 
-    function handleProgressBarChange() {
+    function handleProgressBarChange(): void {
         onChange(getCurrentValue());
     }
 

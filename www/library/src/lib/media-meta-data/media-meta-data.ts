@@ -1,6 +1,6 @@
 /* global navigator, MediaMetadata, MediaMetadataInit */
 
-import {MediaMetadataControlSettingType} from "./media-meta-data-type";
+import type {MediaMetadataControlSettingType} from "./media-meta-data-type";
 import {mediaMetadataControlNameList} from "./media-meta-data-const";
 
 export function clearMediaMetadata(): void {

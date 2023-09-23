@@ -1,5 +1,5 @@
 // eslint-disable-next-line unicorn/no-keyword-prefix
-import {markdown, MarkdownConfigShallowType, classNameMdProThemeLight, classNameMdPro} from "markdown-pro";
+import {markdown, type MarkdownConfigShallowType, classNameMdProThemeLight, classNameMdPro} from "markdown-pro";
 import "markdown-pro/dist/style.css";
 
 interface PropsType {

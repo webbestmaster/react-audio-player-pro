@@ -1,1 +1,1 @@
-export type AudioPlayerControlTagNameType = 'div' | 'span';
+export type AudioPlayerControlTagNameType = "div" | "span";

@@ -1,6 +1,6 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import audioPlayerTrackListStyle from './audio-player-track-list.scss';
-import { AudioPlayerTrackListItem } from './audio-player-track-list-item/c-audio-player-track-list-item';
+import audioPlayerTrackListStyle from "./audio-player-track-list.scss";
+import { AudioPlayerTrackListItem } from "./audio-player-track-list-item/c-audio-player-track-list-item";
 export function AudioPlayerTrackList(props) {
     const { activeIndex, trackList, playingState, onClickPlay, setActiveIndex, isLoading, playByIndex } = props;
     return (_jsx("ul", { className: audioPlayerTrackListStyle.audio_player_track_list, children: trackList.map((track, index) => {

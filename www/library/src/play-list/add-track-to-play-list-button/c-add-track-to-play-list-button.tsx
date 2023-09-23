@@ -2,14 +2,14 @@
 
 /* eslint-disable jsx-a11y/no-onchange */
 
-import {useCallback, useContext, useState, SyntheticEvent} from "react";
+import {useCallback, useContext, useState, type SyntheticEvent} from "react";
 
 import {cls} from "../../lib/css";
 import {PlayListContext} from "../../provider/play-list/play-list-context";
-import {SavedTrackType, TrackType} from "../../../library";
+import type {SavedTrackType, TrackType} from "../../../library";
 import {isTracksEquals} from "../../provider/play-list/play-list-context-helper";
 import {getRandomString} from "../../lib/string";
-import {PlayListType} from "../../provider/play-list/play-list-context-type";
+import type {PlayListType} from "../../provider/play-list/play-list-context-type";
 import {noNamePlayListName} from "../../provider/play-list/play-list-context-const";
 import {AudioPlayerControlButton} from "../../layout/audio-player-control-button/c-audio-player-control-button";
 

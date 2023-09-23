@@ -1,9 +1,8 @@
 /* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
 
-import {SavedTrackType, TrackType} from "../../../library";
-// import {extractText} from '../../lib/string';
+import type {SavedTrackType, TrackType} from "../../../library";
 
-import {PlayListContextType, PlayListType} from "./play-list-context-type";
+import type {PlayListContextType, PlayListType} from "./play-list-context-type";
 
 export function getDefaultPlayListContextData(): PlayListContextType {
     const defaultPlayList: PlayListType = {
@@ -86,6 +85,7 @@ export function savedTrackToTrack(savedTrack: SavedTrackType): TrackType {
         track = {...track, mediaMetadata};
     }
 
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (content) {
         track = {...track, content};
     }

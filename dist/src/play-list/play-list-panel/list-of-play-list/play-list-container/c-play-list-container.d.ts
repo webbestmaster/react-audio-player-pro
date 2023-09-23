@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { PlayListType } from '../../../../provider/play-list/play-list-context-type';
+import type { PlayListType } from "../../../../provider/play-list/play-list-context-type";
 type PropsType = Readonly<{
     playList: PlayListType;
 }>;

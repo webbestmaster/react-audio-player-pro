@@ -3,7 +3,7 @@
 import {useRef, useState} from "react";
 
 import {cls} from "../../../lib/css";
-import {PlayerPlayingStateType, TrackType} from "../../../../library";
+import type {PlayerPlayingStateType, TrackType} from "../../../../library";
 import {playerPlayingStateTypeMap} from "../../audio-player-const";
 import {SvgImage} from "../../../layout/svg-image/c-svg-image";
 import {audioPlayerIconIdPrefix} from "../../../layout/audio-player-control-sprite/c-audio-player-control-sprite";
@@ -53,15 +53,15 @@ export function AudioPlayerTrackListItem(props: PropsType): JSX.Element {
         throw new Error("Audio tag is not exists");
     }
 
-    function handleSetActiveIndex() {
+    function handleSetActiveIndex(): void {
         setActiveIndex(activeIndex);
     }
 
-    function handleSetActiveIndexAndPlay() {
+    function handleSetActiveIndexAndPlay(): void {
         playByIndex(activeIndex);
     }
 
-    function handleOnLoadedMetadata() {
+    function handleOnLoadedMetadata(): void {
         const audioTag = getAudioTag();
 
         setTrackFullTime(audioTag.duration);

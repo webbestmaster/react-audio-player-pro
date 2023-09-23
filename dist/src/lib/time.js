@@ -1,7 +1,7 @@
 export function getTrackHumanTime(timeInSeconds) {
     return {
         minutes: String(Math.floor(timeInSeconds / 60)),
-        seconds: String(Math.floor(timeInSeconds % 60)).padStart(2, '0'),
+        seconds: String(Math.floor(timeInSeconds % 60)).padStart(2, "0"),
     };
 }
 export function getProgressHumanTime(currentTimeInSeconds, fullTimeInSeconds) {

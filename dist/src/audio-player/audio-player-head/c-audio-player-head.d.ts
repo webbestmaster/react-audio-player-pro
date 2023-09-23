@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { PlayerPlayingStateType, PlayerRepeatingStateType } from '../../../library';
+import type { PlayerPlayingStateType, PlayerRepeatingStateType } from "../../../library";
 type PropsType = Readonly<{
     isLoading: boolean;
     isMuted: boolean;

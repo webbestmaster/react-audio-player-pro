@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { PlayerPlayingStateType, TrackType } from '../../../library';
+import type { PlayerPlayingStateType, TrackType } from "../../../library";
 type PropsType = Readonly<{
     activeIndex: number;
     isLoading: boolean;
