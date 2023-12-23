@@ -27,7 +27,8 @@ $button-image-active-background-color: #e5e5e5;
     height: $button-size;
     margin: 0;
     outline: none;
-    //padding: ($button-size - $button-image-size) / 2 - $button-border-size; === 4px
+
+    // padding: ($button-size - $button-image-size) / 2 - $button-border-size; === 4px
     padding: 4px;
     width: $button-size;
 

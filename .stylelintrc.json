@@ -1,14 +1,19 @@
 {
     "plugins": [
-        "stylelint-scss"
+        "stylelint-scss",
+        "stylelint-order"
     ],
     "extends": [
-        "stylelint-config-standard",
-        "stylelint-config-sass-guidelines"
+        "stylelint-config-standard-scss",
+        "stylelint-config-standard"
     ],
     "rules": {
+        "media-query-no-invalid": null,
+        "at-rule-no-unknown": null,
+        "scss/at-rule-no-unknown": true,
+        "order/properties-alphabetical-order": true,
+        "declaration-property-value-no-unknown": null,
         "import-notation": "string",
-        "indentation": 4,
         "selector-pseudo-element-colon-notation": "single",
         "max-nesting-depth": 2,
         "selector-class-pattern": "^[a-z\\-\\d_]+$",
