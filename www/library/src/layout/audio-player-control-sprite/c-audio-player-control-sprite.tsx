@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 
-import audioPlayerControlSpriteStyle from "./audio-player-control-sprite.scss";
+import * as audioPlayerControlSpriteStyle from "./audio-player-control-sprite.scss";
 
 export const audioPlayerIconIdPrefix = "audio-player-icon-id-prefix-";
 const mainFillColor = "#5a5a5a";

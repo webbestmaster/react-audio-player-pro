@@ -1,11 +1,11 @@
-/* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position */
+/* eslint-disable capitalized-comments */
 
 import {cwd} from "node:process";
 import path from "node:path";
 
 import type {Configuration} from "webpack";
 import nodeExternals from "webpack-node-externals";
-// import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
+// import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer";
 
 import {optimization} from "./setting/optimization";
 import {rules} from "./setting/module/rules";
@@ -14,6 +14,7 @@ import {extensions} from "./setting/resolve/extensions";
 import {plugins} from "./setting/plugins";
 import {devServer} from "./setting/dev-server";
 import {watchOptions} from "./setting/watch-options";
+import {experiments} from "./setting/experiments";
 
 const externals = [nodeExternals()]; // in order to ignore all modules in node_modules folder
 const externalsPresets = {node: true}; // in order to ignore built-in modules like path, fs, etc.
@@ -33,9 +34,10 @@ import {
 const configFront: Configuration = {
     devtool: "source-map", // isDevelopment ? 'source-map' : false,
     entry: ["./www/css/root.scss", "./www/root.tsx"],
+    experiments: {...experiments},
     mode: nodeEnvironment,
     module: {rules},
-    // optimization,
+    optimization: {...optimization},
     output: {
         assetModuleFilename: isDevelopment
             ? "build-asset/[name]----[hash:6][ext][query]"
@@ -48,8 +50,7 @@ const configFront: Configuration = {
     },
     plugins,
     resolve: {alias, extensions},
-    // devServer,
-    // watchOptions: watchOptions,
+    watchOptions: {...watchOptions},
 };
 
 const configBack: Configuration = {
@@ -68,8 +69,10 @@ const configLibraryFront: Configuration = {
     externals,
     externalsPresets,
     mode: nodeEnvironment,
-    module: {rules},
     // optimization,
+    module: {rules},
+    // devServer,
+    optimization: {...optimization},
     output: {
         filename: "index.js",
         libraryTarget: "commonjs2",
@@ -77,10 +80,9 @@ const configLibraryFront: Configuration = {
         pathinfo: false,
         publicPath: "",
     },
-    // devServer,
     plugins,
     resolve: {alias, extensions},
-    // watchOptions: watchOptions,
+    watchOptions: {...watchOptions},
 
     /*
     externals: {
@@ -109,7 +111,6 @@ const configLibraryFront: Configuration = {
 
 const configLibraryBack: Configuration = {...configLibraryFront};
 
-// eslint-disable-next-line complexity
 const webpackConfig: Configuration = ((): Configuration => {
     if (isBuildLibrary && isFront) {
         return configLibraryFront;
@@ -130,6 +131,6 @@ const webpackConfig: Configuration = ((): Configuration => {
     throw new Error("Can not detect config");
 })();
 
-// webpackConfig?.plugins?.push(new BundleAnalyzerPlugin());
+// webpackConfig.plugins?.push(new BundleAnalyzerPlugin());
 
-export const webpackRunningConfig = {...webpackConfig, devServer, optimization, watchOptions};
+export const webpackRunningConfig = {...webpackConfig, devServer};

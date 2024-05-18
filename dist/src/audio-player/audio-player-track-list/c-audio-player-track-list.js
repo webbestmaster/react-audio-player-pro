@@ -1,5 +1,5 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import audioPlayerTrackListStyle from "./audio-player-track-list.scss";
+import * as audioPlayerTrackListStyle from "./audio-player-track-list.scss";
 import { AudioPlayerTrackListItem } from "./audio-player-track-list-item/c-audio-player-track-list-item";
 export function AudioPlayerTrackList(props) {
     const { activeIndex, trackList, playingState, onClickPlay, setActiveIndex, isLoading, playByIndex } = props;

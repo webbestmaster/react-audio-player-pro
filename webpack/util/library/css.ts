@@ -24,7 +24,7 @@ declare module '${packageName}/dist/style.css' {
 }
 `;
 
-async function innerInitialization(): Promise<void> {
+async function innerInitialization(): Promise<undefined> {
     const isStyleFileExists: boolean = await fileSystem
         .access(pathToStyle)
         .then((): true => {
@@ -47,5 +47,5 @@ async function innerInitialization(): Promise<void> {
     console.log("[css util] declaration for css has been added.");
 }
 
-// eslint-disable-next-line unicorn/prefer-top-level-await, @typescript-eslint/no-floating-promises
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
 innerInitialization();

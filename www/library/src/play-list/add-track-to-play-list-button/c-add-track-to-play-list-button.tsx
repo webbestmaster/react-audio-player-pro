@@ -1,7 +1,5 @@
 /* global HTMLSelectElement */
 
-/* eslint-disable jsx-a11y/no-onchange */
-
 import {useCallback, useContext, useState, type SyntheticEvent} from "react";
 
 import {cls} from "../../lib/css";
@@ -13,16 +11,14 @@ import type {PlayListType} from "../../provider/play-list/play-list-context-type
 import {noNamePlayListName} from "../../provider/play-list/play-list-context-const";
 import {AudioPlayerControlButton} from "../../layout/audio-player-control-button/c-audio-player-control-button";
 
-import addTrackToPlayListButtonStyle from "./add-track-to-play-list-button.scss";
+import * as addTrackToPlayListButtonStyle from "./add-track-to-play-list-button.scss";
 
 type PropsType = Readonly<{
-    // eslint-disable-next-line unicorn/no-keyword-prefix
     className?: string;
     track: TrackType;
 }>;
 
 export function PlayListMenuButton(props: PropsType): JSX.Element | null {
-    // eslint-disable-next-line unicorn/no-keyword-prefix
     const {className, track} = props;
     const fullClassName = cls(addTrackToPlayListButtonStyle.add_track_to_play_list_button, className);
     const playListContextData = useContext(PlayListContext);
@@ -37,7 +33,7 @@ export function PlayListMenuButton(props: PropsType): JSX.Element | null {
     const defaultSelectValue = "-1";
 
     const handleAddTrack = useCallback(
-        // eslint-disable-next-line max-statements, complexity
+        // eslint-disable-next-line max-statements
         (evt: SyntheticEvent<HTMLSelectElement>) => {
             const selectNode = evt.currentTarget;
             const listIndex = Number.parseInt(selectNode.value, 10);

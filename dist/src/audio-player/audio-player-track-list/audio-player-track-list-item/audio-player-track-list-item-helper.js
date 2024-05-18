@@ -1,4 +1,3 @@
-// eslint-disable-next-line complexity
 export function getActualContent(track) {
     const { content, mediaMetadata, src } = track;
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions

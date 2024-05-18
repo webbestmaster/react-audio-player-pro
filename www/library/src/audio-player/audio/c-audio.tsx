@@ -13,10 +13,9 @@ import {getStopHandler} from "../audio-player-helper";
 import {PlayListMenuButton} from "../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button";
 import {audioPlayerControlTagNameMap} from "../../layout/audio-player-control-button/audio-player-control-button-const";
 
-import audioStyle from "./audio.scss";
+import * as audioStyle from "./audio.scss";
 
 export interface AudioPropsType {
-    // eslint-disable-next-line unicorn/no-keyword-prefix
     readonly className?: string;
     readonly downloadFileName?: string;
     readonly duration?: number;
@@ -27,10 +26,9 @@ export interface AudioPropsType {
     readonly useRepeatButton?: boolean;
 }
 
-// eslint-disable-next-line complexity, max-statements, sonarjs/cognitive-complexity
+// eslint-disable-next-line max-statements
 export function Audio(props: AudioPropsType): JSX.Element {
     const {
-        // eslint-disable-next-line unicorn/no-keyword-prefix
         className,
         downloadFileName,
         duration = 0,
@@ -198,7 +196,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
                 src={src}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
                 // @ts-ignore
-                volume={trackVolume} // eslint-disable-line react/no-unknown-property
+                volume={trackVolume}
             >
                 <track kind="captions" src={src} />
             </audio>

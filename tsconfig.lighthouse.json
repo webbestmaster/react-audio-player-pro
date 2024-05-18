@@ -1,0 +1,11 @@
+{
+    "extends": "./tsconfig.json",
+    "ts-node": {
+        "compilerOptions": {
+            "target": "ES2020",
+            "moduleResolution": "NodeNext",
+            "module": "CommonJS",
+            "exactOptionalPropertyTypes": false,
+        }
+    }
+}

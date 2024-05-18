@@ -1,4 +1,4 @@
-/* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
+/* eslint-disable capitalized-comments */
 export function getDefaultPlayListContextData() {
     const defaultPlayList = {
         name: "",
@@ -9,23 +9,23 @@ export function getDefaultPlayListContextData() {
         createPlayList: () => {
             return defaultPlayList;
         },
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         deletePlayList: (playList) => {
             return new Error("deletePlayList: overwrite me");
         },
         getAllPlayLists: () => {
             return [defaultPlayList];
         },
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         getTrackById: (trackId) => {
             return null;
         },
         isInitialized: false,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         removeTrackById: (trackId) => {
             return new Error("removeTrack: overwrite me");
         },
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         updatePlayList: (oldPlayList, updatedListPlayData) => {
             return new Error("updatePlayList: overwrite me");
         },

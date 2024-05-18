@@ -20,9 +20,8 @@ const filePathPrefix = isProduction ? "./../" : "./";
 const date = new Date();
 
 const definePluginParameters: Record<string, string> = {
-    // eslint-disable-next-line id-match
     // BUILD_DATE: JSON.stringify(date.getTime()),
-    // eslint-disable-next-line id-match
+
     BUILD_DATE_H: JSON.stringify(date.toISOString()),
     // NODE_ENV: JSON.stringify(NODE_ENV),
     IS_PRODUCTION: JSON.stringify(isProduction),
@@ -44,7 +43,7 @@ const staticFilesSiteList: Array<StaticFilesDataType> = ["favicon.ico"].map<Stat
 );
 
 const duplicateCheckerPluginInstance: WebpackPluginInstance = {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     apply: (compiler: Compiler): void => {
         // eslint-disable-next-line no-undefined
         return undefined;

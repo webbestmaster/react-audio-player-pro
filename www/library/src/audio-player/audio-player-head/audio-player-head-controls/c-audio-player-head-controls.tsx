@@ -3,7 +3,7 @@ import {AudioPlayerControlButton} from "../../../layout/audio-player-control-but
 import type {PlayerPlayingStateType, PlayerRepeatingStateType} from "../../../../library";
 import {playerPlayingStateTypeMap, playerRepeatingStateTypeMap} from "../../audio-player-const";
 
-import AudioPlayerHeadControlsStyle from "./audio-player-head-controls.scss";
+import * as AudioPlayerHeadControlsStyle from "./audio-player-head-controls.scss";
 
 const {one: repeatOne, all: repeatAll} = playerRepeatingStateTypeMap;
 

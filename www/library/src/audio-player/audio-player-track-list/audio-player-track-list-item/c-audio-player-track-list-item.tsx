@@ -12,7 +12,7 @@ import {getTrackHumanTime} from "../../../lib/time";
 
 import {PlayListMenuButton} from "../../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button";
 
-import audioPlayerTrackListItemStyle from "./audio-player-track-list-item.scss";
+import * as audioPlayerTrackListItemStyle from "./audio-player-track-list-item.scss";
 import {getActualContent} from "./audio-player-track-list-item-helper";
 
 type PropsType = Readonly<{
@@ -38,7 +38,6 @@ export function AudioPlayerTrackListItem(props: PropsType): JSX.Element {
 
     const spinner = <Spinner isShow={isLoading} lineWidth={4} position="absolute" size={30} wrapperPadding={0} />;
 
-    // eslint-disable-next-line unicorn/no-keyword-prefix
     const className = cls(audioPlayerTrackListItemStyle.audio_player_track_list_item, {
         [audioPlayerTrackListItemStyle.audio_player_track_list_item__active]: isCurrentTrack,
     });
@@ -131,7 +130,6 @@ export function AudioPlayerTrackListItem(props: PropsType): JSX.Element {
     }
 
     return (
-        // eslint-disable-next-line unicorn/no-keyword-prefix
         <li className={className}>
             <audio
                 className={audioPlayerTrackListItemStyle.audio_tag}

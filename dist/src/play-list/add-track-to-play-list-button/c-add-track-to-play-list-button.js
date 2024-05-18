@@ -1,6 +1,5 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 /* global HTMLSelectElement */
-/* eslint-disable jsx-a11y/no-onchange */
 import { useCallback, useContext, useState } from "react";
 import { cls } from "../../lib/css";
 import { PlayListContext } from "../../provider/play-list/play-list-context";
@@ -8,9 +7,8 @@ import { isTracksEquals } from "../../provider/play-list/play-list-context-helpe
 import { getRandomString } from "../../lib/string";
 import { noNamePlayListName } from "../../provider/play-list/play-list-context-const";
 import { AudioPlayerControlButton } from "../../layout/audio-player-control-button/c-audio-player-control-button";
-import addTrackToPlayListButtonStyle from "./add-track-to-play-list-button.scss";
+import * as addTrackToPlayListButtonStyle from "./add-track-to-play-list-button.scss";
 export function PlayListMenuButton(props) {
-    // eslint-disable-next-line unicorn/no-keyword-prefix
     const { className, track } = props;
     const fullClassName = cls(addTrackToPlayListButtonStyle.add_track_to_play_list_button, className);
     const playListContextData = useContext(PlayListContext);
@@ -19,7 +17,7 @@ export function PlayListMenuButton(props) {
     const listOfPlayList = getAllPlayLists();
     const defaultSelectValue = "-1";
     const handleAddTrack = useCallback(
-    // eslint-disable-next-line max-statements, complexity
+    // eslint-disable-next-line max-statements
     (evt) => {
         const selectNode = evt.currentTarget;
         const listIndex = Number.parseInt(selectNode.value, 10);

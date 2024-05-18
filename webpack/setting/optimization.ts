@@ -1,3 +1,5 @@
+/* eslint-disable capitalized-comments */
+
 import type {Configuration} from "webpack";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 
@@ -12,7 +14,6 @@ const optimizationDevelopment: Configuration["optimization"] = {
     runtimeChunk: true,
     splitChunks: {
         cacheGroups: {
-            // eslint-disable-next-line sort-keys
             main: {
                 chunks: "all",
                 name: "main",
@@ -27,7 +28,7 @@ const optimizationDevelopment: Configuration["optimization"] = {
                 reuseExistingChunk: true,
                 test: /www\/assets/u,
             },
-            // eslint-disable-next-line sort-keys
+
             util: {
                 chunks: "all",
                 name: "util",
@@ -51,7 +52,7 @@ const optimizationDevelopment: Configuration["optimization"] = {
                 reuseExistingChunk: true,
                 test: /www\/layout/u,
             },
-            // eslint-disable-next-line sort-keys
+
             provider: {
                 chunks: "all",
                 name: "provider",
@@ -59,7 +60,7 @@ const optimizationDevelopment: Configuration["optimization"] = {
                 reuseExistingChunk: true,
                 test: /www\/provider/u,
             },
-            // eslint-disable-next-line sort-keys
+
             service: {
                 chunks: "all",
                 name: "service",
@@ -68,7 +69,6 @@ const optimizationDevelopment: Configuration["optimization"] = {
                 test: /www\/service/u,
             },
 
-            // eslint-disable-next-line sort-keys
             style: {
                 chunks: "all",
                 name: "style",
@@ -76,7 +76,14 @@ const optimizationDevelopment: Configuration["optimization"] = {
                 reuseExistingChunk: true,
                 test: /\.s?css$/u,
             },
-            // eslint-disable-next-line sort-keys
+            // files: {
+            //     chunks: 'all',
+            //     name: 'files',
+            //     priority: -15,
+            //     test: fileRegExp,
+            //     reuseExistingChunk: true,
+            // },
+
             vendor: {
                 chunks: "all",
                 name: "vendor",
@@ -95,7 +102,7 @@ const optimizationProduction: Configuration["optimization"] = {
             terserOptions: {
                 compress: {
                     passes: 3,
-                    // eslint-disable-next-line camelcase, id-match, babel/camelcase
+                    // eslint-disable-next-line camelcase
                     pure_funcs: ["console.log"],
                 },
                 output: {

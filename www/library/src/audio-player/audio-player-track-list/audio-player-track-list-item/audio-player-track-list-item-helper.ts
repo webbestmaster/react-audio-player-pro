@@ -1,6 +1,5 @@
 import type {SavedTrackType, TrackType} from "../../../../library";
 
-// eslint-disable-next-line complexity
 export function getActualContent(track: SavedTrackType | TrackType): JSX.Element | string {
     const {content, mediaMetadata, src} = track;
 

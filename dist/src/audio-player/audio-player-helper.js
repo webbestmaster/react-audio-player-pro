@@ -11,17 +11,12 @@ export function getDefaultState(defaultState) {
 }
 export function getStopHandler(audioTag) {
     return function handleOnStop() {
-        // eslint-disable-next-line no-param-reassign
         audioTag.currentTime = 0;
         function handleCanPlay() {
             audioTag.removeEventListener("canplay", handleCanPlay, false);
-            // eslint-disable-next-line promise/catch-or-return, @typescript-eslint/no-floating-promises
-            audioTag
-                .play()
-                // eslint-disable-next-line promise/always-return
-                .then(() => {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            audioTag.play().then(() => {
                 audioTag.pause();
-                // eslint-disable-next-line no-param-reassign
                 audioTag.currentTime = 0;
             });
         }

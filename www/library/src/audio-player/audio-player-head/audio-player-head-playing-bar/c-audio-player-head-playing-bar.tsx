@@ -2,7 +2,7 @@ import {Time} from "../../../layout/time/c-time";
 import {RangeBar} from "../../../layout/range-bar/c-range-bar";
 import {AudioPlayerControlButton} from "../../../layout/audio-player-control-button/c-audio-player-control-button";
 
-import audioPlayerHeadPlayingBarStyle from "./audio-player-head-playing-bar.scss";
+import * as audioPlayerHeadPlayingBarStyle from "./audio-player-head-playing-bar.scss";
 
 type PropsType = Readonly<{
     isMuted: boolean;

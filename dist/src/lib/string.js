@@ -1,4 +1,4 @@
-/* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
+/* eslint-disable capitalized-comments */
 // const openTagRegExp = /<\w[\S\s]*?>/g;
 // const closeTagRegExp = /<\/\w*?>/g;
 // const selfCloseTagRegExp = /<\w[\S\s]*?\/>/g;

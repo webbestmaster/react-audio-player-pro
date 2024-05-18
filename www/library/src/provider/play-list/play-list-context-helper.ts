@@ -1,4 +1,4 @@
-/* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
+/* eslint-disable capitalized-comments */
 
 import type {SavedTrackType, TrackType} from "../../../library";
 
@@ -15,23 +15,23 @@ export function getDefaultPlayListContextData(): PlayListContextType {
         createPlayList: (): PlayListType => {
             return defaultPlayList;
         },
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         deletePlayList: (playList: PlayListType): Error | null => {
             return new Error("deletePlayList: overwrite me");
         },
         getAllPlayLists: (): Array<PlayListType> => {
             return [defaultPlayList];
         },
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         getTrackById: (trackId: string): SavedTrackType | null => {
             return null;
         },
         isInitialized: false,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         removeTrackById: (trackId: string): Error | null => {
             return new Error("removeTrack: overwrite me");
         },
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         updatePlayList: (oldPlayList: PlayListType, updatedListPlayData: PlayListType): Error | PlayListType => {
             return new Error("updatePlayList: overwrite me");
         },

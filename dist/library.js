@@ -1,4 +1,4 @@
-/* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
+/* eslint-disable capitalized-comments */
 /*
 export type AudioPlayerStateType = Readonly<{
     activeIndex: number;

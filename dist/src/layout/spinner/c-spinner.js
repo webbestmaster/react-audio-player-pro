@@ -1,13 +1,11 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-/* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
+/* eslint-disable capitalized-comments */
 import { cls } from "../../lib/css";
-import spinnerStyle from "./spinner.scss";
+import * as spinnerStyle from "./spinner.scss";
 import { defaultData, positionValueMap } from "./spinner-const";
 const { size: defaultSize } = defaultData;
 export function Spinner(props) {
-    const { size: rawSize, lineWidth, arcColor, circleColor, isShow, wrapperWidth, wrapperHeight, position: rawPosition, wrapperColor, wrapperPadding, 
-    // eslint-disable-next-line unicorn/no-keyword-prefix
-    className, } = props;
+    const { size: rawSize, lineWidth, arcColor, circleColor, isShow, wrapperWidth, wrapperHeight, position: rawPosition, wrapperColor, wrapperPadding, className, } = props;
     if (isShow === false) {
         return null;
     }

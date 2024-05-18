@@ -15,6 +15,10 @@ const cssLoader = isProduction ? MiniCssExtractPlugin.loader : styleLoader;
 
 export const rules: Array<RuleSetRule> = [
     {
+        test: /\.wasm$/u,
+        type: "asset/inline",
+    },
+    {
         exclude: /node_modules/u,
         test: /\.tsx?$/u,
         use: [
@@ -47,7 +51,7 @@ export const rules: Array<RuleSetRule> = [
         test: /\.scss$/u,
         use: [
             cssLoader,
-            "css-modules-typescript-loader",
+            "css-module-typescript-loader",
             {
                 loader: "css-loader",
                 options: {
@@ -68,7 +72,7 @@ export const rules: Array<RuleSetRule> = [
         test: /\.css$/u,
         use: [
             cssLoader,
-            "css-modules-typescript-loader",
+            "css-module-typescript-loader",
             {
                 loader: "css-loader",
                 options: {

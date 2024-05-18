@@ -9,7 +9,7 @@ import {AudioPlayer} from "../../../../audio-player/c-audio-player";
 import {savedTrackToTrack} from "../../../../provider/play-list/play-list-context-helper";
 import {AudioPlayerControlButton} from "../../../../layout/audio-player-control-button/c-audio-player-control-button";
 
-import playListContainerStyle from "./play-list-container.scss";
+import * as playListContainerStyle from "./play-list-container.scss";
 
 type PropsType = Readonly<{
     playList: PlayListType;

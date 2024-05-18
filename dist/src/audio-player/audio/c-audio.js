@@ -10,12 +10,10 @@ import { setMediaMetadata } from "../../lib/media-meta-data/media-meta-data";
 import { getStopHandler } from "../audio-player-helper";
 import { PlayListMenuButton } from "../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button";
 import { audioPlayerControlTagNameMap } from "../../layout/audio-player-control-button/audio-player-control-button-const";
-import audioStyle from "./audio.scss";
-// eslint-disable-next-line complexity, max-statements, sonarjs/cognitive-complexity
+import * as audioStyle from "./audio.scss";
+// eslint-disable-next-line max-statements
 export function Audio(props) {
-    const { 
-    // eslint-disable-next-line unicorn/no-keyword-prefix
-    className, downloadFileName, duration = 0, mediaMetadata, onDidMount, preload = "auto", src, useRepeatButton = false, } = props;
+    const { className, downloadFileName, duration = 0, mediaMetadata, onDidMount, preload = "auto", src, useRepeatButton = false, } = props;
     const refAudio = useRef(null);
     const [trackCurrentTime, setTrackCurrentTime] = useState(0);
     const [trackFullTime, setTrackFullTime] = useState(duration);

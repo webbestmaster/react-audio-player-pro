@@ -1,11 +1,11 @@
-/* eslint id-match: 0, optimize-regex/optimize-regex: 0, multiline-comment-style: 0, capitalized-comments: 0 */
+/* eslint id-match: 0, multiline-comment-style: 0, capitalized-comments: 0 */
 
 import {env} from "node:process";
 
 export const pathToStaticFileFolder = "/static/";
 
-const modeDevelopmentName = "development" as const;
-const modeProductionName = "production" as const;
+const modeDevelopmentName = "development";
+const modeProductionName = "production";
 
 export const isDevelopment: boolean = env.NODE_ENV === modeDevelopmentName;
 export const isProduction: boolean = env.NODE_ENV === modeProductionName;

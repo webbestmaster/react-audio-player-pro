@@ -1,5 +1,3 @@
-/* eslint-disable import/no-default-export, init-declarations */
-
 declare module "*.png" {
     const content: string;
 

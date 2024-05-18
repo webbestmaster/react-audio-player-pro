@@ -7,11 +7,10 @@ import { AudioPlayerHead } from "./audio-player-head/c-audio-player-head";
 import { AudioPlayerTrackList } from "./audio-player-track-list/c-audio-player-track-list";
 import { playerPlayingStateTypeMap, playerRepeatingStateTypeList, playerRepeatingStateTypeMap, seekStepSecond, } from "./audio-player-const";
 import { getDefaultState, getStopHandler } from "./audio-player-helper";
-import audioPlayerStyle from "./audio-player.scss";
-// eslint-disable-next-line complexity, max-statements, sonarjs/cognitive-complexity
+import * as audioPlayerStyle from "./audio-player.scss";
+// eslint-disable-next-line max-statements
 export function AudioPlayer(props) {
     var _a, _b;
-    // eslint-disable-next-line unicorn/no-keyword-prefix
     const { defaultState, className, onDidMount, trackList } = props;
     const defaultDefinedState = getDefaultState(defaultState);
     const duration = (_b = (_a = trackList.at(0)) === null || _a === void 0 ? void 0 : _a.duration) !== null && _b !== void 0 ? _b : 0;
@@ -53,7 +52,7 @@ export function AudioPlayer(props) {
         setIsLoadingMetadata(true);
         setTrackCurrentTime(0);
         setTrackFullTime(0);
-        // eslint-disable-next-line no-use-before-define, @typescript-eslint/no-use-before-define
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         updateMediaMetadata();
     }
     function handleClickNextTrack() {
@@ -80,13 +79,9 @@ export function AudioPlayer(props) {
         const { mediaMetadata } = track;
         if (mediaMetadata) {
             setMediaMetadata(mediaMetadata, {
-                // eslint-disable-next-line @typescript-eslint/no-use-before-define
                 nexttrack: handleClickNextTrack,
-                // eslint-disable-next-line @typescript-eslint/no-use-before-define
                 previoustrack: handleClickPrevTrack,
-                // eslint-disable-next-line @typescript-eslint/no-use-before-define
                 seekbackward: seekBackward,
-                // eslint-disable-next-line @typescript-eslint/no-use-before-define
                 seekforward: seekForward,
                 stop: getStopHandler(getAudioTag()),
             });
@@ -120,9 +115,9 @@ export function AudioPlayer(props) {
             audioTag.pause();
         }
     }
-    // eslint-disable-next-line complexity, max-statements
+    // eslint-disable-next-line max-statements
     function handleAudioTagOnEnded() {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { one: repeatOne, all: repeatAll, none: repeatNone } = playerRepeatingStateTypeMap;
         const trackListLength = trackList.length;
         setIsOnEndState(true);
@@ -205,9 +200,7 @@ export function AudioPlayer(props) {
         }
         audioTag.addEventListener("canplay", handleOnCanPlay, false);
     }
-    return (
-    // eslint-disable-next-line unicorn/no-keyword-prefix
-    _jsxs("div", { className: className !== null && className !== void 0 ? className : "", children: [_jsx("audio", { autoPlay: playingState === playerPlayingStateTypeMap.playing, className: audioPlayerStyle.audio_tag, muted: isMuted, onCanPlay: handleAudioTagCanOnPlay, onEnded: handleAudioTagOnEnded, onLoadedMetadata: handleAudioTagOnLoadedMetadata, onPause: handleAudioTagOnPause, onPlay: handleAudioTagOnPlay, onTimeUpdate: handleAudioTagOnTimeUpdate, onVolumeChange: handleAudioTagOnVolumeChange, preload: "metadata", ref: refAudio, src: getCurrentTrackSrcAsString(), 
+    return (_jsxs("div", { className: className !== null && className !== void 0 ? className : "", children: [_jsx("audio", { autoPlay: playingState === playerPlayingStateTypeMap.playing, className: audioPlayerStyle.audio_tag, muted: isMuted, onCanPlay: handleAudioTagCanOnPlay, onEnded: handleAudioTagOnEnded, onLoadedMetadata: handleAudioTagOnLoadedMetadata, onPause: handleAudioTagOnPause, onPlay: handleAudioTagOnPlay, onTimeUpdate: handleAudioTagOnTimeUpdate, onVolumeChange: handleAudioTagOnVolumeChange, preload: "metadata", ref: refAudio, src: getCurrentTrackSrcAsString(), 
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
                 // @ts-ignore
                 volume: trackVolume, children: _jsx("track", { kind: "captions", src: getCurrentTrackSrcAsString() }) }, "audio-tag"), _jsx(AudioPlayerHead, { isLoading: isLoadingMetadata, isMuted: isMuted, isShuffleOn: isShuffleOn, isTrackListOpen: isTrackListOpen, onChangeProgressBar: handleChangeProgressBar, onChangeVolumeBar: handleChangeVolumeBar, onClickMuteVolume: handleClickMute, onClickNextTrack: handleClickNextTrack, onClickPlay: handleClickPlay, onClickPrevTrack: handleClickPrevTrack, onClickRepeat: handleClickRepeat, onClickShuffle: handleClickShuffle, onClickTrackList: handleClickShowHideTrackList, playingState: playingState, repeatingState: repeatingState, trackCurrentTime: trackCurrentTime, trackFullTime: trackFullTime, trackVolume: trackVolume }), isTrackListOpen ? (_jsx(AudioPlayerTrackList, { activeIndex: activeIndex, isLoading: isLoadingMetadata, onClickPlay: handleClickPlay, playByIndex: playByIndex, playingState: playingState, setActiveIndex: setActiveTrackIndex, trackList: trackList })) : null] }));

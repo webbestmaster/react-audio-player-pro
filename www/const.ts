@@ -1,5 +1,4 @@
 /* global BUILD_DATE_H, IS_PRODUCTION */
-/* eslint-disable id-match */
 
 export const selector = {
     appWrapper: ".js-app-wrapper",

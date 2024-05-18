@@ -17,21 +17,17 @@ export function getDefaultState(defaultState?: DefaultAudioPlayerStateType): Def
 
 export function getStopHandler(audioTag: HTMLAudioElement): () => void {
     return function handleOnStop() {
-        // eslint-disable-next-line no-param-reassign
         audioTag.currentTime = 0;
 
         function handleCanPlay(): void {
             audioTag.removeEventListener("canplay", handleCanPlay, false);
 
-            // eslint-disable-next-line promise/catch-or-return, @typescript-eslint/no-floating-promises
-            audioTag
-                .play()
-                // eslint-disable-next-line promise/always-return
-                .then(() => {
-                    audioTag.pause();
-                    // eslint-disable-next-line no-param-reassign
-                    audioTag.currentTime = 0;
-                });
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            audioTag.play().then(() => {
+                audioTag.pause();
+
+                audioTag.currentTime = 0;
+            });
         }
 
         audioTag.addEventListener("canplay", handleCanPlay, false);

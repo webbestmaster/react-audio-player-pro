@@ -2,7 +2,7 @@ import {cls} from "../../lib/css";
 import {SvgImage} from "../svg-image/c-svg-image";
 import {audioPlayerIconIdPrefix} from "../audio-player-control-sprite/c-audio-player-control-sprite";
 
-import audioPlayerControlStyle from "./audio-player-control-button.scss";
+import * as audioPlayerControlStyle from "./audio-player-control-button.scss";
 import type {AudioPlayerControlTagNameType} from "./audio-player-control-button-type";
 import {audioPlayerControlTagNameMap} from "./audio-player-control-button-const";
 
@@ -14,7 +14,7 @@ const hideForNarrow = audioPlayerControlStyle.audio_player_control__hide_for_nar
 
 type PropsType = Readonly<{
     ariaLabel: string;
-    // eslint-disable-next-line unicorn/no-keyword-prefix
+
     className?: string;
     hasBorder?: boolean;
     imageId: string;
@@ -25,7 +25,6 @@ type PropsType = Readonly<{
 }>;
 
 export function AudioPlayerControlButton(props: PropsType): JSX.Element {
-    // eslint-disable-next-line unicorn/no-keyword-prefix
     const {onClick, imageId, isActive, ariaLabel, className, tag, hasBorder, isHideForNarrow} = props;
     const fullClassName = cls(
         cssButton,

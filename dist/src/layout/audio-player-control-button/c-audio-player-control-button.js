@@ -2,7 +2,7 @@ import { jsx as _jsx } from "react/jsx-runtime";
 import { cls } from "../../lib/css";
 import { SvgImage } from "../svg-image/c-svg-image";
 import { audioPlayerIconIdPrefix } from "../audio-player-control-sprite/c-audio-player-control-sprite";
-import audioPlayerControlStyle from "./audio-player-control-button.scss";
+import * as audioPlayerControlStyle from "./audio-player-control-button.scss";
 import { audioPlayerControlTagNameMap } from "./audio-player-control-button-const";
 const cssButton = audioPlayerControlStyle.audio_player_control__button;
 const cssActive = audioPlayerControlStyle.audio_player_control__button__active;
@@ -10,7 +10,6 @@ const cssWidthBorder = audioPlayerControlStyle.audio_player_control__button__bor
 const cssImage = audioPlayerControlStyle.audio_player_control__button__image;
 const hideForNarrow = audioPlayerControlStyle.audio_player_control__hide_for_narrow;
 export function AudioPlayerControlButton(props) {
-    // eslint-disable-next-line unicorn/no-keyword-prefix
     const { onClick, imageId, isActive, ariaLabel, className, tag, hasBorder, isHideForNarrow } = props;
     const fullClassName = cls(cssButton, {
         [cssActive]: isActive,

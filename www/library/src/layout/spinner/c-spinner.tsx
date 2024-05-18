@@ -1,8 +1,8 @@
-/* eslint-disable multiline-comment-style, capitalized-comments, line-comment-position, multiline-comment-style */
+/* eslint-disable capitalized-comments */
 
 import {cls} from "../../lib/css";
 
-import spinnerStyle from "./spinner.scss";
+import * as spinnerStyle from "./spinner.scss";
 import {defaultData, positionValueMap} from "./spinner-const";
 import type {PositionType} from "./spinner-type";
 
@@ -14,7 +14,7 @@ type PropsType = Readonly<{
     // default - $color-border
     circleColor?: string;
     // default - 100%
-    // eslint-disable-next-line unicorn/no-keyword-prefix
+
     className?: string;
     // default - $light-gray
     isShow?: boolean;
@@ -44,7 +44,7 @@ export function Spinner(props: PropsType): JSX.Element | null {
         position: rawPosition,
         wrapperColor,
         wrapperPadding,
-        // eslint-disable-next-line unicorn/no-keyword-prefix
+
         className,
     } = props;
 

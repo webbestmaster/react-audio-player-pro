@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { AudioPlayerControlButton } from "../../../layout/audio-player-control-button/c-audio-player-control-button";
 import { playerPlayingStateTypeMap, playerRepeatingStateTypeMap } from "../../audio-player-const";
-import AudioPlayerHeadControlsStyle from "./audio-player-head-controls.scss";
+import * as AudioPlayerHeadControlsStyle from "./audio-player-head-controls.scss";
 const { one: repeatOne, all: repeatAll } = playerRepeatingStateTypeMap;
 export function AudioPlayerHeadControls(props) {
     const { onClickShuffle, onClickRepeat, onClickPrevTrack, onClickPlay, onClickNextTrack, onClickTrackList, playingState, isShuffleOn, repeatingState, isTrackListOpen, } = props;

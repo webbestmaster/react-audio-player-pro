@@ -14,13 +14,11 @@ export function clearMediaMetadata(): void {
 
     navigator.mediaSession.metadata = null;
 
-    // eslint-disable-next-line no-loops/no-loops
     for (const controlName of mediaMetadataControlNameList) {
         navigator.mediaSession.setActionHandler(controlName, null);
     }
 }
 
-// eslint-disable-next-line complexity
 export function setMediaMetadata(
     mediaMetadata: MediaMetadataInit,
     mediaMetadataControlSetting?: MediaMetadataControlSettingType
@@ -41,7 +39,6 @@ export function setMediaMetadata(
         return;
     }
 
-    // eslint-disable-next-line no-loops/no-loops
     for (const controlName of mediaMetadataControlNameList) {
         navigator.mediaSession.setActionHandler(controlName, mediaMetadataControlSetting[controlName] ?? null);
     }

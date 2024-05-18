@@ -2,7 +2,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useContext } from "react";
 import { PlayListContext } from "../../provider/play-list/play-list-context";
 import { AudioPlayerControlButton } from "../../layout/audio-player-control-button/c-audio-player-control-button";
-import playListPanelStyle from "./play-list-panel.scss";
+import * as playListPanelStyle from "./play-list-panel.scss";
 import { renderPlayListContainer } from "./play-list-panel-helper";
 export function PlayListPanel() {
     const playListContextData = useContext(PlayListContext);

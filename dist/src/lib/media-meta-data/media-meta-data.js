@@ -8,12 +8,10 @@ export function clearMediaMetadata() {
         return;
     }
     navigator.mediaSession.metadata = null;
-    // eslint-disable-next-line no-loops/no-loops
     for (const controlName of mediaMetadataControlNameList) {
         navigator.mediaSession.setActionHandler(controlName, null);
     }
 }
-// eslint-disable-next-line complexity
 export function setMediaMetadata(mediaMetadata, mediaMetadataControlSetting) {
     var _a;
     if (typeof navigator === "undefined" || typeof MediaMetadata === "undefined") {
@@ -27,7 +25,6 @@ export function setMediaMetadata(mediaMetadata, mediaMetadataControlSetting) {
     if (!mediaMetadataControlSetting) {
         return;
     }
-    // eslint-disable-next-line no-loops/no-loops
     for (const controlName of mediaMetadataControlNameList) {
         navigator.mediaSession.setActionHandler(controlName, (_a = mediaMetadataControlSetting[controlName]) !== null && _a !== void 0 ? _a : null);
     }

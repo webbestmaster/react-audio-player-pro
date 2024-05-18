@@ -22,19 +22,17 @@ import {
 } from "./audio-player-const";
 
 import {getDefaultState, getStopHandler} from "./audio-player-helper";
-import audioPlayerStyle from "./audio-player.scss";
+import * as audioPlayerStyle from "./audio-player.scss";
 
 export type AudioPlayerPropsType = Readonly<{
-    // eslint-disable-next-line unicorn/no-keyword-prefix
     className?: string;
     defaultState?: DefaultAudioPlayerStateType;
     onDidMount?: (audioNode: HTMLAudioElement | null) => void;
     trackList: ReadonlyArray<TrackType>;
 }>;
 
-// eslint-disable-next-line complexity, max-statements, sonarjs/cognitive-complexity
+// eslint-disable-next-line max-statements
 export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
-    // eslint-disable-next-line unicorn/no-keyword-prefix
     const {defaultState, className, onDidMount, trackList} = props;
 
     const defaultDefinedState = getDefaultState(defaultState);
@@ -88,7 +86,7 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
         setTrackCurrentTime(0);
         setTrackFullTime(0);
 
-        // eslint-disable-next-line no-use-before-define, @typescript-eslint/no-use-before-define
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         updateMediaMetadata();
     }
 
@@ -127,13 +125,12 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
 
         if (mediaMetadata) {
             setMediaMetadata(mediaMetadata, {
-                // eslint-disable-next-line @typescript-eslint/no-use-before-define
                 nexttrack: handleClickNextTrack,
-                // eslint-disable-next-line @typescript-eslint/no-use-before-define
+
                 previoustrack: handleClickPrevTrack,
-                // eslint-disable-next-line @typescript-eslint/no-use-before-define
+
                 seekbackward: seekBackward,
-                // eslint-disable-next-line @typescript-eslint/no-use-before-define
+
                 seekforward: seekForward,
                 stop: getStopHandler(getAudioTag()),
             });
@@ -176,9 +173,9 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
         }
     }
 
-    // eslint-disable-next-line complexity, max-statements
+    // eslint-disable-next-line max-statements
     function handleAudioTagOnEnded(): void {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const {one: repeatOne, all: repeatAll, none: repeatNone} = playerRepeatingStateTypeMap;
         const trackListLength = trackList.length;
 
@@ -294,7 +291,6 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
     }
 
     return (
-        // eslint-disable-next-line unicorn/no-keyword-prefix
         <div className={className ?? ""}>
             <audio
                 autoPlay={playingState === playerPlayingStateTypeMap.playing}
@@ -313,7 +309,7 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
                 src={getCurrentTrackSrcAsString()}
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
                 // @ts-ignore
-                volume={trackVolume} // eslint-disable-line react/no-unknown-property
+                volume={trackVolume}
             >
                 <track kind="captions" src={getCurrentTrackSrcAsString()} />
             </audio>

@@ -18,12 +18,10 @@ export function PlayListProvider(props: PlayListProviderPropsType): JSX.Element 
         (trackId: string): SavedTrackType | null => {
             const listLength = list.length;
 
-            // eslint-disable-next-line no-loops/no-loops
             for (let playListIndex = 0; playListIndex < listLength; playListIndex += 1) {
                 const {trackList} = list[playListIndex];
                 const trackListLength = trackList.length;
 
-                // eslint-disable-next-line no-loops/no-loops
                 for (let trackIndex = 0; trackIndex < trackListLength; trackIndex += 1) {
                     const track = trackList[trackIndex];
 
@@ -98,13 +96,11 @@ export function PlayListProvider(props: PlayListProviderPropsType): JSX.Element 
         (trackId: string): Error | null => {
             const listLength = list.length;
 
-            // eslint-disable-next-line no-loops/no-loops
             for (let playListIndex = 0; playListIndex < listLength; playListIndex += 1) {
                 const playList = list[playListIndex];
                 const {trackList} = playList;
                 const trackListLength = trackList.length;
 
-                // eslint-disable-next-line no-loops/no-loops
                 for (let trackIndex = 0; trackIndex < trackListLength; trackIndex += 1) {
                     const track = trackList[trackIndex];
 

@@ -1,4 +1,4 @@
-/* eslint-disable multiline-comment-style, capitalized-comments */
+/* eslint-disable capitalized-comments */
 import type {WebpackOptionsNormalized} from "webpack";
 
 import {webpackDevServerPort} from "../config";
@@ -26,19 +26,22 @@ export const devServer: WebpackOptionsNormalized["devServer"] = {
     // writeToDisk: isBack,
     // inline: false,
     port: webpackDevServerPort,
-    proxy: {
-        // TODO: need watch nginx
-        "/api-image/": {
+    proxy: [
+        {
+            // TODO: need watch nginx
+            context: ["/api-image/"],
             target: `http://127.0.0.1:${serverPort}/`,
         },
-        "/api/": {
+        {
+            context: ["/api/"],
             target: `http://127.0.0.1:${serverPort}/`,
         },
-        // TODO: need watch nginx
-        "/static-file/": {
+        {
+            // TODO: need watch nginx
+            context: ["/static-file/"],
             target: `http://127.0.0.1:${serverPort}/`,
         },
-    },
+    ],
     // hotOnly: false,
     // disableHostCheck: true,
     // proxy: {

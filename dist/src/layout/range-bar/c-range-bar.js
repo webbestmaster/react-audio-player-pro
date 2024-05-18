@@ -1,14 +1,12 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 /* global HTMLInputElement */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useRef, useState } from "react";
 import { cls } from "../../lib/css";
-import rangeBarStyle from "./range-bar.scss";
+import * as rangeBarStyle from "./range-bar.scss";
 import { inputData } from "./range-bar-const";
 export function RangeBar(props) {
     const [isMouseDown, setIsMouseDown] = useState(false);
     const inputRef = useRef(null);
-    // eslint-disable-next-line unicorn/no-keyword-prefix
     const { className, isDisable, progress, onChange, ariaLabel, isHideForNarrow } = props;
     function getCurrentValue() {
         const { current } = inputRef;

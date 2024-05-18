@@ -1,17 +1,15 @@
 /* global HTMLInputElement */
 
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-
 import {useRef, useState} from "react";
 
 import {cls} from "../../lib/css";
 
-import rangeBarStyle from "./range-bar.scss";
+import * as rangeBarStyle from "./range-bar.scss";
 import {inputData} from "./range-bar-const";
 
 type PropsType = Readonly<{
     ariaLabel: string;
-    // eslint-disable-next-line unicorn/no-keyword-prefix
+
     className?: string;
     isDisable?: boolean;
     isHideForNarrow?: boolean;
@@ -22,7 +20,7 @@ type PropsType = Readonly<{
 export function RangeBar(props: PropsType): JSX.Element {
     const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement | null>(null);
-    // eslint-disable-next-line unicorn/no-keyword-prefix
+
     const {className, isDisable, progress, onChange, ariaLabel, isHideForNarrow} = props;
 
     function getCurrentValue(): number {

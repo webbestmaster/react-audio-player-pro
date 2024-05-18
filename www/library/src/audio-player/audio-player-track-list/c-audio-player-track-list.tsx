@@ -1,6 +1,6 @@
 import type {PlayerPlayingStateType, TrackType} from "../../../library";
 
-import audioPlayerTrackListStyle from "./audio-player-track-list.scss";
+import * as audioPlayerTrackListStyle from "./audio-player-track-list.scss";
 import {AudioPlayerTrackListItem} from "./audio-player-track-list-item/c-audio-player-track-list-item";
 
 type PropsType = Readonly<{
