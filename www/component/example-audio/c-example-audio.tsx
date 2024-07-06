@@ -1,7 +1,6 @@
-import {AudioPlayerControlSprite, Audio} from "../../library/library";
 import {demoUrl} from "../../const";
+import {Audio, AudioPlayerControlSprite} from "../../library/library";
 import {Markdown} from "../layout/c-markdown";
-
 import exampleAudio from "./example-audio.md";
 
 const meydnPureWater = `${demoUrl}/audio-file/meydn-pure-water.mp3`;

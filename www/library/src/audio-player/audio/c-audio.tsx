@@ -1,18 +1,18 @@
 /* global HTMLAudioElement, MediaMetadataInit */
+/* eslint react/no-unknown-property: ['error', { ignore: ['volume'] }] */
 
 import {useEffect, useRef, useState} from "react";
 
-import {cls} from "../../lib/css";
-import {playerPlayingStateTypeMap, seekStepSecond} from "../audio-player-const";
-import {AudioPlayerControlButton} from "../../layout/audio-player-control-button/c-audio-player-control-button";
-import {Time} from "../../layout/time/c-time";
 import type {AudioPreloadValueType, PlayerPlayingStateType, TrackType} from "../../../library";
-import {RangeBar} from "../../layout/range-bar/c-range-bar";
-import {setMediaMetadata} from "../../lib/media-meta-data/media-meta-data";
-import {getStopHandler} from "../audio-player-helper";
-import {PlayListMenuButton} from "../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button";
 import {audioPlayerControlTagNameMap} from "../../layout/audio-player-control-button/audio-player-control-button-const";
-
+import {AudioPlayerControlButton} from "../../layout/audio-player-control-button/c-audio-player-control-button";
+import {RangeBar} from "../../layout/range-bar/c-range-bar";
+import {Time} from "../../layout/time/c-time";
+import {cls} from "../../lib/css";
+import {setMediaMetadata} from "../../lib/media-meta-data/media-meta-data";
+import {PlayListMenuButton} from "../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button";
+import {playerPlayingStateTypeMap, seekStepSecond} from "../audio-player-const";
+import {getStopHandler} from "../audio-player-helper";
 import * as audioStyle from "./audio.scss";
 
 export interface AudioPropsType {
@@ -194,7 +194,7 @@ export function Audio(props: AudioPropsType): JSX.Element {
                 preload={preload}
                 ref={refAudio}
                 src={src}
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 volume={trackVolume}
             >

@@ -1,6 +1,6 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import { getProgressHumanTime } from "../../lib/time";
 import { cls } from "../../lib/css";
+import { getProgressHumanTime } from "../../lib/time";
 import * as timeStyle from "./time.scss";
 export function Time(props) {
     const { currentTime, fullTime, className } = props;

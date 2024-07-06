@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import type { TrackType } from "../../../library";
 type PropsType = Readonly<{
     className?: string;

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import type { PlayerPlayingStateType, PlayerRepeatingStateType } from "../../../../library";
 type PropsType = Readonly<{
     isShuffleOn: boolean;

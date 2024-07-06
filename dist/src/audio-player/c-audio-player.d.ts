@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import type { DefaultAudioPlayerStateType, TrackType } from "../../library";
 export type AudioPlayerPropsType = Readonly<{
     className?: string;

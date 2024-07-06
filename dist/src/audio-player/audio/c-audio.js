@@ -1,15 +1,16 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 /* global HTMLAudioElement, MediaMetadataInit */
+/* eslint react/no-unknown-property: ['error', { ignore: ['volume'] }] */
 import { useEffect, useRef, useState } from "react";
-import { cls } from "../../lib/css";
-import { playerPlayingStateTypeMap, seekStepSecond } from "../audio-player-const";
-import { AudioPlayerControlButton } from "../../layout/audio-player-control-button/c-audio-player-control-button";
-import { Time } from "../../layout/time/c-time";
-import { RangeBar } from "../../layout/range-bar/c-range-bar";
-import { setMediaMetadata } from "../../lib/media-meta-data/media-meta-data";
-import { getStopHandler } from "../audio-player-helper";
-import { PlayListMenuButton } from "../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button";
 import { audioPlayerControlTagNameMap } from "../../layout/audio-player-control-button/audio-player-control-button-const";
+import { AudioPlayerControlButton } from "../../layout/audio-player-control-button/c-audio-player-control-button";
+import { RangeBar } from "../../layout/range-bar/c-range-bar";
+import { Time } from "../../layout/time/c-time";
+import { cls } from "../../lib/css";
+import { setMediaMetadata } from "../../lib/media-meta-data/media-meta-data";
+import { PlayListMenuButton } from "../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button";
+import { playerPlayingStateTypeMap, seekStepSecond } from "../audio-player-const";
+import { getStopHandler } from "../audio-player-helper";
 import * as audioStyle from "./audio.scss";
 // eslint-disable-next-line max-statements
 export function Audio(props) {
@@ -117,7 +118,7 @@ export function Audio(props) {
     }, [onDidMount]);
     const track = mediaMetadata ? { mediaMetadata, src } : { src };
     return (_jsxs("div", { className: cls(audioStyle.audio, className), children: [_jsx("audio", { className: audioStyle.audio_tag, onEnded: handleOnEnded, onLoadedMetadata: handleOnLoadedMetadata, onPause: handleOnPause, onPlay: handleOnPlay, onTimeUpdate: handleOnTimeUpdate, onVolumeChange: handleOnVolumeChange, preload: preload, ref: refAudio, src: src, 
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 volume: trackVolume, children: _jsx("track", { kind: "captions", src: src }) }), playingState === playerPlayingStateTypeMap.playing ? (_jsx(AudioPlayerControlButton, { ariaLabel: "pause", imageId: "button-pause", onClick: handleClickPause })) : (_jsx(AudioPlayerControlButton, { ariaLabel: "play", imageId: "button-play", onClick: handleClickPlay })), useRepeatButton ? (_jsx(AudioPlayerControlButton, { ariaLabel: "repeat", imageId: "button-repeat", isActive: isRepeatOn, onClick: handleClickRepeat })) : null, _jsx(Time, { className: audioStyle.time, currentTime: trackCurrentTime, fullTime: trackFullTime }), _jsx(RangeBar, { ariaLabel: "progress bar", onChange: handleOnChangeProgressBar, progress: trackCurrentTime / trackFullTime }), _jsx(AudioPlayerControlButton, { ariaLabel: "switch-sound", imageId: soundImageId, isHideForNarrow: true, onClick: handleClickToggleMute }), _jsx(RangeBar, { ariaLabel: "volume bar", className: audioStyle.sound_range, isHideForNarrow: true, onChange: handleChangeVolumeBar, progress: trackVolume }), _jsx("a", { "aria-label": "download", className: audioStyle.download_button, download: downloadFileName !== null && downloadFileName !== void 0 ? downloadFileName : true, href: src, children: _jsx(AudioPlayerControlButton, { ariaLabel: "download", imageId: "button-download", tag: audioPlayerControlTagNameMap.span }) }), _jsx(PlayListMenuButton, { track: track })] }));
 }

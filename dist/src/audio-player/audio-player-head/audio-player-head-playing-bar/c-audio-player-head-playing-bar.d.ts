@@ -1,4 +1,3 @@
-/// <reference types="react" />
 type PropsType = Readonly<{
     isMuted: boolean;
     onChangeProgressBar: (progress: number) => void;

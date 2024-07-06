@@ -1,7 +1,6 @@
 /* eslint-disable capitalized-comments */
 
 import type {SavedTrackType, TrackType} from "../../../library";
-
 import type {PlayListContextType, PlayListType} from "./play-list-context-type";
 
 export function getDefaultPlayListContextData(): PlayListContextType {

@@ -1,33 +1,33 @@
 /* eslint-disable capitalized-comments */
 
-import {cwd} from "node:process";
 import path from "node:path";
+import {cwd} from "node:process";
 
 import type {Configuration} from "webpack";
 import nodeExternals from "webpack-node-externals";
-// import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer";
 
-import {optimization} from "./setting/optimization";
+import {devServer} from "./setting/dev-server";
+import {experiments} from "./setting/experiments";
 import {rules} from "./setting/module/rules";
+// import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer";
+import {optimization} from "./setting/optimization";
+import {plugins} from "./setting/plugins";
 import {alias} from "./setting/resolve/alias";
 import {extensions} from "./setting/resolve/extensions";
-import {plugins} from "./setting/plugins";
-import {devServer} from "./setting/dev-server";
 import {watchOptions} from "./setting/watch-options";
-import {experiments} from "./setting/experiments";
 
 const externals = [nodeExternals()]; // in order to ignore all modules in node_modules folder
 const externalsPresets = {node: true}; // in order to ignore built-in modules like path, fs, etc.
 
 import {
-    pathToStaticFileFolder,
+    isBack,
+    isBuildLibrary,
     isDevelopment,
+    isFront,
+    nodeEnvironment,
     // isProduction,
     pathToDistribution,
-    nodeEnvironment,
-    isBuildLibrary,
-    isFront,
-    isBack,
+    pathToStaticFileFolder,
     // isServerProdBuild,
 } from "./config";
 

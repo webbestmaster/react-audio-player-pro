@@ -15,8 +15,8 @@ export type AudioPlayerStateType = Readonly<{
 */
 export { Audio } from "./src/audio-player/audio/c-audio";
 export { AudioPlayer } from "./src/audio-player/c-audio-player";
-export { PlayListProvider } from "./src/provider/play-list/c-play-list-context";
 export { AudioPlayerControlSprite } from "./src/layout/audio-player-control-sprite/c-audio-player-control-sprite";
 export { PlayListPanel } from "./src/play-list/play-list-panel/c-play-list-panel";
+export { PlayListProvider } from "./src/provider/play-list/c-play-list-context";
 export { PlayListContext } from "./src/provider/play-list/play-list-context";
 //# sourceMappingURL=library.js.map

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import type { PlayerPlayingStateType, TrackType } from "../../../../library";
 type PropsType = Readonly<{
     activeIndex: number;

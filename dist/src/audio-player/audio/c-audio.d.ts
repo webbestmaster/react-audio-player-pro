@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import type { AudioPreloadValueType } from "../../../library";
 export interface AudioPropsType {
     readonly className?: string;

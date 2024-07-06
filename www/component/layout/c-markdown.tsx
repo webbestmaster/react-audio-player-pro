@@ -1,5 +1,6 @@
-import {markdown, type MarkdownConfigShallowType, classNameMdProThemeLight, classNameMdPro} from "markdown-pro";
 import "markdown-pro/dist/style.css";
+
+import {classNameMdPro, classNameMdProThemeLight, markdown, type MarkdownConfigShallowType} from "markdown-pro";
 
 interface PropsType {
     readonly config?: MarkdownConfigShallowType;

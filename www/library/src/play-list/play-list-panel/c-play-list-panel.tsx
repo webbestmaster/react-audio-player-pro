@@ -1,8 +1,7 @@
 import {useContext} from "react";
 
-import {PlayListContext} from "../../provider/play-list/play-list-context";
 import {AudioPlayerControlButton} from "../../layout/audio-player-control-button/c-audio-player-control-button";
-
+import {PlayListContext} from "../../provider/play-list/play-list-context";
 import * as playListPanelStyle from "./play-list-panel.scss";
 import {renderPlayListContainer} from "./play-list-panel-helper";
 

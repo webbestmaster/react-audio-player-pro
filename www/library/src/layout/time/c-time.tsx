@@ -1,6 +1,5 @@
-import {getProgressHumanTime} from "../../lib/time";
 import {cls} from "../../lib/css";
-
+import {getProgressHumanTime} from "../../lib/time";
 import * as timeStyle from "./time.scss";
 
 interface PropsType {

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import type { AudioPlayerControlTagNameType } from "./audio-player-control-button-type";
 type PropsType = Readonly<{
     ariaLabel: string;

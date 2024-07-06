@@ -1,7 +1,6 @@
 /* global HTMLAudioElement*/
 
 import type {DefaultAudioPlayerStateType, DefaultDefinedAudioPlayerStateType} from "../../library";
-
 import {defaultAudioPlayerState} from "./audio-player-const";
 
 export function getDefaultState(defaultState?: DefaultAudioPlayerStateType): DefaultDefinedAudioPlayerStateType {

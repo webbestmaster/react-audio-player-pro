@@ -3,7 +3,6 @@
 import {useRef, useState} from "react";
 
 import {cls} from "../../lib/css";
-
 import * as rangeBarStyle from "./range-bar.scss";
 import {inputData} from "./range-bar-const";
 

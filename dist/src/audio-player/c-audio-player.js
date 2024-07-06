@@ -1,13 +1,14 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 /* global document, HTMLAudioElement */
+/* eslint react/no-unknown-property: ['error', { ignore: ['volume'] }] */
 import { useEffect, useRef, useState } from "react";
 import { setMediaMetadata } from "../lib/media-meta-data/media-meta-data";
 import { getRandom, getShiftIndex } from "../lib/number";
-import { AudioPlayerHead } from "./audio-player-head/c-audio-player-head";
-import { AudioPlayerTrackList } from "./audio-player-track-list/c-audio-player-track-list";
-import { playerPlayingStateTypeMap, playerRepeatingStateTypeList, playerRepeatingStateTypeMap, seekStepSecond, } from "./audio-player-const";
-import { getDefaultState, getStopHandler } from "./audio-player-helper";
 import * as audioPlayerStyle from "./audio-player.scss";
+import { playerPlayingStateTypeMap, playerRepeatingStateTypeList, playerRepeatingStateTypeMap, seekStepSecond, } from "./audio-player-const";
+import { AudioPlayerHead } from "./audio-player-head/c-audio-player-head";
+import { getDefaultState, getStopHandler } from "./audio-player-helper";
+import { AudioPlayerTrackList } from "./audio-player-track-list/c-audio-player-track-list";
 // eslint-disable-next-line max-statements
 export function AudioPlayer(props) {
     var _a, _b;
@@ -201,7 +202,7 @@ export function AudioPlayer(props) {
         audioTag.addEventListener("canplay", handleOnCanPlay, false);
     }
     return (_jsxs("div", { className: className !== null && className !== void 0 ? className : "", children: [_jsx("audio", { autoPlay: playingState === playerPlayingStateTypeMap.playing, className: audioPlayerStyle.audio_tag, muted: isMuted, onCanPlay: handleAudioTagCanOnPlay, onEnded: handleAudioTagOnEnded, onLoadedMetadata: handleAudioTagOnLoadedMetadata, onPause: handleAudioTagOnPause, onPlay: handleAudioTagOnPlay, onTimeUpdate: handleAudioTagOnTimeUpdate, onVolumeChange: handleAudioTagOnVolumeChange, preload: "metadata", ref: refAudio, src: getCurrentTrackSrcAsString(), 
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 volume: trackVolume, children: _jsx("track", { kind: "captions", src: getCurrentTrackSrcAsString() }) }, "audio-tag"), _jsx(AudioPlayerHead, { isLoading: isLoadingMetadata, isMuted: isMuted, isShuffleOn: isShuffleOn, isTrackListOpen: isTrackListOpen, onChangeProgressBar: handleChangeProgressBar, onChangeVolumeBar: handleChangeVolumeBar, onClickMuteVolume: handleClickMute, onClickNextTrack: handleClickNextTrack, onClickPlay: handleClickPlay, onClickPrevTrack: handleClickPrevTrack, onClickRepeat: handleClickRepeat, onClickShuffle: handleClickShuffle, onClickTrackList: handleClickShowHideTrackList, playingState: playingState, repeatingState: repeatingState, trackCurrentTime: trackCurrentTime, trackFullTime: trackFullTime, trackVolume: trackVolume }), isTrackListOpen ? (_jsx(AudioPlayerTrackList, { activeIndex: activeIndex, isLoading: isLoadingMetadata, onClickPlay: handleClickPlay, playByIndex: playByIndex, playingState: playingState, setActiveIndex: setActiveTrackIndex, trackList: trackList })) : null] }));
 }

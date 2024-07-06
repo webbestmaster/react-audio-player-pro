@@ -1,28 +1,26 @@
 /* global document, HTMLAudioElement */
+/* eslint react/no-unknown-property: ['error', { ignore: ['volume'] }] */
 
 import {useEffect, useRef, useState} from "react";
 
-import {setMediaMetadata} from "../lib/media-meta-data/media-meta-data";
-import {getRandom, getShiftIndex} from "../lib/number";
 import type {
     DefaultAudioPlayerStateType,
     PlayerPlayingStateType,
     PlayerRepeatingStateType,
     TrackType,
 } from "../../library";
-
-import {AudioPlayerHead} from "./audio-player-head/c-audio-player-head";
-import {AudioPlayerTrackList} from "./audio-player-track-list/c-audio-player-track-list";
-
+import {setMediaMetadata} from "../lib/media-meta-data/media-meta-data";
+import {getRandom, getShiftIndex} from "../lib/number";
+import * as audioPlayerStyle from "./audio-player.scss";
 import {
     playerPlayingStateTypeMap,
     playerRepeatingStateTypeList,
     playerRepeatingStateTypeMap,
     seekStepSecond,
 } from "./audio-player-const";
-
+import {AudioPlayerHead} from "./audio-player-head/c-audio-player-head";
 import {getDefaultState, getStopHandler} from "./audio-player-helper";
-import * as audioPlayerStyle from "./audio-player.scss";
+import {AudioPlayerTrackList} from "./audio-player-track-list/c-audio-player-track-list";
 
 export type AudioPlayerPropsType = Readonly<{
     className?: string;
@@ -307,7 +305,7 @@ export function AudioPlayer(props: AudioPlayerPropsType): JSX.Element {
                 preload="metadata"
                 ref={refAudio}
                 src={getCurrentTrackSrcAsString()}
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment, @typescript-eslint/prefer-ts-expect-error
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 volume={trackVolume}
             >

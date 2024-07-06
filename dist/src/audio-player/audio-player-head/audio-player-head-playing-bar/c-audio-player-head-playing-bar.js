@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { Time } from "../../../layout/time/c-time";
-import { RangeBar } from "../../../layout/range-bar/c-range-bar";
 import { AudioPlayerControlButton } from "../../../layout/audio-player-control-button/c-audio-player-control-button";
+import { RangeBar } from "../../../layout/range-bar/c-range-bar";
+import { Time } from "../../../layout/time/c-time";
 import * as audioPlayerHeadPlayingBarStyle from "./audio-player-head-playing-bar.scss";
 export function AudioPlayerHeadPlayingBar(props) {
     const { trackCurrentTime, trackFullTime, onClickMuteVolume, isMuted, trackVolume, onChangeProgressBar, onChangeVolumeBar, } = props;

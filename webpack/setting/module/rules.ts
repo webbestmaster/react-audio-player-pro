@@ -1,10 +1,10 @@
-import {cwd} from "node:process";
 import path from "node:path";
+import {cwd} from "node:process";
 
-import type {RuleSetRule} from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import type {RuleSetRule} from "webpack";
 
-import {isProduction, isDevelopment, isTsTranspileOnly, fileRegExp} from "../../config";
+import {fileRegExp, isDevelopment, isProduction, isTsTranspileOnly} from "../../config";
 
 const styleLoader = {
     loader: "style-loader",

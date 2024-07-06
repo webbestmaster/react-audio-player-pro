@@ -1,8 +1,6 @@
-import {AudioPlayerControlButton} from "../../../layout/audio-player-control-button/c-audio-player-control-button";
-
 import type {PlayerPlayingStateType, PlayerRepeatingStateType} from "../../../../library";
+import {AudioPlayerControlButton} from "../../../layout/audio-player-control-button/c-audio-player-control-button";
 import {playerPlayingStateTypeMap, playerRepeatingStateTypeMap} from "../../audio-player-const";
-
 import * as AudioPlayerHeadControlsStyle from "./audio-player-head-controls.scss";
 
 const {one: repeatOne, all: repeatAll} = playerRepeatingStateTypeMap;

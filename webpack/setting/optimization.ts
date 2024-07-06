@@ -1,10 +1,9 @@
 /* eslint-disable capitalized-comments */
 
-import type {Configuration} from "webpack";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
-
 // ignored const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 import TerserPlugin from "terser-webpack-plugin";
+import type {Configuration} from "webpack";
 
 import {isDevelopment} from "../config";
 

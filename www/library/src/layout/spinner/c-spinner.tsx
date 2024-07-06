@@ -1,7 +1,6 @@
 /* eslint-disable capitalized-comments */
 
 import {cls} from "../../lib/css";
-
 import * as spinnerStyle from "./spinner.scss";
 import {defaultData, positionValueMap} from "./spinner-const";
 import type {PositionType} from "./spinner-type";

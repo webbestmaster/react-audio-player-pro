@@ -1,7 +1,7 @@
 /* global localStorage */
 
-import type {PlayListType} from "./play-list-context-type";
 import {defaultPlayListName} from "./play-list-context-const";
+import type {PlayListType} from "./play-list-context-type";
 
 const localStorageKeyName = "react-audio-player-play-list-storage-key-v.1.0.0";
 

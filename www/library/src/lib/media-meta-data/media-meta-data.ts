@@ -1,7 +1,7 @@
 /* global navigator, MediaMetadata, MediaMetadataInit */
 
-import type {MediaMetadataControlSettingType} from "./media-meta-data-type";
 import {mediaMetadataControlNameList} from "./media-meta-data-const";
+import type {MediaMetadataControlSettingType} from "./media-meta-data-type";
 
 export function clearMediaMetadata(): void {
     if (typeof navigator === "undefined" || typeof MediaMetadata === "undefined") {

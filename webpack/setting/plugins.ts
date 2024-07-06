@@ -1,19 +1,19 @@
+import CircularDependencyPlugin from "circular-dependency-plugin";
+import {CleanWebpackPlugin} from "clean-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
+import DuplicatePackageCheckerPlugin from "duplicate-package-checker-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import ScriptExtHtmlWebpackPlugin from "script-ext-html-webpack-plugin";
 import {
+    type Compiler,
     type Configuration,
     ContextReplacementPlugin,
     DefinePlugin,
     type WebpackPluginInstance,
-    type Compiler,
 } from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import ScriptExtHtmlWebpackPlugin from "script-ext-html-webpack-plugin";
-import CopyWebpackPlugin from "copy-webpack-plugin";
-import {CleanWebpackPlugin} from "clean-webpack-plugin";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import CircularDependencyPlugin from "circular-dependency-plugin";
-import DuplicatePackageCheckerPlugin from "duplicate-package-checker-webpack-plugin";
 
-import {isProduction, isDevelopment, isBuildLibrary} from "../config";
+import {isBuildLibrary, isDevelopment, isProduction} from "../config";
 
 const filePathPrefix = isProduction ? "./../" : "./";
 

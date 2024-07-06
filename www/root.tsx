@@ -2,8 +2,8 @@
 
 import {createRoot} from "react-dom/client";
 
-import {selector} from "./const";
 import {App} from "./component/app/app";
+import {selector} from "./const";
 
 const nodeWrapper = document.querySelector(selector.appWrapper);
 

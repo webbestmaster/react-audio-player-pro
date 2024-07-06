@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface PropsType {
     readonly className?: string;
     readonly currentTime: number;

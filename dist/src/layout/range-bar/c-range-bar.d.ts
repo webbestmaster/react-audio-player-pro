@@ -1,4 +1,3 @@
-/// <reference types="react" />
 type PropsType = Readonly<{
     ariaLabel: string;
     className?: string;

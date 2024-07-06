@@ -1,8 +1,8 @@
 // There is real dirt workaround, but I do not know way better (((
 
-import {cwd, env} from "node:process";
-import path from "node:path";
 import fileSystem from "node:fs/promises";
+import path from "node:path";
+import {cwd, env} from "node:process";
 
 import {pathToDistribution} from "../../config";
 

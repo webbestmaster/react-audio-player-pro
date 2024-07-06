@@ -1,16 +1,15 @@
 /* global HTMLSelectElement */
 
-import {useCallback, useContext, useState, type SyntheticEvent} from "react";
+import {type SyntheticEvent, useCallback, useContext, useState} from "react";
 
-import {cls} from "../../lib/css";
-import {PlayListContext} from "../../provider/play-list/play-list-context";
 import type {SavedTrackType, TrackType} from "../../../library";
-import {isTracksEquals} from "../../provider/play-list/play-list-context-helper";
-import {getRandomString} from "../../lib/string";
-import type {PlayListType} from "../../provider/play-list/play-list-context-type";
-import {noNamePlayListName} from "../../provider/play-list/play-list-context-const";
 import {AudioPlayerControlButton} from "../../layout/audio-player-control-button/c-audio-player-control-button";
-
+import {cls} from "../../lib/css";
+import {getRandomString} from "../../lib/string";
+import {PlayListContext} from "../../provider/play-list/play-list-context";
+import {noNamePlayListName} from "../../provider/play-list/play-list-context-const";
+import {isTracksEquals} from "../../provider/play-list/play-list-context-helper";
+import type {PlayListType} from "../../provider/play-list/play-list-context-type";
 import * as addTrackToPlayListButtonStyle from "./add-track-to-play-list-button.scss";
 
 type PropsType = Readonly<{

@@ -1,5 +1,5 @@
-import {Audio, AudioPlayer, PlayListPanel, PlayListProvider, type TrackType} from "../../library/library";
 import {demoUrl} from "../../const";
+import {Audio, AudioPlayer, PlayListPanel, PlayListProvider, type TrackType} from "../../library/library";
 import {CustomContent} from "../example-audio-player/c-custom-content";
 
 const icon64 = `${demoUrl}/image-file/react-icon-64.png`;

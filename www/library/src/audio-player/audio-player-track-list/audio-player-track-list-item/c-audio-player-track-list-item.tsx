@@ -2,16 +2,14 @@
 
 import {useRef, useState} from "react";
 
-import {cls} from "../../../lib/css";
 import type {PlayerPlayingStateType, TrackType} from "../../../../library";
-import {playerPlayingStateTypeMap} from "../../audio-player-const";
-import {SvgImage} from "../../../layout/svg-image/c-svg-image";
 import {audioPlayerIconIdPrefix} from "../../../layout/audio-player-control-sprite/c-audio-player-control-sprite";
 import {Spinner} from "../../../layout/spinner/c-spinner";
+import {SvgImage} from "../../../layout/svg-image/c-svg-image";
+import {cls} from "../../../lib/css";
 import {getTrackHumanTime} from "../../../lib/time";
-
 import {PlayListMenuButton} from "../../../play-list/add-track-to-play-list-button/c-add-track-to-play-list-button";
-
+import {playerPlayingStateTypeMap} from "../../audio-player-const";
 import * as audioPlayerTrackListItemStyle from "./audio-player-track-list-item.scss";
 import {getActualContent} from "./audio-player-track-list-item-helper";
 
