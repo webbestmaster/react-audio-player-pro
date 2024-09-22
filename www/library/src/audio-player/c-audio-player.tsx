@@ -1,7 +1,7 @@
 /* global document, HTMLAudioElement */
-/* eslint react/no-unknown-property: ['error', { ignore: ['volume'] }] */
+/* eslint react/no-unknown-property: ['error', { ignore: ['volume'] }], sonarjs/no-unknown-property: ['error', { ignore: ['volume'] }] */
 
-import {useEffect, useRef, useState} from "react";
+import {type JSX, useEffect, useRef, useState} from "react";
 
 import type {
     DefaultAudioPlayerStateType,

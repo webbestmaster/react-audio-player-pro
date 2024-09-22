@@ -1,3 +1,5 @@
+import type {JSX} from "react";
+
 import {cls} from "../../lib/css";
 import {getProgressHumanTime} from "../../lib/time";
 import * as timeStyle from "./time.scss";

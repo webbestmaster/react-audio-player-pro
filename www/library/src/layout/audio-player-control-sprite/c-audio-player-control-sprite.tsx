@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
 
+import type {JSX} from "react";
+
 import * as audioPlayerControlSpriteStyle from "./audio-player-control-sprite.scss";
 
 export const audioPlayerIconIdPrefix = "audio-player-icon-id-prefix-";

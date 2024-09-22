@@ -1,3 +1,5 @@
+import type {JSX} from "react";
+
 import {cls} from "../../lib/css";
 import {audioPlayerIconIdPrefix} from "../audio-player-control-sprite/c-audio-player-control-sprite";
 import {SvgImage} from "../svg-image/c-svg-image";

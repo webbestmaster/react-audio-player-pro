@@ -1,4 +1,4 @@
-import {StrictMode} from "react";
+import {type JSX, StrictMode} from "react";
 
 import {ExampleAudio} from "../example-audio/c-example-audio";
 import {ExamplePlayer} from "../example-audio-player/c-example-audio-player";

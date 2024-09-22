@@ -1,3 +1,5 @@
+import type {JSX} from "react";
+
 import {AudioPlayerControlButton} from "../../../layout/audio-player-control-button/c-audio-player-control-button";
 import {RangeBar} from "../../../layout/range-bar/c-range-bar";
 import {Time} from "../../../layout/time/c-time";

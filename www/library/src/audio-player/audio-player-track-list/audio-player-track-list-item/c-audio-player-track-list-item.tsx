@@ -1,6 +1,6 @@
 /* global HTMLAudioElement */
 
-import {useRef, useState} from "react";
+import {type JSX, useRef, useState} from "react";
 
 import type {PlayerPlayingStateType, TrackType} from "../../../../library";
 import {audioPlayerIconIdPrefix} from "../../../layout/audio-player-control-sprite/c-audio-player-control-sprite";

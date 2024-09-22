@@ -1,6 +1,6 @@
 /* global HTMLSelectElement */
 
-import {type SyntheticEvent, useCallback, useContext, useState} from "react";
+import {type JSX, type SyntheticEvent, useCallback, useContext, useState} from "react";
 
 import type {SavedTrackType, TrackType} from "../../../library";
 import {AudioPlayerControlButton} from "../../layout/audio-player-control-button/c-audio-player-control-button";

@@ -1,3 +1,4 @@
+import type {JSX} from "react";
 interface PropsType {
     readonly className: string;
     readonly imageId: string;

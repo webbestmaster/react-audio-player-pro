@@ -2,6 +2,8 @@
 
 /* global MediaMetadataInit */
 
+import type {JSX} from "react";
+
 export type PlayerPlayingStateType = "paused" | "playing" | "stopped";
 
 export type PlayerRepeatingStateType = "all" | "none" | "one";

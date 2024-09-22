@@ -1,5 +1,7 @@
 /* eslint-disable capitalized-comments */
 
+import type {JSX} from "react";
+
 import {cls} from "../../lib/css";
 import * as spinnerStyle from "./spinner.scss";
 import {defaultData, positionValueMap} from "./spinner-const";

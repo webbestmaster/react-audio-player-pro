@@ -1,6 +1,6 @@
 /* global HTMLInputElement */
 
-import {useCallback, useContext, useRef} from "react";
+import {type JSX, useCallback, useContext, useRef} from "react";
 
 import {AudioPlayer} from "../../../../audio-player/c-audio-player";
 import {AudioPlayerControlButton} from "../../../../layout/audio-player-control-button/c-audio-player-control-button";

@@ -10,7 +10,6 @@ import sonarjs from "eslint-plugin-sonarjs";
 import eslintPluginUnicorn from "eslint-plugin-unicorn";
 import typescriptEslint from "typescript-eslint";
 
-
 /**
  * List of plugins to add
  * - react - from eslint-plugin-react
@@ -42,7 +41,7 @@ export default [
         files,
         ...reactHooks.configs.recommended,
         plugins: {
-            'react-hooks': reactHooks,
+            "react-hooks": reactHooks,
         },
     },
     {
@@ -51,26 +50,26 @@ export default [
             "simple-import-sort": simpleImportSort,
         },
         rules: {
-            "simple-import-sort/imports": "error",
             "simple-import-sort/exports": "error",
+            "simple-import-sort/imports": "error",
         },
     },
     {
-        settings: {react: {version: "detect"}},
         languageOptions: {
-            parserOptions: {
-                project: ["./tsconfig.json"],
-                ecmaVersion: 2020,
-                sourceType: "module",
-                ecmaFeatures: {jsx: true},
-            },
             globals: {
                 JSX: true,
-                require: true,
-                module: true,
                 console: true,
+                module: true,
+                require: true,
+            },
+            parserOptions: {
+                ecmaFeatures: {jsx: true},
+                ecmaVersion: 2020,
+                project: ["./tsconfig.eslint.json"],
+                sourceType: "module",
             },
         },
+        settings: {react: {version: "detect"}},
         plugins: {
             unicorn: eslintPluginUnicorn,
             // Sonarjs: sonarjs,
@@ -79,6 +78,17 @@ export default [
             // Jest
             ...jest.configs["flat/all"].rules,
             "jest/require-hook": [2, {allowedFunctionCalls: ["innerInitialization"]}],
+
+            "sonarjs/sonar-no-unused-vars": "off",
+            "sonarjs/sonar-prefer-read-only-props": "off",
+            "sonarjs/no-dead-store": "off",
+            "sonarjs/sonar-no-fallthrough": "off",
+            "sonarjs/todo-tag": "off",
+            "sonarjs/no-commented-code": "off",
+            "sonarjs/pseudo-random": "off",
+            "sonarjs/pseudo-randoms": "off",
+            "sonarjs/no-invariant-returns": "off",
+            "sonarjs/function-return-type": "off",
 
             // React
             "react/jsx-uses-react": 2,
@@ -183,7 +193,8 @@ export default [
                 },
             ],
             "@typescript-eslint/no-shadow": [
-                2, {
+                2,
+                {
                     builtinGlobals: false,
                     hoist: "all",
                 },
@@ -215,6 +226,7 @@ export default [
             "@typescript-eslint/block-spacing": 0,
             "@typescript-eslint/quotes": 0,
             "@typescript-eslint/use-unknown-in-catch-callback-variable": 0,
+            "@typescript-eslint/require-array-sort-compare": [2, {ignoreStringArrays: false}],
             // TODO: enable this
             "@typescript-eslint/prefer-readonly-parameter-types": 0,
             // "@typescript-eslint/prefer-readonly-parameter-types": [
@@ -349,8 +361,8 @@ export default [
             "coverage/*",
 
             // Style's d.ts
-            // eslint-disable-next-line arrow-body-style, @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/explicit-function-return-type, @typescript-eslint/no-unsafe-argument
-            pathToFile => /\S+\.s?css\.d\.ts/u.test(pathToFile),
+            // eslint-disable-next-line arrow-body-style, @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/explicit-function-return-type, @typescript-eslint/no-unsafe-argument, sonarjs/slow-regex
+            pathToFile => /\S+\.s?css\.d\.ts$/u.test(pathToFile),
 
             // Test
             "test-backstop/*",

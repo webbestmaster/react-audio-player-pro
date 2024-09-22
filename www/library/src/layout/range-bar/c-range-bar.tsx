@@ -1,6 +1,6 @@
 /* global HTMLInputElement */
 
-import {useRef, useState} from "react";
+import {type JSX, useRef, useState} from "react";
 
 import {cls} from "../../lib/css";
 import * as rangeBarStyle from "./range-bar.scss";

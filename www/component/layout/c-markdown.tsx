@@ -1,6 +1,7 @@
 import "markdown-pro/dist/style.css";
 
 import {classNameMdPro, classNameMdProThemeLight, markdown, type MarkdownConfigShallowType} from "markdown-pro";
+import type {JSX} from "react";
 
 interface PropsType {
     readonly config?: MarkdownConfigShallowType;

@@ -1,3 +1,5 @@
+import type {JSX} from "react";
+
 import {demoUrl} from "../../const";
 import {Audio, AudioPlayer, PlayListPanel, PlayListProvider, type TrackType} from "../../library/library";
 import {CustomContent} from "../example-audio-player/c-custom-content";

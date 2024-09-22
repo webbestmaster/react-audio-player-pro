@@ -1,4 +1,4 @@
-import {useContext} from "react";
+import {type JSX, useContext} from "react";
 
 import {AudioPlayerControlButton} from "../../layout/audio-player-control-button/c-audio-player-control-button";
 import {PlayListContext} from "../../provider/play-list/play-list-context";

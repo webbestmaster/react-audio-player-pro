@@ -1,7 +1,7 @@
 /* global HTMLAudioElement, MediaMetadataInit */
-/* eslint react/no-unknown-property: ['error', { ignore: ['volume'] }] */
+/* eslint react/no-unknown-property: ['error', { ignore: ['volume'] }], sonarjs/no-unknown-property: ['error', { ignore: ['volume'] }] */
 
-import {useEffect, useRef, useState} from "react";
+import {type JSX, useEffect, useRef, useState} from "react";
 
 import type {AudioPreloadValueType, PlayerPlayingStateType, TrackType} from "../../../library";
 import {audioPlayerControlTagNameMap} from "../../layout/audio-player-control-button/audio-player-control-button-const";

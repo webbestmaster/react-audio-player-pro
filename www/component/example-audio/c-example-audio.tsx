@@ -1,3 +1,5 @@
+import type {JSX} from "react";
+
 import {demoUrl} from "../../const";
 import {Audio, AudioPlayerControlSprite} from "../../library/library";
 import {Markdown} from "../layout/c-markdown";

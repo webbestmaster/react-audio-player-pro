@@ -1,3 +1,5 @@
+import type {JSX} from "react";
+
 import type {PlayerPlayingStateType, PlayerRepeatingStateType} from "../../../library";
 import {Spinner} from "../../layout/spinner/c-spinner";
 import * as audioPlayerHeadStyle from "./audio-player-head.scss";
