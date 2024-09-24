@@ -59,7 +59,7 @@ const pluginList: Configuration["plugins"] = [
     new ScriptExtHtmlWebpackPlugin({defaultAttribute: "defer"}),
     new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output, both options are optional
-        chunkFilename: isDevelopment ? "[id].css" : "[id].[hash:6].css",
+        chunkFilename: isDevelopment ? "[id].css" : "[id].[fullhash:6].css",
         filename: isDevelopment ? "[name].css" : "style.css",
     }),
     new HtmlWebpackPlugin({
@@ -88,7 +88,7 @@ const pluginBuildLibraryList: Configuration["plugins"] = [
     // ignored new ScriptExtHtmlWebpackPlugin({defaultAttribute: 'defer'}),
     new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output, both options are optional
-        chunkFilename: isDevelopment ? "[id].css" : "[id].[hash:6].css",
+        chunkFilename: isDevelopment ? "[id].css" : "[id].[fullhash:6].css",
         filename: isDevelopment ? "[name].css" : "style.css",
     }),
     new ContextReplacementPlugin(/moment[/\\]locale$/u, /en|ru/u),
